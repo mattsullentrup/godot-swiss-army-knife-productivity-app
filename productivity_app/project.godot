@@ -25,7 +25,12 @@ window/size/viewport_height=1080
 
 project/assembly_name="UntitledProductivityApp"
 
+[gui]
+
+theme/custom_font="res://addons/Kenney Thick.ttf"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.0705882, 0.0705882, 0.0705882, 1)

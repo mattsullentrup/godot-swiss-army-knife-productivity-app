@@ -51,46 +51,47 @@ wait_time = 10.0
 one_shot = true
 
 [node name="ListPanelContainer" type="PanelContainer" parent="CanvasLayer"]
+custom_minimum_size = Vector2(200, 200)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -39.0
-offset_top = -33.0
-offset_right = 132.0
-offset_bottom = 116.0
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_618gk")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ListPanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/ListPanelContainer/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/ListPanelContainer"]
 layout_mode = 2
 columns = 2
 
-[node name="Button" type="Button" parent="CanvasLayer/ListPanelContainer/MarginContainer/GridContainer"]
+[node name="Button" type="Button" parent="CanvasLayer/ListPanelContainer/GridContainer"]
 custom_minimum_size = Vector2(20, 15)
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="CanvasLayer/ListPanelContainer/MarginContainer/GridContainer"]
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/ListPanelContainer/GridContainer"]
 layout_mode = 2
 text = "Godot"
 
-[node name="Button2" type="Button" parent="CanvasLayer/ListPanelContainer/MarginContainer/GridContainer"]
+[node name="Button2" type="Button" parent="CanvasLayer/ListPanelContainer/GridContainer"]
 layout_mode = 2
 
-[node name="LineEdit2" type="LineEdit" parent="CanvasLayer/ListPanelContainer/MarginContainer/GridContainer"]
+[node name="LineEdit2" type="LineEdit" parent="CanvasLayer/ListPanelContainer/GridContainer"]
 layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Blender"
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ListPanelContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/VBoxContainer/TimerButton" to="." method="_on_timer_button_pressed"]
 [connection signal="timeout" from="CanvasLayer/TimerPanelContainer/VBoxContainer/Timer" to="." method="_on_timer_timeout"]
