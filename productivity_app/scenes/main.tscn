@@ -3,8 +3,9 @@
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_5i01b"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://new_theme.tres" id="2_618gk"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" node_paths=PackedStringArray("button")]
 script = ExtResource("1_5i01b")
+button = NodePath("CanvasLayer/ListPanelContainer/GridContainer/Button")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -70,6 +71,7 @@ layout_mode = 2
 columns = 2
 
 [node name="Button" type="Button" parent="CanvasLayer/ListPanelContainer/GridContainer"]
+self_modulate = Color(1, 0, 0.0156863, 1)
 custom_minimum_size = Vector2(20, 15)
 layout_mode = 2
 
@@ -95,3 +97,4 @@ theme_override_constants/margin_bottom = 5
 
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/VBoxContainer/TimerButton" to="." method="_on_timer_button_pressed"]
 [connection signal="timeout" from="CanvasLayer/TimerPanelContainer/VBoxContainer/Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/ListPanelContainer/GridContainer/Button" to="." method="_on_button_pressed"]
