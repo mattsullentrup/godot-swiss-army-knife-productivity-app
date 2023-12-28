@@ -27,7 +27,7 @@ project/assembly_name="UntitledProductivityApp"
 
 [gui]
 
-theme/custom_font="res://addons/Kenney Thick.ttf"
+theme/custom_font="res://addons/NovaMono-Regular.ttf"
 
 [rendering]
 
