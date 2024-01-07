@@ -1,20 +1,6 @@
 [gd_resource type="Theme" load_steps=4 format=3 uid="uid://leiuhrufh5o8"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rnuej"]
-content_margin_left = 15.0
-content_margin_top = 15.0
-content_margin_right = 15.0
-content_margin_bottom = 15.0
-bg_color = Color(0.368627, 0.623529, 0.196078, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+[ext_resource type="StyleBox" uid="uid://bfjrv304tvusc" path="res://theme_data/generic_button.tres" id="1_dsrbt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4xvqw"]
 content_margin_left = 10.0
@@ -50,11 +36,11 @@ corner_radius_bottom_left = 25
 
 [resource]
 Button/font_sizes/font_size = 32
-Button/styles/disabled = SubResource("StyleBoxFlat_rnuej")
-Button/styles/focus = SubResource("StyleBoxFlat_rnuej")
-Button/styles/hover = SubResource("StyleBoxFlat_rnuej")
-Button/styles/normal = SubResource("StyleBoxFlat_rnuej")
-Button/styles/pressed = SubResource("StyleBoxFlat_rnuej")
+Button/styles/disabled = ExtResource("1_dsrbt")
+Button/styles/focus = ExtResource("1_dsrbt")
+Button/styles/hover = ExtResource("1_dsrbt")
+Button/styles/normal = ExtResource("1_dsrbt")
+Button/styles/pressed = ExtResource("1_dsrbt")
 Label/font_sizes/font_size = 32
 LineEdit/styles/normal = SubResource("StyleBoxFlat_4xvqw")
 PanelContainer/fonts/NewFont = null
