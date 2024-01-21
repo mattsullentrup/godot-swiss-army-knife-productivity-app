@@ -40,6 +40,6 @@ func _on_task_button_2_pressed() -> void:
 	current_button_color += 1
 
 
-func _on_set_time_button_pressed(text: String) -> void:
+func _on_time_option_button_item_selected(index: int) -> void:
 	timer.stop()
-	timer.start(timer.time_left + float(text))
+	timer.start(timer.time_left + (index + 1) * 5)

@@ -1,12 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://doy3uidslkhni"]
+[gd_scene load_steps=4 format=3 uid="uid://doy3uidslkhni"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_5i01b"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/new_theme.tres" id="2_618gk"]
 [ext_resource type="StyleBox" uid="uid://cmkmda63cjri1" path="res://theme_data/task_button.tres" id="3_eatbb"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qt3c1"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_47ubk"]
 
 [node name="Main" type="Node" node_paths=PackedStringArray("task_button", "task_button_2")]
 script = ExtResource("1_5i01b")
@@ -40,27 +36,16 @@ theme = ExtResource("2_618gk")
 layout_mode = 2
 alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/TimerPanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
+[node name="TimeOptionButton" type="OptionButton" parent="CanvasLayer/TimerPanelContainer/VBoxContainer"]
 layout_mode = 2
-horizontal_scroll_mode = 0
-vertical_scroll_mode = 2
-
-[node name="ItemList" type="VBoxContainer" parent="CanvasLayer/TimerPanelContainer/VBoxContainer/ScrollContainer"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="SetTimeButton" type="Button" parent="CanvasLayer/TimerPanelContainer/VBoxContainer/ScrollContainer/ItemList"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_qt3c1")
-text = "5"
-
-[node name="SetTimeButton2" type="Button" parent="CanvasLayer/TimerPanelContainer/VBoxContainer/ScrollContainer/ItemList"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_47ubk")
-text = "10
-"
+theme = ExtResource("2_618gk")
+alignment = 1
+item_count = 2
+selected = 0
+popup/item_0/text = "5"
+popup/item_0/id = 0
+popup/item_1/text = "10"
+popup/item_1/id = 1
 
 [node name="TimerLabel" type="Label" parent="CanvasLayer/TimerPanelContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -127,8 +112,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Blender"
 
-[connection signal="pressed" from="CanvasLayer/TimerPanelContainer/VBoxContainer/ScrollContainer/ItemList/SetTimeButton" to="." method="_on_set_time_button_pressed" binds= ["5"]]
-[connection signal="pressed" from="CanvasLayer/TimerPanelContainer/VBoxContainer/ScrollContainer/ItemList/SetTimeButton2" to="." method="_on_set_time_button_pressed" binds= ["10"]]
+[connection signal="item_selected" from="CanvasLayer/TimerPanelContainer/VBoxContainer/TimeOptionButton" to="." method="_on_time_option_button_item_selected"]
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/VBoxContainer/TimerButton" to="." method="_on_timer_button_pressed"]
 [connection signal="timeout" from="CanvasLayer/TimerPanelContainer/VBoxContainer/Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/ListPanelContainer/GridContainer/TaskButton" to="." method="_on_task_button_pressed"]
