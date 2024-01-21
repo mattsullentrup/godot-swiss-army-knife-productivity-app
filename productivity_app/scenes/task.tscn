@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://dercwquryae2g"]
+
+[ext_resource type="StyleBox" uid="uid://cmkmda63cjri1" path="res://theme_data/task_button.tres" id="1_1t8sx"]
+
+[node name="Task" type="HBoxContainer"]
+
+[node name="TaskButton" type="Button" parent="."]
+texture_filter = 2
+custom_minimum_size = Vector2(35, 15)
+layout_mode = 2
+theme_override_styles/normal = ExtResource("1_1t8sx")
+theme_override_styles/hover = ExtResource("1_1t8sx")
+theme_override_styles/pressed = ExtResource("1_1t8sx")
+theme_override_styles/disabled = ExtResource("1_1t8sx")
+theme_override_styles/focus = ExtResource("1_1t8sx")
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Enter task..."

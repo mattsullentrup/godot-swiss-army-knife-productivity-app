@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_5i01b"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/new_theme.tres" id="2_618gk"]
 [ext_resource type="Script" path="res://scripts/task_manager.gd" id="3_8jc33"]
-[ext_resource type="StyleBox" uid="uid://cmkmda63cjri1" path="res://theme_data/task_button.tres" id="3_eatbb"]
+[ext_resource type="PackedScene" uid="uid://dercwquryae2g" path="res://scenes/task.tscn" id="4_n1nfk"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_5i01b")
@@ -78,7 +78,7 @@ popup/item_3/id = 3
 popup/item_4/text = "25"
 popup/item_4/id = 4
 
-[node name="TaskListPanelContainer" type="PanelContainer" parent="CanvasLayer" node_paths=PackedStringArray("task_button", "task_button_2")]
+[node name="TaskListPanelContainer" type="PanelContainer" parent="CanvasLayer"]
 custom_minimum_size = Vector2(200, 200)
 anchors_preset = 8
 anchor_left = 0.5
@@ -93,42 +93,24 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_618gk")
 script = ExtResource("3_8jc33")
-task_button = NodePath("GridContainer/TaskButton")
-task_button_2 = NodePath("GridContainer/TaskButton2")
+task_buttons = [NodePath("VBoxContainer/Task/TaskButton"), NodePath("VBoxContainer/Task2/TaskButton")]
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/TaskListPanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TaskListPanelContainer"]
 layout_mode = 2
-columns = 2
 
-[node name="TaskButton" type="Button" parent="CanvasLayer/TaskListPanelContainer/GridContainer"]
-texture_filter = 2
-custom_minimum_size = Vector2(35, 15)
+[node name="Task" parent="CanvasLayer/TaskListPanelContainer/VBoxContainer" instance=ExtResource("4_n1nfk")]
 layout_mode = 2
-theme_override_styles/normal = ExtResource("3_eatbb")
-theme_override_styles/hover = ExtResource("3_eatbb")
-theme_override_styles/pressed = ExtResource("3_eatbb")
-theme_override_styles/disabled = ExtResource("3_eatbb")
-theme_override_styles/focus = ExtResource("3_eatbb")
 
-[node name="LineEdit" type="LineEdit" parent="CanvasLayer/TaskListPanelContainer/GridContainer"]
-layout_mode = 2
+[node name="LineEdit" parent="CanvasLayer/TaskListPanelContainer/VBoxContainer/Task" index="1"]
 text = "Godot"
 
-[node name="TaskButton2" type="Button" parent="CanvasLayer/TaskListPanelContainer/GridContainer"]
+[node name="Task2" parent="CanvasLayer/TaskListPanelContainer/VBoxContainer" instance=ExtResource("4_n1nfk")]
 layout_mode = 2
-theme_override_styles/normal = ExtResource("3_eatbb")
-theme_override_styles/hover = ExtResource("3_eatbb")
-theme_override_styles/pressed = ExtResource("3_eatbb")
-theme_override_styles/disabled = ExtResource("3_eatbb")
-theme_override_styles/focus = ExtResource("3_eatbb")
-
-[node name="LineEdit2" type="LineEdit" parent="CanvasLayer/TaskListPanelContainer/GridContainer"]
-layout_direction = 2
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Blender"
 
 [connection signal="timeout" from="CanvasLayer/Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/VBoxContainer/TimerStartButton" to="." method="_on_timer_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/VBoxContainer/TimerStopButton" to="." method="_on_timer_stop_button_pressed"]
 [connection signal="item_selected" from="CanvasLayer/TimerPanelContainer/VBoxContainer/TimeOptionButton" to="." method="_on_time_option_button_item_selected"]
+
+[editable path="CanvasLayer/TaskListPanelContainer/VBoxContainer/Task"]
+[editable path="CanvasLayer/TaskListPanelContainer/VBoxContainer/Task2"]
