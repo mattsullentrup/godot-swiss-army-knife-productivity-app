@@ -1,13 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://doy3uidslkhni"]
+[gd_scene load_steps=5 format=3 uid="uid://doy3uidslkhni"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_5i01b"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/new_theme.tres" id="2_618gk"]
+[ext_resource type="Script" path="res://scripts/task_manager.gd" id="3_8jc33"]
 [ext_resource type="StyleBox" uid="uid://cmkmda63cjri1" path="res://theme_data/task_button.tres" id="3_eatbb"]
 
-[node name="Main" type="Node" node_paths=PackedStringArray("task_button", "task_button_2")]
+[node name="Main" type="Node"]
 script = ExtResource("1_5i01b")
-task_button = NodePath("CanvasLayer/ListPanelContainer/GridContainer/TaskButton")
-task_button_2 = NodePath("CanvasLayer/ListPanelContainer/GridContainer/TaskButton2")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -79,7 +78,7 @@ popup/item_3/id = 3
 popup/item_4/text = "25"
 popup/item_4/id = 4
 
-[node name="ListPanelContainer" type="PanelContainer" parent="CanvasLayer"]
+[node name="TaskListPanelContainer" type="PanelContainer" parent="CanvasLayer" node_paths=PackedStringArray("task_button", "task_button_2")]
 custom_minimum_size = Vector2(200, 200)
 anchors_preset = 8
 anchor_left = 0.5
@@ -93,12 +92,15 @@ offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_618gk")
+script = ExtResource("3_8jc33")
+task_button = NodePath("GridContainer/TaskButton")
+task_button_2 = NodePath("GridContainer/TaskButton2")
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/ListPanelContainer"]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/TaskListPanelContainer"]
 layout_mode = 2
 columns = 2
 
-[node name="TaskButton" type="Button" parent="CanvasLayer/ListPanelContainer/GridContainer"]
+[node name="TaskButton" type="Button" parent="CanvasLayer/TaskListPanelContainer/GridContainer"]
 texture_filter = 2
 custom_minimum_size = Vector2(35, 15)
 layout_mode = 2
@@ -108,11 +110,11 @@ theme_override_styles/pressed = ExtResource("3_eatbb")
 theme_override_styles/disabled = ExtResource("3_eatbb")
 theme_override_styles/focus = ExtResource("3_eatbb")
 
-[node name="LineEdit" type="LineEdit" parent="CanvasLayer/ListPanelContainer/GridContainer"]
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/TaskListPanelContainer/GridContainer"]
 layout_mode = 2
 text = "Godot"
 
-[node name="TaskButton2" type="Button" parent="CanvasLayer/ListPanelContainer/GridContainer"]
+[node name="TaskButton2" type="Button" parent="CanvasLayer/TaskListPanelContainer/GridContainer"]
 layout_mode = 2
 theme_override_styles/normal = ExtResource("3_eatbb")
 theme_override_styles/hover = ExtResource("3_eatbb")
@@ -120,7 +122,7 @@ theme_override_styles/pressed = ExtResource("3_eatbb")
 theme_override_styles/disabled = ExtResource("3_eatbb")
 theme_override_styles/focus = ExtResource("3_eatbb")
 
-[node name="LineEdit2" type="LineEdit" parent="CanvasLayer/ListPanelContainer/GridContainer"]
+[node name="LineEdit2" type="LineEdit" parent="CanvasLayer/TaskListPanelContainer/GridContainer"]
 layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 3
@@ -130,5 +132,3 @@ text = "Blender"
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/VBoxContainer/TimerStartButton" to="." method="_on_timer_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/VBoxContainer/TimerStopButton" to="." method="_on_timer_stop_button_pressed"]
 [connection signal="item_selected" from="CanvasLayer/TimerPanelContainer/VBoxContainer/TimeOptionButton" to="." method="_on_time_option_button_item_selected"]
-[connection signal="pressed" from="CanvasLayer/ListPanelContainer/GridContainer/TaskButton" to="." method="_on_task_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/ListPanelContainer/GridContainer/TaskButton2" to="." method="_on_task_button_2_pressed"]
