@@ -11,6 +11,11 @@ task_button_2 = NodePath("CanvasLayer/ListPanelContainer/GridContainer/TaskButto
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="Timer" type="Timer" parent="CanvasLayer"]
+unique_name_in_owner = true
+wait_time = 10.0
+one_shot = true
+
 [node name="TimerMessage" type="Label" parent="CanvasLayer"]
 unique_name_in_owner = true
 anchors_preset = 5
@@ -36,16 +41,11 @@ theme = ExtResource("2_618gk")
 layout_mode = 2
 alignment = 1
 
-[node name="TimeOptionButton" type="OptionButton" parent="CanvasLayer/TimerPanelContainer/VBoxContainer"]
+[node name="TimerStartButton" type="Button" parent="CanvasLayer/TimerPanelContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_618gk")
-alignment = 1
-item_count = 2
-selected = 0
-popup/item_0/text = "5"
-popup/item_0/id = 0
-popup/item_1/text = "10"
-popup/item_1/id = 1
+size_flags_vertical = 10
+text = "Start
+"
 
 [node name="TimerLabel" type="Label" parent="CanvasLayer/TimerPanelContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -55,15 +55,29 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TimerButton" type="Button" parent="CanvasLayer/TimerPanelContainer/VBoxContainer"]
+[node name="TimerStopButton" type="Button" parent="CanvasLayer/TimerPanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
-text = "Start Timer"
+text = "Stop
+"
 
-[node name="Timer" type="Timer" parent="CanvasLayer/TimerPanelContainer/VBoxContainer"]
+[node name="TimeOptionButton" type="OptionButton" parent="CanvasLayer/TimerPanelContainer/VBoxContainer"]
 unique_name_in_owner = true
-wait_time = 10.0
-one_shot = true
+layout_mode = 2
+theme = ExtResource("2_618gk")
+alignment = 1
+item_count = 5
+selected = 3
+popup/item_0/text = "5"
+popup/item_0/id = 0
+popup/item_1/text = "10"
+popup/item_1/id = 1
+popup/item_2/text = "15"
+popup/item_2/id = 2
+popup/item_3/text = "20"
+popup/item_3/id = 3
+popup/item_4/text = "25"
+popup/item_4/id = 4
 
 [node name="ListPanelContainer" type="PanelContainer" parent="CanvasLayer"]
 custom_minimum_size = Vector2(200, 200)
@@ -112,8 +126,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Blender"
 
+[connection signal="timeout" from="CanvasLayer/Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/TimerPanelContainer/VBoxContainer/TimerStartButton" to="." method="_on_timer_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TimerPanelContainer/VBoxContainer/TimerStopButton" to="." method="_on_timer_stop_button_pressed"]
 [connection signal="item_selected" from="CanvasLayer/TimerPanelContainer/VBoxContainer/TimeOptionButton" to="." method="_on_time_option_button_item_selected"]
-[connection signal="pressed" from="CanvasLayer/TimerPanelContainer/VBoxContainer/TimerButton" to="." method="_on_timer_button_pressed"]
-[connection signal="timeout" from="CanvasLayer/TimerPanelContainer/VBoxContainer/Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/ListPanelContainer/GridContainer/TaskButton" to="." method="_on_task_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/ListPanelContainer/GridContainer/TaskButton2" to="." method="_on_task_button_2_pressed"]
