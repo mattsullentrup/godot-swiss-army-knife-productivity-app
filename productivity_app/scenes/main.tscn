@@ -38,6 +38,7 @@ theme = ExtResource("2_618gk")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TimerPanelContainer"]
 layout_mode = 2
+theme_override_constants/separation = 35
 alignment = 1
 
 [node name="TimerStartButton" type="Button" parent="CanvasLayer/TimerPanelContainer/VBoxContainer"]
@@ -57,12 +58,15 @@ vertical_alignment = 1
 [node name="TimerStopButton" type="Button" parent="CanvasLayer/TimerPanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
+theme = ExtResource("2_618gk")
+theme_type_variation = &"StopButton"
 text = "Stop
 "
 
 [node name="TimeOptionButton" type="OptionButton" parent="CanvasLayer/TimerPanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_stretch_ratio = 12.62
 theme = ExtResource("2_618gk")
 alignment = 1
 item_count = 5

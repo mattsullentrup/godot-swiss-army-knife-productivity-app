@@ -1,6 +1,24 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://leiuhrufh5o8"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://leiuhrufh5o8"]
 
 [ext_resource type="StyleBox" uid="uid://bfjrv304tvusc" path="res://theme_data/generic_button.tres" id="1_dsrbt"]
+[ext_resource type="FontFile" uid="uid://ye2drpcysxs7" path="res://addons/NovaMono-Regular.ttf" id="1_u0ore"]
+[ext_resource type="StyleBox" uid="uid://q7qcork245o0" path="res://theme_data/stop_button_style_box.tres" id="3_f1d63"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4jgyk"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.180392, 0.247059, 0.670588, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4xvqw"]
 content_margin_left = 10.0
@@ -34,14 +52,84 @@ corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gk6gl"]
+bg_color = Color(0.576471, 0.101961, 0.101961, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d6ojg"]
+bg_color = Color(0.576471, 0.101961, 0.101961, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oofq8"]
+bg_color = Color(0.580392, 0.219608, 0.219608, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3t6w7"]
+bg_color = Color(0.576471, 0.101961, 0.101961, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+anti_aliasing = false
+
 [resource]
+Button/colors/font_color = Color(0.87451, 0.87451, 0.87451, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.94902, 0.94902, 0.94902, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
 Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_u0ore")
 Button/styles/disabled = ExtResource("1_dsrbt")
 Button/styles/focus = ExtResource("1_dsrbt")
-Button/styles/hover = ExtResource("1_dsrbt")
+Button/styles/hover = SubResource("StyleBoxFlat_4jgyk")
 Button/styles/normal = ExtResource("1_dsrbt")
 Button/styles/pressed = ExtResource("1_dsrbt")
 Label/font_sizes/font_size = 32
 LineEdit/styles/normal = SubResource("StyleBoxFlat_4xvqw")
 PanelContainer/fonts/NewFont = null
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_f20hw")
+StopButton/base_type = &"Button"
+StopButton/styles/disabled = SubResource("StyleBoxFlat_gk6gl")
+StopButton/styles/focus = SubResource("StyleBoxFlat_d6ojg")
+StopButton/styles/hover = SubResource("StyleBoxFlat_oofq8")
+StopButton/styles/normal = ExtResource("3_f1d63")
+StopButton/styles/pressed = SubResource("StyleBoxFlat_3t6w7")
