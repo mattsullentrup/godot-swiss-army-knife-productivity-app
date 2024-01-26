@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://leiuhrufh5o8"]
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://leiuhrufh5o8"]
 
 [ext_resource type="StyleBox" uid="uid://bfjrv304tvusc" path="res://theme_data/generic_button.tres" id="1_dsrbt"]
 [ext_resource type="FontFile" uid="uid://ye2drpcysxs7" path="res://addons/NovaMono-Regular.ttf" id="1_u0ore"]
@@ -99,6 +99,13 @@ corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 anti_aliasing = false
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4p5g8"]
+bg_color = Color(0.270588, 0.352941, 0.505882, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
 [resource]
 Button/colors/font_color = Color(0.87451, 0.87451, 0.87451, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
@@ -133,3 +140,4 @@ StopButton/styles/focus = SubResource("StyleBoxFlat_d6ojg")
 StopButton/styles/hover = SubResource("StyleBoxFlat_oofq8")
 StopButton/styles/normal = ExtResource("3_f1d63")
 StopButton/styles/pressed = SubResource("StyleBoxFlat_3t6w7")
+TabContainer/styles/panel = SubResource("StyleBoxFlat_4p5g8")

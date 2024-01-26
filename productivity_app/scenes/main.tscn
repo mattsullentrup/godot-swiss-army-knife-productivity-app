@@ -32,25 +32,47 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TimerPanelContainer" type="PanelContainer" parent="CanvasLayer"]
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 298.0
-offset_bottom = 336.0
+offset_left = 60.0
+offset_top = 60.0
+offset_right = 460.0
+offset_bottom = 660.0
 theme = ExtResource("2_618gk")
 script = ExtResource("3_6ja1g")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TimerPanelContainer"]
+[node name="TabContainer" type="TabContainer" parent="CanvasLayer/TimerPanelContainer"]
+custom_minimum_size = Vector2(300, 400)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tab_alignment = 1
+
+[node name="Normal" type="TabBar" parent="CanvasLayer/TimerPanelContainer/TabContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TimerPanelContainer/TabContainer/Normal"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -47.0
+offset_top = -148.5
+offset_right = 47.0
+offset_bottom = 148.5
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/separation = 35
 alignment = 1
 
-[node name="TimerStartButton" type="Button" parent="CanvasLayer/TimerPanelContainer/VBoxContainer"]
+[node name="TimerStartButton" type="Button" parent="CanvasLayer/TimerPanelContainer/TabContainer/Normal/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
 text = "Start
 "
 
-[node name="TimerLabel" type="Label" parent="CanvasLayer/TimerPanelContainer/VBoxContainer"]
+[node name="TimerLabel" type="Label" parent="CanvasLayer/TimerPanelContainer/TabContainer/Normal/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 6
@@ -58,7 +80,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TimerStopButton" type="Button" parent="CanvasLayer/TimerPanelContainer/VBoxContainer"]
+[node name="TimerStopButton" type="Button" parent="CanvasLayer/TimerPanelContainer/TabContainer/Normal/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
 theme = ExtResource("2_618gk")
@@ -66,7 +88,7 @@ theme_type_variation = &"StopButton"
 text = "Stop
 "
 
-[node name="TimeOptionButton" type="OptionButton" parent="CanvasLayer/TimerPanelContainer/VBoxContainer"]
+[node name="TimeOptionButton" type="OptionButton" parent="CanvasLayer/TimerPanelContainer/TabContainer/Normal/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_stretch_ratio = 12.62
@@ -84,6 +106,10 @@ popup/item_3/text = "20"
 popup/item_3/id = 3
 popup/item_4/text = "25"
 popup/item_4/id = 4
+
+[node name="Pomodoro" type="TabBar" parent="CanvasLayer/TimerPanelContainer/TabContainer"]
+visible = false
+layout_mode = 2
 
 [node name="TaskListPanelContainer" type="PanelContainer" parent="CanvasLayer"]
 custom_minimum_size = Vector2(200, 200)
@@ -115,9 +141,9 @@ text = "Godot"
 layout_mode = 2
 
 [connection signal="timeout" from="CanvasLayer/Timer" to="CanvasLayer/TimerPanelContainer" method="_on_timer_timeout"]
-[connection signal="pressed" from="CanvasLayer/TimerPanelContainer/VBoxContainer/TimerStartButton" to="CanvasLayer/TimerPanelContainer" method="_on_timer_start_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/TimerPanelContainer/VBoxContainer/TimerStopButton" to="CanvasLayer/TimerPanelContainer" method="_on_timer_stop_button_pressed"]
-[connection signal="item_selected" from="CanvasLayer/TimerPanelContainer/VBoxContainer/TimeOptionButton" to="CanvasLayer/TimerPanelContainer" method="_on_time_option_button_item_selected"]
+[connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Normal/VBoxContainer/TimerStartButton" to="CanvasLayer/TimerPanelContainer" method="_on_timer_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Normal/VBoxContainer/TimerStopButton" to="CanvasLayer/TimerPanelContainer" method="_on_timer_stop_button_pressed"]
+[connection signal="item_selected" from="CanvasLayer/TimerPanelContainer/TabContainer/Normal/VBoxContainer/TimeOptionButton" to="CanvasLayer/TimerPanelContainer" method="_on_time_option_button_item_selected"]
 
 [editable path="CanvasLayer/TaskListPanelContainer/VBoxContainer/Task"]
 [editable path="CanvasLayer/TaskListPanelContainer/VBoxContainer/Task2"]
