@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://doy3uidslkhni"]
+[gd_scene load_steps=7 format=3 uid="uid://doy3uidslkhni"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_5i01b"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/new_theme.tres" id="2_618gk"]
 [ext_resource type="Script" path="res://scripts/timer_manager.gd" id="3_6ja1g"]
 [ext_resource type="Script" path="res://scripts/task_manager.gd" id="3_8jc33"]
+[ext_resource type="Script" path="res://scripts/pomodoro.gd" id="4_e1sqt"]
 [ext_resource type="PackedScene" uid="uid://dercwquryae2g" path="res://scenes/task.tscn" id="4_n1nfk"]
 
 [node name="Main" type="Node"]
@@ -45,8 +46,10 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 tab_alignment = 1
+current_tab = 1
 
 [node name="Normal" type="TabBar" parent="CanvasLayer/TimerPanelContainer/TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TimerPanelContainer/TabContainer/Normal"]
@@ -107,9 +110,55 @@ popup/item_3/id = 3
 popup/item_4/text = "25"
 popup/item_4/id = 4
 
-[node name="Pomodoro" type="TabBar" parent="CanvasLayer/TimerPanelContainer/TabContainer"]
-visible = false
+[node name="Pomodoro" type="TabBar" parent="CanvasLayer/TimerPanelContainer/TabContainer" node_paths=PackedStringArray("pomodoro_label")]
 layout_mode = 2
+script = ExtResource("4_e1sqt")
+pomodoro_label = NodePath("VBoxContainer/PomodoroLabel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -47.0
+offset_top = -148.5
+offset_right = 47.0
+offset_bottom = 148.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 35
+alignment = 1
+
+[node name="PomodoroLabel" type="Label" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimerStartButton" type="Button" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "Start
+"
+
+[node name="TimerLabel" type="Label" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimerStopButton" type="Button" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme = ExtResource("2_618gk")
+theme_type_variation = &"StopButton"
+text = "Stop
+"
 
 [node name="TaskListPanelContainer" type="PanelContainer" parent="CanvasLayer"]
 custom_minimum_size = Vector2(200, 200)
