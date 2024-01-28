@@ -10,5 +10,8 @@ enum Round {
 
 @export var pomodoro_label: Label
 
+var current_round: int
+
+
 func _ready() -> void:
 	pomodoro_label.text = str(Round.FIRST) + '/4'
