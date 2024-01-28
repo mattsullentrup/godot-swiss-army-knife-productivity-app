@@ -22,11 +22,14 @@ func _on_normal_timer_start_button_pressed() -> void:
 	normal_timer.start(normal_timer_length)
 	normal_timer_message.hide()
 
+
 func _on_normal_timer_stop_button_pressed() -> void:
 	normal_timer.stop()
 
+
 func _on_normal_timer_timeout() -> void:
 	normal_timer_message.show()
+
 
 func _on_normal_time_option_button_item_selected(index: int) -> void:
 	normal_timer_length = (index + 1) * 5
