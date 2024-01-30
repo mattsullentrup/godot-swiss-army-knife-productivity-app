@@ -166,7 +166,7 @@ theme_type_variation = &"StopButton"
 text = "Stop
 "
 
-[node name="TaskListPanelContainer" type="PanelContainer" parent="CanvasLayer"]
+[node name="TaskListPanelContainer" type="PanelContainer" parent="CanvasLayer" node_paths=PackedStringArray("task_buttons")]
 custom_minimum_size = Vector2(200, 200)
 anchors_preset = 8
 anchor_left = 0.5
