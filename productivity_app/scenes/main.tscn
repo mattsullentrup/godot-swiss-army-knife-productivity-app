@@ -110,11 +110,11 @@ popup/item_3/id = 3
 popup/item_4/text = "25"
 popup/item_4/id = 4
 
-[node name="Pomodoro" type="TabBar" parent="CanvasLayer/TimerPanelContainer/TabContainer" node_paths=PackedStringArray("round_label", "pomodoro_timer", "pomodoro_time_remaining_label", "pomodoro_timer_message")]
+[node name="Pomodoro" type="TabBar" parent="CanvasLayer/TimerPanelContainer/TabContainer" node_paths=PackedStringArray("pomodoro_timer", "round_label", "pomodoro_time_remaining_label", "pomodoro_timer_message")]
 layout_mode = 2
 script = ExtResource("4_e1sqt")
-round_label = NodePath("VBoxContainer/PomodoroRoundLabel")
 pomodoro_timer = NodePath("PomodoroTimer")
+round_label = NodePath("VBoxContainer/PomodoroRoundLabel")
 pomodoro_time_remaining_label = NodePath("VBoxContainer/PomodoroTimeRemainingLabel")
 pomodoro_timer_message = NodePath("../../../TimerMessage")
 

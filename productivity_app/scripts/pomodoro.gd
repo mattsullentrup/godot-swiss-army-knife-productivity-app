@@ -8,8 +8,8 @@ enum Round {
 	FOURTH = 4,
 }
 
-@export var round_label : Label
 @export var pomodoro_timer : Timer
+@export var round_label : Label
 @export var pomodoro_time_remaining_label : Label
 @export var pomodoro_timer_message : Label
 
@@ -72,4 +72,6 @@ func _on_pomodoro_timer_timeout() -> void:
 
 
 func _on_reset_button_pressed() -> void:
-	pass # Replace with function body.
+	current_round = 1
+	pomodoro_timer.stop()
+	change_round()
