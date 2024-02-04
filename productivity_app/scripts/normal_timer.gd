@@ -1,10 +1,10 @@
 extends TabBar
 
 
-@export var normal_timer: Timer
-@export var normal_time_remaining_label: Label
-@export var normal_timer_message: Label
-@export var normal_timer_option_button: OptionButton
+@export var normal_timer : Timer
+@export var normal_time_remaining_label : Label
+@export var normal_timer_message : Label
+@export var normal_timer_option_button : OptionButton
 
 @onready var normal_timer_length: int = (normal_timer_option_button.selected + 1) * 5
 

@@ -39,8 +39,10 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 tab_alignment = 1
+current_tab = 1
 
 [node name="Normal" type="TabBar" parent="CanvasLayer/TimerPanelContainer/TabContainer" node_paths=PackedStringArray("normal_timer", "normal_time_remaining_label", "normal_timer_message", "normal_timer_option_button")]
+visible = false
 layout_mode = 2
 script = ExtResource("3_rcetv")
 normal_timer = NodePath("NormalTimer")
@@ -108,11 +110,10 @@ popup/item_3/id = 3
 popup/item_4/text = "25"
 popup/item_4/id = 4
 
-[node name="Pomodoro" type="TabBar" parent="CanvasLayer/TimerPanelContainer/TabContainer" node_paths=PackedStringArray("pomodoro_round_label", "pomodoro_timer", "pomodoro_time_remaining_label", "pomodoro_timer_message")]
-visible = false
+[node name="Pomodoro" type="TabBar" parent="CanvasLayer/TimerPanelContainer/TabContainer" node_paths=PackedStringArray("round_label", "pomodoro_timer", "pomodoro_time_remaining_label", "pomodoro_timer_message")]
 layout_mode = 2
 script = ExtResource("4_e1sqt")
-pomodoro_round_label = NodePath("VBoxContainer/PomodoroRoundLabel")
+round_label = NodePath("VBoxContainer/PomodoroRoundLabel")
 pomodoro_timer = NodePath("PomodoroTimer")
 pomodoro_time_remaining_label = NodePath("VBoxContainer/PomodoroTimeRemainingLabel")
 pomodoro_timer_message = NodePath("../../../TimerMessage")
@@ -135,7 +136,7 @@ offset_right = 47.0
 offset_bottom = 148.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 35
+theme_override_constants/separation = 30
 alignment = 1
 
 [node name="PomodoroRoundLabel" type="Label" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer"]
@@ -146,6 +147,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PomodoroStartButton" type="Button" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 10
 text = "Start
@@ -165,6 +167,11 @@ theme = ExtResource("2_618gk")
 theme_type_variation = &"StopButton"
 text = "Stop
 "
+
+[node name="ResetButton" type="Button" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer"]
+custom_minimum_size = Vector2(20, 50)
+layout_mode = 2
+text = "Reset"
 
 [node name="TaskListPanelContainer" type="PanelContainer" parent="CanvasLayer" node_paths=PackedStringArray("task_buttons")]
 custom_minimum_size = Vector2(200, 200)
@@ -202,6 +209,7 @@ layout_mode = 2
 [connection signal="timeout" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/PomodoroTimer" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_pomodoro_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/PomodoroStartButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_pomodoro_timer_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/PomodoroStopButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_pomodoro_timer_stop_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/ResetButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_reset_button_pressed"]
 
 [editable path="CanvasLayer/TaskListPanelContainer/VBoxContainer/Task"]
 [editable path="CanvasLayer/TaskListPanelContainer/VBoxContainer/Task2"]

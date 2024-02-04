@@ -4,7 +4,7 @@ extends PanelContainer
 @export var task_buttons : Array[Button] = []
 
 @onready var button_colors : Array[Color] = [Color.RED, Color.YELLOW, Color.GREEN]
-@onready var current_button_color: int = 1
+@onready var current_button_color : int = 1
 
 
 func _ready() -> void:
