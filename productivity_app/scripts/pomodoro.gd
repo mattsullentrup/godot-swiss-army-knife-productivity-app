@@ -21,26 +21,28 @@ var timeout_mark : float
 
 @onready var short_break_length : int = 2
 @onready var long_break_length : int = 3
-@onready var work_round_length : int = 5
+@onready var work_round_length : int = 1
 @onready var current_round : int = 1
 @onready var start_button: Button = %PomodoroStartButton
 
 
 func _ready() -> void:
+	short_break_length *= 60
+	long_break_length *= 60
+	work_round_length *= 60
+
 	timer_length = work_round_length
+
 	change_round()
 
 
 func _process(_delta: float) -> void:
-	#pomodoro_time_remaining_label.text = type_convert(ceilf(pomodoro_timer.time_left), TYPE_STRING)
-	#pomodoro_time_remaining_label.text = get_formatted_time_from_seconds(pomodoro_timer.time_left)
-	#print(Time.get_unix_time_from_system())
 	if is_in_overtime:
 		time_to_display = timeout_mark - Time.get_unix_time_from_system()
 	else:
 		time_to_display = pomodoro_timer.time_left
-	pomodoro_time_remaining_label.text = get_formatted_time_from_seconds(ceili(time_to_display))
 
+	pomodoro_time_remaining_label.text = get_formatted_time_from_seconds(ceili(time_to_display))
 
 
 func change_round() -> void:
@@ -50,20 +52,24 @@ func change_round() -> void:
 	is_on_break = false
 
 
-func get_formatted_time_from_seconds(_secs : int) -> String:
-	var neg : bool = false
-	if _secs < 0:
-		_secs = abs(_secs)
-		neg = true
-	var hours : int = _secs / 3600
-	_secs -= hours * 3600
-	var minutes : int = _secs / 60
-	_secs -= minutes * 60
+func get_formatted_time_from_seconds(seconds : int) -> String:
+	var is_negative : bool = false
+	if seconds < 0:
+		seconds = abs(seconds)
+		is_negative = true
 
-	if neg:
-		return ("-" + "%02d" % hours) + ":" + str("%02d" % minutes) + ":" + ("%02d" % _secs)
+
+	var hours : int = seconds / 3600
+	seconds -= hours * 3600
+
+	var minutes : int = seconds / 60
+	seconds -= minutes * 60
+
+
+	if is_negative:
+		return ("-" + "%02d" % hours) + ":" + str("%02d" % minutes) + ":" + ("%02d" % seconds)
 	else:
-		return ("%02d" % hours) + ":" + str("%02d" % minutes) + ":" + ("%02d" % _secs)
+		return ("%02d" % hours) + ":" + str("%02d" % minutes) + ":" + ("%02d" % seconds)
 
 
 func _on_pomodoro_timer_start_button_pressed() -> void:
@@ -100,7 +106,6 @@ func _on_pomodoro_timer_timeout() -> void:
 
 	timeout_mark = Time.get_unix_time_from_system()
 	is_in_overtime = true
-
 
 
 func _on_reset_button_pressed() -> void:
