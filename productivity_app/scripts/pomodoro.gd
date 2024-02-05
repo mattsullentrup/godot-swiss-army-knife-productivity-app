@@ -28,6 +28,11 @@ func _ready() -> void:
 	change_round()
 
 
+func _process(_delta: float) -> void:
+	#pomodoro_time_remaining_label.text = type_convert(ceilf(pomodoro_timer.time_left), TYPE_STRING)
+	pomodoro_time_remaining_label.text = get_formatted_time_from_seconds(pomodoro_timer.time_left)
+
+
 func change_round() -> void:
 	timer_length = work_round_length
 	round_label.text = str(current_round) + '/4'
@@ -35,8 +40,20 @@ func change_round() -> void:
 	is_on_break = false
 
 
-func _process(_delta: float) -> void:
-	pomodoro_time_remaining_label.text = type_convert(ceilf(pomodoro_timer.time_left), TYPE_STRING)
+func get_formatted_time_from_seconds(_secs : int) -> String:
+	var neg : bool = false
+	if _secs < 0:
+		_secs = abs(_secs)
+		neg = true
+	var hours : int = _secs / 3600
+	_secs -= hours * 3600
+	var minutes : int = _secs / 60
+	_secs -= minutes * 60
+
+	if neg:
+		return ("-" + "%02d" % hours) + ":" + str("%02d" % minutes) + ":" + ("%02d" % _secs)
+	else:
+		return ("%02d" % hours) + ":" + str("%02d" % minutes) + ":" + ("%02d" % _secs)
 
 
 func _on_pomodoro_timer_start_button_pressed() -> void:
