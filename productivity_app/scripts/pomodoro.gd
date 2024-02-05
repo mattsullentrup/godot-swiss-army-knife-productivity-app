@@ -14,7 +14,10 @@ enum Round {
 @export var pomodoro_timer_message : Label
 
 var is_on_break : bool
+var is_in_overtime : bool
 var timer_length : int
+var time_to_display : float
+var timeout_mark : float
 
 @onready var short_break_length : int = 2
 @onready var long_break_length : int = 3
@@ -30,7 +33,14 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	#pomodoro_time_remaining_label.text = type_convert(ceilf(pomodoro_timer.time_left), TYPE_STRING)
-	pomodoro_time_remaining_label.text = get_formatted_time_from_seconds(pomodoro_timer.time_left)
+	#pomodoro_time_remaining_label.text = get_formatted_time_from_seconds(pomodoro_timer.time_left)
+	#print(Time.get_unix_time_from_system())
+	if is_in_overtime:
+		time_to_display = timeout_mark - Time.get_unix_time_from_system()
+	else:
+		time_to_display = pomodoro_timer.time_left
+	pomodoro_time_remaining_label.text = get_formatted_time_from_seconds(ceili(time_to_display))
+
 
 
 func change_round() -> void:
@@ -60,6 +70,7 @@ func _on_pomodoro_timer_start_button_pressed() -> void:
 	pomodoro_timer.stop()
 	pomodoro_timer.start(timer_length)
 	pomodoro_timer_message.hide()
+	is_in_overtime = false
 
 
 func _on_pomodoro_timer_stop_button_pressed() -> void:
@@ -86,6 +97,10 @@ func _on_pomodoro_timer_timeout() -> void:
 			pomodoro_timer_message.text = "Short break"
 
 	pomodoro_timer_message.show()
+
+	timeout_mark = Time.get_unix_time_from_system()
+	is_in_overtime = true
+
 
 
 func _on_reset_button_pressed() -> void:
