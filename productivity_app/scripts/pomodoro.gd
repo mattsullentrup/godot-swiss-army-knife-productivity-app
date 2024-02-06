@@ -12,6 +12,9 @@ enum Round {
 @export var round_label : Label
 @export var pomodoro_time_remaining_label : Label
 @export var pomodoro_timer_message : Label
+@export var short_break_length : int = 2
+@export var long_break_length : int = 3
+@export var work_round_length : int = 1
 
 var is_on_break : bool
 var is_in_overtime : bool
@@ -19,11 +22,9 @@ var timer_length : int
 var time_to_display : float
 var timeout_mark : float
 
-@onready var short_break_length : int = 2
-@onready var long_break_length : int = 3
-@onready var work_round_length : int = 1
 @onready var current_round : int = 1
-@onready var start_button: Button = %PomodoroStartButton
+@onready var start_button : Button = %PomodoroStartButton
+@onready var notification_sound : AudioStreamPlayer = %NotificationSound
 
 
 func _ready() -> void:
@@ -106,6 +107,7 @@ func _on_pomodoro_timer_timeout() -> void:
 
 	timeout_mark = Time.get_unix_time_from_system()
 	is_in_overtime = true
+	notification_sound.play()
 
 
 func _on_reset_button_pressed() -> void:
