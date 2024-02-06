@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://doy3uidslkhni"]
+[gd_scene load_steps=9 format=3 uid="uid://doy3uidslkhni"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_5i01b"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/new_theme.tres" id="2_618gk"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" path="res://scripts/pomodoro.gd" id="4_e1sqt"]
 [ext_resource type="PackedScene" uid="uid://dercwquryae2g" path="res://scenes/task.tscn" id="4_n1nfk"]
 [ext_resource type="AudioStream" uid="uid://q3h7vgwqou6l" path="res://addons/notification2.wav" id="7_80g3q"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kfx6i"]
+font_size = 64
 
 [node name="Main" type="Node"]
 script = ExtResource("1_5i01b")
@@ -28,10 +31,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TimerPanelContainer" type="PanelContainer" parent="CanvasLayer"]
-offset_left = 60.0
-offset_top = 60.0
-offset_right = 460.0
-offset_bottom = 660.0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 100.0
+offset_top = -300.0
+offset_right = 500.0
+offset_bottom = 300.0
+grow_vertical = 2
 theme = ExtResource("2_618gk")
 
 [node name="TabContainer" type="TabContainer" parent="CanvasLayer/TimerPanelContainer"]
@@ -157,7 +164,7 @@ text = "Start
 [node name="PomodoroTimeRemainingLabel" type="Label" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
-text = "0"
+text = "00:00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -207,6 +214,21 @@ layout_mode = 2
 
 [node name="LineEdit" parent="CanvasLayer/TaskListPanelContainer/TaskVBoxContainer/Task" index="1"]
 text = "Godot"
+
+[node name="ClockLabel" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -90.0
+offset_bottom = 0.000244141
+grow_horizontal = 2
+grow_vertical = 0
+text = "12:00:00"
+label_settings = SubResource("LabelSettings_kfx6i")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="NotificationSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
