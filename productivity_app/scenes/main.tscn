@@ -189,19 +189,24 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_618gk")
 script = ExtResource("3_8jc33")
-task_buttons = [NodePath("VBoxContainer/Task/TaskButton"), NodePath("VBoxContainer/Task2/TaskButton")]
+task_buttons = [NodePath("TaskVBoxContainer/Task/TaskButton"), NodePath("")]
+task = ExtResource("4_n1nfk")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TaskListPanelContainer"]
+[node name="TaskVBoxContainer" type="VBoxContainer" parent="CanvasLayer/TaskListPanelContainer"]
 layout_mode = 2
 
-[node name="Task" parent="CanvasLayer/TaskListPanelContainer/VBoxContainer" instance=ExtResource("4_n1nfk")]
+[node name="NewTaskButton" type="Button" parent="CanvasLayer/TaskListPanelContainer/TaskVBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "+"
+
+[node name="Task" parent="CanvasLayer/TaskListPanelContainer/TaskVBoxContainer" instance=ExtResource("4_n1nfk")]
 layout_mode = 2
 
-[node name="LineEdit" parent="CanvasLayer/TaskListPanelContainer/VBoxContainer/Task" index="1"]
+[node name="LineEdit" parent="CanvasLayer/TaskListPanelContainer/TaskVBoxContainer/Task" index="1"]
 text = "Godot"
-
-[node name="Task2" parent="CanvasLayer/TaskListPanelContainer/VBoxContainer" instance=ExtResource("4_n1nfk")]
-layout_mode = 2
 
 [node name="NotificationSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
@@ -215,6 +220,6 @@ stream = ExtResource("7_80g3q")
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/PomodoroStartButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_pomodoro_timer_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/PomodoroStopButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_pomodoro_timer_stop_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/ResetButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_reset_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TaskListPanelContainer/TaskVBoxContainer/NewTaskButton" to="CanvasLayer/TaskListPanelContainer" method="_on_new_task_button_pressed"]
 
-[editable path="CanvasLayer/TaskListPanelContainer/VBoxContainer/Task"]
-[editable path="CanvasLayer/TaskListPanelContainer/VBoxContainer/Task2"]
+[editable path="CanvasLayer/TaskListPanelContainer/TaskVBoxContainer/Task"]
