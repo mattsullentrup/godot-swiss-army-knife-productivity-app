@@ -22,4 +22,4 @@ placeholder_text = "Enter task..."
 [node name="DeleteButton" type="Button" parent="."]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-text = "x"
+text = "X"
