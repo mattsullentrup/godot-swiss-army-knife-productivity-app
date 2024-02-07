@@ -18,3 +18,8 @@ theme_override_styles/focus = ExtResource("1_1t8sx")
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Enter task..."
+
+[node name="DeleteButton" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "x"

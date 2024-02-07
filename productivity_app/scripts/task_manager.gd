@@ -24,7 +24,15 @@ func _on_task_button_pressed(button: Button) -> void:
 
 func _on_new_task_button_pressed() -> void:
 	var new_task : HBoxContainer = task.instantiate()
-	var button : Button = new_task.get_child(0)
-	button.self_modulate = button_colors[0]
-	button.pressed.connect(_on_task_button_pressed.bind(button))
+	var task_button : Button = new_task.get_child(0)
+	task_button.self_modulate = button_colors[0]
+	task_button.pressed.connect(_on_task_button_pressed.bind(task_button))
+
+	var delete_button : Button = new_task.get_child(2)
+	delete_button.pressed.connect(_on_delete_button_pressed.bind(delete_button))
+
 	$TaskVBoxContainer.add_child(new_task)
+
+
+func _on_delete_button_pressed(button: Button) -> void:
+	button.get_parent().queue_free()

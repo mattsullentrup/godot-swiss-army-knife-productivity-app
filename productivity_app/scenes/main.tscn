@@ -196,7 +196,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_618gk")
 script = ExtResource("3_8jc33")
-task_buttons = [NodePath("TaskVBoxContainer/Task/TaskButton"), NodePath("")]
+task_buttons = [NodePath("TaskVBoxContainer/Task/TaskButton"), null]
 task = ExtResource("4_n1nfk")
 
 [node name="TaskVBoxContainer" type="VBoxContainer" parent="CanvasLayer/TaskListPanelContainer"]
@@ -243,5 +243,6 @@ stream = ExtResource("7_80g3q")
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/PomodoroStopButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_pomodoro_timer_stop_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/ResetButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_reset_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TaskListPanelContainer/TaskVBoxContainer/NewTaskButton" to="CanvasLayer/TaskListPanelContainer" method="_on_new_task_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TaskListPanelContainer/TaskVBoxContainer/Task/DeleteButton" to="." method="_on_delete_button_pressed"]
 
 [editable path="CanvasLayer/TaskListPanelContainer/TaskVBoxContainer/Task"]
