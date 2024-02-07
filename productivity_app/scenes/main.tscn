@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://doy3uidslkhni"]
+[gd_scene load_steps=11 format=3 uid="uid://doy3uidslkhni"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_5i01b"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/new_theme.tres" id="2_618gk"]
@@ -6,7 +6,8 @@
 [ext_resource type="Script" path="res://scripts/normal_timer.gd" id="3_rcetv"]
 [ext_resource type="Script" path="res://scripts/pomodoro.gd" id="4_e1sqt"]
 [ext_resource type="PackedScene" uid="uid://dercwquryae2g" path="res://scenes/task.tscn" id="4_n1nfk"]
-[ext_resource type="Texture2D" uid="uid://to8v6rm8yx4j" path="res://addons/grindset_icons.png" id="5_3frk2"]
+[ext_resource type="Texture2D" uid="uid://to8v6rm8yx4j" path="res://addons/play_icon.png" id="5_3frk2"]
+[ext_resource type="Texture2D" uid="uid://bjt7ddi0qly4g" path="res://addons/stop_icon.png" id="6_ncghh"]
 [ext_resource type="AudioStream" uid="uid://q3h7vgwqou6l" path="res://addons/notification2.wav" id="7_80g3q"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kfx6i"]
@@ -157,11 +158,10 @@ vertical_alignment = 1
 
 [node name="PomodoroStartButton" type="Button" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(39, 10)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/icon_max_width = 20
 text = "
 "
 icon = ExtResource("5_3frk2")
@@ -176,12 +176,15 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PomodoroStopButton" type="Button" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-size_flags_vertical = 10
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme = ExtResource("2_618gk")
 theme_type_variation = &"StopButton"
-text = "Stop
-"
+icon = ExtResource("6_ncghh")
+icon_alignment = 1
+expand_icon = true
 
 [node name="ResetButton" type="Button" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer"]
 custom_minimum_size = Vector2(20, 50)
