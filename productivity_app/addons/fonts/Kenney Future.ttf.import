@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://bxwerp1p378p5"
-path="res://.godot/imported/Kenney Thick.ttf-232e2070b0c6d2269f35af2e181a9394.fontdata"
+uid="uid://cmkw3qm0pn8fn"
+path="res://.godot/imported/Kenney Future.ttf-131a010468c1d4263f665e827b06906b.fontdata"
 
 [deps]
 
-source_file="res://addons/Kenney Thick.ttf"
-dest_files=["res://.godot/imported/Kenney Thick.ttf-232e2070b0c6d2269f35af2e181a9394.fontdata"]
+source_file="res://addons/fonts/Kenney Future.ttf"
+dest_files=["res://.godot/imported/Kenney Future.ttf-131a010468c1d4263f665e827b06906b.fontdata"]
 
 [params]
 

@@ -34,7 +34,7 @@ project/assembly_name="UntitledProductivityApp"
 
 [gui]
 
-theme/custom_font="res://addons/NovaMono-Regular.ttf"
+theme/custom_font="res://addons/fonts/Kenney Mini Square.ttf"
 
 [rendering]
 
