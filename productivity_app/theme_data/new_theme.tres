@@ -1,11 +1,14 @@
-[gd_resource type="Theme" load_steps=15 format=3 uid="uid://leiuhrufh5o8"]
+[gd_resource type="Theme" load_steps=18 format=3 uid="uid://leiuhrufh5o8"]
 
 [ext_resource type="FontFile" uid="uid://ye2drpcysxs7" path="res://addons/fonts/NovaMono-Regular.ttf" id="1_8i28d"]
 [ext_resource type="StyleBox" uid="uid://bfjrv304tvusc" path="res://theme_data/green_button/normal_green_button.tres" id="2_v8cjc"]
 [ext_resource type="StyleBox" uid="uid://cvvw6e6utg4ll" path="res://theme_data/green_button/hover_green_button.tres" id="3_t7ayw"]
 [ext_resource type="StyleBox" uid="uid://fc4wly83kiyl" path="res://theme_data/green_button/pressed_green_button.tres" id="4_reola"]
+[ext_resource type="StyleBox" uid="uid://cee8uvctx4a53" path="res://theme_data/purple_button/hover_purple_button.tres" id="5_1jxht"]
 [ext_resource type="StyleBox" uid="uid://n4cf8v7po4i" path="res://theme_data/red_button/hover_red_button.tres" id="5_cxiva"]
+[ext_resource type="StyleBox" uid="uid://pu03qkefbne0" path="res://theme_data/purple_button/normal_purple_button.tres" id="6_lv5ij"]
 [ext_resource type="StyleBox" uid="uid://q7qcork245o0" path="res://theme_data/red_button/normal_red_button.tres" id="6_vr31n"]
+[ext_resource type="StyleBox" uid="uid://juddrqsllf0u" path="res://theme_data/purple_button/pressed_purple_button.tres" id="7_173pg"]
 [ext_resource type="StyleBox" uid="uid://d2foiex3jfkxu" path="res://theme_data/red_button/pressed_red_button.tres" id="7_tweut"]
 [ext_resource type="StyleBox" uid="uid://cmkmda63cjri1" path="res://theme_data/yellow_button/normal_yellow_button.tres" id="8_1bujh"]
 [ext_resource type="StyleBox" uid="uid://ba5v0gfmv7orv" path="res://theme_data/yellow_button/hover_yellow_button.tres" id="8_s31vh"]
@@ -79,6 +82,10 @@ Label/font_sizes/font_size = 32
 LineEdit/styles/normal = SubResource("StyleBoxFlat_4xvqw")
 PanelContainer/fonts/NewFont = null
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_f20hw")
+PurpleButton/base_type = &"Button"
+PurpleButton/styles/hover = ExtResource("5_1jxht")
+PurpleButton/styles/normal = ExtResource("6_lv5ij")
+PurpleButton/styles/pressed = ExtResource("7_173pg")
 RedButton/base_type = &"Button"
 RedButton/styles/hover = ExtResource("5_cxiva")
 RedButton/styles/normal = ExtResource("6_vr31n")

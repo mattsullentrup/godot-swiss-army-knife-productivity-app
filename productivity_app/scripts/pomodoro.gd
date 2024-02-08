@@ -18,6 +18,7 @@ enum Round {
 
 var is_on_break : bool
 var is_in_overtime : bool
+var is_paused : bool = false
 var timer_length : int
 var time_to_display : float
 var timeout_mark : float
@@ -74,6 +75,10 @@ func get_formatted_time_from_seconds(seconds : int) -> String:
 
 
 func _on_pomodoro_timer_start_button_pressed() -> void:
+	if is_paused:
+		pomodoro_timer.paused = false
+		is_paused = false
+		return
 	pomodoro_timer.stop()
 	pomodoro_timer.start(timer_length)
 	pomodoro_timer_message.hide()
@@ -114,3 +119,13 @@ func _on_reset_button_pressed() -> void:
 	current_round = 1
 	pomodoro_timer.stop()
 	change_round()
+
+
+func _on_pomodoro_pause_button_pressed() -> void:
+	if is_paused:
+		pomodoro_timer.paused = false
+		is_paused = false
+		return
+
+	pomodoro_timer.paused = true
+	is_paused = true
