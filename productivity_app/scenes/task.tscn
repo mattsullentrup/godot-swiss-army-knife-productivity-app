@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dercwquryae2g"]
+[gd_scene load_steps=3 format=3 uid="uid://dercwquryae2g"]
 
 [ext_resource type="StyleBox" uid="uid://cmkmda63cjri1" path="res://theme_data/task_button.tres" id="1_1t8sx"]
+[ext_resource type="Texture2D" uid="uid://cklr1uqmqs7hb" path="res://addons/reset_icon.png" id="2_cs7wq"]
 
 [node name="Task" type="HBoxContainer"]
+theme_override_constants/separation = 15
 
 [node name="TaskButton" type="Button" parent="."]
 texture_filter = 2
@@ -20,6 +22,8 @@ size_flags_horizontal = 3
 placeholder_text = "Enter task..."
 
 [node name="DeleteButton" type="Button" parent="."]
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-text = "X"
+icon = ExtResource("2_cs7wq")
+icon_alignment = 1
+expand_icon = true
