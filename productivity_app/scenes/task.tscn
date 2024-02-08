@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dercwquryae2g"]
 
 [ext_resource type="StyleBox" uid="uid://cmkmda63cjri1" path="res://theme_data/task_button.tres" id="1_1t8sx"]
-[ext_resource type="Texture2D" uid="uid://cklr1uqmqs7hb" path="res://addons/reset_icon.png" id="2_cs7wq"]
+[ext_resource type="Texture2D" uid="uid://cklr1uqmqs7hb" path="res://addons/reset.png" id="2_cs7wq"]
 
 [node name="Task" type="HBoxContainer"]
 theme_override_constants/separation = 15
