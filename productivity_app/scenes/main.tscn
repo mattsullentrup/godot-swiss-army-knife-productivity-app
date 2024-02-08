@@ -204,7 +204,7 @@ icon = ExtResource("8_xh17p")
 icon_alignment = 1
 expand_icon = true
 
-[node name="TaskListPanelContainer" type="PanelContainer" parent="CanvasLayer" node_paths=PackedStringArray("task_buttons")]
+[node name="TaskListPanelContainer" type="PanelContainer" parent="CanvasLayer"]
 custom_minimum_size = Vector2(200, 200)
 anchors_preset = 8
 anchor_left = 0.5
@@ -219,7 +219,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_618gk")
 script = ExtResource("3_8jc33")
-task_buttons = [NodePath("TaskVBoxContainer/Task/TaskButton"), null]
 task = ExtResource("4_n1nfk")
 
 [node name="TaskVBoxContainer" type="VBoxContainer" parent="CanvasLayer/TaskListPanelContainer"]
@@ -242,9 +241,6 @@ layout_mode = 2
 
 [node name="LineEdit" parent="CanvasLayer/TaskListPanelContainer/TaskVBoxContainer/Task" index="1"]
 text = "Godot"
-
-[node name="DeleteButton" parent="CanvasLayer/TaskListPanelContainer/TaskVBoxContainer/Task" index="2"]
-theme_type_variation = &"RedButton"
 
 [node name="ClockLabel" type="Label" parent="CanvasLayer"]
 unique_name_in_owner = true
