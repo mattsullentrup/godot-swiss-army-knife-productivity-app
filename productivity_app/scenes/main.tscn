@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://doy3uidslkhni"]
+[gd_scene load_steps=14 format=3 uid="uid://doy3uidslkhni"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_5i01b"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/new_theme.tres" id="2_618gk"]
@@ -11,6 +11,8 @@
 [ext_resource type="AudioStream" uid="uid://q3h7vgwqou6l" path="res://addons/notification2.wav" id="7_80g3q"]
 [ext_resource type="Texture2D" uid="uid://cklr1uqmqs7hb" path="res://addons/reset.png" id="8_xh17p"]
 [ext_resource type="Texture2D" uid="uid://duhf0ii3np8qh" path="res://addons/plus.png" id="10_t8ryo"]
+
+[sub_resource type="Theme" id="Theme_4ijq2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kfx6i"]
 font_size = 64
@@ -186,7 +188,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("2_618gk")
-theme_type_variation = &"StopButton"
+theme_type_variation = &"RedButton"
 icon = ExtResource("6_ncghh")
 icon_alignment = 1
 expand_icon = true
@@ -196,6 +198,8 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme = SubResource("Theme_4ijq2")
+theme_type_variation = &"YellowButton"
 icon = ExtResource("8_xh17p")
 icon_alignment = 1
 expand_icon = true
@@ -238,6 +242,9 @@ layout_mode = 2
 
 [node name="LineEdit" parent="CanvasLayer/TaskListPanelContainer/TaskVBoxContainer/Task" index="1"]
 text = "Godot"
+
+[node name="DeleteButton" parent="CanvasLayer/TaskListPanelContainer/TaskVBoxContainer/Task" index="2"]
+theme_type_variation = &"RedButton"
 
 [node name="ClockLabel" type="Label" parent="CanvasLayer"]
 unique_name_in_owner = true
