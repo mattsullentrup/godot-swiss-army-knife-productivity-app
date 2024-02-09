@@ -75,27 +75,30 @@ func change_state(new_state: State) -> void:
 	match new_state:
 		State.PAUSED:
 			pomodoro_timer.paused = true
+			pomodoro_timer_message.text = "Paused"
+			#pomodoro_timer_message.show()
 		State.WORK:
 			if state != State.PAUSED:
 				timer_length = work_round_length
 				pomodoro_timer.start(timer_length)
-				pomodoro_timer_message.hide()
 				round_label.text = str(current_round + 1) + '/4'
 			else:
 				pomodoro_timer.paused = false
+			pomodoro_timer_message.text = "Work"
+			pomodoro_timer_message.show()
 		State.BREAK:
 			if state != State.PAUSED:
 			# Decide between short and long break
 				if current_round == Round.FOURTH:
 					timer_length = long_break_length
-					pomodoro_timer_message.text = "Long break"
 					pomodoro_timer.start(long_break_length)
 				else:
 					timer_length = short_break_length
-					pomodoro_timer_message.text = "Short break"
 					pomodoro_timer.start(short_break_length)
 			else:
 				pomodoro_timer.paused = false
+			pomodoro_timer_message.text = "Break"
+			pomodoro_timer_message.show()
 		State.OVERTIME:
 			pass
 		State.INACTIVE:
