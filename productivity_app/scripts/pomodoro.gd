@@ -15,9 +15,9 @@ enum Round { FIRST, SECOND, THIRD, FOURTH }
 @export var round_label : Label
 @export var pomodoro_time_remaining_label : Label
 @export var pomodoro_timer_message : Label
-@export var short_break_length : float = .2
-@export var long_break_length : float = .3
-@export var work_round_length : float = .1
+@export var short_break_length : float = .07
+@export var long_break_length : float = .1
+@export var work_round_length : float = .05
 
 var timer_length : int
 var time_to_display : float
@@ -76,20 +76,26 @@ func change_state(new_state: State) -> void:
 		State.PAUSED:
 			pomodoro_timer.paused = true
 		State.WORK:
-			timer_length = work_round_length
-			pomodoro_timer.start(timer_length)
-			pomodoro_timer_message.hide()
-			round_label.text = str(current_round + 1) + '/4'
-		State.BREAK:
-			# Decide between short and long break
-			if current_round == Round.FOURTH:
-				timer_length = long_break_length
-				pomodoro_timer_message.text = "Long break"
-				pomodoro_timer.start(long_break_length)
+			if state != State.PAUSED:
+				timer_length = work_round_length
+				pomodoro_timer.start(timer_length)
+				pomodoro_timer_message.hide()
+				round_label.text = str(current_round + 1) + '/4'
 			else:
-				timer_length = short_break_length
-				pomodoro_timer_message.text = "Short break"
-				pomodoro_timer.start(short_break_length)
+				pomodoro_timer.paused = false
+		State.BREAK:
+			if state != State.PAUSED:
+			# Decide between short and long break
+				if current_round == Round.FOURTH:
+					timer_length = long_break_length
+					pomodoro_timer_message.text = "Long break"
+					pomodoro_timer.start(long_break_length)
+				else:
+					timer_length = short_break_length
+					pomodoro_timer_message.text = "Short break"
+					pomodoro_timer.start(short_break_length)
+			else:
+				pomodoro_timer.paused = false
 		State.OVERTIME:
 			pass
 		State.INACTIVE:
@@ -136,8 +142,11 @@ func _on_reset_button_pressed() -> void:
 
 
 func _on_pomodoro_pause_button_pressed() -> void:
-	if state == State.WORK:
+	if state == State.WORK or state == State.BREAK:
 		change_state(State.PAUSED)
 		return
-
-	change_state(State.WORK)
+	elif state == State.PAUSED:
+		if previous_state == State.WORK:
+			change_state(State.WORK)
+		elif previous_state == State.BREAK:
+			change_state(State.BREAK)
