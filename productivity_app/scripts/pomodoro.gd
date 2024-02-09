@@ -15,6 +15,7 @@ enum Round { FIRST, SECOND, THIRD, FOURTH }
 @export var round_label : Label
 @export var pomodoro_time_remaining_label : Label
 @export var pomodoro_timer_message : Label
+@export var paused_message : Label
 @export var short_break_length : float = .07
 @export var long_break_length : float = .1
 @export var work_round_length : float = .05
@@ -75,34 +76,35 @@ func change_state(new_state: State) -> void:
 	match new_state:
 		State.PAUSED:
 			pomodoro_timer.paused = true
-			pomodoro_timer_message.text = "Paused"
-			#pomodoro_timer_message.show()
+			paused_message.show()
 		State.WORK:
 			if state != State.PAUSED:
 				timer_length = work_round_length
 				pomodoro_timer.start(timer_length)
 				round_label.text = str(current_round + 1) + '/4'
+				pomodoro_timer_message.text = "Work"
+				pomodoro_timer_message.show()
 			else:
 				pomodoro_timer.paused = false
-			pomodoro_timer_message.text = "Work"
-			pomodoro_timer_message.show()
+				paused_message.hide()
 		State.BREAK:
 			if state != State.PAUSED:
-			# Decide between short and long break
+				# Decide between short and long break
 				if current_round == Round.FOURTH:
 					timer_length = long_break_length
 					pomodoro_timer.start(long_break_length)
 				else:
 					timer_length = short_break_length
 					pomodoro_timer.start(short_break_length)
+				pomodoro_timer_message.text = "Break"
+				pomodoro_timer_message.show()
 			else:
 				pomodoro_timer.paused = false
-			pomodoro_timer_message.text = "Break"
-			pomodoro_timer_message.show()
+				paused_message.hide()
 		State.OVERTIME:
 			pass
 		State.INACTIVE:
-			pass
+			paused_message.hide()
 	previous_state = state
 	state = new_state
 

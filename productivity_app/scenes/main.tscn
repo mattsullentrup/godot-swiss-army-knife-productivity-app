@@ -125,13 +125,14 @@ popup/item_3/id = 3
 popup/item_4/text = "25"
 popup/item_4/id = 4
 
-[node name="Pomodoro" type="TabBar" parent="CanvasLayer/TimerPanelContainer/TabContainer" node_paths=PackedStringArray("pomodoro_timer", "round_label", "pomodoro_time_remaining_label", "pomodoro_timer_message")]
+[node name="Pomodoro" type="TabBar" parent="CanvasLayer/TimerPanelContainer/TabContainer" node_paths=PackedStringArray("pomodoro_timer", "round_label", "pomodoro_time_remaining_label", "pomodoro_timer_message", "paused_message")]
 layout_mode = 2
 script = ExtResource("4_e1sqt")
 pomodoro_timer = NodePath("PomodoroTimer")
 round_label = NodePath("VBoxContainer/PomodoroRoundLabel")
 pomodoro_time_remaining_label = NodePath("VBoxContainer/PomodoroTimeRemainingLabel")
 pomodoro_timer_message = NodePath("../../../TimerMessage")
+paused_message = NodePath("VBoxContainer/PausedLabel")
 
 [node name="PomodoroTimer" type="Timer" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro"]
 wait_time = 10.0
@@ -156,6 +157,12 @@ alignment = 1
 [node name="PomodoroRoundLabel" type="Label" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer"]
 layout_mode = 2
 text = "1/4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PausedLabel" type="Label" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer"]
+layout_mode = 2
+text = "Paused"
 horizontal_alignment = 1
 vertical_alignment = 1
 
