@@ -145,11 +145,12 @@ func _on_reset_button_pressed() -> void:
 
 
 func _on_pomodoro_pause_button_pressed() -> void:
-	if state == State.WORK or state == State.BREAK:
-		change_state(State.PAUSED)
-		return
-	elif state == State.PAUSED:
-		if previous_state == State.WORK:
+	match state:
+		State.WORK:
+			change_state(State.PAUSED)
+		State.BREAK:
+			change_state(State.PAUSED)
+		State.PAUSED when previous_state == State.WORK:
 			change_state(State.WORK)
-		elif previous_state == State.BREAK:
+		State.PAUSED when previous_state == State.BREAK:
 			change_state(State.BREAK)
