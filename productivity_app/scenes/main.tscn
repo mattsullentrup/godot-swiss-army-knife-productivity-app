@@ -49,6 +49,13 @@ offset_bottom = 300.0
 grow_vertical = 2
 theme = ExtResource("2_618gk")
 
+[node name="PausedLabel" type="Label" parent="CanvasLayer/TimerPanelContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="TabContainer" type="TabContainer" parent="CanvasLayer/TimerPanelContainer"]
 custom_minimum_size = Vector2(300, 400)
 layout_mode = 2
@@ -126,15 +133,15 @@ popup/item_3/id = 3
 popup/item_4/text = "25"
 popup/item_4/id = 4
 
-[node name="Pomodoro" type="TabBar" parent="CanvasLayer/TimerPanelContainer/TabContainer" node_paths=PackedStringArray("pomodoro_timer", "round_label", "pomodoro_time_remaining_label", "pomodoro_timer_message", "paused_message")]
+[node name="Pomodoro" type="TabBar" parent="CanvasLayer/TimerPanelContainer/TabContainer" node_paths=PackedStringArray("pomodoro_timer", "round_label", "pomodoro_time_remaining_label", "timer_message", "paused_message")]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 script = ExtResource("4_e1sqt")
 pomodoro_timer = NodePath("PomodoroTimer")
 round_label = NodePath("VBoxContainer/PomodoroRoundLabel")
 pomodoro_time_remaining_label = NodePath("VBoxContainer/PomodoroTimeRemainingLabel")
-pomodoro_timer_message = NodePath("../../../TimerMessage")
-paused_message = NodePath("VBoxContainer/PausedLabel")
+timer_message = NodePath("../../../TimerMessage")
+paused_message = NodePath("../../PausedLabel")
 
 [node name="PomodoroTimer" type="Timer" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro"]
 wait_time = 10.0
@@ -151,6 +158,7 @@ offset_bottom = 121.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 24
+alignment = 1
 
 [node name="PomodoroRoundLabel" type="Label" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer"]
 layout_mode = 2
@@ -224,7 +232,7 @@ icon = ExtResource("8_5edfk")
 icon_alignment = 1
 expand_icon = true
 
-[node name="ResetButton" type="Button" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/HBoxContainer"]
+[node name="StopButton" type="Button" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -235,13 +243,6 @@ theme_type_variation = &"RedButton"
 icon = ExtResource("6_ncghh")
 icon_alignment = 1
 expand_icon = true
-
-[node name="PausedLabel" type="Label" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer"]
-visible = false
-layout_mode = 2
-text = "Paused"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="TaskListPanelContainer" type="PanelContainer" parent="CanvasLayer"]
 custom_minimum_size = Vector2(200, 200)
@@ -308,7 +309,7 @@ stream = ExtResource("7_80g3q")
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/HBoxContainer/StartButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/HBoxContainer/GoBackButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_go_back_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/HBoxContainer/PauseButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_pause_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/HBoxContainer/ResetButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_reset_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/HBoxContainer/StopButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_stop_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TaskListPanelContainer/TaskVBoxContainer/NewTaskButton" to="CanvasLayer/TaskListPanelContainer" method="_on_new_task_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TaskListPanelContainer/TaskVBoxContainer/Task/DeleteButton" to="." method="_on_delete_button_pressed"]
 
