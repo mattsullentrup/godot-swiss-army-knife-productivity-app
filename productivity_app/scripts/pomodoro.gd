@@ -27,8 +27,9 @@ var state : State
 var previous_state : State
 
 @onready var current_round : Round
-@onready var start_button : Button = %PomodoroStartButton
+@onready var start_button : Button = %StartButton
 @onready var notification_sound : AudioStreamPlayer = %NotificationSound
+@onready var progress_bar : ProgressBar = $VBoxContainer/ProgressBar
 
 
 func _ready() -> void:
@@ -48,6 +49,9 @@ func _process(_delta: float) -> void:
 		time_to_display = pomodoro_timer.time_left
 
 	pomodoro_time_remaining_label.text = get_formatted_time_from_seconds(ceili(time_to_display))
+
+	progress_bar.max_value = timer_length
+	progress_bar.value = pomodoro_timer.time_left
 
 	for item in State:
 		if State.find_key(state):
