@@ -109,7 +109,7 @@ func change_state(new_state: State) -> void:
 	state = new_state
 
 
-func _on_pomodoro_timer_start_button_pressed() -> void:
+func _on_start_button_pressed() -> void:
 	if state == State.WORK:
 		change_state(State.PAUSED)
 	elif state == State.OVERTIME and previous_state == State.WORK:
@@ -118,7 +118,7 @@ func _on_pomodoro_timer_start_button_pressed() -> void:
 		change_state(State.WORK)
 
 
-func _on_pomodoro_timer_stop_button_pressed() -> void:
+func _on_go_back_button_pressed() -> void:
 	pomodoro_timer.stop()
 
 
@@ -146,7 +146,7 @@ func _on_reset_button_pressed() -> void:
 	change_state(State.INACTIVE)
 
 
-func _on_pomodoro_pause_button_pressed() -> void:
+func _on_pause_button_pressed() -> void:
 	match state:
 		State.WORK:
 			change_state(State.PAUSED)
