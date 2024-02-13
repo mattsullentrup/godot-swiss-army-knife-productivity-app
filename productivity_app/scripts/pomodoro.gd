@@ -118,12 +118,15 @@ func _on_start_button_pressed() -> void:
 		change_state(State.PAUSED)
 	elif state == State.OVERTIME and previous_state == State.WORK:
 		change_state(State.BREAK)
+	elif state == State.INACTIVE and previous_state == State.BREAK:
+		change_state(State.BREAK)
 	else:
 		change_state(State.WORK)
 
 
 func _on_go_back_button_pressed() -> void:
 	pomodoro_timer.stop()
+	change_state(State.INACTIVE)
 
 
 func _on_pomodoro_timer_timeout() -> void:
