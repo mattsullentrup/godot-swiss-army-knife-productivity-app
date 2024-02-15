@@ -1,18 +1,22 @@
-[gd_scene load_steps=16 format=3 uid="uid://doy3uidslkhni"]
+[gd_scene load_steps=20 format=3 uid="uid://doy3uidslkhni"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_5i01b"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/new_theme.tres" id="2_618gk"]
 [ext_resource type="Script" path="res://scripts/task_manager.gd" id="3_8jc33"]
 [ext_resource type="Script" path="res://scripts/normal_timer.gd" id="3_rcetv"]
-[ext_resource type="Script" path="res://scripts/pomodoro.gd" id="4_e1sqt"]
 [ext_resource type="PackedScene" uid="uid://dercwquryae2g" path="res://scenes/task.tscn" id="4_n1nfk"]
+[ext_resource type="Script" path="res://scripts/pomodoro_timer.gd" id="4_vjfd7"]
 [ext_resource type="Texture2D" uid="uid://to8v6rm8yx4j" path="res://addons/play.png" id="5_3frk2"]
+[ext_resource type="Script" path="res://scripts/time_remaining_label.gd" id="5_qs481"]
 [ext_resource type="Texture2D" uid="uid://bsxkifa4n1im2" path="res://addons/pause.png" id="6_d5iys"]
 [ext_resource type="Texture2D" uid="uid://bt4ljf447ayb7" path="res://addons/go_back.png" id="6_kh7sf"]
 [ext_resource type="Texture2D" uid="uid://bjt7ddi0qly4g" path="res://addons/stop.png" id="6_ncghh"]
 [ext_resource type="AudioStream" uid="uid://q3h7vgwqou6l" path="res://addons/notification2.wav" id="7_80g3q"]
 [ext_resource type="Texture2D" uid="uid://bxhtp68x37k8k" path="res://addons/skip.png" id="8_5edfk"]
 [ext_resource type="Texture2D" uid="uid://duhf0ii3np8qh" path="res://addons/plus.png" id="10_t8ryo"]
+[ext_resource type="Script" path="res://scripts/state_machine/state_machine.gd" id="11_qoxf3"]
+[ext_resource type="Script" path="res://scripts/state_machine/idle_state.gd" id="12_kjg46"]
+[ext_resource type="Script" path="res://scripts/state_machine/work_state.gd" id="13_rtg0v"]
 
 [sub_resource type="Theme" id="Theme_4ijq2"]
 
@@ -133,15 +137,11 @@ popup/item_3/id = 3
 popup/item_4/text = "25"
 popup/item_4/id = 4
 
-[node name="Pomodoro" type="TabBar" parent="CanvasLayer/TimerPanelContainer/TabContainer" node_paths=PackedStringArray("pomodoro_timer", "round_label", "pomodoro_time_remaining_label", "timer_message", "paused_message")]
+[node name="Pomodoro" type="TabBar" parent="CanvasLayer/TimerPanelContainer/TabContainer" node_paths=PackedStringArray("time_remaining_label")]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
-script = ExtResource("4_e1sqt")
-pomodoro_timer = NodePath("PomodoroTimer")
-round_label = NodePath("VBoxContainer/PomodoroRoundLabel")
-pomodoro_time_remaining_label = NodePath("VBoxContainer/PomodoroTimeRemainingLabel")
-timer_message = NodePath("../../../TimerMessage")
-paused_message = NodePath("../../PausedLabel")
+script = ExtResource("4_vjfd7")
+time_remaining_label = NodePath("VBoxContainer/PomodoroTimeRemainingLabel")
 
 [node name="PomodoroTimer" type="Timer" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro"]
 wait_time = 10.0
@@ -171,6 +171,7 @@ layout_mode = 2
 text = "00:00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("5_qs481")
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
@@ -244,6 +245,17 @@ icon = ExtResource("6_ncghh")
 icon_alignment = 1
 expand_icon = true
 
+[node name="StateMachine" type="Node" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" node_paths=PackedStringArray("initial_state", "timer")]
+script = ExtResource("11_qoxf3")
+initial_state = NodePath("IdleState")
+timer = NodePath("../PomodoroTimer")
+
+[node name="IdleState" type="Node" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/StateMachine"]
+script = ExtResource("12_kjg46")
+
+[node name="WorkState" type="Node" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/StateMachine"]
+script = ExtResource("13_rtg0v")
+
 [node name="TaskListPanelContainer" type="PanelContainer" parent="CanvasLayer"]
 custom_minimum_size = Vector2(200, 200)
 anchors_preset = 8
@@ -305,11 +317,7 @@ stream = ExtResource("7_80g3q")
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Normal/VBoxContainer/NormalTimerStartButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Normal" method="_on_normal_timer_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Normal/VBoxContainer/NormalTimerStopButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Normal" method="_on_normal_timer_stop_button_pressed"]
 [connection signal="item_selected" from="CanvasLayer/TimerPanelContainer/TabContainer/Normal/VBoxContainer/NormalTimeOptionButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Normal" method="_on_normal_time_option_button_item_selected"]
-[connection signal="timeout" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/PomodoroTimer" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_pomodoro_timer_timeout"]
-[connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/HBoxContainer/StartButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_start_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/HBoxContainer/GoBackButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_go_back_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/HBoxContainer/PauseButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_pause_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/HBoxContainer/StopButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_stop_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/HBoxContainer/StartButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/StateMachine" method="_on_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TaskListPanelContainer/TaskVBoxContainer/NewTaskButton" to="CanvasLayer/TaskListPanelContainer" method="_on_new_task_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TaskListPanelContainer/TaskVBoxContainer/Task/DeleteButton" to="." method="_on_delete_button_pressed"]
 
