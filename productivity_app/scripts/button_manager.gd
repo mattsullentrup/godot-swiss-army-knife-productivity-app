@@ -3,25 +3,17 @@
 extends HBoxContainer
 
 
-signal valid_button_pressed(state)
+signal valid_button_pressed(state : PomodoroStates.State)
 
-enum State {
-	IDLE,
-	PAUSED,
-	WORK,
-	BREAK,
-	OVERTIME,
-}
 
-var previous_state : State
-
-@onready var current_state : State = State.IDLE
+var previous_state : PomodoroStates.State
+var current_state : PomodoroStates.State
 
 
 func _on_start_button_pressed() -> void:
 	match current_state:
-		State.IDLE:
-			valid_button_pressed.emit(State.WORK)
+		PomodoroStates.State.IDLE:
+			valid_button_pressed.emit(PomodoroStates.State.WORK)
 
 
 func _on_go_back_button_pressed() -> void:
