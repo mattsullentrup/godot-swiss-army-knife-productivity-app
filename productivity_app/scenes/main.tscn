@@ -1,12 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://doy3uidslkhni"]
+[gd_scene load_steps=19 format=3 uid="uid://doy3uidslkhni"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_5i01b"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/new_theme.tres" id="2_618gk"]
 [ext_resource type="Script" path="res://scripts/task_manager.gd" id="3_8jc33"]
 [ext_resource type="Script" path="res://scripts/normal_timer.gd" id="3_rcetv"]
 [ext_resource type="PackedScene" uid="uid://dercwquryae2g" path="res://scenes/task.tscn" id="4_n1nfk"]
-[ext_resource type="Script" path="res://scripts/pomodoro_timer.gd" id="4_vjfd7"]
+[ext_resource type="Script" path="res://scripts/pomodoro.gd" id="4_vjfd7"]
 [ext_resource type="Texture2D" uid="uid://to8v6rm8yx4j" path="res://addons/play.png" id="5_3frk2"]
+[ext_resource type="Script" path="res://scripts/pomodoro_gui.gd" id="5_mbsig"]
 [ext_resource type="Script" path="res://scripts/time_remaining_label.gd" id="5_qs481"]
 [ext_resource type="Texture2D" uid="uid://bsxkifa4n1im2" path="res://addons/pause.png" id="6_d5iys"]
 [ext_resource type="Texture2D" uid="uid://bt4ljf447ayb7" path="res://addons/go_back.png" id="6_kh7sf"]
@@ -160,6 +161,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 24
 alignment = 1
+script = ExtResource("5_mbsig")
 
 [node name="RoundLabel" type="Label" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer"]
 layout_mode = 2

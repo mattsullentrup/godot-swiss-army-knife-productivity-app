@@ -3,17 +3,17 @@
 extends HBoxContainer
 
 
-signal valid_button_pressed(state : PomodoroStates.State)
+signal valid_button_pressed(state : Pomodoro.State)
 
 
 func _on_start_button_pressed() -> void:
 	match Pomodoro.current_state:
-		PomodoroStates.State.IDLE when Pomodoro.previous_state == PomodoroStates.State.WORK:
-			valid_button_pressed.emit(PomodoroStates.State.BREAK)
-		PomodoroStates.State.IDLE when Pomodoro.previous_state == PomodoroStates.State.BREAK:
-			valid_button_pressed.emit(PomodoroStates.State.WORK)
+		Pomodoro.State.IDLE when Pomodoro.previous_state == Pomodoro.State.WORK:
+			valid_button_pressed.emit(Pomodoro.State.BREAK)
+		Pomodoro.State.IDLE when Pomodoro.previous_state == Pomodoro.State.BREAK:
+			valid_button_pressed.emit(Pomodoro.State.WORK)
 		_:
-			valid_button_pressed.emit(PomodoroStates.State.WORK)
+			valid_button_pressed.emit(Pomodoro.State.WORK)
 
 
 func _on_go_back_button_pressed() -> void:
