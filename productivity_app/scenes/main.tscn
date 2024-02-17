@@ -135,13 +135,12 @@ popup/item_3/id = 3
 popup/item_4/text = "25"
 popup/item_4/id = 4
 
-[node name="Pomodoro" type="TabBar" parent="CanvasLayer/TimerPanelContainer/TabContainer" node_paths=PackedStringArray("pomodoro_timer", "round_label", "time_remaining_label", "timer_message", "paused_message")]
+[node name="Pomodoro" type="TabBar" parent="CanvasLayer/TimerPanelContainer/TabContainer" node_paths=PackedStringArray("pomodoro_timer", "round_label", "timer_message", "paused_message")]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 script = ExtResource("4_vjfd7")
 pomodoro_timer = NodePath("PomodoroTimer")
 round_label = NodePath("VBoxContainer/RoundLabel")
-time_remaining_label = NodePath("VBoxContainer/TimeRemainingLabel")
 timer_message = NodePath("../../../TimerMessage")
 paused_message = NodePath("../../PausedLabel")
 
@@ -169,6 +168,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TimeRemainingLabel" type="Label" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "00:00:00"
 horizontal_alignment = 1

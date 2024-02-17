@@ -11,7 +11,6 @@ enum Round { FIRST, SECOND, THIRD, FOURTH }
 
 @export_subgroup("Labels")
 @export var round_label : Label
-@export var time_remaining_label : Label
 @export var timer_message : Label
 @export var paused_message : Label
 
@@ -20,9 +19,15 @@ enum Round { FIRST, SECOND, THIRD, FOURTH }
 @export var long_break_length : float = 1
 @export var work_round_length : float = 5
 
-static var previous_state = null
-static var current_state : PomodoroStates.State
-static var time_to_display : float
+static var previous_state : PomodoroStates.State
+static var _time_to_display : float
+static var time_to_display : float:
+	get:
+		return _time_to_display
+static var _current_state : PomodoroStates.State
+static var current_state : PomodoroStates.State:
+	get:
+		return _current_state
 
 var overtime_start_time : float
 var overtime_count : float
@@ -37,22 +42,25 @@ var current_round : Round
 
 
 func _ready() -> void:
-	current_state = initial_state
-	time_remaining_label.timer = pomodoro_timer
+	_current_state = initial_state
 
 	button_manager.valid_button_pressed.connect(change_state)
 
 
-func _process(delta) -> void:
-	if previous_state == null:
-		return
+func _process(_delta: float) -> void:
+	#if previous_state == null:
+		#return
+
+	#match _current_state:
+		#PomodoroStates.State.IDLE when previous_state == PomodoroStates.State.WORK or previous_state == PomodoroStates.State.BREAK:
+			#_time_to_display = timer_length
 
 	if not pomodoro_timer.is_stopped():
 		progress_bar.max_value = timer_length
 		progress_bar.value = pomodoro_timer.time_left
-		time_to_display = pomodoro_timer.time_left
+		_time_to_display = pomodoro_timer.time_left
 	else:
-		time_to_display = overtime_start_time - Time.get_unix_time_from_system()
+		_time_to_display = overtime_start_time - Time.get_unix_time_from_system()
 
 
 func change_state(state : PomodoroStates.State) -> void:
@@ -66,15 +74,15 @@ func change_state(state : PomodoroStates.State) -> void:
 			timer_length = short_break_length
 			pomodoro_timer.start(timer_length)
 			timer_message.text = "Break"
-		PomodoroStates.State.IDLE when current_state == PomodoroStates.State.WORK:
+		PomodoroStates.State.IDLE when _current_state == PomodoroStates.State.WORK:
 			timer_message.text = "Take a break"
 			timer_message.show()
-		PomodoroStates.State.IDLE when current_state == PomodoroStates.State.BREAK:
+		PomodoroStates.State.IDLE when _current_state == PomodoroStates.State.BREAK:
 			timer_message.text = "Get back to it"
 			timer_message.show()
 
-	previous_state = current_state
-	current_state = state
+	previous_state = _current_state
+	_current_state = state
 
 
 func _on_button_manager_valid_button_pressed(state : PomodoroStates.State) -> void:
