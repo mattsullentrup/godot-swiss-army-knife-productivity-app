@@ -42,6 +42,7 @@ static var current_state : State:
 	get:
 		return _current_state
 
+#var is_exiting_idle_state := false
 var overtime_start_time : float
 var overtime_count : float
 var timer_length : float
@@ -71,7 +72,7 @@ func _process(_delta: float) -> void:
 		_time_to_display = 0
 
 
-func change_state(new_state : State) -> void:
+func change_state(new_state : State, is_exiting_idle_state : bool) -> void:
 	#timer_message.text = set_timer_message(new_state)
 
 	match new_state:
@@ -136,9 +137,9 @@ func change_state(new_state : State) -> void:
 	#return new_message
 
 
-func _on_button_manager_valid_button_pressed(state : State) -> void:
-	change_state(state)
+func _on_button_manager_valid_button_pressed(state : State, is_exiting_idle_state : bool) -> void:
+	change_state(state, is_exiting_idle_state)
 
 
 func _on_pomodoro_timer_timeout() -> void:
-	change_state(State.OVERTIME)
+	change_state(State.OVERTIME, false)

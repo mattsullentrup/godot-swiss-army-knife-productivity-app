@@ -3,27 +3,25 @@
 extends HBoxContainer
 
 
-signal valid_button_pressed(state : Pomodoro.State)
+signal valid_button_pressed
 
 
 func _on_start_button_pressed() -> void:
 	match Pomodoro.current_state:
 		Pomodoro.State.OVERTIME:
 			if Pomodoro.previous_state == Pomodoro.State.BREAK:
-				valid_button_pressed.emit(Pomodoro.State.WORK)
+				valid_button_pressed.emit(Pomodoro.State.WORK, false)
 			elif Pomodoro.previous_state == Pomodoro.State.WORK:
-				valid_button_pressed.emit(Pomodoro.State.BREAK)
+				valid_button_pressed.emit(Pomodoro.State.BREAK, false)
 		Pomodoro.State.IDLE:
-			#if Pomodoro.previous_state == Pomodoro.State.WORK:
-				#valid_button_pressed.emit(Pomodoro.State.WORK)
-			valid_button_pressed.emit(Pomodoro.previous_state)
+			valid_button_pressed.emit(Pomodoro.previous_state, true)
 		_:
 			print("something got fucked")
 
 
 func _on_go_back_button_pressed() -> void:
 	if Pomodoro.current_state != Pomodoro.State.IDLE:
-		valid_button_pressed.emit(Pomodoro.State.IDLE)
+		valid_button_pressed.emit(Pomodoro.State.IDLE, false)
 
 
 func _on_pause_button_pressed() -> void:
@@ -35,7 +33,8 @@ func _on_skip_button_pressed() -> void:
 
 
 func _on_stop_button_pressed() -> void:
-	valid_button_pressed.emit(Pomodoro.State.IDLE)
+	if Pomodoro.current_state != Pomodoro.State.IDLE:
+		valid_button_pressed.emit(Pomodoro.State.IDLE, false)
 
 
 
