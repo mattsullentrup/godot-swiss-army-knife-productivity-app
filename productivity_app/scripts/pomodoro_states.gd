@@ -7,5 +7,5 @@ enum State {
 	PAUSED,
 	WORK,
 	BREAK,
-	OVERTIME,
+	#OVERTIME,
 }

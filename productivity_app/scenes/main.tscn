@@ -146,7 +146,7 @@ timer_message = NodePath("../../../TimerMessage")
 paused_message = NodePath("../../PausedLabel")
 
 [node name="PomodoroTimer" type="Timer" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro"]
-wait_time = 10.0
+wait_time = 125.666
 one_shot = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro"]
@@ -310,6 +310,7 @@ stream = ExtResource("7_80g3q")
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Normal/VBoxContainer/NormalTimerStartButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Normal" method="_on_normal_timer_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Normal/VBoxContainer/NormalTimerStopButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Normal" method="_on_normal_timer_stop_button_pressed"]
 [connection signal="item_selected" from="CanvasLayer/TimerPanelContainer/TabContainer/Normal/VBoxContainer/NormalTimeOptionButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Normal" method="_on_normal_time_option_button_item_selected"]
+[connection signal="timeout" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/PomodoroTimer" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_pomodoro_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/ButtonManager/StartButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/ButtonManager" method="_on_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/ButtonManager/GoBackButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/ButtonManager" method="_on_go_back_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/ButtonManager/PauseButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/ButtonManager" method="_on_pause_button_pressed"]
