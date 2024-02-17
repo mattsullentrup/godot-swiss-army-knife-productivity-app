@@ -2,10 +2,11 @@ extends Label
 
 
 var timer : Timer
+var time_to_display : float
 
 
 func _process(_delta: float) -> void:
-	text = get_formatted_time_from_seconds(timer.time_left)
+	text = get_formatted_time_from_seconds(ceili(Pomodoro.time_to_display))
 
 
 func get_formatted_time_from_seconds(seconds : int) -> String:

@@ -20,13 +20,15 @@ enum Round { FIRST, SECOND, THIRD, FOURTH }
 @export var long_break_length : float = 1
 @export var work_round_length : float = 5
 
-var timer_length : float
-var time_to_display : float
+static var previous_state = null
+static var current_state : PomodoroStates.State
+static var time_to_display : float
+
 var overtime_start_time : float
+var overtime_count : float
+var timer_length : float
 var current_round : Round
 
-static var previous_state : PomodoroStates.State
-static var current_state : PomodoroStates.State
 
 @onready var start_button : Button = %StartButton
 @onready var notification_sound : AudioStreamPlayer = %NotificationSound
@@ -39,6 +41,18 @@ func _ready() -> void:
 	time_remaining_label.timer = pomodoro_timer
 
 	button_manager.valid_button_pressed.connect(change_state)
+
+
+func _process(delta) -> void:
+	if previous_state == null:
+		return
+
+	if not pomodoro_timer.is_stopped():
+		progress_bar.max_value = timer_length
+		progress_bar.value = pomodoro_timer.time_left
+		time_to_display = pomodoro_timer.time_left
+	else:
+		time_to_display = overtime_start_time - Time.get_unix_time_from_system()
 
 
 func change_state(state : PomodoroStates.State) -> void:
@@ -69,3 +83,5 @@ func _on_button_manager_valid_button_pressed(state : PomodoroStates.State) -> vo
 
 func _on_pomodoro_timer_timeout() -> void:
 	change_state(PomodoroStates.State.IDLE)
+	overtime_start_time = Time.get_unix_time_from_system()
+	notification_sound.play()
