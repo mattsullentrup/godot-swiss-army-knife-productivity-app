@@ -20,10 +20,14 @@ enum Round { FIRST, SECOND, THIRD, FOURTH }
 @export var work_round_length : float = 5
 
 static var previous_state : PomodoroStates.State
+
 static var _time_to_display : float
 static var time_to_display : float:
 	get:
 		return _time_to_display
+	#set(value):
+		#return set_time_to_display
+
 static var _current_state : PomodoroStates.State
 static var current_state : PomodoroStates.State:
 	get:
@@ -48,19 +52,13 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	#if previous_state == null:
-		#return
-
-	#match _current_state:
-		#PomodoroStates.State.IDLE when previous_state == PomodoroStates.State.WORK or previous_state == PomodoroStates.State.BREAK:
-			#_time_to_display = timer_length
-
-	if not pomodoro_timer.is_stopped():
-		progress_bar.max_value = timer_length
-		progress_bar.value = pomodoro_timer.time_left
-		_time_to_display = pomodoro_timer.time_left
-	else:
-		_time_to_display = overtime_start_time - Time.get_unix_time_from_system()
+	_time_to_display = set_time_to_display()
+	#if not pomodoro_timer.is_stopped():
+		#progress_bar.max_value = timer_length
+		#progress_bar.value = pomodoro_timer.time_left
+		#_time_to_display = pomodoro_timer.time_left
+	#else:
+		#_time_to_display = overtime_start_time - Time.get_unix_time_from_system()
 
 
 func change_state(state : PomodoroStates.State) -> void:
@@ -83,6 +81,18 @@ func change_state(state : PomodoroStates.State) -> void:
 
 	previous_state = _current_state
 	_current_state = state
+
+
+func set_time_to_display() -> float:
+	match _current_state:
+		PomodoroStates.State.IDLE when previous_state == PomodoroStates.State.WORK or previous_state == PomodoroStates.State.BREAK:
+			return overtime_start_time - Time.get_unix_time_from_system()
+		PomodoroStates.State.IDLE when previous_state == PomodoroStates.State.IDLE:
+			return timer_length
+		PomodoroStates.State.WORK, PomodoroStates.State.BREAK:
+			return pomodoro_timer.time_left
+
+	return 0
 
 
 func _on_button_manager_valid_button_pressed(state : PomodoroStates.State) -> void:
