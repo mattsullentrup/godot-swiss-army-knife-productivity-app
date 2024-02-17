@@ -8,16 +8,22 @@ signal valid_button_pressed(state : Pomodoro.State)
 
 func _on_start_button_pressed() -> void:
 	match Pomodoro.current_state:
-		Pomodoro.State.IDLE when Pomodoro.previous_state == Pomodoro.State.WORK:
-			valid_button_pressed.emit(Pomodoro.State.BREAK)
-		Pomodoro.State.IDLE when Pomodoro.previous_state == Pomodoro.State.BREAK:
-			valid_button_pressed.emit(Pomodoro.State.WORK)
+		Pomodoro.State.OVERTIME:
+			if Pomodoro.previous_state == Pomodoro.State.BREAK:
+				valid_button_pressed.emit(Pomodoro.State.WORK)
+			elif Pomodoro.previous_state == Pomodoro.State.WORK:
+				valid_button_pressed.emit(Pomodoro.State.BREAK)
+		Pomodoro.State.IDLE:
+			#if Pomodoro.previous_state == Pomodoro.State.WORK:
+				#valid_button_pressed.emit(Pomodoro.State.WORK)
+			valid_button_pressed.emit(Pomodoro.previous_state)
 		_:
-			valid_button_pressed.emit(Pomodoro.State.WORK)
+			print("something got fucked")
 
 
 func _on_go_back_button_pressed() -> void:
-	pass # Replace with function body.
+	if Pomodoro.current_state != Pomodoro.State.IDLE:
+		valid_button_pressed.emit(Pomodoro.State.IDLE)
 
 
 func _on_pause_button_pressed() -> void:
@@ -29,7 +35,7 @@ func _on_skip_button_pressed() -> void:
 
 
 func _on_stop_button_pressed() -> void:
-	pass # Replace with function body.
+	valid_button_pressed.emit(Pomodoro.State.IDLE)
 
 
 

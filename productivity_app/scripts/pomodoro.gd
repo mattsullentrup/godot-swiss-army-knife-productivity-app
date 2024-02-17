@@ -8,7 +8,7 @@ enum State {
 	PAUSED,
 	WORK,
 	BREAK,
-	#OVERTIME,
+	OVERTIME,
 }
 
 @export var initial_state : State
@@ -26,7 +26,9 @@ enum State {
 @export var long_break_length : float = 1
 @export var work_round_length : float = 5
 
-static var previous_state : State
+# set this to work to avoid confusion when first starting application
+# specifically when pressing play when the current state is IDLE
+static var previous_state := State.WORK
 
 static var _time_to_display : float
 static var time_to_display : float:
@@ -35,7 +37,7 @@ static var time_to_display : float:
 	#set(value):
 		#return set_time_to_display
 
-static var _current_state : State
+static var _current_state := State.IDLE
 static var current_state : State:
 	get:
 		return _current_state
@@ -53,53 +55,85 @@ var current_round : Round
 
 
 func _ready() -> void:
-	_current_state = initial_state
+	#change_state(initial_state)
 
 	button_manager.valid_button_pressed.connect(change_state)
 
 
 func _process(_delta: float) -> void:
-	_time_to_display = set_time_to_display()
-	#if not pomodoro_timer.is_stopped():
-		#progress_bar.max_value = timer_length
-		#progress_bar.value = pomodoro_timer.time_left
-		#_time_to_display = pomodoro_timer.time_left
-	#else:
-		#_time_to_display = overtime_start_time - Time.get_unix_time_from_system()
+	if not pomodoro_timer.is_stopped():
+		progress_bar.max_value = timer_length
+		progress_bar.value = pomodoro_timer.time_left
+		_time_to_display = pomodoro_timer.time_left
+	elif _current_state == State.OVERTIME:
+		_time_to_display = overtime_start_time - Time.get_unix_time_from_system()
+	else:
+		_time_to_display = 0
 
 
-func change_state(state : State) -> void:
-	match state:
+func change_state(new_state : State) -> void:
+	#timer_message.text = set_timer_message(new_state)
+
+	match new_state:
 		State.WORK:
 			timer_length = work_round_length
 			pomodoro_timer.start(timer_length)
 			timer_message.text = "Work"
-			timer_message.show()
 		State.BREAK:
 			timer_length = short_break_length
 			pomodoro_timer.start(timer_length)
 			timer_message.text = "Break"
-		State.IDLE when _current_state == State.WORK:
-			timer_message.text = "Take a break"
-			timer_message.show()
-		State.IDLE when _current_state == State.BREAK:
-			timer_message.text = "Get back to it"
-			timer_message.show()
+		State.OVERTIME:
+			overtime_start_time = Time.get_unix_time_from_system()
+			notification_sound.play()
+			progress_bar.value = 0
+
+			if current_state == State.WORK:
+				timer_message.text = "Take a break"
+			elif current_state == State.BREAK:
+				timer_message.text = "Get back to it"
+		State.PAUSED:
+			timer_message.text = "Paused"
+		State.IDLE:
+			pomodoro_timer.stop()
+			timer_message.hide()
+			progress_bar.value = progress_bar.max_value
+
+	timer_message.show()
 
 	previous_state = _current_state
-	_current_state = state
+	_current_state = new_state
 
 
-func set_time_to_display() -> float:
-	match _current_state:
-		State.IDLE when previous_state == State.WORK or previous_state == State.BREAK:
-			return overtime_start_time - Time.get_unix_time_from_system()
-		State.IDLE when previous_state == State.IDLE:
-			return timer_length
-		State.WORK, State.BREAK:
-			return pomodoro_timer.time_left
+#func set_time_to_display() -> float:
+	#var value : float
+#
+	#match _current_state:
+		#State.OVERTIME:
+			#value = overtime_start_time - Time.get_unix_time_from_system()
+		#State.IDLE when previous_state == State.IDLE:
+			#value = timer_length
+		#State.WORK, State.BREAK:
+			#value = pomodoro_timer.time_left
+#
+	#return value
 
-	return 0
+
+#func set_timer_message(new_state : State) -> String:
+	#var new_message : String
+#
+	#match new_state:
+		#State.WORK:
+			#new_message = "Work"
+		#State.BREAK:
+			#new_message = "Break"
+		#State.OVERTIME:
+			#if current_state == State.WORK:
+				#new_message = "Take a break"
+			#elif current_state == State.BREAK:
+				#new_message = "Get back to it"
+#
+	#return new_message
 
 
 func _on_button_manager_valid_button_pressed(state : State) -> void:
@@ -107,6 +141,4 @@ func _on_button_manager_valid_button_pressed(state : State) -> void:
 
 
 func _on_pomodoro_timer_timeout() -> void:
-	change_state(State.IDLE)
-	overtime_start_time = Time.get_unix_time_from_system()
-	notification_sound.play()
+	change_state(State.OVERTIME)
