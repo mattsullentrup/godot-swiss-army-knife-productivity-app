@@ -5,7 +5,7 @@ extends TabBar
 enum Round { FIRST = 1, SECOND = 2, THIRD = 3, FOURTH = 4 }
 enum State {
 	IDLE,
-	#PAUSED,
+	PAUSED,
 	WORK,
 	BREAK,
 	OVERTIME,
@@ -64,6 +64,7 @@ func _process(_delta: float) -> void:
 
 func change_state(new_state : State) -> void:
 	timer_message.show()
+	paused_message.hide()
 
 	match new_state:
 		State.WORK:
@@ -80,6 +81,10 @@ func change_state(new_state : State) -> void:
 			progress_bar.max_value = timer_length
 			timer_message.text = "Break"
 			pomodoro_timer.paused = false
+		State.PAUSED:
+			if pomodoro_timer.paused == false:
+				pomodoro_timer.paused = true
+				paused_message.show()
 		State.OVERTIME:
 			overtime_start_time = Time.get_unix_time_from_system()
 			notification_sound.play()
@@ -94,6 +99,10 @@ func change_state(new_state : State) -> void:
 	previous_state = current_state
 	current_state = new_state
 
+	print_state_conditions()
+
+
+func print_state_conditions() -> void:
 	for item : String in State:
 		if State.find_key(current_state):
 			print("current: ", State.find_key(current_state))
@@ -108,6 +117,7 @@ func revert_to_previous_state() -> void:
 	progress_bar.max_value = timer_length
 	progress_bar.value = pomodoro_timer.time_left
 	_time_to_display = timer_length
+	print_state_conditions()
 
 
 func _on_pomodoro_timer_timeout() -> void:
@@ -141,16 +151,17 @@ func _on_pause_button_pressed() -> void:
 		print("pause unavailable")
 		return
 
-	if pomodoro_timer.paused == false:
-		pomodoro_timer.paused = true
-		timer_message.text = "Paused"
-		timer_message.show()
-	else:
+	elif current_state == State.PAUSED:
 		pomodoro_timer.paused = false
-		if current_state == State.WORK:
-			timer_message.text = "Work"
-		elif current_state == State.BREAK:
-			timer_message.text = "Break"
+		revert_to_previous_state()
+#
+		#if current_state == State.WORK:
+			#timer_message.text = "Work"
+		#elif current_state == State.BREAK:
+			#timer_message.text = "Break"
+	else:
+		change_state(State.PAUSED)
+
 
 func _on_skip_button_pressed() -> void:
 	if current_state != State.IDLE:
