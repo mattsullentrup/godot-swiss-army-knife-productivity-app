@@ -63,7 +63,7 @@ func _process(_delta: float) -> void:
 
 
 func change_state(new_state : State) -> void:
-	timer_message.hide()
+	timer_message.show()
 
 	match new_state:
 		State.WORK:
@@ -72,16 +72,21 @@ func change_state(new_state : State) -> void:
 			timer_length = work_round_length
 			pomodoro_timer.start(timer_length)
 			progress_bar.max_value = timer_length
+			timer_message.text = "Work"
+			pomodoro_timer.paused = false
 		State.BREAK:
 			timer_length = short_break_length
 			pomodoro_timer.start(timer_length)
 			progress_bar.max_value = timer_length
+			timer_message.text = "Break"
+			pomodoro_timer.paused = false
 		State.OVERTIME:
 			overtime_start_time = Time.get_unix_time_from_system()
 			notification_sound.play()
 			progress_bar.value = 0
 		State.IDLE:
 			pomodoro_timer.stop()
+			timer_message.hide()
 			progress_bar.value = progress_bar.max_value
 			_time_to_display = timer_length
 
@@ -119,24 +124,7 @@ func _on_start_button_pressed() -> void:
 		State.IDLE:
 			change_state(previous_state)
 		_:
-			print("something got fucked")
-
-
-func _on_pause_button_pressed() -> void:
-	if current_state == State.IDLE or current_state == State.OVERTIME:
-		return
-
-	if pomodoro_timer.paused == false:
-		pomodoro_timer.paused = true
-		timer_message.text = "Paused"
-		timer_message.show()
-	else:
-		pomodoro_timer.paused = false
-		timer_message.hide()
-
-
-func _on_skip_button_pressed() -> void:
-	pass # Replace with function body.
+			print("start button unavailable")
 
 
 func _on_go_back_button_pressed() -> void:
@@ -145,6 +133,28 @@ func _on_go_back_button_pressed() -> void:
 			# swap current and previous if in overtime
 			# or else it will start at overtime when pressing play again
 			revert_to_previous_state()
+		change_state(State.IDLE)
+
+
+func _on_pause_button_pressed() -> void:
+	if current_state == State.IDLE or current_state == State.OVERTIME:
+		print("pause unavailable")
+		return
+
+	if pomodoro_timer.paused == false:
+		pomodoro_timer.paused = true
+		timer_message.text = "Paused"
+		timer_message.show()
+	else:
+		pomodoro_timer.paused = false
+		if current_state == State.WORK:
+			timer_message.text = "Work"
+		elif current_state == State.BREAK:
+			timer_message.text = "Break"
+
+func _on_skip_button_pressed() -> void:
+	if current_state != State.IDLE:
+
 		change_state(State.IDLE)
 
 
