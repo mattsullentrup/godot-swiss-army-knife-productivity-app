@@ -28,9 +28,7 @@ func _on_skip_button_pressed() -> void:
 	pass # Replace with function body.
 
 
-func _on_stop_button_pressed() -> void:
-	if Pomodoro.current_state != Pomodoro.State.IDLE:
-		valid_button_pressed.emit(Pomodoro.State.IDLE)
+
 
 
 

@@ -317,7 +317,7 @@ stream = ExtResource("7_80g3q")
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/ButtonManager/GoBackButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_go_back_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/ButtonManager/PauseButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/ButtonManager" method="_on_pause_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/ButtonManager/SkipButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/ButtonManager" method="_on_skip_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/ButtonManager/StopButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/ButtonManager" method="_on_stop_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer/ButtonManager/StopButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_stop_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TaskListPanelContainer/TaskVBoxContainer/NewTaskButton" to="CanvasLayer/TaskListPanelContainer" method="_on_new_task_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TaskListPanelContainer/TaskVBoxContainer/Task/DeleteButton" to="." method="_on_delete_button_pressed"]
 

@@ -104,11 +104,11 @@ func change_state(new_state : State) -> void:
 	previous_state = current_state
 	current_state = new_state
 
-	for item in State:
+	for item : String in State:
 		if State.find_key(current_state):
 			print("current: ", State.find_key(current_state))
 
-	for item in State:
+	for item : String in State:
 		if State.find_key(previous_state):
 			print("previous: ", State.find_key(previous_state))
 
@@ -134,4 +134,9 @@ func _on_go_back_button_pressed() -> void:
 			# swap current and previous if in overtime
 			# or else it will start at overtime when pressing play again
 			revert_to_previous_state()
+		change_state(State.IDLE)
+
+
+func _on_stop_button_pressed() -> void:
+	if current_state != State.IDLE:
 		change_state(State.IDLE)
