@@ -46,13 +46,9 @@ var current_round : Round
 @onready var start_button : Button = %StartButton
 @onready var notification_sound : AudioStreamPlayer = %NotificationSound
 @onready var progress_bar : ProgressBar = $VBoxContainer/ProgressBar
-@onready var button_manager: HBoxContainer = %ButtonManager
 
 
 func _ready() -> void:
-	#change_state(initial_state)
-
-	button_manager.valid_button_pressed.connect(change_state)
 	progress_bar.value = progress_bar.max_value
 	timer_length = work_round_length
 	_time_to_display = timer_length
@@ -64,13 +60,10 @@ func _process(_delta: float) -> void:
 		_time_to_display = pomodoro_timer.time_left
 	elif current_state == State.OVERTIME:
 		_time_to_display = overtime_start_time - Time.get_unix_time_from_system()
-	#else:
-		#_time_to_display = 0
 
 
 func change_state(new_state : State) -> void:
 	timer_message.show()
-	#timer_message.text = set_timer_message(new_state)
 
 	match new_state:
 		State.WORK:
@@ -126,6 +119,19 @@ func _on_button_manager_valid_button_pressed(state : State) -> void:
 
 func _on_pomodoro_timer_timeout() -> void:
 	change_state(State.OVERTIME)
+
+
+func _on_start_button_pressed() -> void:
+	match current_state:
+		State.OVERTIME:
+			if previous_state == State.BREAK:
+				change_state(State.WORK)
+			elif previous_state == State.WORK:
+				change_state(State.BREAK)
+		State.IDLE:
+			change_state(previous_state)
+		_:
+			print("something got fucked")
 
 
 func _on_go_back_button_pressed() -> void:
