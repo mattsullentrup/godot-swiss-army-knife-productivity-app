@@ -20,14 +20,6 @@ signal is_going_back_during_overtime
 			#print("something got fucked")
 
 
-func _on_pause_button_pressed() -> void:
-	pass # Replace with function body.
-
-
-func _on_skip_button_pressed() -> void:
-	pass # Replace with function body.
-
-
 
 
 

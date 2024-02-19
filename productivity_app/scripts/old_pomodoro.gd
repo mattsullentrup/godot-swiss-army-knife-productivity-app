@@ -143,7 +143,7 @@
 			#current_round += 1;
 		#timer_message.text = "Get back to it"
 	#else:
-		##change_state(State.BREAK)
+		#change_state(State.BREAK)
 		#timer_message.text = "Take a break"
 #
 	#timer_message.show()

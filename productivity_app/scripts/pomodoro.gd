@@ -2,10 +2,10 @@ class_name Pomodoro
 extends TabBar
 
 
-enum Round { FIRST, SECOND, THIRD, FOURTH }
+enum Round { FIRST = 1, SECOND = 2, THIRD = 3, FOURTH = 4 }
 enum State {
 	IDLE,
-	PAUSED,
+	#PAUSED,
 	WORK,
 	BREAK,
 	OVERTIME,
@@ -35,8 +35,8 @@ static var time_to_display : float:
 	get:
 		return _time_to_display
 
-static var current_state := State.IDLE
 
+var current_state : State = State.IDLE
 var overtime_start_time : float
 var overtime_count : float
 var timer_length : float
@@ -63,33 +63,25 @@ func _process(_delta: float) -> void:
 
 
 func change_state(new_state : State) -> void:
-	timer_message.show()
+	timer_message.hide()
 
 	match new_state:
 		State.WORK:
+			#current_round += 1
+			#round_label.text = str(current_round) + '/4'
 			timer_length = work_round_length
 			pomodoro_timer.start(timer_length)
-			timer_message.text = "Work"
 			progress_bar.max_value = timer_length
 		State.BREAK:
 			timer_length = short_break_length
 			pomodoro_timer.start(timer_length)
-			timer_message.text = "Break"
 			progress_bar.max_value = timer_length
 		State.OVERTIME:
 			overtime_start_time = Time.get_unix_time_from_system()
 			notification_sound.play()
 			progress_bar.value = 0
-
-			if current_state == State.WORK:
-				timer_message.text = "Take a break"
-			elif current_state == State.BREAK:
-				timer_message.text = "Get back to it"
-		State.PAUSED:
-			timer_message.text = "Paused"
 		State.IDLE:
 			pomodoro_timer.stop()
-			timer_message.hide()
 			progress_bar.value = progress_bar.max_value
 			_time_to_display = timer_length
 
@@ -113,10 +105,6 @@ func revert_to_previous_state() -> void:
 	_time_to_display = timer_length
 
 
-func _on_button_manager_valid_button_pressed(state : State) -> void:
-	change_state(state)
-
-
 func _on_pomodoro_timer_timeout() -> void:
 	change_state(State.OVERTIME)
 
@@ -134,6 +122,23 @@ func _on_start_button_pressed() -> void:
 			print("something got fucked")
 
 
+func _on_pause_button_pressed() -> void:
+	if current_state == State.IDLE or current_state == State.OVERTIME:
+		return
+
+	if pomodoro_timer.paused == false:
+		pomodoro_timer.paused = true
+		timer_message.text = "Paused"
+		timer_message.show()
+	else:
+		pomodoro_timer.paused = false
+		timer_message.hide()
+
+
+func _on_skip_button_pressed() -> void:
+	pass # Replace with function body.
+
+
 func _on_go_back_button_pressed() -> void:
 	if current_state != State.IDLE:
 		if current_state == State.OVERTIME:
@@ -146,3 +151,4 @@ func _on_go_back_button_pressed() -> void:
 func _on_stop_button_pressed() -> void:
 	if current_state != State.IDLE:
 		change_state(State.IDLE)
+		#current_round = Round.FIRST
