@@ -69,25 +69,33 @@ func change_state(new_state : State) -> void:
 
 	match new_state:
 		State.WORK:
-			#current_round += 1
-			#round_label.text = str(current_round) + '/4'
-			timer_length = work_round_length
-			pomodoro_timer.start(timer_length)
-			progress_bar.max_value = timer_length
-			timer_message.text = "Work"
 			pomodoro_timer.paused = false
-			productivity_state = State.WORK
+			if current_state == State.PAUSED:
+				paused_message.hide()
+			else:
+				#current_round += 1
+				#round_label.text = str(current_round) + '/4'
+				timer_length = work_round_length
+				pomodoro_timer.start(timer_length)
+				progress_bar.max_value = timer_length
+				timer_message.text = "Work"
+				#pomodoro_timer.paused = false
+				productivity_state = State.WORK
 		State.BREAK:
-			timer_length = short_break_length
-			pomodoro_timer.start(timer_length)
-			progress_bar.max_value = timer_length
-			timer_message.text = "Break"
 			pomodoro_timer.paused = false
-			productivity_state = State.BREAK
+			if current_state == State.PAUSED:
+				paused_message.hide()
+			else:
+				timer_length = short_break_length
+				pomodoro_timer.start(timer_length)
+				progress_bar.max_value = timer_length
+				timer_message.text = "Break"
+				#pomodoro_timer.paused = false
+				productivity_state = State.BREAK
 		State.PAUSED:
-			if pomodoro_timer.paused == false:
-				pomodoro_timer.paused = true
-				paused_message.show()
+			#if pomodoro_timer.paused == false:
+			pomodoro_timer.paused = true
+			paused_message.show()
 		State.OVERTIME:
 			overtime_start_time = Time.get_unix_time_from_system()
 			notification_sound.play()
@@ -99,7 +107,6 @@ func change_state(new_state : State) -> void:
 			_time_to_display = timer_length
 
 
-	#previous_state = current_state
 	current_state = new_state
 
 	print_state_conditions()
@@ -113,14 +120,6 @@ func print_state_conditions() -> void:
 	for item : String in State:
 		if State.find_key(productivity_state):
 			print("prod state: ", State.find_key(productivity_state))
-
-
-func revert_to_previous_state() -> void:
-	current_state = productivity_state
-	progress_bar.max_value = timer_length
-	progress_bar.value = pomodoro_timer.time_left
-	_time_to_display = timer_length
-	print_state_conditions()
 
 
 func _on_pomodoro_timer_timeout() -> void:
@@ -144,11 +143,6 @@ func _on_go_back_button_pressed() -> void:
 	match current_state:
 		State.IDLE:
 			print("go back unavailable")
-		#State.OVERTIME:
-			## swap current and previous if in overtime
-			## or else it will start at overtime when pressing play again
-			##revert_to_previous_state()
-			#pass
 		_:
 			change_state(State.IDLE)
 
@@ -158,21 +152,18 @@ func _on_pause_button_pressed() -> void:
 		State.IDLE, State.OVERTIME:
 			print("pause unavailable")
 		State.PAUSED:
-			pomodoro_timer.paused = false
-			revert_to_previous_state()
+			change_state(productivity_state)
 		_:
 			change_state(State.PAUSED)
 
 
 func _on_skip_button_pressed() -> void:
-	if current_state != State.IDLE:
-
-		change_state(State.IDLE)
+	change_state(State.IDLE)
+	current_round += 1
 
 
 func _on_stop_button_pressed() -> void:
-	if current_state == State.IDLE:
-		print("stop unavailable")
-		return
+	productivity_state = State.WORK
+	current_round = Round.FIRST
+	timer_length = work_round_length
 	change_state(State.IDLE)
-	#current_round = Round.FIRST
