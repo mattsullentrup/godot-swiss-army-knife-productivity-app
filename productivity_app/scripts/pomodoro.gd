@@ -34,15 +34,9 @@ static var _time_to_display : float
 static var time_to_display : float:
 	get:
 		return _time_to_display
-	#set(value):
-		#return set_time_to_display
 
-static var _current_state := State.IDLE
-static var current_state : State:
-	get:
-		return _current_state
+static var current_state := State.IDLE
 
-#var is_exiting_idle_state := false
 var overtime_start_time : float
 var overtime_count : float
 var timer_length : float
@@ -59,6 +53,9 @@ func _ready() -> void:
 	#change_state(initial_state)
 
 	button_manager.valid_button_pressed.connect(change_state)
+	progress_bar.value = progress_bar.max_value
+	timer_length = work_round_length
+	_time_to_display = timer_length
 
 
 func _process(_delta: float) -> void:
@@ -66,13 +63,14 @@ func _process(_delta: float) -> void:
 		progress_bar.max_value = timer_length
 		progress_bar.value = pomodoro_timer.time_left
 		_time_to_display = pomodoro_timer.time_left
-	elif _current_state == State.OVERTIME:
+	elif current_state == State.OVERTIME:
 		_time_to_display = overtime_start_time - Time.get_unix_time_from_system()
-	else:
-		_time_to_display = 0
+	#else:
+		#_time_to_display = 0
 
 
 func change_state(new_state : State, is_exiting_idle_state : bool) -> void:
+	timer_message.show()
 	#timer_message.text = set_timer_message(new_state)
 
 	match new_state:
@@ -100,41 +98,17 @@ func change_state(new_state : State, is_exiting_idle_state : bool) -> void:
 			timer_message.hide()
 			progress_bar.value = progress_bar.max_value
 
-	timer_message.show()
 
-	previous_state = _current_state
-	_current_state = new_state
+	previous_state = current_state
+	current_state = new_state
 
+	for item in State:
+		if State.find_key(current_state):
+			print("current: ", State.find_key(current_state))
 
-#func set_time_to_display() -> float:
-	#var value : float
-#
-	#match _current_state:
-		#State.OVERTIME:
-			#value = overtime_start_time - Time.get_unix_time_from_system()
-		#State.IDLE when previous_state == State.IDLE:
-			#value = timer_length
-		#State.WORK, State.BREAK:
-			#value = pomodoro_timer.time_left
-#
-	#return value
-
-
-#func set_timer_message(new_state : State) -> String:
-	#var new_message : String
-#
-	#match new_state:
-		#State.WORK:
-			#new_message = "Work"
-		#State.BREAK:
-			#new_message = "Break"
-		#State.OVERTIME:
-			#if current_state == State.WORK:
-				#new_message = "Take a break"
-			#elif current_state == State.BREAK:
-				#new_message = "Get back to it"
-#
-	#return new_message
+	for item in State:
+		if State.find_key(previous_state):
+			print("previous: ", State.find_key(previous_state))
 
 
 func _on_button_manager_valid_button_pressed(state : State, is_exiting_idle_state : bool) -> void:
@@ -143,3 +117,14 @@ func _on_button_manager_valid_button_pressed(state : State, is_exiting_idle_stat
 
 func _on_pomodoro_timer_timeout() -> void:
 	change_state(State.OVERTIME, false)
+
+
+func _on_button_manager_is_going_back_during_overtime():
+	# swap current and previous if in overtime
+	# or else it will start at overtime when pressing play again
+	current_state = previous_state
+	progress_bar.max_value = timer_length
+	progress_bar.value = pomodoro_timer.time_left
+	_time_to_display = timer_length
+
+
