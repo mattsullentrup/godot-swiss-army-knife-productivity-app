@@ -11,21 +11,13 @@ func _on_start_button_pressed() -> void:
 	match Pomodoro.current_state:
 		Pomodoro.State.OVERTIME:
 			if Pomodoro.previous_state == Pomodoro.State.BREAK:
-				valid_button_pressed.emit(Pomodoro.State.WORK, false)
+				valid_button_pressed.emit(Pomodoro.State.WORK)
 			elif Pomodoro.previous_state == Pomodoro.State.WORK:
-				valid_button_pressed.emit(Pomodoro.State.BREAK, false)
+				valid_button_pressed.emit(Pomodoro.State.BREAK)
 		Pomodoro.State.IDLE:
-			valid_button_pressed.emit(Pomodoro.previous_state, true)
+			valid_button_pressed.emit(Pomodoro.previous_state)
 		_:
 			print("something got fucked")
-
-
-func _on_go_back_button_pressed() -> void:
-	if Pomodoro.current_state != Pomodoro.State.IDLE:
-		if Pomodoro.current_state == Pomodoro.State.OVERTIME:
-			#Pomodoro.current_state = Pomodoro.previous_state
-			is_going_back_during_overtime.emit()
-		valid_button_pressed.emit(Pomodoro.State.IDLE, false)
 
 
 func _on_pause_button_pressed() -> void:
@@ -38,7 +30,7 @@ func _on_skip_button_pressed() -> void:
 
 func _on_stop_button_pressed() -> void:
 	if Pomodoro.current_state != Pomodoro.State.IDLE:
-		valid_button_pressed.emit(Pomodoro.State.IDLE, false)
+		valid_button_pressed.emit(Pomodoro.State.IDLE)
 
 
 

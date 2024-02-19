@@ -60,7 +60,6 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if not pomodoro_timer.is_stopped():
-		progress_bar.max_value = timer_length
 		progress_bar.value = pomodoro_timer.time_left
 		_time_to_display = pomodoro_timer.time_left
 	elif current_state == State.OVERTIME:
@@ -69,7 +68,7 @@ func _process(_delta: float) -> void:
 		#_time_to_display = 0
 
 
-func change_state(new_state : State, is_exiting_idle_state : bool) -> void:
+func change_state(new_state : State) -> void:
 	timer_message.show()
 	#timer_message.text = set_timer_message(new_state)
 
@@ -78,10 +77,12 @@ func change_state(new_state : State, is_exiting_idle_state : bool) -> void:
 			timer_length = work_round_length
 			pomodoro_timer.start(timer_length)
 			timer_message.text = "Work"
+			progress_bar.max_value = timer_length
 		State.BREAK:
 			timer_length = short_break_length
 			pomodoro_timer.start(timer_length)
 			timer_message.text = "Break"
+			progress_bar.max_value = timer_length
 		State.OVERTIME:
 			overtime_start_time = Time.get_unix_time_from_system()
 			notification_sound.play()
@@ -97,6 +98,7 @@ func change_state(new_state : State, is_exiting_idle_state : bool) -> void:
 			pomodoro_timer.stop()
 			timer_message.hide()
 			progress_bar.value = progress_bar.max_value
+			_time_to_display = timer_length
 
 
 	previous_state = current_state
@@ -111,20 +113,25 @@ func change_state(new_state : State, is_exiting_idle_state : bool) -> void:
 			print("previous: ", State.find_key(previous_state))
 
 
-func _on_button_manager_valid_button_pressed(state : State, is_exiting_idle_state : bool) -> void:
-	change_state(state, is_exiting_idle_state)
-
-
-func _on_pomodoro_timer_timeout() -> void:
-	change_state(State.OVERTIME, false)
-
-
-func _on_button_manager_is_going_back_during_overtime():
-	# swap current and previous if in overtime
-	# or else it will start at overtime when pressing play again
+func revert_to_previous_state() -> void:
 	current_state = previous_state
 	progress_bar.max_value = timer_length
 	progress_bar.value = pomodoro_timer.time_left
 	_time_to_display = timer_length
 
 
+func _on_button_manager_valid_button_pressed(state : State) -> void:
+	change_state(state)
+
+
+func _on_pomodoro_timer_timeout() -> void:
+	change_state(State.OVERTIME)
+
+
+func _on_go_back_button_pressed() -> void:
+	if current_state != State.IDLE:
+		if current_state == State.OVERTIME:
+			# swap current and previous if in overtime
+			# or else it will start at overtime when pressing play again
+			revert_to_previous_state()
+		change_state(State.IDLE)
