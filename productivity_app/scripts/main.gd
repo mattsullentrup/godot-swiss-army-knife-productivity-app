@@ -39,6 +39,8 @@ func load_game() -> void:
 	pomodoro.current_round = config.get_value("pomodoro", "current_round")
 	pomodoro.productivity_state = config.get_value("pomodoro", "productivity_state")
 
+	pomodoro.print_state_conditions()
+
 	# Remove existing enemies before adding new ones.
 	get_tree().call_group("task", "queue_free")
 

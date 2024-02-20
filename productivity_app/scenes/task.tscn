@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://dercwquryae2g"]
 
-[ext_resource type="Script" path="res://scripts/task.gd" id="1_a22ig"]
-[ext_resource type="Script" path="res://scripts/hide_caret.gd" id="2_36uy1"]
+[ext_resource type="Script" path="res://scripts/tasks/task.gd" id="1_m21r0"]
 [ext_resource type="Texture2D" uid="uid://cklr1uqmqs7hb" path="res://addons/images/reset.png" id="2_cs7wq"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/new_theme.tres" id="2_r0grc"]
+[ext_resource type="Script" path="res://scripts/tasks/hide_caret.gd" id="3_kr566"]
 
 [node name="Task" type="HBoxContainer" groups=["task"]]
 theme_override_constants/separation = 15
-script = ExtResource("1_a22ig")
+script = ExtResource("1_m21r0")
 
 [node name="TaskStateButton" type="Button" parent="."]
 texture_filter = 2
@@ -22,7 +22,7 @@ size_flags_horizontal = 3
 focus_mode = 1
 placeholder_text = "Enter task..."
 clear_button_enabled = true
-script = ExtResource("2_36uy1")
+script = ExtResource("3_kr566")
 
 [node name="DeleteButton" type="Button" parent="."]
 custom_minimum_size = Vector2(50, 50)
