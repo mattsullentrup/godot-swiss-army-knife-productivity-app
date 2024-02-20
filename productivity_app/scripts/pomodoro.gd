@@ -43,7 +43,7 @@ var overtime_count : float
 var timer_length : float
 
 
-@onready var current_round : int = 0
+@onready var current_round : int = 1
 @onready var start_button : Button = %StartButton
 @onready var notification_sound : AudioStreamPlayer = %NotificationSound
 @onready var progress_bar : ProgressBar = $VBoxContainer/ProgressBar
@@ -53,6 +53,7 @@ func _ready() -> void:
 	progress_bar.value = progress_bar.max_value
 	timer_length = work_round_length
 	_time_to_display = timer_length
+	print_state_conditions()
 
 
 func _process(_delta: float) -> void:
@@ -73,7 +74,8 @@ func change_state(new_state : State) -> void:
 			if current_state == State.PAUSED:
 				paused_message.hide()
 			else:
-				current_round += 1
+				if current_state != State.IDLE:
+					current_round += 1
 				check_current_round()
 				timer_length = work_round_length
 				pomodoro_timer.start(timer_length)
@@ -152,9 +154,6 @@ func _on_go_back_button_pressed() -> void:
 			productivity_state = State.BREAK
 			_time_to_display = short_break_length
 			current_round -= 1
-	elif productivity_state == State.WORK:
-		current_round -= 1
-		change_state(State.IDLE)
 	else:
 		change_state(State.IDLE)
 
