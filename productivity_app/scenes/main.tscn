@@ -1,21 +1,20 @@
-[gd_scene load_steps=19 format=3 uid="uid://doy3uidslkhni"]
+[gd_scene load_steps=18 format=3 uid="uid://doy3uidslkhni"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_5i01b"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/new_theme.tres" id="2_618gk"]
 [ext_resource type="Script" path="res://scripts/task_manager.gd" id="3_8jc33"]
-[ext_resource type="Script" path="res://scripts/normal_timer.gd" id="3_rcetv"]
+[ext_resource type="Script" path="res://scripts/timers/normal_timer.gd" id="3_rcetv"]
 [ext_resource type="PackedScene" uid="uid://dercwquryae2g" path="res://scenes/task.tscn" id="4_n1nfk"]
-[ext_resource type="Script" path="res://scripts/pomodoro.gd" id="4_vjfd7"]
+[ext_resource type="Script" path="res://scripts/timers/pomodoro.gd" id="4_vjfd7"]
 [ext_resource type="Texture2D" uid="uid://to8v6rm8yx4j" path="res://addons/images/play.png" id="5_3frk2"]
-[ext_resource type="Script" path="res://scripts/pomodoro_gui.gd" id="5_mbsig"]
-[ext_resource type="Script" path="res://scripts/time_remaining_label.gd" id="5_qs481"]
+[ext_resource type="Script" path="res://scripts/timers/time_remaining_label.gd" id="5_qs481"]
 [ext_resource type="Texture2D" uid="uid://bsxkifa4n1im2" path="res://addons/images/pause.png" id="6_d5iys"]
 [ext_resource type="Texture2D" uid="uid://bt4ljf447ayb7" path="res://addons/images/go_back.png" id="6_kh7sf"]
 [ext_resource type="Texture2D" uid="uid://bjt7ddi0qly4g" path="res://addons/images/stop.png" id="6_ncghh"]
-[ext_resource type="Script" path="res://scripts/button_manager.gd" id="6_qb1nw"]
 [ext_resource type="AudioStream" uid="uid://q3h7vgwqou6l" path="res://addons/sounds/notification2.wav" id="7_80g3q"]
 [ext_resource type="Texture2D" uid="uid://bxhtp68x37k8k" path="res://addons/images/skip.png" id="8_5edfk"]
 [ext_resource type="Texture2D" uid="uid://duhf0ii3np8qh" path="res://addons/images/plus.png" id="10_t8ryo"]
+[ext_resource type="Script" path="res://scripts/time.gd" id="15_kccpl"]
 
 [sub_resource type="Theme" id="Theme_4ijq2"]
 
@@ -167,7 +166,6 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 theme_override_constants/separation = 24
 alignment = 1
-script = ExtResource("5_mbsig")
 
 [node name="RoundLabel" type="Label" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -193,11 +191,9 @@ fill_mode = 1
 show_percentage = false
 
 [node name="ButtonManager" type="HBoxContainer" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 15
 alignment = 1
-script = ExtResource("6_qb1nw")
 
 [node name="StartButton" type="Button" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/MarginContainer/VBoxContainer/ButtonManager"]
 unique_name_in_owner = true
@@ -298,16 +294,27 @@ layout_mode = 2
 [node name="LineEdit" parent="CanvasLayer/TaskListPanelContainer/TaskVBoxContainer/Task" index="1"]
 text = "Godot"
 
-[node name="ClockLabel" type="Label" parent="CanvasLayer"]
-unique_name_in_owner = true
+[node name="TimeContainer" type="HBoxContainer" parent="CanvasLayer"]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -90.0
-offset_bottom = 0.000244141
+offset_top = -83.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_constants/separation = 390
+alignment = 1
+script = ExtResource("15_kccpl")
+
+[node name="ClockLabel" type="Label" parent="CanvasLayer/TimeContainer"]
+layout_mode = 2
+text = "12:00:00"
+label_settings = SubResource("LabelSettings_kfx6i")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DateLabel" type="Label" parent="CanvasLayer/TimeContainer"]
+layout_mode = 2
 text = "12:00:00"
 label_settings = SubResource("LabelSettings_kfx6i")
 horizontal_alignment = 1

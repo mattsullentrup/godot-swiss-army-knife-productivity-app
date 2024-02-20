@@ -43,7 +43,7 @@ func _ready() -> void:
 	progress_bar.value = progress_bar.max_value
 	timer_length = work_round_length
 	_time_to_display = timer_length
-	print_state_conditions()
+	#print_state_conditions()
 
 
 func _process(_delta: float) -> void:
@@ -101,7 +101,7 @@ func change_state(new_state : State) -> void:
 
 	current_state = new_state
 
-	print_state_conditions()
+	#print_state_conditions()
 
 
 func print_state_conditions() -> void:
@@ -159,7 +159,7 @@ func _on_go_back_button_pressed() -> void:
 			_time_to_display = work_round_length
 
 	check_current_round()
-	print_state_conditions()
+	#print_state_conditions()
 
 
 func _on_pause_button_pressed() -> void:
@@ -200,7 +200,7 @@ func _on_skip_button_pressed() -> void:
 	change_state(State.IDLE)
 
 	check_current_round()
-	print_state_conditions()
+	#print_state_conditions()
 
 
 func _on_stop_button_pressed() -> void:
