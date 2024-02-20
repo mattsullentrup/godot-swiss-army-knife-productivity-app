@@ -184,6 +184,7 @@ script = ExtResource("5_qs481")
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 value = 49.46
+fill_mode = 1
 show_percentage = false
 
 [node name="ButtonManager" type="HBoxContainer" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer"]
