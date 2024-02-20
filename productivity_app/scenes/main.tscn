@@ -68,6 +68,7 @@ size_flags_vertical = 4
 theme = ExtResource("2_618gk")
 tab_alignment = 1
 current_tab = 1
+clip_tabs = false
 
 [node name="Normal" type="TabBar" parent="CanvasLayer/TimerPanelContainer/TabContainer" node_paths=PackedStringArray("normal_timer", "normal_time_remaining_label", "normal_timer_message", "normal_timer_option_button")]
 visible = false
