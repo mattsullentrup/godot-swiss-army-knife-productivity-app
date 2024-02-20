@@ -144,9 +144,6 @@ pomodoro_timer = NodePath("PomodoroTimer")
 round_label = NodePath("VBoxContainer/RoundLabel")
 timer_message = NodePath("../../../TimerMessage")
 paused_message = NodePath("../../PausedLabel")
-short_break_length = 2.0
-long_break_length = 6.0
-work_round_length = 4.0
 
 [node name="PomodoroTimer" type="Timer" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro"]
 wait_time = 125.666
@@ -184,7 +181,6 @@ script = ExtResource("5_qs481")
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 value = 49.46
-fill_mode = 1
 show_percentage = false
 
 [node name="ButtonManager" type="HBoxContainer" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/VBoxContainer"]

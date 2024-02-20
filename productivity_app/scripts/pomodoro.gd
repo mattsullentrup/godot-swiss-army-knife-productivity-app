@@ -21,20 +21,15 @@ enum State {
 @export var timer_message : Label
 @export var paused_message : Label
 
-@export_group("Timer Lengths")
-@export var short_break_length : float = 7
-@export var long_break_length : float = 1
-@export var work_round_length : float = 5
-
-# set this to work to avoid confusion when first starting application
-# specifically when pressing play when the current state is IDLE
-#static var previous_state := State.WORK
+#@export_group("Timer Lengths")
+#@export var short_break_length : float = 7
+#@export var long_break_length : float = 1
+#@export var work_round_length : float = 5
 
 static var _time_to_display : float
 static var time_to_display : float:
 	get:
 		return _time_to_display
-
 
 var current_state : State = State.IDLE
 var productivity_state : State = State.WORK
@@ -42,7 +37,9 @@ var overtime_start_time : float
 var overtime_count : float
 var timer_length : float
 
-
+@onready var short_break_length : float = 5 #* 60
+@onready var long_break_length : float = 15 #* 60
+@onready var work_round_length : float = 3 #* 60
 @onready var current_round : int = 1
 @onready var start_button : Button = %StartButton
 @onready var notification_sound : AudioStreamPlayer = %NotificationSound
