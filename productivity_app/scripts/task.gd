@@ -9,6 +9,7 @@ var text : String
 
 func _ready() -> void:
 	$TaskStateButton.theme_type_variation = button_types[current_button_color % 3]
+	$LineEdit.text = text
 
 
 func _on_task_state_button_pressed() -> void:
@@ -18,3 +19,7 @@ func _on_task_state_button_pressed() -> void:
 
 func _on_delete_button_pressed() -> void:
 	queue_free()
+
+
+func _on_line_edit_text_changed(new_text: String) -> void:
+	text = new_text

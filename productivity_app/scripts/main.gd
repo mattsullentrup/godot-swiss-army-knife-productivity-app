@@ -21,6 +21,7 @@ func save_game() -> void:
 	for task in get_tree().get_nodes_in_group(&"task"):
 		tasks.push_back({
 			current_button_color = task.current_button_color,
+			text = task.text
 		})
 	config.set_value("tasks", "tasks", tasks)
 
@@ -47,7 +48,5 @@ func load_game() -> void:
 	for task_config : Variant in tasks:
 		var task := preload("res://scenes/task.tscn").instantiate() as Task
 		task.current_button_color = task_config.current_button_color
+		task.text = task_config.text
 		task_manager.add_child(task)
-
-
-
