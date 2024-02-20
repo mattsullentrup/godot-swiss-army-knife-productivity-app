@@ -12,19 +12,12 @@ enum State {
 }
 
 @export var initial_state : State
-
-@export_group("References")
 @export var pomodoro_timer : Timer
 
-@export_subgroup("Labels")
+@export_group("Labels")
 @export var round_label : Label
 @export var timer_message : Label
 @export var paused_message : Label
-
-#@export_group("Timer Lengths")
-#@export var short_break_length : float = 7
-#@export var long_break_length : float = 1
-#@export var work_round_length : float = 5
 
 static var _time_to_display : float
 static var time_to_display : float:
@@ -37,13 +30,13 @@ var overtime_start_time : float
 var overtime_count : float
 var timer_length : float
 
-@onready var short_break_length : float = 5 #* 60
-@onready var long_break_length : float = 15 #* 60
-@onready var work_round_length : float = 3 #* 60
+@onready var short_break_length : float = 5 * 60
+@onready var long_break_length : float = 15 * 60
+@onready var work_round_length : float = 25 * 60
 @onready var current_round : int = 1
 @onready var start_button : Button = %StartButton
 @onready var notification_sound : AudioStreamPlayer = %NotificationSound
-@onready var progress_bar : ProgressBar = $VBoxContainer/ProgressBar
+@onready var progress_bar := %ProgressBar
 
 
 func _ready() -> void:
