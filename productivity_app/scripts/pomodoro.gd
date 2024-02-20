@@ -123,11 +123,7 @@ func print_state_conditions() -> void:
 
 
 func check_current_round() -> void:
-	if current_round > Round.FOURTH:
-		current_round = Round.FIRST
-	elif current_round < Round.FIRST:
-		current_round = Round.FOURTH
-
+	current_round = wrap(current_round, Round.FIRST, Round.FOURTH + 1)
 	round_label.text = str(current_round) + '/4'
 
 
@@ -147,7 +143,7 @@ func _on_start_button_pressed() -> void:
 		State.OVERTIME:
 			if productivity_state == State.BREAK:
 				change_state(State.WORK)
-			elif productivity_state == State.WORK:
+			else:
 				change_state(State.BREAK)
 		State.IDLE:
 			change_state(productivity_state)
