@@ -41,7 +41,7 @@ var productivity_state : State = State.WORK
 var overtime_start_time : float
 var overtime_count : float
 var timer_length : float
-var current_round : Round
+var current_round : Round = Round.FOURTH
 
 
 @onready var start_button : Button = %StartButton
@@ -73,13 +73,12 @@ func change_state(new_state : State) -> void:
 			if current_state == State.PAUSED:
 				paused_message.hide()
 			else:
-				#current_round += 1
-				#round_label.text = str(current_round) + '/4'
+				current_round += 1
+				check_current_round()
 				timer_length = work_round_length
 				pomodoro_timer.start(timer_length)
 				progress_bar.max_value = timer_length
 				timer_message.text = "Work"
-				#pomodoro_timer.paused = false
 				productivity_state = State.WORK
 		State.BREAK:
 			pomodoro_timer.paused = false
@@ -90,10 +89,8 @@ func change_state(new_state : State) -> void:
 				pomodoro_timer.start(timer_length)
 				progress_bar.max_value = timer_length
 				timer_message.text = "Break"
-				#pomodoro_timer.paused = false
 				productivity_state = State.BREAK
 		State.PAUSED:
-			#if pomodoro_timer.paused == false:
 			pomodoro_timer.paused = true
 			paused_message.show()
 		State.OVERTIME:
@@ -113,6 +110,7 @@ func change_state(new_state : State) -> void:
 
 
 func print_state_conditions() -> void:
+	print(current_round)
 	for item : String in State:
 		if State.find_key(current_state):
 			print("current: ", State.find_key(current_state))
@@ -120,6 +118,15 @@ func print_state_conditions() -> void:
 	for item : String in State:
 		if State.find_key(productivity_state):
 			print("prod state: ", State.find_key(productivity_state))
+
+
+func check_current_round() -> void:
+	if current_round > Round.FOURTH:
+		current_round = Round.FIRST
+	elif current_round < Round.FIRST:
+		current_round = Round.FOURTH
+
+	round_label.text = str(current_round) + '/4'
 
 
 func _on_pomodoro_timer_timeout() -> void:
@@ -140,11 +147,16 @@ func _on_start_button_pressed() -> void:
 
 
 func _on_go_back_button_pressed() -> void:
-	match current_state:
-		State.IDLE:
-			print("go back unavailable")
-		_:
-			change_state(State.IDLE)
+	if current_state == State.IDLE:
+		check_current_round()
+		if productivity_state == State.BREAK:
+			productivity_state = State.WORK
+		elif productivity_state == State.WORK:
+			productivity_state = State.BREAK
+	else:
+		if productivity_state == State.WORK:
+			current_round -= 1
+		change_state(State.IDLE)
 
 
 func _on_pause_button_pressed() -> void:
@@ -158,12 +170,18 @@ func _on_pause_button_pressed() -> void:
 
 
 func _on_skip_button_pressed() -> void:
-	change_state(State.IDLE)
 	current_round += 1
+	check_current_round()
+	if productivity_state == State.BREAK:
+		productivity_state = State.WORK
+	elif productivity_state == State.WORK:
+		productivity_state = State.BREAK
+	change_state(State.IDLE)
 
 
 func _on_stop_button_pressed() -> void:
 	productivity_state = State.WORK
-	current_round = Round.FIRST
+	current_round = Round.FOURTH
+	round_label.text = '1/4'
 	timer_length = work_round_length
 	change_state(State.IDLE)
