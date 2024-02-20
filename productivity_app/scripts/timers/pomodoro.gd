@@ -33,8 +33,8 @@ var timer_length : float
 @onready var short_break_length : float = 5 * 60
 @onready var long_break_length : float = 15 * 60
 @onready var work_round_length : float = 25 * 60
-@onready var current_round : int = 1
-@onready var start_button : Button = %StartButton
+@onready var current_round : int
+@onready var start_button := %StartButton
 @onready var notification_sound : AudioStreamPlayer = %NotificationSound
 @onready var progress_bar := %ProgressBar
 
@@ -44,7 +44,7 @@ func _ready() -> void:
 	timer_length = work_round_length
 	_time_to_display = timer_length
 	print_state_conditions()
-	change_state(current_state)
+	determine_break_length_to_display()
 	check_current_round()
 
 
@@ -117,7 +117,11 @@ func check_current_round() -> void:
 	round_label.text = str(current_round) + '/4'
 
 
-func determine_break_length() -> void:
+func determine_break_length_to_display() -> void:
+	if productivity_state != State.BREAK:
+		print("not break prod state")
+		return
+
 	if current_round == Round.FOURTH:
 		_time_to_display = long_break_length
 	else:
@@ -150,11 +154,11 @@ func _on_go_back_button_pressed() -> void:
 			productivity_state = State.BREAK
 			current_round -= 1
 			check_current_round()
-			determine_break_length()
+			determine_break_length_to_display()
 	else:
 		change_state(State.IDLE)
 		if productivity_state == State.BREAK:
-			determine_break_length()
+			determine_break_length_to_display()
 		else:
 			_time_to_display = work_round_length
 
@@ -181,14 +185,14 @@ func _on_skip_button_pressed() -> void:
 				current_round += 1
 			else:
 				productivity_state = State.BREAK
-				determine_break_length()
+				determine_break_length_to_display()
 		State.BREAK:
 			current_round += 1
 			productivity_state = State.WORK
 			_time_to_display = work_round_length
 		State.WORK:
 			productivity_state = State.BREAK
-			determine_break_length()
+			determine_break_length_to_display()
 		State.OVERTIME:
 			if productivity_state == State.BREAK:
 				productivity_state = State.WORK
@@ -196,7 +200,7 @@ func _on_skip_button_pressed() -> void:
 				current_round += 1
 			else:
 				productivity_state = State.BREAK
-				determine_break_length()
+				determine_break_length_to_display()
 	change_state(State.IDLE)
 
 	check_current_round()

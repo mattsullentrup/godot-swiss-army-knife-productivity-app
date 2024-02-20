@@ -349,20 +349,6 @@ label_settings = SubResource("LabelSettings_kfx6i")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SaveConfigFile" type="Button" parent="CanvasLayer"]
-offset_left = 69.0
-offset_top = 90.0
-offset_right = 221.0
-offset_bottom = 119.0
-text = "Save ConfigFile"
-
-[node name="LoadConfigFile" type="Button" parent="CanvasLayer"]
-offset_left = 321.0
-offset_top = 83.0
-offset_right = 473.0
-offset_bottom = 112.0
-text = "Load ConfigFile"
-
 [node name="NotificationSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("7_80g3q")
@@ -378,5 +364,3 @@ stream = ExtResource("7_80g3q")
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/MarginContainer/VBoxContainer/ButtonManager/SkipButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_skip_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/MarginContainer/VBoxContainer/ButtonManager/StopButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_stop_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TaskListPanelContainer/TaskManager/NewTaskButton" to="CanvasLayer/TaskListPanelContainer/TaskManager" method="_on_new_task_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/SaveConfigFile" to="." method="save_game"]
-[connection signal="pressed" from="CanvasLayer/LoadConfigFile" to="." method="load_game"]

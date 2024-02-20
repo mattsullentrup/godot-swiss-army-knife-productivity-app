@@ -9,11 +9,32 @@ const SAVE_PATH = "user://save_config_file.ini"
 @export var pomodoro_node: NodePath
 
 
+func _ready() -> void:
+	load_game()
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("quit"):
+		save_and_quit()
+
+
+func _notification(what : int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		save_and_quit()
+	elif what == NOTIFICATION_ENTER_TREE:
+		load_game()
+
+
+func save_and_quit() -> void:
+	save_game()
+	get_tree().quit()
+
+
 func save_game() -> void:
 	var config := ConfigFile.new()
 
 	var pomodoro := get_node(pomodoro_node) as Pomodoro
-	config.set_value("pomodoro", "current_state", pomodoro.current_state)
+	#config.set_value("pomodoro", "current_state", pomodoro.current_state)
 	config.set_value("pomodoro", "current_round", pomodoro.current_round)
 	config.set_value("pomodoro", "productivity_state", pomodoro.productivity_state)
 
@@ -23,11 +44,9 @@ func save_game() -> void:
 			current_button_color = task.current_button_color,
 			text = task.text
 		})
+
 	config.set_value("tasks", "tasks", tasks)
-
 	config.save(SAVE_PATH)
-
-	($CanvasLayer/LoadConfigFile as Button).disabled = false
 
 
 func load_game() -> void:
@@ -35,13 +54,11 @@ func load_game() -> void:
 	config.load(SAVE_PATH)
 
 	var pomodoro := get_node(pomodoro_node) as Pomodoro
-	pomodoro.current_state = config.get_value("pomodoro", "current_state")
+	#pomodoro.current_state = config.get_value("pomodoro", "current_state")
 	pomodoro.current_round = config.get_value("pomodoro", "current_round")
 	pomodoro.productivity_state = config.get_value("pomodoro", "productivity_state")
 
-	pomodoro.print_state_conditions()
-
-	# Remove existing enemies before adding new ones.
+	# Remove existing tasks before adding new ones.
 	get_tree().call_group("task", "queue_free")
 
 	var tasks : Variant = config.get_value("tasks", "tasks")
