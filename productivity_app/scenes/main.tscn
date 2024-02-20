@@ -23,6 +23,8 @@ font_size = 64
 
 [node name="Main" type="Node"]
 script = ExtResource("1_5i01b")
+task_manager_node = NodePath("CanvasLayer/TaskListPanelContainer/TaskManager")
+pomodoro_node = NodePath("CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -270,14 +272,14 @@ offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_618gk")
+
+[node name="TaskManager" type="VBoxContainer" parent="CanvasLayer/TaskListPanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
 script = ExtResource("3_8jc33")
 task = ExtResource("4_n1nfk")
 
-[node name="TaskVBoxContainer" type="VBoxContainer" parent="CanvasLayer/TaskListPanelContainer"]
-layout_mode = 2
-theme_override_constants/separation = 15
-
-[node name="NewTaskButton" type="Button" parent="CanvasLayer/TaskListPanelContainer/TaskVBoxContainer"]
+[node name="NewTaskButton" type="Button" parent="CanvasLayer/TaskListPanelContainer/TaskManager"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -347,6 +349,20 @@ label_settings = SubResource("LabelSettings_kfx6i")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="SaveConfigFile" type="Button" parent="CanvasLayer"]
+offset_left = 69.0
+offset_top = 90.0
+offset_right = 221.0
+offset_bottom = 119.0
+text = "Save ConfigFile"
+
+[node name="LoadConfigFile" type="Button" parent="CanvasLayer"]
+offset_left = 321.0
+offset_top = 83.0
+offset_right = 473.0
+offset_bottom = 112.0
+text = "Load ConfigFile"
+
 [node name="NotificationSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("7_80g3q")
@@ -361,4 +377,6 @@ stream = ExtResource("7_80g3q")
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/MarginContainer/VBoxContainer/ButtonManager/PauseButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_pause_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/MarginContainer/VBoxContainer/ButtonManager/SkipButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_skip_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/MarginContainer/VBoxContainer/ButtonManager/StopButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_stop_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/TaskListPanelContainer/TaskVBoxContainer/NewTaskButton" to="CanvasLayer/TaskListPanelContainer" method="_on_new_task_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TaskListPanelContainer/TaskManager/NewTaskButton" to="CanvasLayer/TaskListPanelContainer/TaskManager" method="_on_new_task_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/SaveConfigFile" to="." method="save_game"]
+[connection signal="pressed" from="CanvasLayer/LoadConfigFile" to="." method="load_game"]

@@ -3,9 +3,9 @@ extends Node
 
 const SAVE_PATH = "user://save_config_file.ini"
 
-## The root game node (so we can get and instance enemies).
-@export var task_node: NodePath
-## The player node (so we can set/get its health and position).
+## The task manager node (so we can get and instance tasks).
+@export var task_manager_node: NodePath
+## The pomodoro node (so we can set/get its state and round).
 @export var pomodoro_node: NodePath
 
 
@@ -20,13 +20,13 @@ func save_game() -> void:
 	var tasks := []
 	for task in get_tree().get_nodes_in_group(&"task"):
 		tasks.push_back({
-			position = task.position,
+			current_button_color = task.current_button_color,
 		})
 	config.set_value("tasks", "tasks", tasks)
 
 	config.save(SAVE_PATH)
 
-	#(get_node(^"../LoadConfigFile") as Button).disabled = false
+	($CanvasLayer/LoadConfigFile as Button).disabled = false
 
 
 func load_game() -> void:
@@ -41,12 +41,12 @@ func load_game() -> void:
 	# Remove existing enemies before adding new ones.
 	get_tree().call_group("task", "queue_free")
 
-	var tasks = config.get_value("tasks", "tasks")
-	var task_manager : PanelContainer = get_node(task_node)
+	var tasks : Variant = config.get_value("tasks", "tasks")
+	var task_manager : VBoxContainer = get_node(task_manager_node)
 
-	for task_config : Task in tasks:
+	for task_config : Variant in tasks:
 		var task := preload("res://scenes/task.tscn").instantiate() as Task
-		#enemy.position = enemy_config.position
+		task.current_button_color = task_config.current_button_color
 		task_manager.add_child(task)
 
 
