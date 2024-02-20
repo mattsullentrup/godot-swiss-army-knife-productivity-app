@@ -103,7 +103,7 @@ func change_state(new_state : State) -> void:
 			pomodoro_timer.stop()
 			timer_message.hide()
 			progress_bar.value = progress_bar.max_value
-			_time_to_display = timer_length
+			#_time_to_display = timer_length
 
 
 	current_state = new_state
@@ -150,12 +150,16 @@ func _on_go_back_button_pressed() -> void:
 		if productivity_state == State.BREAK:
 			productivity_state = State.WORK
 			_time_to_display = work_round_length
-		elif productivity_state == State.WORK:
+		else:
 			productivity_state = State.BREAK
 			_time_to_display = short_break_length
 			current_round -= 1
 	else:
 		change_state(State.IDLE)
+		if productivity_state == State.BREAK:
+			_time_to_display = short_break_length
+		else:
+			_time_to_display = work_round_length
 
 	check_current_round()
 	print_state_conditions()
@@ -178,7 +182,7 @@ func _on_skip_button_pressed() -> void:
 				productivity_state = State.WORK
 				_time_to_display = work_round_length
 				current_round += 1
-			elif productivity_state == State.WORK:
+			else:
 				productivity_state = State.BREAK
 				_time_to_display = short_break_length
 		State.BREAK:
@@ -188,6 +192,14 @@ func _on_skip_button_pressed() -> void:
 		State.WORK:
 			productivity_state = State.BREAK
 			_time_to_display = short_break_length
+		State.OVERTIME:
+			if productivity_state == State.BREAK:
+				productivity_state = State.WORK
+				_time_to_display = work_round_length
+				current_round += 1
+			else:
+				productivity_state = State.BREAK
+				_time_to_display = short_break_length
 	change_state(State.IDLE)
 
 	check_current_round()
@@ -196,8 +208,8 @@ func _on_skip_button_pressed() -> void:
 
 func _on_stop_button_pressed() -> void:
 	productivity_state = State.WORK
-	current_round = Round.FOURTH
-	round_label.text = '1/4'
-	timer_length = work_round_length
+	current_round = Round.FIRST
+	check_current_round()
+	_time_to_display = work_round_length
 	change_state(State.IDLE)
 
