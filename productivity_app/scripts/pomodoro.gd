@@ -2,7 +2,7 @@ class_name Pomodoro
 extends TabBar
 
 
-enum Round { FIRST = 1, SECOND = 2, THIRD = 3, FOURTH = 4 }
+enum Round { ZERO, FIRST, SECOND, THIRD, FOURTH }
 enum State {
 	IDLE,
 	PAUSED,
@@ -41,9 +41,9 @@ var productivity_state : State = State.WORK
 var overtime_start_time : float
 var overtime_count : float
 var timer_length : float
-var current_round : Round = Round.FOURTH
 
 
+@onready var current_round : int = 0
 @onready var start_button : Button = %StartButton
 @onready var notification_sound : AudioStreamPlayer = %NotificationSound
 @onready var progress_bar : ProgressBar = $VBoxContainer/ProgressBar
@@ -110,14 +110,11 @@ func change_state(new_state : State) -> void:
 
 
 func print_state_conditions() -> void:
-	print(current_round)
-	for item : String in State:
-		if State.find_key(current_state):
-			print("current: ", State.find_key(current_state))
-
-	for item : String in State:
-		if State.find_key(productivity_state):
-			print("prod state: ", State.find_key(productivity_state))
+	print("-------------------")
+	print("current round: ", Round.find_key(current_round))
+	print("current state: ", State.find_key(current_state))
+	print("prod state: ", State.find_key(productivity_state))
+	print("-------------------")
 
 
 func check_current_round() -> void:
@@ -148,15 +145,21 @@ func _on_start_button_pressed() -> void:
 
 func _on_go_back_button_pressed() -> void:
 	if current_state == State.IDLE:
-		check_current_round()
 		if productivity_state == State.BREAK:
 			productivity_state = State.WORK
+			_time_to_display = work_round_length
 		elif productivity_state == State.WORK:
 			productivity_state = State.BREAK
-	else:
-		if productivity_state == State.WORK:
+			_time_to_display = short_break_length
 			current_round -= 1
+	elif productivity_state == State.WORK:
+		current_round -= 1
 		change_state(State.IDLE)
+	else:
+		change_state(State.IDLE)
+
+	check_current_round()
+	print_state_conditions()
 
 
 func _on_pause_button_pressed() -> void:
@@ -170,13 +173,26 @@ func _on_pause_button_pressed() -> void:
 
 
 func _on_skip_button_pressed() -> void:
-	current_round += 1
-	check_current_round()
-	if productivity_state == State.BREAK:
-		productivity_state = State.WORK
-	elif productivity_state == State.WORK:
-		productivity_state = State.BREAK
+	match current_state:
+		State.IDLE:
+			if productivity_state == State.BREAK:
+				productivity_state = State.WORK
+				_time_to_display = work_round_length
+				current_round += 1
+			elif productivity_state == State.WORK:
+				productivity_state = State.BREAK
+				_time_to_display = short_break_length
+		State.BREAK:
+			current_round += 1
+			productivity_state = State.WORK
+			_time_to_display = work_round_length
+		State.WORK:
+			productivity_state = State.BREAK
+			_time_to_display = short_break_length
 	change_state(State.IDLE)
+
+	check_current_round()
+	print_state_conditions()
 
 
 func _on_stop_button_pressed() -> void:
@@ -185,3 +201,4 @@ func _on_stop_button_pressed() -> void:
 	round_label.text = '1/4'
 	timer_length = work_round_length
 	change_state(State.IDLE)
+
