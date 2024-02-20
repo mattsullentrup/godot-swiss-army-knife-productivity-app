@@ -288,12 +288,6 @@ icon = ExtResource("10_t8ryo")
 icon_alignment = 1
 expand_icon = true
 
-[node name="Task" parent="CanvasLayer/TaskListPanelContainer/TaskVBoxContainer" instance=ExtResource("4_n1nfk")]
-layout_mode = 2
-
-[node name="LineEdit" parent="CanvasLayer/TaskListPanelContainer/TaskVBoxContainer/Task" index="1"]
-text = "Godot"
-
 [node name="Time" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 12
@@ -368,6 +362,3 @@ stream = ExtResource("7_80g3q")
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/MarginContainer/VBoxContainer/ButtonManager/SkipButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_skip_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/MarginContainer/VBoxContainer/ButtonManager/StopButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_stop_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TaskListPanelContainer/TaskVBoxContainer/NewTaskButton" to="CanvasLayer/TaskListPanelContainer" method="_on_new_task_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/TaskListPanelContainer/TaskVBoxContainer/Task/DeleteButton" to="." method="_on_delete_button_pressed"]
-
-[editable path="CanvasLayer/TaskListPanelContainer/TaskVBoxContainer/Task"]
