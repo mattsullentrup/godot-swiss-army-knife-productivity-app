@@ -3,6 +3,7 @@
 [ext_resource type="StyleBox" uid="uid://bfjrv304tvusc" path="res://theme_data/green_button/normal_green_button.tres" id="2_v8cjc"]
 [ext_resource type="StyleBox" uid="uid://cvvw6e6utg4ll" path="res://theme_data/green_button/hover_green_button.tres" id="3_t7ayw"]
 [ext_resource type="StyleBox" uid="uid://fc4wly83kiyl" path="res://theme_data/green_button/pressed_green_button.tres" id="4_reola"]
+[ext_resource type="StyleBox" uid="uid://57t2765valpy" path="res://theme_data/line_edit_style_box.tres" id="4_tyvpi"]
 [ext_resource type="StyleBox" uid="uid://cee8uvctx4a53" path="res://theme_data/purple_button/hover_purple_button.tres" id="5_1jxht"]
 [ext_resource type="StyleBox" uid="uid://n4cf8v7po4i" path="res://theme_data/red_button/hover_red_button.tres" id="5_cxiva"]
 [ext_resource type="StyleBox" uid="uid://pu03qkefbne0" path="res://theme_data/purple_button/normal_purple_button.tres" id="6_lv5ij"]
@@ -14,22 +15,6 @@
 [ext_resource type="StyleBox" uid="uid://wefvfxiigyb0" path="res://theme_data/yellow_button/pressed_yellow_button.tres" id="10_3ovlt"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_abdh1"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4xvqw"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-bg_color = Color(0.141176, 0.141176, 0.141176, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_blend = true
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f20hw"]
 content_margin_left = 25.0
@@ -81,7 +66,9 @@ GreenButton/styles/hover = ExtResource("3_t7ayw")
 GreenButton/styles/normal = ExtResource("2_v8cjc")
 GreenButton/styles/pressed = ExtResource("4_reola")
 Label/font_sizes/font_size = 32
-LineEdit/styles/normal = SubResource("StyleBoxFlat_4xvqw")
+LineEdit/font_sizes/font_size = 24
+LineEdit/styles/focus = ExtResource("4_tyvpi")
+LineEdit/styles/normal = ExtResource("4_tyvpi")
 PanelContainer/fonts/NewFont = null
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_f20hw")
 PurpleButton/base_type = &"Button"
@@ -92,6 +79,7 @@ RedButton/base_type = &"Button"
 RedButton/styles/hover = ExtResource("5_cxiva")
 RedButton/styles/normal = ExtResource("6_vr31n")
 RedButton/styles/pressed = ExtResource("7_tweut")
+TabContainer/font_sizes/font_size = 28
 TabContainer/styles/panel = SubResource("StyleBoxFlat_4p5g8")
 YellowButton/base_type = &"Button"
 YellowButton/styles/hover = ExtResource("8_s31vh")

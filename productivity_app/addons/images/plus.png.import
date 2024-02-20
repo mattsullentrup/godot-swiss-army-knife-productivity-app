@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjt7ddi0qly4g"
-path="res://.godot/imported/stop.png-25354712142c6f28ab43cf18945d8575.ctex"
+uid="uid://duhf0ii3np8qh"
+path="res://.godot/imported/plus.png-a5749c93818e5a42d58a02b2d6594846.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/stop.png"
-dest_files=["res://.godot/imported/stop.png-25354712142c6f28ab43cf18945d8575.ctex"]
+source_file="res://addons/images/plus.png"
+dest_files=["res://.godot/imported/plus.png-a5749c93818e5a42d58a02b2d6594846.ctex"]
 
 [params]
 

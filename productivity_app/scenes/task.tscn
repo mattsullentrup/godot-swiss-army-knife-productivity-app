@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dercwquryae2g"]
+[gd_scene load_steps=4 format=3 uid="uid://dercwquryae2g"]
 
-[ext_resource type="Texture2D" uid="uid://cklr1uqmqs7hb" path="res://addons/reset.png" id="2_cs7wq"]
+[ext_resource type="Script" path="res://scripts/hide_caret.gd" id="2_36uy1"]
+[ext_resource type="Texture2D" uid="uid://cklr1uqmqs7hb" path="res://addons/images/reset.png" id="2_cs7wq"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/new_theme.tres" id="2_r0grc"]
 
 [node name="Task" type="HBoxContainer"]
@@ -16,7 +17,10 @@ theme_type_variation = &"RedButton"
 [node name="LineEdit" type="LineEdit" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 1
 placeholder_text = "Enter task..."
+clear_button_enabled = true
+script = ExtResource("2_36uy1")
 
 [node name="DeleteButton" type="Button" parent="."]
 custom_minimum_size = Vector2(50, 50)
@@ -26,3 +30,7 @@ theme_type_variation = &"RedButton"
 icon = ExtResource("2_cs7wq")
 icon_alignment = 1
 expand_icon = true
+
+[connection signal="mouse_entered" from="LineEdit" to="LineEdit" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="LineEdit" to="LineEdit" method="_on_mouse_exited"]
+[connection signal="text_submitted" from="LineEdit" to="LineEdit" method="_on_text_submitted"]
