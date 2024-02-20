@@ -145,7 +145,7 @@ round_label = NodePath("VBoxContainer/RoundLabel")
 timer_message = NodePath("../../../TimerMessage")
 paused_message = NodePath("../../PausedLabel")
 short_break_length = 2.0
-long_break_length = 3.0
+long_break_length = 6.0
 work_round_length = 4.0
 
 [node name="PomodoroTimer" type="Timer" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro"]

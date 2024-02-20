@@ -87,7 +87,10 @@ func change_state(new_state : State) -> void:
 			if current_state == State.PAUSED:
 				paused_message.hide()
 			else:
-				timer_length = short_break_length
+				if current_round == Round.FOURTH:
+					timer_length = long_break_length
+				else:
+					timer_length = short_break_length
 				pomodoro_timer.start(timer_length)
 				progress_bar.max_value = timer_length
 				timer_message.text = "Break"
@@ -128,6 +131,13 @@ func check_current_round() -> void:
 	round_label.text = str(current_round) + '/4'
 
 
+func determine_break_length() -> void:
+	if current_round == Round.FOURTH:
+		_time_to_display = long_break_length
+	else:
+		_time_to_display = short_break_length
+
+
 func _on_pomodoro_timer_timeout() -> void:
 	change_state(State.OVERTIME)
 
@@ -152,12 +162,13 @@ func _on_go_back_button_pressed() -> void:
 			_time_to_display = work_round_length
 		else:
 			productivity_state = State.BREAK
-			_time_to_display = short_break_length
 			current_round -= 1
+			check_current_round()
+			determine_break_length()
 	else:
 		change_state(State.IDLE)
 		if productivity_state == State.BREAK:
-			_time_to_display = short_break_length
+			determine_break_length()
 		else:
 			_time_to_display = work_round_length
 
@@ -184,14 +195,14 @@ func _on_skip_button_pressed() -> void:
 				current_round += 1
 			else:
 				productivity_state = State.BREAK
-				_time_to_display = short_break_length
+				determine_break_length()
 		State.BREAK:
 			current_round += 1
 			productivity_state = State.WORK
 			_time_to_display = work_round_length
 		State.WORK:
 			productivity_state = State.BREAK
-			_time_to_display = short_break_length
+			determine_break_length()
 		State.OVERTIME:
 			if productivity_state == State.BREAK:
 				productivity_state = State.WORK
@@ -199,7 +210,7 @@ func _on_skip_button_pressed() -> void:
 				current_round += 1
 			else:
 				productivity_state = State.BREAK
-				_time_to_display = short_break_length
+				determine_break_length()
 	change_state(State.IDLE)
 
 	check_current_round()
