@@ -49,14 +49,16 @@ func get_date() -> void:
 
 func get_time() -> void:
 	var hour : int = datetime.get("hour")
+	var twelve_hour_period := "AM"
 
 	# Convert to american time
 	if hour > 12:
 		hour -= 12
+		twelve_hour_period = "PM"
 
 	clock_label.text = str(
 			hour, ":",
-			datetime.get("minute"), ":",
-			datetime.get("second"), " PM"
+			datetime.get("minute"), " ",
+			twelve_hour_period
 	)
 
