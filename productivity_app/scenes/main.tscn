@@ -70,13 +70,12 @@ tab_alignment = 1
 current_tab = 1
 clip_tabs = false
 
-[node name="Normal" type="TabBar" parent="CanvasLayer/TimerPanelContainer/TabContainer" node_paths=PackedStringArray("normal_timer", "normal_time_remaining_label", "normal_timer_message", "normal_timer_option_button")]
+[node name="Normal" type="TabBar" parent="CanvasLayer/TimerPanelContainer/TabContainer" node_paths=PackedStringArray("normal_timer", "normal_time_remaining_label", "normal_timer_option_button")]
 visible = false
 layout_mode = 2
 script = ExtResource("3_rcetv")
 normal_timer = NodePath("NormalTimer")
 normal_time_remaining_label = NodePath("VBoxContainer/NormalTimeRemainingLabel")
-normal_timer_message = NodePath("../../../TimerMessage")
 normal_timer_option_button = NodePath("VBoxContainer/NormalTimeOptionButton")
 
 [node name="NormalTimer" type="Timer" parent="CanvasLayer/TimerPanelContainer/TabContainer/Normal"]
@@ -354,7 +353,7 @@ vertical_alignment = 1
 unique_name_in_owner = true
 stream = ExtResource("7_80g3q")
 
-[connection signal="timeout" from="CanvasLayer/TimerPanelContainer/TabContainer/Normal/NormalTimer" to="CanvasLayer/TimerPanelContainer" method="_on_timer_timeout"]
+[connection signal="timeout" from="CanvasLayer/TimerPanelContainer/TabContainer/Normal/NormalTimer" to="CanvasLayer/TimerPanelContainer/TabContainer/Normal" method="_on_normal_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Normal/VBoxContainer/NormalTimerStartButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Normal" method="_on_normal_timer_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Normal/VBoxContainer/NormalTimerStopButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Normal" method="_on_normal_timer_stop_button_pressed"]
 [connection signal="item_selected" from="CanvasLayer/TimerPanelContainer/TabContainer/Normal/VBoxContainer/NormalTimeOptionButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Normal" method="_on_normal_time_option_button_item_selected"]
