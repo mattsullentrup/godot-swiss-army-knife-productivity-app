@@ -1,4 +1,4 @@
-extends TabBar
+extends PanelContainer
 
 
 @export var normal_timer : Timer

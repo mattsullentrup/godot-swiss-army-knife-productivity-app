@@ -1,5 +1,5 @@
 class_name Pomodoro
-extends TabBar
+extends PanelContainer
 
 
 enum Round { ZERO, FIRST, SECOND, THIRD, FOURTH }

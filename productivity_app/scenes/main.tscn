@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://doy3uidslkhni"]
+[gd_scene load_steps=19 format=3 uid="uid://doy3uidslkhni"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_5i01b"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/new_theme.tres" id="2_618gk"]
@@ -16,6 +16,22 @@
 [ext_resource type="Texture2D" uid="uid://duhf0ii3np8qh" path="res://addons/images/plus.png" id="10_t8ryo"]
 [ext_resource type="Script" path="res://scripts/time.gd" id="15_kccpl"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fly2f"]
+bg_color = Color(0.24882, 0.24882, 0.24882, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.391381, 0.391381, 0.391381, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 10.0
+expand_margin_top = 5.0
+expand_margin_right = 10.0
+expand_margin_bottom = 5.0
+
 [sub_resource type="Theme" id="Theme_4ijq2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kfx6i"]
@@ -24,7 +40,7 @@ font_size = 64
 [node name="Main" type="Node"]
 script = ExtResource("1_5i01b")
 task_manager_node = NodePath("CanvasLayer/TaskListPanelContainer/TaskManager")
-pomodoro_node = NodePath("CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro")
+pomodoro_node = NodePath("CanvasLayer/PomodoroPanelContainer")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -42,140 +58,59 @@ text = "Take a break"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TimerPanelContainer" type="PanelContainer" parent="CanvasLayer"]
+[node name="PomodoroPanelContainer" type="PanelContainer" parent="CanvasLayer" node_paths=PackedStringArray("pomodoro_timer", "round_label", "timer_message", "paused_message")]
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 100.0
-offset_top = -300.0
-offset_right = 500.0
-offset_bottom = 300.0
+offset_left = 150.0
+offset_top = -183.5
+offset_right = 530.0
+offset_bottom = 183.5
 grow_vertical = 2
 theme = ExtResource("2_618gk")
+script = ExtResource("4_vjfd7")
+pomodoro_timer = NodePath("PomodoroTimer")
+round_label = NodePath("MarginContainer/VBoxContainer/PanelContainer/RoundLabel")
+timer_message = NodePath("../TimerMessage")
+paused_message = NodePath("MarginContainer/VBoxContainer/PausedLabel")
 
-[node name="PausedLabel" type="Label" parent="CanvasLayer/TimerPanelContainer"]
+[node name="PomodoroTimer" type="Timer" parent="CanvasLayer/PomodoroPanelContainer"]
+wait_time = 125.666
+one_shot = true
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PomodoroPanelContainer"]
+custom_minimum_size = Vector2(0, 135.445)
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PomodoroPanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="PausedLabel" type="Label" parent="CanvasLayer/PomodoroPanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 text = "Paused"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TabContainer" type="TabContainer" parent="CanvasLayer/TimerPanelContainer"]
-custom_minimum_size = Vector2(300, 400)
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/PomodoroPanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource("2_618gk")
-tab_alignment = 1
-current_tab = 1
-clip_tabs = false
+theme_override_styles/panel = SubResource("StyleBoxFlat_fly2f")
 
-[node name="Normal" type="TabBar" parent="CanvasLayer/TimerPanelContainer/TabContainer" node_paths=PackedStringArray("normal_timer", "normal_time_remaining_label", "normal_timer_option_button")]
-visible = false
-layout_mode = 2
-script = ExtResource("3_rcetv")
-normal_timer = NodePath("NormalTimer")
-normal_time_remaining_label = NodePath("VBoxContainer/NormalTimeRemainingLabel")
-normal_timer_option_button = NodePath("VBoxContainer/NormalTimeOptionButton")
-
-[node name="NormalTimer" type="Timer" parent="CanvasLayer/TimerPanelContainer/TabContainer/Normal"]
-wait_time = 10.0
-one_shot = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TimerPanelContainer/TabContainer/Normal"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -47.0
-offset_top = -148.5
-offset_right = 47.0
-offset_bottom = 148.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 35
-alignment = 1
-
-[node name="NormalTimerStartButton" type="Button" parent="CanvasLayer/TimerPanelContainer/TabContainer/Normal/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 10
-text = "Start
-"
-
-[node name="NormalTimeRemainingLabel" type="Label" parent="CanvasLayer/TimerPanelContainer/TabContainer/Normal/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="NormalTimerStopButton" type="Button" parent="CanvasLayer/TimerPanelContainer/TabContainer/Normal/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 10
-theme = ExtResource("2_618gk")
-theme_type_variation = &"StopButton"
-text = "Stop
-"
-
-[node name="NormalTimeOptionButton" type="OptionButton" parent="CanvasLayer/TimerPanelContainer/TabContainer/Normal/VBoxContainer"]
-layout_mode = 2
-size_flags_stretch_ratio = 12.62
-theme = ExtResource("2_618gk")
-alignment = 1
-selected = 3
-item_count = 5
-popup/item_0/text = "5"
-popup/item_0/id = 0
-popup/item_1/text = "10"
-popup/item_1/id = 1
-popup/item_2/text = "15"
-popup/item_2/id = 2
-popup/item_3/text = "20"
-popup/item_3/id = 3
-popup/item_4/text = "25"
-popup/item_4/id = 4
-
-[node name="Pomodoro" type="TabBar" parent="CanvasLayer/TimerPanelContainer/TabContainer" node_paths=PackedStringArray("pomodoro_timer", "round_label", "timer_message", "paused_message")]
-custom_minimum_size = Vector2(350, 0)
-layout_mode = 2
-script = ExtResource("4_vjfd7")
-pomodoro_timer = NodePath("PomodoroTimer")
-round_label = NodePath("MarginContainer/VBoxContainer/RoundLabel")
-timer_message = NodePath("../../../TimerMessage")
-paused_message = NodePath("../../PausedLabel")
-
-[node name="PomodoroTimer" type="Timer" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro"]
-wait_time = 125.666
-one_shot = true
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro"]
-custom_minimum_size = Vector2(0, 135.445)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 24
-alignment = 1
-
-[node name="RoundLabel" type="Label" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/MarginContainer/VBoxContainer"]
+[node name="RoundLabel" type="Label" parent="CanvasLayer/PomodoroPanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
 text = "1/4"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TimeRemainingLabel" type="Label" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/MarginContainer/VBoxContainer"]
+[node name="TimeRemainingLabel" type="Label" parent="CanvasLayer/PomodoroPanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "00:00:00"
@@ -183,7 +118,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("5_qs481")
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/MarginContainer/VBoxContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/PomodoroPanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
@@ -192,12 +127,12 @@ value = 49.46
 fill_mode = 1
 show_percentage = false
 
-[node name="ButtonManager" type="HBoxContainer" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/MarginContainer/VBoxContainer"]
+[node name="ButtonManager" type="HBoxContainer" parent="CanvasLayer/PomodoroPanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 15
 alignment = 1
 
-[node name="StartButton" type="Button" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/MarginContainer/VBoxContainer/ButtonManager"]
+[node name="StartButton" type="Button" parent="CanvasLayer/PomodoroPanelContainer/MarginContainer/VBoxContainer/ButtonManager"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
@@ -211,7 +146,7 @@ icon = ExtResource("5_3frk2")
 icon_alignment = 1
 expand_icon = true
 
-[node name="GoBackButton" type="Button" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/MarginContainer/VBoxContainer/ButtonManager"]
+[node name="GoBackButton" type="Button" parent="CanvasLayer/PomodoroPanelContainer/MarginContainer/VBoxContainer/ButtonManager"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -222,7 +157,7 @@ icon = ExtResource("6_kh7sf")
 icon_alignment = 1
 expand_icon = true
 
-[node name="PauseButton" type="Button" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/MarginContainer/VBoxContainer/ButtonManager"]
+[node name="PauseButton" type="Button" parent="CanvasLayer/PomodoroPanelContainer/MarginContainer/VBoxContainer/ButtonManager"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -235,7 +170,7 @@ icon = ExtResource("6_d5iys")
 icon_alignment = 1
 expand_icon = true
 
-[node name="SkipButton" type="Button" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/MarginContainer/VBoxContainer/ButtonManager"]
+[node name="SkipButton" type="Button" parent="CanvasLayer/PomodoroPanelContainer/MarginContainer/VBoxContainer/ButtonManager"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -246,7 +181,7 @@ icon = ExtResource("8_5edfk")
 icon_alignment = 1
 expand_icon = true
 
-[node name="StopButton" type="Button" parent="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/MarginContainer/VBoxContainer/ButtonManager"]
+[node name="StopButton" type="Button" parent="CanvasLayer/PomodoroPanelContainer/MarginContainer/VBoxContainer/ButtonManager"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -289,6 +224,72 @@ theme_type_variation = &"GreenButton"
 icon = ExtResource("10_t8ryo")
 icon_alignment = 1
 expand_icon = true
+
+[node name="NormalTimer" type="PanelContainer" parent="CanvasLayer" node_paths=PackedStringArray("normal_timer", "normal_time_remaining_label", "normal_timer_option_button")]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -550.0
+offset_top = -173.5
+offset_right = -300.0
+offset_bottom = 173.5
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("2_618gk")
+script = ExtResource("3_rcetv")
+normal_timer = NodePath("NormalTimer")
+normal_time_remaining_label = NodePath("VBoxContainer/NormalTimeRemainingLabel")
+normal_timer_option_button = NodePath("VBoxContainer/NormalTimeOptionButton")
+
+[node name="NormalTimer" type="Timer" parent="CanvasLayer/NormalTimer"]
+wait_time = 10.0
+one_shot = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/NormalTimer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_constants/separation = 35
+alignment = 1
+
+[node name="NormalTimerStartButton" type="Button" parent="CanvasLayer/NormalTimer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "Start
+"
+
+[node name="NormalTimeRemainingLabel" type="Label" parent="CanvasLayer/NormalTimer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NormalTimerStopButton" type="Button" parent="CanvasLayer/NormalTimer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme = ExtResource("2_618gk")
+theme_type_variation = &"StopButton"
+text = "Stop
+"
+
+[node name="NormalTimeOptionButton" type="OptionButton" parent="CanvasLayer/NormalTimer/VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 12.62
+theme = ExtResource("2_618gk")
+alignment = 1
+item_count = 5
+popup/item_0/text = "5"
+popup/item_0/id = 0
+popup/item_1/text = "10"
+popup/item_1/id = 1
+popup/item_2/text = "15"
+popup/item_2/id = 2
+popup/item_3/text = "20"
+popup/item_3/id = 3
+popup/item_4/text = "25"
+popup/item_4/id = 4
 
 [node name="Time" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -353,14 +354,8 @@ vertical_alignment = 1
 unique_name_in_owner = true
 stream = ExtResource("7_80g3q")
 
-[connection signal="timeout" from="CanvasLayer/TimerPanelContainer/TabContainer/Normal/NormalTimer" to="CanvasLayer/TimerPanelContainer/TabContainer/Normal" method="_on_normal_timer_timeout"]
-[connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Normal/VBoxContainer/NormalTimerStartButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Normal" method="_on_normal_timer_start_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Normal/VBoxContainer/NormalTimerStopButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Normal" method="_on_normal_timer_stop_button_pressed"]
-[connection signal="item_selected" from="CanvasLayer/TimerPanelContainer/TabContainer/Normal/VBoxContainer/NormalTimeOptionButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Normal" method="_on_normal_time_option_button_item_selected"]
-[connection signal="timeout" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/PomodoroTimer" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_pomodoro_timer_timeout"]
-[connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/MarginContainer/VBoxContainer/ButtonManager/StartButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_start_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/MarginContainer/VBoxContainer/ButtonManager/GoBackButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_go_back_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/MarginContainer/VBoxContainer/ButtonManager/PauseButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_pause_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/MarginContainer/VBoxContainer/ButtonManager/SkipButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_skip_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro/MarginContainer/VBoxContainer/ButtonManager/StopButton" to="CanvasLayer/TimerPanelContainer/TabContainer/Pomodoro" method="_on_stop_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TaskListPanelContainer/TaskManager/NewTaskButton" to="CanvasLayer/TaskListPanelContainer/TaskManager" method="_on_new_task_button_pressed"]
+[connection signal="timeout" from="CanvasLayer/NormalTimer/NormalTimer" to="CanvasLayer/NormalTimer" method="_on_normal_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/NormalTimer/VBoxContainer/NormalTimerStartButton" to="CanvasLayer/NormalTimer" method="_on_normal_timer_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/NormalTimer/VBoxContainer/NormalTimerStopButton" to="CanvasLayer/NormalTimer" method="_on_normal_timer_stop_button_pressed"]
+[connection signal="item_selected" from="CanvasLayer/NormalTimer/VBoxContainer/NormalTimeOptionButton" to="CanvasLayer/NormalTimer" method="_on_normal_time_option_button_item_selected"]
