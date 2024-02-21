@@ -50,18 +50,23 @@ func get_date() -> void:
 func get_time() -> void:
 	var hour : int = datetime.get("hour")
 	var twelve_hour_period := "AM"
+	var minute : int= datetime.get("minute")
+	var zero := ""
 
 	# Convert to american time
 	if hour >= 12:
+		# if hour is 12, leave it so it doesn't display as '0'
 		if hour > 12:
 			hour -= 12
+		# If hour is twelve or later, add pm
 		twelve_hour_period = "PM"
-	else:
-		twelve_hour_period = "AM"
+	twelve_hour_period = "AM"
+
+	# minute doesn't auto add a zero if it's under 10
+	zero = "0" if minute < 10 else ""
 
 	clock_label.text = str(
 			hour, ":",
-			datetime.get("minute"), " ",
+			zero, minute, " ",
 			twelve_hour_period
 	)
-
