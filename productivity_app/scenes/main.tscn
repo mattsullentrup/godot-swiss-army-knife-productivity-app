@@ -88,6 +88,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PomodoroPanelContainer/MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 8
 theme_override_constants/separation = 24
 alignment = 1
 
@@ -354,6 +355,11 @@ vertical_alignment = 1
 unique_name_in_owner = true
 stream = ExtResource("7_80g3q")
 
+[connection signal="pressed" from="CanvasLayer/PomodoroPanelContainer/MarginContainer/VBoxContainer/ButtonManager/StartButton" to="CanvasLayer/PomodoroPanelContainer" method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PomodoroPanelContainer/MarginContainer/VBoxContainer/ButtonManager/GoBackButton" to="CanvasLayer/PomodoroPanelContainer" method="_on_go_back_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PomodoroPanelContainer/MarginContainer/VBoxContainer/ButtonManager/PauseButton" to="CanvasLayer/PomodoroPanelContainer" method="_on_pause_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PomodoroPanelContainer/MarginContainer/VBoxContainer/ButtonManager/SkipButton" to="CanvasLayer/PomodoroPanelContainer" method="_on_skip_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PomodoroPanelContainer/MarginContainer/VBoxContainer/ButtonManager/StopButton" to="CanvasLayer/PomodoroPanelContainer" method="_on_stop_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TaskListPanelContainer/TaskManager/NewTaskButton" to="CanvasLayer/TaskListPanelContainer/TaskManager" method="_on_new_task_button_pressed"]
 [connection signal="timeout" from="CanvasLayer/NormalTimer/NormalTimer" to="CanvasLayer/NormalTimer" method="_on_normal_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/NormalTimer/VBoxContainer/NormalTimerStartButton" to="CanvasLayer/NormalTimer" method="_on_normal_timer_start_button_pressed"]
