@@ -60,7 +60,8 @@ func get_time() -> void:
 			hour -= 12
 		# If hour is twelve or later, add pm
 		twelve_hour_period = "PM"
-	twelve_hour_period = "AM"
+	else:
+		twelve_hour_period = "AM"
 
 	# minute doesn't auto add a zero if it's under 10
 	zero = "0" if minute < 10 else ""
