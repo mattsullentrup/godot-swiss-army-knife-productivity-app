@@ -52,9 +52,12 @@ func get_time() -> void:
 	var twelve_hour_period := "AM"
 
 	# Convert to american time
-	if hour > 12:
-		hour -= 12
+	if hour >= 12:
+		if hour > 12:
+			hour -= 12
 		twelve_hour_period = "PM"
+	else:
+		twelve_hour_period = "AM"
 
 	clock_label.text = str(
 			hour, ":",
