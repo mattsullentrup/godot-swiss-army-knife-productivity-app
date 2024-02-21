@@ -43,7 +43,6 @@ func _ready() -> void:
 	progress_bar.value = progress_bar.max_value
 	timer_length = work_round_length
 	_time_to_display = timer_length
-	print_state_conditions()
 	determine_break_length_to_display()
 	check_current_round()
 
@@ -119,7 +118,6 @@ func check_current_round() -> void:
 
 func determine_break_length_to_display() -> void:
 	if productivity_state != State.BREAK:
-		print("not break prod state")
 		return
 
 	if current_round == Round.FOURTH:
@@ -204,7 +202,6 @@ func _on_skip_button_pressed() -> void:
 	change_state(State.IDLE)
 
 	check_current_round()
-	#print_state_conditions()
 
 
 func _on_stop_button_pressed() -> void:
