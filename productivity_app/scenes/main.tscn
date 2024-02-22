@@ -372,6 +372,7 @@ vertical_alignment = 1
 unique_name_in_owner = true
 stream = ExtResource("7_80g3q")
 
+[connection signal="timeout" from="CanvasLayer/PomodoroPanelContainer/PomodoroTimer" to="CanvasLayer/PomodoroPanelContainer" method="_on_pomodoro_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/PomodoroPanelContainer/MarginContainer/VBoxContainer/ButtonManager/StartButton" to="CanvasLayer/PomodoroPanelContainer" method="_on_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PomodoroPanelContainer/MarginContainer/VBoxContainer/ButtonManager/GoBackButton" to="CanvasLayer/PomodoroPanelContainer" method="_on_go_back_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PomodoroPanelContainer/MarginContainer/VBoxContainer/ButtonManager/PauseButton" to="CanvasLayer/PomodoroPanelContainer" method="_on_pause_button_pressed"]
