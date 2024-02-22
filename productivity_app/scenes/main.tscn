@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://doy3uidslkhni"]
+[gd_scene load_steps=22 format=3 uid="uid://doy3uidslkhni"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_5i01b"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/new_theme.tres" id="2_618gk"]
@@ -48,12 +48,18 @@ corner_radius_bottom_left = 10
 
 [sub_resource type="Theme" id="Theme_4ijq2"]
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_w2phh"]
+color = Color(0.289, 0.29665, 0.34, 1)
+grow_begin = -100.0
+grow_end = -100.0
+thickness = 3
+
 [sub_resource type="LabelSettings" id="LabelSettings_kfx6i"]
 font_size = 64
 
 [node name="Main" type="Node"]
 script = ExtResource("1_5i01b")
-task_manager_node = NodePath("CanvasLayer/TaskListPanelContainer/TaskManager")
+task_manager_node = NodePath("CanvasLayer/TaskListPanelContainer/VBoxContainer/ScrollContainer/MarginContainer/TaskManager")
 pomodoro_node = NodePath("CanvasLayer/PomodoroPanelContainer")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -223,13 +229,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_618gk")
 
-[node name="TaskManager" type="VBoxContainer" parent="CanvasLayer/TaskListPanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TaskListPanelContainer"]
 layout_mode = 2
-theme_override_constants/separation = 15
-script = ExtResource("3_8jc33")
-task = ExtResource("4_n1nfk")
 
-[node name="NewTaskButton" type="Button" parent="CanvasLayer/TaskListPanelContainer/TaskManager"]
+[node name="NewTaskButton" type="Button" parent="CanvasLayer/TaskListPanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -239,6 +242,27 @@ theme_type_variation = &"GreenButton"
 icon = ExtResource("10_t8ryo")
 icon_alignment = 1
 expand_icon = true
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/TaskListPanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxLine_w2phh")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/TaskListPanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TaskListPanelContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 15
+
+[node name="TaskManager" type="VBoxContainer" parent="CanvasLayer/TaskListPanelContainer/VBoxContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+script = ExtResource("3_8jc33")
+task = ExtResource("4_n1nfk")
 
 [node name="NormalTimer" type="PanelContainer" parent="CanvasLayer" node_paths=PackedStringArray("normal_timer", "normal_time_remaining_label", "normal_timer_option_button")]
 anchors_preset = 6
@@ -375,7 +399,7 @@ stream = ExtResource("7_80g3q")
 [connection signal="pressed" from="CanvasLayer/PomodoroPanelContainer/MarginContainer/VBoxContainer/ButtonManager/PauseButton" to="CanvasLayer/PomodoroPanelContainer" method="_on_pause_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PomodoroPanelContainer/MarginContainer/VBoxContainer/ButtonManager/SkipButton" to="CanvasLayer/PomodoroPanelContainer" method="_on_skip_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PomodoroPanelContainer/MarginContainer/VBoxContainer/ButtonManager/StopButton" to="CanvasLayer/PomodoroPanelContainer" method="_on_stop_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/TaskListPanelContainer/TaskManager/NewTaskButton" to="CanvasLayer/TaskListPanelContainer/TaskManager" method="_on_new_task_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TaskListPanelContainer/VBoxContainer/NewTaskButton" to="CanvasLayer/TaskListPanelContainer/VBoxContainer/ScrollContainer/MarginContainer/TaskManager" method="_on_new_task_button_pressed"]
 [connection signal="timeout" from="CanvasLayer/NormalTimer/NormalTimer" to="CanvasLayer/NormalTimer" method="_on_normal_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/NormalTimer/VBoxContainer/NormalTimerStartButton" to="CanvasLayer/NormalTimer" method="_on_normal_timer_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/NormalTimer/VBoxContainer/NormalTimerStopButton" to="CanvasLayer/NormalTimer" method="_on_normal_timer_stop_button_pressed"]
