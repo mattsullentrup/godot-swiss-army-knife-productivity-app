@@ -34,6 +34,24 @@ window/size/initial_screen=1
 
 project/assembly_name="UntitledProductivityApp"
 
+[file_customization]
+
+folder_colors={
+"res://addons/": "red",
+"res://addons/fonts/": "gray",
+"res://addons/images/": "blue",
+"res://addons/sounds/": "orange",
+"res://scenes/": "blue",
+"res://scripts/": "purple",
+"res://scripts/tasks/": "green",
+"res://scripts/timers/": "orange",
+"res://theme_data/": "teal",
+"res://theme_data/green_button/": "green",
+"res://theme_data/purple_button/": "purple",
+"res://theme_data/red_button/": "red",
+"res://theme_data/yellow_button/": "yellow"
+}
+
 [gui]
 
 theme/custom_font="res://addons/fonts/NeomatrixCode.ttf"

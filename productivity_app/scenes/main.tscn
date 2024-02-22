@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://doy3uidslkhni"]
+[gd_scene load_steps=23 format=3 uid="uid://doy3uidslkhni"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_5i01b"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/new_theme.tres" id="2_618gk"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://q3h7vgwqou6l" path="res://addons/sounds/notification2.wav" id="7_80g3q"]
 [ext_resource type="Texture2D" uid="uid://bxhtp68x37k8k" path="res://addons/images/skip.png" id="8_5edfk"]
 [ext_resource type="Texture2D" uid="uid://duhf0ii3np8qh" path="res://addons/images/plus.png" id="10_t8ryo"]
+[ext_resource type="Texture2D" uid="uid://bdhbmofvrcf3y" path="res://addons/images/redo.png" id="11_tkk6h"]
 [ext_resource type="Script" path="res://scripts/time.gd" id="15_kccpl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fly2f"]
@@ -232,7 +233,12 @@ theme = ExtResource("2_618gk")
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TaskListPanelContainer"]
 layout_mode = 2
 
-[node name="NewTaskButton" type="Button" parent="CanvasLayer/TaskListPanelContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TaskListPanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 85
+alignment = 1
+
+[node name="NewTaskButton" type="Button" parent="CanvasLayer/TaskListPanelContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -242,6 +248,12 @@ theme_type_variation = &"GreenButton"
 icon = ExtResource("10_t8ryo")
 icon_alignment = 1
 expand_icon = true
+
+[node name="ResetButton" type="Button" parent="CanvasLayer/TaskListPanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/icon_max_width = 64
+icon = ExtResource("11_tkk6h")
+icon_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="CanvasLayer/TaskListPanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -399,7 +411,8 @@ stream = ExtResource("7_80g3q")
 [connection signal="pressed" from="CanvasLayer/PomodoroPanelContainer/MarginContainer/VBoxContainer/ButtonManager/PauseButton" to="CanvasLayer/PomodoroPanelContainer" method="_on_pause_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PomodoroPanelContainer/MarginContainer/VBoxContainer/ButtonManager/SkipButton" to="CanvasLayer/PomodoroPanelContainer" method="_on_skip_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PomodoroPanelContainer/MarginContainer/VBoxContainer/ButtonManager/StopButton" to="CanvasLayer/PomodoroPanelContainer" method="_on_stop_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/TaskListPanelContainer/VBoxContainer/NewTaskButton" to="CanvasLayer/TaskListPanelContainer/VBoxContainer/ScrollContainer/MarginContainer/TaskManager" method="_on_new_task_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TaskListPanelContainer/VBoxContainer/HBoxContainer/NewTaskButton" to="CanvasLayer/TaskListPanelContainer/VBoxContainer/ScrollContainer/MarginContainer/TaskManager" method="_on_new_task_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TaskListPanelContainer/VBoxContainer/HBoxContainer/ResetButton" to="CanvasLayer/TaskListPanelContainer/VBoxContainer/ScrollContainer/MarginContainer/TaskManager" method="_on_reset_button_pressed"]
 [connection signal="timeout" from="CanvasLayer/NormalTimer/NormalTimer" to="CanvasLayer/NormalTimer" method="_on_normal_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/NormalTimer/VBoxContainer/NormalTimerStartButton" to="CanvasLayer/NormalTimer" method="_on_normal_timer_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/NormalTimer/VBoxContainer/NormalTimerStopButton" to="CanvasLayer/NormalTimer" method="_on_normal_timer_stop_button_pressed"]
