@@ -26,15 +26,16 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if can_autopan:
-		if is_equal_approx(pan_value, pan_strength):
-			pan_speed = -pan_speed
-		elif is_equal_approx(pan_value, -pan_strength):
-			pan_speed = abs(pan_speed)
-		pan_value += 0.1 * pan_speed
-		clampf(pan_value, -1, 1)
-		panner.pan = pan_value
-		print(panner.pan)
+	pass
+	#if can_autopan:
+		#if is_equal_approx(pan_value, pan_strength):
+			#pan_speed = -pan_speed
+		#elif is_equal_approx(pan_value, -pan_strength):
+			#pan_speed = abs(pan_speed)
+		#pan_value += 0.1 * pan_speed
+		#clampf(pan_value, -1, 1)
+		#panner.pan = pan_value
+		#print(panner.pan)
 
 
 func _on_range_min_hz_h_slider_value_changed(value: float) -> void:

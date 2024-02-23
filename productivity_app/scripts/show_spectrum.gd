@@ -1,11 +1,11 @@
-extends Node2D
+extends Control
 
 
 const VU_COUNT : int = 16
 const FREQ_MAX : float = 11050.0
 
 const WIDTH : int = 600
-const HEIGHT : int = 250
+const HEIGHT : int = 150
 const HEIGHT_SCALE : float = 10.0
 const MIN_DB : int = 60
 const ANIMATION_SPEED : float = 0.1
