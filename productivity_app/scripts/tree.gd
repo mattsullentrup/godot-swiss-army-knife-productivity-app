@@ -16,9 +16,19 @@ func _ready() -> void:
 	#root.add_child(new_task)
 
 	# Allow text to be changed
-	new_task.set_editable(0, true)
-	new_task.set_text(0, "Tree - Child 1")
+	new_task.set_editable(1, true)
+	new_task.set_text(1, "Tree - Child 1")
 
-	new_task.set_cell_mode(1, 1)
+	new_task.set_cell_mode(0, TreeItem.CELL_MODE_CHECK)
 	#var texture : CompressedTexture2D = load("res://addons/images/go_back.png")
 	#new_task.add_button(1, texture)
+
+
+func _on_cell_selected() -> void:
+	var item : TreeItem = get_selected()
+	if item.is_checked(0):
+		item.set_checked(0, false)
+	elif item.is_indeterminate(0):
+		item.set_checked(0, true)
+	else:
+		item.set_indeterminate(0, true)
