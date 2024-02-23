@@ -10,6 +10,9 @@ const HEIGHT_SCALE : float = 10.0
 const MIN_DB : int = 60
 const ANIMATION_SPEED : float = 0.1
 
+# my addition:
+const MAGNITUDE_MULTIPLIER : int = 5
+
 var spectrum : AudioEffectInstance
 var min_values := []
 var max_values := []
@@ -55,7 +58,7 @@ func _process(_delta : float) -> void:
 
 	for i in range(1, VU_COUNT + 1):
 		var hz := i * FREQ_MAX / VU_COUNT
-		var magnitude : float = spectrum.get_magnitude_for_frequency_range(prev_hz, hz).length()
+		var magnitude : float = spectrum.get_magnitude_for_frequency_range(prev_hz, hz).length() * MAGNITUDE_MULTIPLIER
 		var energy := clampf((MIN_DB + linear_to_db(magnitude)) / MIN_DB, 0, 1)
 		var height := energy * HEIGHT * HEIGHT_SCALE
 		data.append(height)

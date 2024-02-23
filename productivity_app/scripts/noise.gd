@@ -1,12 +1,13 @@
 extends VBoxContainer
 
 
-@onready var pink_noise: AudioStreamPlayer = %PinkNoise
-@onready var volume_h_slider: HSlider = %VolumeHSlider
+@onready var pink_noise : AudioStreamPlayer = %PinkNoise
+@onready var volume_h_slider : HSlider = %VolumeHSlider
 
 
 func _ready() -> void:
 	pink_noise.volume_db = linear_to_db(volume_h_slider.value)
+	pink_noise.playing = true
 
 
 func _on_noise_button_toggled(toggled_on: bool) -> void:
