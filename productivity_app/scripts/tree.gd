@@ -1,3 +1,4 @@
+@tool
 extends Tree
 
 
@@ -18,5 +19,6 @@ func _ready() -> void:
 	new_task.set_editable(0, true)
 	new_task.set_text(0, "Tree - Child 1")
 
-	var button_texture : Texture2D = Texture2D.new()
-	new_task.set_button(0, 0, button_texture)
+	new_task.set_cell_mode(1, 1)
+	#var texture : CompressedTexture2D = load("res://addons/images/go_back.png")
+	#new_task.add_button(1, texture)

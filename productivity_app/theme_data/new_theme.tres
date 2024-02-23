@@ -43,7 +43,7 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [resource]
-Button/colors/font_color = Color(0.87451, 0.87451, 0.87451, 1)
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
 Button/colors/font_hover_color = Color(0.94902, 0.94902, 0.94902, 1)
@@ -80,6 +80,7 @@ RedButton/styles/normal = ExtResource("6_vr31n")
 RedButton/styles/pressed = ExtResource("7_tweut")
 TabContainer/font_sizes/font_size = 28
 TabContainer/styles/panel = SubResource("StyleBoxFlat_4p5g8")
+Tree/font_sizes/font_size = 24
 YellowButton/base_type = &"Button"
 YellowButton/styles/hover = ExtResource("8_s31vh")
 YellowButton/styles/normal = ExtResource("8_1bujh")
