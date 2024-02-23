@@ -21,6 +21,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 1
 placeholder_text = "Enter task..."
+expand_to_text_length = true
 clear_button_enabled = true
 script = ExtResource("3_kr566")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://doy3uidslkhni"]
+[gd_scene load_steps=28 format=3 uid="uid://doy3uidslkhni"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_5i01b"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/new_theme.tres" id="2_618gk"]
@@ -15,8 +15,11 @@
 [ext_resource type="Texture2D" uid="uid://bxhtp68x37k8k" path="res://addons/images/skip.png" id="8_5edfk"]
 [ext_resource type="Texture2D" uid="uid://duhf0ii3np8qh" path="res://addons/images/plus.png" id="10_t8ryo"]
 [ext_resource type="Texture2D" uid="uid://bdhbmofvrcf3y" path="res://addons/images/redo.png" id="11_tkk6h"]
+[ext_resource type="StyleBox" uid="uid://q7qcork245o0" path="res://theme_data/red_button/normal_red_button.tres" id="15_70by7"]
 [ext_resource type="Script" path="res://scripts/time.gd" id="15_kccpl"]
+[ext_resource type="StyleBox" uid="uid://d2foiex3jfkxu" path="res://theme_data/red_button/pressed_red_button.tres" id="16_6ulu5"]
 [ext_resource type="Script" path="res://scripts/tree.gd" id="16_r22p2"]
+[ext_resource type="StyleBox" uid="uid://n4cf8v7po4i" path="res://theme_data/red_button/hover_red_button.tres" id="17_k6sfa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fly2f"]
 bg_color = Color(0.24882, 0.24882, 0.24882, 1)
@@ -358,7 +361,9 @@ layout_mode = 2
 [node name="Tree" type="Tree" parent="CanvasLayer/GUI/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-select_mode = 2
+theme_override_styles/custom_button = ExtResource("15_70by7")
+theme_override_styles/custom_button_pressed = ExtResource("16_6ulu5")
+theme_override_styles/custom_button_hover = ExtResource("17_k6sfa")
 script = ExtResource("16_r22p2")
 
 [node name="Time" type="PanelContainer" parent="CanvasLayer/GUI/VBoxContainer"]
