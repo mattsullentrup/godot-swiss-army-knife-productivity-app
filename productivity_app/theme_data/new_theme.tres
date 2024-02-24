@@ -3,6 +3,7 @@
 [ext_resource type="StyleBox" uid="uid://cmvp1wmd6lqix" path="res://theme_data/default_button/default_button_hover_style_box.tres" id="1_f4r5j"]
 [ext_resource type="StyleBox" uid="uid://cmtgv0h1thlak" path="res://theme_data/default_button/default_button_normal_style_box.tres" id="2_osdfq"]
 [ext_resource type="StyleBox" uid="uid://bfjrv304tvusc" path="res://theme_data/green_button/normal_green_button.tres" id="2_v8cjc"]
+[ext_resource type="StyleBox" uid="uid://de0xuy0vp8hm3" path="res://theme_data/default_button/default_button_pressed_style_box.tres" id="3_gwnrl"]
 [ext_resource type="StyleBox" uid="uid://cvvw6e6utg4ll" path="res://theme_data/green_button/hover_green_button.tres" id="3_t7ayw"]
 [ext_resource type="StyleBox" uid="uid://fc4wly83kiyl" path="res://theme_data/green_button/pressed_green_button.tres" id="4_reola"]
 [ext_resource type="StyleBox" uid="uid://57t2765valpy" path="res://theme_data/line_edit_style_box.tres" id="4_tyvpi"]
@@ -17,22 +18,6 @@
 [ext_resource type="StyleBox" uid="uid://wefvfxiigyb0" path="res://theme_data/yellow_button/pressed_yellow_button.tres" id="10_3ovlt"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_abdh1"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1fnrc"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-bg_color = Color(0.198, 0.2133, 0.3, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f20hw"]
 content_margin_left = 25.0
@@ -83,7 +68,7 @@ Button/font_sizes/font_size = 32
 Button/styles/focus = SubResource("StyleBoxEmpty_abdh1")
 Button/styles/hover = ExtResource("1_f4r5j")
 Button/styles/normal = ExtResource("2_osdfq")
-Button/styles/pressed = SubResource("StyleBoxFlat_1fnrc")
+Button/styles/pressed = ExtResource("3_gwnrl")
 GreenButton/base_type = &"Button"
 GreenButton/styles/hover = ExtResource("3_t7ayw")
 GreenButton/styles/normal = ExtResource("2_v8cjc")

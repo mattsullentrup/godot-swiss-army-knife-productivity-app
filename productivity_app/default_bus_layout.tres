@@ -1,7 +1,10 @@
-[gd_resource type="AudioBusLayout" load_steps=5 format=3 uid="uid://cq7tt42rljbfe"]
+[gd_resource type="AudioBusLayout" load_steps=6 format=3 uid="uid://cq7tt42rljbfe"]
 
 [sub_resource type="AudioEffectSpectrumAnalyzer" id="AudioEffectSpectrumAnalyzer_mw5fu"]
 resource_name = "SpectrumAnalyzer"
+
+[sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_pwg0r"]
+resource_name = "Limiter"
 
 [sub_resource type="AudioEffectPhaser" id="AudioEffectPhaser_p31ut"]
 resource_name = "Phaser"
@@ -16,6 +19,8 @@ resource_name = "Limiter"
 [resource]
 bus/0/effect/0/effect = SubResource("AudioEffectSpectrumAnalyzer_mw5fu")
 bus/0/effect/0/enabled = true
+bus/0/effect/1/effect = SubResource("AudioEffectLimiter_pwg0r")
+bus/0/effect/1/enabled = true
 bus/1/name = &"Effects"
 bus/1/solo = false
 bus/1/mute = false

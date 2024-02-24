@@ -9,8 +9,8 @@ var datetime : Dictionary
 
 
 func _process(_delta: float) -> void:
-	#datetime = Returns the current date as a dictionary of keys:
-	#year, month, day, weekday, hour, minute, second, and dst (Daylight Savings Time).
+	# datetime = Returns the current date as a dictionary of keys:
+	# year, month, day, weekday, hour, minute, second, and dst (Daylight Savings Time).
 	datetime = Time.get_datetime_dict_from_system()
 	get_time()
 	get_date()
@@ -33,7 +33,7 @@ func get_weekday() -> String:
 			weekday = "Thursday"
 		5:
 			weekday = "Friday"
-		0:
+		6:
 			weekday = "Saturday"
 
 	return weekday

@@ -27,7 +27,6 @@ static var time_to_display : float:
 var current_state : State = State.IDLE
 var productivity_state : State = State.WORK
 var overtime_start_time : float
-var overtime_count : float
 var timer_length : float
 
 @onready var short_break_length : float = 5 * 60
@@ -47,7 +46,7 @@ func _ready() -> void:
 	check_current_round()
 
 
-func _process(_delta: float) -> void:
+func _process(_delta : float) -> void:
 	if not pomodoro_timer.is_stopped():
 		progress_bar.value = pomodoro_timer.time_left
 		_time_to_display = pomodoro_timer.time_left
@@ -161,7 +160,6 @@ func _on_go_back_button_pressed() -> void:
 			_time_to_display = work_round_length
 
 	check_current_round()
-	#print_state_conditions()
 
 
 func _on_pause_button_pressed() -> void:
