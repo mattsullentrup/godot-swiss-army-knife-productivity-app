@@ -47,6 +47,7 @@ folder_colors={
 "res://scripts/tasks/": "green",
 "res://scripts/timers/": "orange",
 "res://theme_data/": "teal",
+"res://theme_data/default_button/": "gray",
 "res://theme_data/green_button/": "green",
 "res://theme_data/purple_button/": "purple",
 "res://theme_data/red_button/": "red",
