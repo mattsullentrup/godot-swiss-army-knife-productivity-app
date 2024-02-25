@@ -11,6 +11,7 @@ const SAVE_PATH = "user://save_config_file.ini"
 
 func _ready() -> void:
 	load_game()
+	pass
 
 
 func _input(event: InputEvent) -> void:
