@@ -5,6 +5,7 @@ extends Tree
 func _ready() -> void:
 	var root: TreeItem = create_item()
 	root.set_text(0, "Tree - Root")
+	allow_reselect = true
 	#var child1: TreeItem = create_item(root)
 	#child1.set_text(0, "Tree - Child 1")
 	#var child2: TreeItem = create_item(root)
@@ -20,15 +21,17 @@ func _ready() -> void:
 	new_task.set_text(1, "Tree - Child 1")
 
 	new_task.set_cell_mode(0, TreeItem.CELL_MODE_CHECK)
-	#var texture : CompressedTexture2D = load("res://addons/images/go_back.png")
-	#new_task.add_button(1, texture)
 
 
-func _on_cell_selected() -> void:
-	var item : TreeItem = get_selected()
-	if item.is_checked(0):
-		item.set_checked(0, false)
-	elif item.is_indeterminate(0):
-		item.set_checked(0, true)
+func _on_item_selected() -> void:
+	var cell : TreeItem = get_selected()
+	
+	if not cell.is_selected(0):
+		return
+
+	if cell.is_checked(0):
+		cell.set_checked(0, false)
+	elif cell.is_indeterminate(0):
+		cell.set_checked(0, true)
 	else:
-		item.set_indeterminate(0, true)
+		cell.set_indeterminate(0, true)
