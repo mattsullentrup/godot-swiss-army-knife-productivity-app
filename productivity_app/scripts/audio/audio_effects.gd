@@ -1,8 +1,6 @@
 extends PanelContainer
 
 
-enum Buses { MASTER, SPECTRUM, EFFECTS}
-
 const RATE_HZ_MAX : float = 20
 const RATE_HZ_MIN : float = 0.01
 
@@ -10,15 +8,18 @@ var can_autopan := false
 var pan_strength : float = 1
 var pan_speed : float = 0.05
 var pan_value : float = 0
+var phaser_index : int = 0
+var panner_index : int = 1
 
-@onready var phaser := AudioServer.get_bus_effect(Buses.EFFECTS, 0) as AudioEffectPhaser
-@onready var panner := AudioServer.get_bus_effect(Buses.EFFECTS, 1) as AudioEffectPanner
+@onready var effects_bus := AudioServer.get_bus_index("Effects")
+@onready var phaser := AudioServer.get_bus_effect(effects_bus, 0) as AudioEffectPhaser
+@onready var panner := AudioServer.get_bus_effect(effects_bus, 1) as AudioEffectPanner
 @onready var rate_hz_h_slider : HSlider = $VBoxContainer/GridContainer/RateHzHSlider
 
 
 func _ready() -> void:
-	AudioServer.set_bus_effect_enabled(1, 0, false)
-	#AudioServer.set_bus_effect_enabled(1, 1, false)
+	AudioServer.set_bus_effect_enabled(effects_bus, phaser_index, false)
+	AudioServer.set_bus_effect_enabled(effects_bus, panner_index, false)
 
 	rate_hz_h_slider.min_value = RATE_HZ_MIN
 	rate_hz_h_slider.max_value = RATE_HZ_MAX
@@ -45,7 +46,7 @@ func _on_range_min_hz_h_slider_value_changed(value: float) -> void:
 
 
 func _on_phaser_check_button_toggled(toggled_on: bool) -> void:
-	AudioServer.set_bus_effect_enabled(1, 0, toggled_on)
+	AudioServer.set_bus_effect_enabled(effects_bus, phaser_index, toggled_on)
 	toggled_on = not toggled_on
 
 
@@ -54,7 +55,7 @@ func _on_autopan_check_button_toggled(toggled_on: bool) -> void:
 		#%PinkNoise.mix_target = AudioStreamPlayer.MIX_TARGET_CENTER
 	#else:
 		#%PinkNoise.mix_target = AudioStreamPlayer.MIX_TARGET_STEREO
-	AudioServer.set_bus_effect_enabled(1, 1, toggled_on)
+	AudioServer.set_bus_effect_enabled(effects_bus, panner_index, toggled_on)
 	toggled_on = not toggled_on
 	can_autopan = not can_autopan
 

@@ -44,6 +44,7 @@ folder_colors={
 "res://addons/sounds/": "orange",
 "res://scenes/": "blue",
 "res://scripts/": "purple",
+"res://scripts/audio/": "pink",
 "res://scripts/tasks/": "green",
 "res://scripts/timers/": "orange",
 "res://theme_data/": "teal",
