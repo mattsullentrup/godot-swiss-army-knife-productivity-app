@@ -63,6 +63,15 @@ func _process(_delta : float) -> void:
 		var height := energy * HEIGHT * HEIGHT_SCALE
 		data.append(height)
 		prev_hz = hz
+	
+	#TODO:
+	# Fix noise spectrum not displaying vanilla pink noise
+	var is_making_noise := false
+	if data.any(func(number : int) -> bool: return number > 0):
+		is_making_noise = true
+	
+	if not is_making_noise: return
+
 
 	for i in range(VU_COUNT):
 		if data[i] > max_values[i]:
@@ -78,7 +87,7 @@ func _process(_delta : float) -> void:
 
 
 func _ready() -> void:
-	spectrum = AudioServer.get_bus_effect_instance(0, 0)
+	spectrum = AudioServer.get_bus_effect_instance(1, 0)
 	min_values.resize(VU_COUNT)
 	max_values.resize(VU_COUNT)
 	min_values.fill(0.0)

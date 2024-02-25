@@ -1,6 +1,8 @@
 extends PanelContainer
 
 
+enum Buses { MASTER, SPECTRUM, EFFECTS}
+
 const RATE_HZ_MAX : float = 20
 const RATE_HZ_MIN : float = 0.01
 
@@ -9,8 +11,8 @@ var pan_strength : float = 1
 var pan_speed : float = 0.05
 var pan_value : float = 0
 
-@onready var phaser := AudioServer.get_bus_effect(1, 0) as AudioEffectPhaser
-@onready var panner := AudioServer.get_bus_effect(1, 1) as AudioEffectPanner
+@onready var phaser := AudioServer.get_bus_effect(Buses.EFFECTS, 0) as AudioEffectPhaser
+@onready var panner := AudioServer.get_bus_effect(Buses.EFFECTS, 1) as AudioEffectPanner
 @onready var rate_hz_h_slider : HSlider = $VBoxContainer/GridContainer/RateHzHSlider
 
 
