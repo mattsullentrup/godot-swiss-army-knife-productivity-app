@@ -11,6 +11,11 @@ func _ready() -> void:
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Noise"), true)
 
 
+func _notification(what : int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		pink_noise.queue_free()
+
+
 func _on_noise_button_toggled(toggled_on: bool) -> void:
 	# pink_noise.playing = toggled_on
 	toggled_on = not toggled_on
