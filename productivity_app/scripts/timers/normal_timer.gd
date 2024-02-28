@@ -14,7 +14,9 @@ var is_in_overtime := false
 
 func _ready() -> void:
 	timer_option_button.selected = 0
-	timer_length = (timer_option_button.selected + 1) * 5
+	for i in range(1, 13):
+		timer_option_button.add_item(str(i * 5), i * 5)
+	timer_length = timer_option_button.get_selected_id() * 60
 	time_remaining_label.text = str(timer_length)
 
 
@@ -67,5 +69,5 @@ func _on_timer_timeout() -> void:
 
 
 func _on_time_option_button_item_selected(index: int) -> void:
-	timer_length = (index + 1) * 5
+	timer_length = timer_option_button.get_item_id(index) * 60
 	is_in_overtime = false
