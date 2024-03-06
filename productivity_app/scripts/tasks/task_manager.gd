@@ -1,12 +1,12 @@
 extends VBoxContainer
 
 
-@export var task : PackedScene
+@export var project : PackedScene
 
 
-func _on_new_task_button_pressed() -> void:
-	var new_task : HBoxContainer = task.instantiate()
-	add_child(new_task)
+func _on_new_project_button_pressed() -> void:
+	var new_project : HBoxContainer = project.instantiate()
+	add_child(new_project)
 
 
 func _on_reset_button_pressed() -> void:

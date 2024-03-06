@@ -9,6 +9,14 @@
 [node name="Project" type="HBoxContainer" groups=["task"]]
 theme_override_constants/separation = 15
 
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 1
+placeholder_text = "Enter task..."
+clear_button_enabled = true
+script = ExtResource("3_jbruc")
+
 [node name="AddTaskButton" type="Button" parent="."]
 texture_filter = 2
 custom_minimum_size = Vector2(50, 50)
@@ -18,14 +26,6 @@ theme_type_variation = &"GreenButton"
 icon = ExtResource("2_xj4ok")
 icon_alignment = 1
 expand_icon = true
-
-[node name="LineEdit" type="LineEdit" parent="."]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 1
-placeholder_text = "Enter task..."
-clear_button_enabled = true
-script = ExtResource("3_jbruc")
 
 [node name="ResetButton" type="Button" parent="."]
 layout_mode = 2
