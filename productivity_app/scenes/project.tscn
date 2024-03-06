@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://daot25v58e7k6"]
+[gd_scene load_steps=8 format=3 uid="uid://daot25v58e7k6"]
 
 [ext_resource type="Script" path="res://scripts/project.gd" id="1_ca4ew"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/new_theme.tres" id="2_odcyh"]
+[ext_resource type="PackedScene" uid="uid://dercwquryae2g" path="res://scenes/task.tscn" id="2_vprcq"]
 [ext_resource type="Texture2D" uid="uid://duhf0ii3np8qh" path="res://addons/images/plus.png" id="2_xj4ok"]
 [ext_resource type="Script" path="res://scripts/tasks/hide_caret.gd" id="3_jbruc"]
 [ext_resource type="Texture2D" uid="uid://bdhbmofvrcf3y" path="res://addons/images/redo.png" id="4_dooqu"]
@@ -10,6 +11,7 @@
 [node name="Project" type="HBoxContainer" groups=["task"]]
 theme_override_constants/separation = 15
 script = ExtResource("1_ca4ew")
+task = ExtResource("2_vprcq")
 
 [node name="LineEdit" type="LineEdit" parent="."]
 layout_mode = 2
@@ -19,7 +21,7 @@ placeholder_text = "Enter task..."
 clear_button_enabled = true
 script = ExtResource("3_jbruc")
 
-[node name="AddTaskButton" type="Button" parent="."]
+[node name="NewTaskButton" type="Button" parent="."]
 texture_filter = 2
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
@@ -48,4 +50,5 @@ expand_icon = true
 [connection signal="mouse_exited" from="LineEdit" to="LineEdit" method="_on_mouse_exited"]
 [connection signal="text_changed" from="LineEdit" to="." method="_on_line_edit_text_changed"]
 [connection signal="text_submitted" from="LineEdit" to="LineEdit" method="_on_text_submitted"]
+[connection signal="pressed" from="NewTaskButton" to="." method="_on_new_task_button_pressed"]
 [connection signal="pressed" from="ResetButton" to="." method="_on_reset_button_pressed"]
