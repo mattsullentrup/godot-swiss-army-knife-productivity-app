@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://scripts/tasks/hide_caret.gd" id="3_kr566"]
 
 [node name="Task" type="HBoxContainer" groups=["task"]]
+custom_minimum_size = Vector2(500, 0)
+size_flags_horizontal = 8
 theme_override_constants/separation = 15
 script = ExtResource("1_m21r0")
 

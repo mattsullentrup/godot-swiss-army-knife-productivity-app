@@ -1,20 +1,25 @@
-[gd_scene load_steps=9 format=3 uid="uid://daot25v58e7k6"]
+[gd_scene load_steps=10 format=3 uid="uid://daot25v58e7k6"]
 
-[ext_resource type="Script" path="res://scripts/project.gd" id="1_ca4ew"]
+[ext_resource type="Script" path="res://scripts/tasks/project.gd" id="1_hop2a"]
+[ext_resource type="Texture2D" uid="uid://to8v6rm8yx4j" path="res://addons/images/play.png" id="2_2soka"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/new_theme.tres" id="2_odcyh"]
 [ext_resource type="PackedScene" uid="uid://dercwquryae2g" path="res://scenes/task.tscn" id="2_vprcq"]
 [ext_resource type="Texture2D" uid="uid://duhf0ii3np8qh" path="res://addons/images/plus.png" id="2_xj4ok"]
 [ext_resource type="Script" path="res://scripts/tasks/hide_caret.gd" id="3_jbruc"]
 [ext_resource type="Texture2D" uid="uid://bdhbmofvrcf3y" path="res://addons/images/redo.png" id="4_dooqu"]
 [ext_resource type="Texture2D" uid="uid://cklr1uqmqs7hb" path="res://addons/images/reset.png" id="4_hll5u"]
-[ext_resource type="Script" path="res://scripts/task_container.gd" id="7_r47bb"]
+[ext_resource type="Script" path="res://scripts/tasks/task_container.gd" id="8_ea4sd"]
 
 [node name="Project" type="VBoxContainer"]
 theme_override_constants/separation = 15
-script = ExtResource("1_ca4ew")
+script = ExtResource("1_hop2a")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
+
+[node name="ToggleTasksButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("2_2soka")
 
 [node name="LineEdit" type="LineEdit" parent="HBoxContainer"]
 layout_mode = 2
@@ -51,9 +56,10 @@ expand_icon = true
 
 [node name="TaskContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
-script = ExtResource("7_r47bb")
+script = ExtResource("8_ea4sd")
 task = ExtResource("2_vprcq")
 
+[connection signal="pressed" from="HBoxContainer/ToggleTasksButton" to="." method="_on_toggle_tasks_button_pressed"]
 [connection signal="mouse_entered" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_exited"]
 [connection signal="text_submitted" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_text_submitted"]
