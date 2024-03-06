@@ -5,5 +5,5 @@ extends VBoxContainer
 
 
 func _on_new_project_button_pressed() -> void:
-	var new_project : HBoxContainer = project.instantiate()
+	var new_project : VBoxContainer = project.instantiate()
 	add_child(new_project)

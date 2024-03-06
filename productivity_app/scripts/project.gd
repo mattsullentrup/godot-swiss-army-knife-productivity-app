@@ -1,7 +1,4 @@
-extends HBoxContainer
-
-
-@export var task : PackedScene
+extends VBoxContainer
 
 
 func _on_reset_button_pressed() -> void:
@@ -10,7 +7,3 @@ func _on_reset_button_pressed() -> void:
 		child.current_button_color = 0
 		child.get_node("TaskStateButton").theme_type_variation = child.button_types[0]
 
-
-func _on_new_task_button_pressed() -> void:
-	var new_task: HBoxContainer = task.instantiate()
-	add_child(new_task)

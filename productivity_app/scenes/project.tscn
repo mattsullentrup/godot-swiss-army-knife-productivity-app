@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://daot25v58e7k6"]
+[gd_scene load_steps=9 format=3 uid="uid://daot25v58e7k6"]
 
 [ext_resource type="Script" path="res://scripts/project.gd" id="1_ca4ew"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/new_theme.tres" id="2_odcyh"]
@@ -7,13 +7,16 @@
 [ext_resource type="Script" path="res://scripts/tasks/hide_caret.gd" id="3_jbruc"]
 [ext_resource type="Texture2D" uid="uid://bdhbmofvrcf3y" path="res://addons/images/redo.png" id="4_dooqu"]
 [ext_resource type="Texture2D" uid="uid://cklr1uqmqs7hb" path="res://addons/images/reset.png" id="4_hll5u"]
+[ext_resource type="Script" path="res://scripts/task_container.gd" id="7_r47bb"]
 
-[node name="Project" type="HBoxContainer" groups=["task"]]
+[node name="Project" type="VBoxContainer"]
 theme_override_constants/separation = 15
 script = ExtResource("1_ca4ew")
-task = ExtResource("2_vprcq")
 
-[node name="LineEdit" type="LineEdit" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 1
@@ -21,7 +24,7 @@ placeholder_text = "Enter task..."
 clear_button_enabled = true
 script = ExtResource("3_jbruc")
 
-[node name="NewTaskButton" type="Button" parent="."]
+[node name="NewTaskButton" type="Button" parent="HBoxContainer"]
 texture_filter = 2
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
@@ -31,13 +34,13 @@ icon = ExtResource("2_xj4ok")
 icon_alignment = 1
 expand_icon = true
 
-[node name="ResetButton" type="Button" parent="."]
+[node name="ResetButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 theme_override_constants/icon_max_width = 64
 icon = ExtResource("4_dooqu")
 icon_alignment = 1
 
-[node name="DeleteButton" type="Button" parent="."]
+[node name="DeleteButton" type="Button" parent="HBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = ExtResource("2_odcyh")
@@ -46,9 +49,13 @@ icon = ExtResource("4_hll5u")
 icon_alignment = 1
 expand_icon = true
 
-[connection signal="mouse_entered" from="LineEdit" to="LineEdit" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="LineEdit" to="LineEdit" method="_on_mouse_exited"]
-[connection signal="text_changed" from="LineEdit" to="." method="_on_line_edit_text_changed"]
-[connection signal="text_submitted" from="LineEdit" to="LineEdit" method="_on_text_submitted"]
-[connection signal="pressed" from="NewTaskButton" to="." method="_on_new_task_button_pressed"]
-[connection signal="pressed" from="ResetButton" to="." method="_on_reset_button_pressed"]
+[node name="TaskContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+script = ExtResource("7_r47bb")
+task = ExtResource("2_vprcq")
+
+[connection signal="mouse_entered" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_exited"]
+[connection signal="text_submitted" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_text_submitted"]
+[connection signal="pressed" from="HBoxContainer/NewTaskButton" to="TaskContainer" method="_on_new_task_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
