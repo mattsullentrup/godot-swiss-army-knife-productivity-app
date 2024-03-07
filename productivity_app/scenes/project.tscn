@@ -1,15 +1,15 @@
 [gd_scene load_steps=11 format=3 uid="uid://daot25v58e7k6"]
 
 [ext_resource type="Script" path="res://scripts/tasks/project.gd" id="1_hop2a"]
-[ext_resource type="Texture2D" uid="uid://to8v6rm8yx4j" path="res://addons/images/play.png" id="2_2soka"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/new_theme.tres" id="2_odcyh"]
+[ext_resource type="Texture2D" uid="uid://dmoykkrqddh8k" path="res://addons/images/kenney_icons/down.png" id="2_v6jp2"]
 [ext_resource type="PackedScene" uid="uid://dercwquryae2g" path="res://scenes/task.tscn" id="2_vprcq"]
-[ext_resource type="Texture2D" uid="uid://duhf0ii3np8qh" path="res://addons/images/plus.png" id="2_xj4ok"]
 [ext_resource type="Script" path="res://scripts/tasks/hide_caret.gd" id="3_jbruc"]
-[ext_resource type="Texture2D" uid="uid://bdhbmofvrcf3y" path="res://addons/images/redo.png" id="4_dooqu"]
-[ext_resource type="Texture2D" uid="uid://cklr1uqmqs7hb" path="res://addons/images/reset.png" id="4_hll5u"]
+[ext_resource type="Texture2D" uid="uid://cmm42xkdqt61" path="res://addons/images/kenney_icons/plus.png" id="5_4a57h"]
+[ext_resource type="Texture2D" uid="uid://8v8i84xnoeup" path="res://addons/images/kenney_icons/return.png" id="6_x2rjc"]
+[ext_resource type="Texture2D" uid="uid://dgmvsxmm31bo7" path="res://addons/images/kenney_icons/cross.png" id="7_6vwoh"]
 [ext_resource type="Script" path="res://scripts/tasks/task_container.gd" id="8_ea4sd"]
-[ext_resource type="Texture2D" uid="uid://3gtu74bcy05t" path="res://addons/images/unfold.png" id="10_resa2"]
+[ext_resource type="Texture2D" uid="uid://c1avhvgbpp5di" path="res://addons/images/kenney_icons/right.png" id="10_hcbro"]
 
 [node name="Project" type="VBoxContainer"]
 theme_override_constants/separation = 15
@@ -20,7 +20,8 @@ layout_mode = 2
 
 [node name="ToggleTasksButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
-icon = ExtResource("2_2soka")
+theme_override_constants/icon_max_width = 0
+icon = ExtResource("2_v6jp2")
 
 [node name="LineEdit" type="LineEdit" parent="HBoxContainer"]
 layout_mode = 2
@@ -36,22 +37,23 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = ExtResource("2_odcyh")
 theme_type_variation = &"GreenButton"
-icon = ExtResource("2_xj4ok")
+theme_override_constants/icon_max_width = 0
+icon = ExtResource("5_4a57h")
 icon_alignment = 1
 expand_icon = true
 
 [node name="ResetButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
-theme_override_constants/icon_max_width = 64
-icon = ExtResource("4_dooqu")
-icon_alignment = 1
+theme_override_constants/icon_max_width = 0
+icon = ExtResource("6_x2rjc")
 
 [node name="DeleteButton" type="Button" parent="HBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = ExtResource("2_odcyh")
 theme_type_variation = &"RedButton"
-icon = ExtResource("4_hll5u")
+theme_override_constants/icon_max_width = 0
+icon = ExtResource("7_6vwoh")
 icon_alignment = 1
 expand_icon = true
 
@@ -60,8 +62,8 @@ layout_mode = 2
 script = ExtResource("8_ea4sd")
 task = ExtResource("2_vprcq")
 toggle_tasks_button = NodePath("../HBoxContainer/ToggleTasksButton")
-folded_icon = ExtResource("2_2soka")
-unfolded_icon = ExtResource("10_resa2")
+folded_icon = ExtResource("10_hcbro")
+unfolded_icon = ExtResource("2_v6jp2")
 
 [connection signal="pressed" from="HBoxContainer/ToggleTasksButton" to="TaskContainer" method="_on_toggle_tasks_button_pressed"]
 [connection signal="mouse_entered" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_entered"]
