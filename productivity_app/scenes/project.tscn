@@ -64,4 +64,5 @@ task = ExtResource("2_vprcq")
 [connection signal="mouse_exited" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_exited"]
 [connection signal="text_submitted" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_text_submitted"]
 [connection signal="pressed" from="HBoxContainer/NewTaskButton" to="TaskContainer" method="_on_new_task_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/ResetButton" to="TaskContainer" method="_on_reset_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/DeleteButton" to="." method="_on_delete_button_pressed"]
