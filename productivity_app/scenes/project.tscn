@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://daot25v58e7k6"]
+[gd_scene load_steps=11 format=3 uid="uid://daot25v58e7k6"]
 
 [ext_resource type="Script" path="res://scripts/tasks/project.gd" id="1_hop2a"]
 [ext_resource type="Texture2D" uid="uid://to8v6rm8yx4j" path="res://addons/images/play.png" id="2_2soka"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bdhbmofvrcf3y" path="res://addons/images/redo.png" id="4_dooqu"]
 [ext_resource type="Texture2D" uid="uid://cklr1uqmqs7hb" path="res://addons/images/reset.png" id="4_hll5u"]
 [ext_resource type="Script" path="res://scripts/tasks/task_container.gd" id="8_ea4sd"]
+[ext_resource type="Texture2D" uid="uid://3gtu74bcy05t" path="res://addons/images/unfold.png" id="10_resa2"]
 
 [node name="Project" type="VBoxContainer"]
 theme_override_constants/separation = 15
@@ -54,10 +55,13 @@ icon = ExtResource("4_hll5u")
 icon_alignment = 1
 expand_icon = true
 
-[node name="TaskContainer" type="VBoxContainer" parent="."]
+[node name="TaskContainer" type="VBoxContainer" parent="." node_paths=PackedStringArray("toggle_tasks_button")]
 layout_mode = 2
 script = ExtResource("8_ea4sd")
 task = ExtResource("2_vprcq")
+toggle_tasks_button = NodePath("../HBoxContainer/ToggleTasksButton")
+folded_icon = ExtResource("2_2soka")
+unfolded_icon = ExtResource("10_resa2")
 
 [connection signal="pressed" from="HBoxContainer/ToggleTasksButton" to="TaskContainer" method="_on_toggle_tasks_button_pressed"]
 [connection signal="mouse_entered" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_entered"]

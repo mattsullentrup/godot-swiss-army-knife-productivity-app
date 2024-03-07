@@ -2,6 +2,10 @@ extends VBoxContainer
 
 
 @export var task : PackedScene
+@export var toggle_tasks_button : Button
+@export var folded_icon : CompressedTexture2D
+@export var unfolded_icon : CompressedTexture2D
+
 var are_children_visible := true
 
 
@@ -16,10 +20,12 @@ func _on_toggle_tasks_button_pressed() -> void:
 		for child in children:
 			child.hide()
 		are_children_visible = false
+		toggle_tasks_button.icon = folded_icon
 	else:
 		for child in children:
 			child.show()
 		are_children_visible = true
+		toggle_tasks_button.icon = unfolded_icon
 
 
 func _on_reset_button_pressed() -> void:
