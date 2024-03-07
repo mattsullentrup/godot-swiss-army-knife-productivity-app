@@ -16,6 +16,10 @@ func _on_toggle_tasks_button_pressed() -> void:
 		for child in children:
 			child.hide()
 		are_children_visible = false
+	else:
+		for child in children:
+			child.show()
+		are_children_visible = true
 
 
 func _on_reset_button_pressed() -> void:
