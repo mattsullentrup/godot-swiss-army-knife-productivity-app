@@ -59,7 +59,7 @@ layout_mode = 2
 script = ExtResource("8_ea4sd")
 task = ExtResource("2_vprcq")
 
-[connection signal="pressed" from="HBoxContainer/ToggleTasksButton" to="." method="_on_toggle_tasks_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/ToggleTasksButton" to="TaskContainer" method="_on_toggle_tasks_button_pressed"]
 [connection signal="mouse_entered" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_exited"]
 [connection signal="text_submitted" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_text_submitted"]
