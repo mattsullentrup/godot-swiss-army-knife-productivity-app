@@ -29,9 +29,16 @@ func save_game() -> void:
 	var config := ConfigFile.new()
 
 	var pomodoro := get_node(pomodoro_node) as Pomodoro
-	#config.set_value("pomodoro", "current_state", pomodoro.current_state)
 	config.set_value("pomodoro", "current_round", pomodoro.current_round)
 	config.set_value("pomodoro", "productivity_state", pomodoro.productivity_state)
+
+	var projects := []
+	for project in get_tree().get_nodes_in_group(&"project"):
+		project.push_back({
+			text = project.text		
+		})
+
+	config.set_value("projects", "projects", projects)
 
 	var tasks := []
 	for task in get_tree().get_nodes_in_group(&"task"):
@@ -41,6 +48,7 @@ func save_game() -> void:
 		})
 
 	config.set_value("tasks", "tasks", tasks)
+
 	config.save(SAVE_PATH)
 
 
@@ -49,15 +57,21 @@ func load_game() -> void:
 	config.load(SAVE_PATH)
 
 	var pomodoro := get_node(pomodoro_node) as Pomodoro
-	#pomodoro.current_state = config.get_value("pomodoro", "current_state")
 	pomodoro.current_round = config.get_value("pomodoro", "current_round")
 	pomodoro.productivity_state = config.get_value("pomodoro", "productivity_state")
 
 	# Remove existing tasks before adding new ones.
 	get_tree().call_group("task", "queue_free")
+	get_tree().call_group("project", "queue_free")
 
 	var tasks : Variant = config.get_value("tasks", "tasks")
+	var projects : Variant = config.get_value("projects", "projects")
 	var task_manager : VBoxContainer = get_node(task_manager_node)
+
+	for project_config : Variant in projects:
+		var project := preload("res://scenes/project.tscn").instantiate() as Project
+		project.text = project_config.text
+		task_manager.add_child(project)
 
 	for task_config : Variant in tasks:
 		var task := preload("res://scenes/task.tscn").instantiate() as Task
