@@ -34,7 +34,6 @@ theme = ExtResource("2_r0grc")
 theme_type_variation = &"RedButton"
 icon = ExtResource("4_8gaic")
 icon_alignment = 1
-expand_icon = true
 
 [connection signal="pressed" from="TaskStateButton" to="." method="_on_task_state_button_pressed"]
 [connection signal="mouse_entered" from="LineEdit" to="LineEdit" method="_on_mouse_entered"]

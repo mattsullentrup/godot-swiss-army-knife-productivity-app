@@ -17,45 +17,54 @@ script = ExtResource("1_hop2a")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
+size_flags_vertical = 4
 
 [node name="ToggleTasksButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
-theme_override_constants/icon_max_width = 0
+theme_override_constants/icon_max_width = 25
 icon = ExtResource("2_v6jp2")
+flat = true
 
 [node name="LineEdit" type="LineEdit" parent="HBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 1
-placeholder_text = "Enter task..."
+theme_override_font_sizes/font_size = 32
+placeholder_text = "Enter project.."
 clear_button_enabled = true
 script = ExtResource("3_jbruc")
 
 [node name="NewTaskButton" type="Button" parent="HBoxContainer"]
 texture_filter = 2
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
+size_flags_vertical = 4
 theme = ExtResource("2_odcyh")
 theme_type_variation = &"GreenButton"
-theme_override_constants/icon_max_width = 0
+theme_override_constants/icon_max_width = 40
 icon = ExtResource("5_4a57h")
 icon_alignment = 1
-expand_icon = true
 
 [node name="ResetButton" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-theme_override_constants/icon_max_width = 0
+size_flags_vertical = 4
+theme = ExtResource("2_odcyh")
+theme_type_variation = &"PurpleButton"
+theme_override_constants/icon_max_width = 40
 icon = ExtResource("6_x2rjc")
+icon_alignment = 1
 
 [node name="DeleteButton" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
+size_flags_vertical = 4
 theme = ExtResource("2_odcyh")
 theme_type_variation = &"RedButton"
-theme_override_constants/icon_max_width = 0
+theme_override_constants/icon_max_width = 40
 icon = ExtResource("7_6vwoh")
 icon_alignment = 1
-expand_icon = true
 
 [node name="TaskContainer" type="VBoxContainer" parent="." node_paths=PackedStringArray("toggle_tasks_button")]
 layout_mode = 2
