@@ -5,11 +5,13 @@
 [ext_resource type="Script" path="res://scripts/tasks/hide_caret.gd" id="3_kr566"]
 [ext_resource type="Texture2D" uid="uid://dgmvsxmm31bo7" path="res://addons/images/kenney_icons/cross.png" id="4_8gaic"]
 
-[node name="Task" type="HBoxContainer" groups=["task"]]
+[node name="Task" type="HBoxContainer" node_paths=PackedStringArray("task_state_button", "line_edit") groups=["task"]]
 custom_minimum_size = Vector2(500, 0)
 size_flags_horizontal = 6
 theme_override_constants/separation = 15
 script = ExtResource("1_m21r0")
+task_state_button = NodePath("TaskStateButton")
+line_edit = NodePath("LineEdit")
 
 [node name="TaskStateButton" type="Button" parent="."]
 texture_filter = 2
