@@ -125,6 +125,16 @@ func determine_break_length_to_display() -> void:
 		_time_to_display = short_break_length
 
 
+func save() -> Dictionary:
+	var save_dictionary := {
+		"filename" : get_scene_file_path(),
+		"parent" : get_parent().get_path(),
+		"current_round" : current_round,
+		"productivity_state" : productivity_state,
+	}
+	return save_dictionary
+
+
 func _on_pomodoro_timer_timeout() -> void:
 	change_state(State.OVERTIME)
 

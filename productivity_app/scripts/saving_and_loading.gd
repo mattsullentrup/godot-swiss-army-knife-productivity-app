@@ -9,20 +9,11 @@ const SAVE_PATH = "user://save_config_file.ini"
 @export var pomodoro_node: NodePath
 
 
-func _ready() -> void:
-	load_game()
-
-
-func _notification(what : int) -> void:
-	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		save_and_quit()
-	elif what == NOTIFICATION_ENTER_TREE:
-		load_game()
-
-
-func save_and_quit() -> void:
-	save_game()
-	#get_tree().quit()
+# func _notification(what : int) -> void:
+# 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+# 		save_game()
+# 	elif what == NOTIFICATION_ENTER_TREE:
+# 		load_game()
 
 
 func save_game() -> void:
@@ -33,21 +24,23 @@ func save_game() -> void:
 	config.set_value("pomodoro", "productivity_state", pomodoro.productivity_state)
 
 	var projects := []
-	for project in get_tree().get_nodes_in_group(&"project"):
-		project.push_back({
+	for project in get_tree().get_nodes_in_group(&"persist"):
+
+		print(project.text)
+		projects.push_back({
 			text = project.text		
 		})
 
 	config.set_value("projects", "projects", projects)
 
-	var tasks := []
-	for task in get_tree().get_nodes_in_group(&"task"):
-		tasks.push_back({
-			current_button_color = task.current_button_color,
-			text = task.text
-		})
+	# var tasks := []
+	# for task in get_tree().get_nodes_in_group(&"task"):
+	# 	tasks.push_back({
+	# 		current_button_color = task.current_button_color,
+	# 		text = task.text
+	# 	})
 
-	config.set_value("tasks", "tasks", tasks)
+	# config.set_value("tasks", "tasks", tasks)
 
 	config.save(SAVE_PATH)
 
@@ -61,31 +54,28 @@ func load_game() -> void:
 	pomodoro.productivity_state = config.get_value("pomodoro", "productivity_state")
 
 	# Remove existing tasks before adding new ones.
-	get_tree().call_group("task", "queue_free")
-	get_tree().call_group("project", "queue_free")
+	get_tree().call_group("persist", "queue_free")
 
 	load_projects(config)
 
-	var tasks : Variant = config.get_value("tasks", "tasks")
+	# var tasks : Variant = config.get_value("tasks", "tasks")
 
-	var task_manager : VBoxContainer = get_node(task_manager_node)
+	# var task_manager : VBoxContainer = get_node(task_manager_node)
 
-	for task_config : Variant in tasks:
-		var task := preload("res://scenes/task.tscn").instantiate() as Task
-		task.current_button_color = task_config.current_button_color
-		task.text = task_config.text
-		task_manager.add_child(task)
+	# for task_config : Variant in tasks:
+	# 	var task := preload("res://scenes/task.tscn").instantiate() as Task
+	# 	task.current_button_color = task_config.current_button_color
+	# 	task.text = task_config.text
+	# 	task_manager.add_child(task)
 
 
 func load_projects(config: ConfigFile) -> void:
 	var projects : Variant = config.get_value("projects", "projects")
 
-	if projects != OK:
-		return
-
 	var task_manager : VBoxContainer = get_node(task_manager_node)
 
 	for project_config : Variant in projects:
 		var project := preload("res://scenes/project.tscn").instantiate() as Project
+		print(project_config.text)
 		project.text = project_config.text
 		task_manager.add_child(project)

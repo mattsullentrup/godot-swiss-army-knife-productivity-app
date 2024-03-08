@@ -18,7 +18,8 @@ func _notification(what : int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		save_game()
 	elif what == NOTIFICATION_ENTER_TREE:
-		load_game()
+		#load_game()
+		return
 
 
 func save_game() -> void:
@@ -41,6 +42,8 @@ func save_game() -> void:
 	#	})
 
 	file.store_line(JSON.stringify(save_dict))
+
+	get_node(^"../LoadJSON").disabled = false
 
 
 func load_game() -> void:
