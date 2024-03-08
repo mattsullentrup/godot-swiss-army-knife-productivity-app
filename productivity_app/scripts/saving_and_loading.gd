@@ -64,17 +64,28 @@ func load_game() -> void:
 	get_tree().call_group("task", "queue_free")
 	get_tree().call_group("project", "queue_free")
 
-	var tasks : Variant = config.get_value("tasks", "tasks")
-	var projects : Variant = config.get_value("projects", "projects")
-	var task_manager : VBoxContainer = get_node(task_manager_node)
+	load_projects(config)
 
-	for project_config : Variant in projects:
-		var project := preload("res://scenes/project.tscn").instantiate() as Project
-		project.text = project_config.text
-		task_manager.add_child(project)
+	var tasks : Variant = config.get_value("tasks", "tasks")
+
+	var task_manager : VBoxContainer = get_node(task_manager_node)
 
 	for task_config : Variant in tasks:
 		var task := preload("res://scenes/task.tscn").instantiate() as Task
 		task.current_button_color = task_config.current_button_color
 		task.text = task_config.text
 		task_manager.add_child(task)
+
+
+func load_projects(config: ConfigFile) -> void:
+	var projects : Variant = config.get_value("projects", "projects")
+
+	if projects != OK:
+		return
+
+	var task_manager : VBoxContainer = get_node(task_manager_node)
+
+	for project_config : Variant in projects:
+		var project := preload("res://scenes/project.tscn").instantiate() as Project
+		project.text = project_config.text
+		task_manager.add_child(project)

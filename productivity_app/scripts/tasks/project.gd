@@ -2,11 +2,11 @@ class_name Project
 extends VBoxContainer
 
 
-var text : String
+var text := ""
 
 
 func _ready() -> void:
-	$LineEdit.text = text
+	$HBoxContainer/LineEdit.text = text
 
 
 func _on_delete_button_pressed() -> void:
