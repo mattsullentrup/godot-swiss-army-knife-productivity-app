@@ -14,7 +14,7 @@ var panner_index : int = 1
 @onready var effects_bus := AudioServer.get_bus_index("Effects")
 @onready var phaser := AudioServer.get_bus_effect(effects_bus, 0) as AudioEffectPhaser
 @onready var panner := AudioServer.get_bus_effect(effects_bus, 1) as AudioEffectPanner
-@onready var rate_hz_h_slider : HSlider = $VBoxContainer/GridContainer/RateHzHSlider
+@onready var rate_hz_h_slider : HSlider = %RateHzHSlider
 
 
 func _ready() -> void:
