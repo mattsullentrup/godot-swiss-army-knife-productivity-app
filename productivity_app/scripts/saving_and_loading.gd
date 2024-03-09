@@ -26,7 +26,8 @@ func save_game() -> void:
 	var projects := []
 	for project in get_tree().get_nodes_in_group(&"persist"):
 		var task_container : VBoxContainer = project.get_node_or_null("TaskContainer")
-		var tasks = task_container.get_children()
+		var tasks := task_container.get_children()
+
 		for task : Task in tasks:
 			tasks.push_back({
 				current_button_color = task.current_button_color,
@@ -42,15 +43,6 @@ func save_game() -> void:
 
 	config.set_value("projects", "projects", projects)
 
-	# var tasks := []
-	# for task in get_tree().get_nodes_in_group(&"task"):
-	# 	tasks.push_back({
-	# 		current_button_color = task.current_button_color,
-	# 		text = task.text
-	# 	})
-
-	# config.set_value("tasks", "tasks", tasks)
-
 	config.save(SAVE_PATH)
 
 
@@ -64,18 +56,7 @@ func load_game() -> void:
 
 	# Remove existing tasks before adding new ones.
 	get_tree().call_group("persist", "queue_free")
-
 	load_projects(config)
-
-	# var tasks : Variant = config.get_value("tasks", "tasks")
-
-	# var task_manager : VBoxContainer = get_node(project_manager_node)
-
-	# for task_config : Variant in tasks:
-	# 	var task := preload("res://scenes/task.tscn").instantiate() as Task
-	# 	task.current_button_color = task_config.current_button_color
-	# 	task.text = task_config.text
-	# 	task_manager.add_child(task)
 
 
 func load_projects(config: ConfigFile) -> void:
