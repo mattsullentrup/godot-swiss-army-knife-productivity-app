@@ -42,6 +42,7 @@ func _ready() -> void:
 	progress_bar.value = progress_bar.max_value
 	timer_length = work_round_length
 	_time_to_display = timer_length
+	timer_message.text = "Work" if productivity_state == State.WORK else "Break"
 	determine_break_length_to_display()
 	check_current_round()
 
