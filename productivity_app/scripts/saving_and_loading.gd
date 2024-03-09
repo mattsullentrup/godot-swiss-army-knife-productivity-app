@@ -9,13 +9,13 @@ const SAVE_PATH = "user://save_config_file.ini"
 @export var pomodoro_node: NodePath
 
 
-# func _notification(what : int) -> void:
-# 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-# 		save_game()
-# 	elif what == NOTIFICATION_ENTER_TREE:
-# 		load_game()
-
-
+func _notification(what : int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		save_game()
+	elif what == NOTIFICATION_ENTER_TREE:
+		load_game()
+		
+		
 func save_game() -> void:
 	var config := ConfigFile.new()
 
@@ -26,20 +26,12 @@ func save_game() -> void:
 	var projects := []
 	for project in get_tree().get_nodes_in_group(&"persist"):
 		var task_container : VBoxContainer = project.get_node_or_null("TaskContainer")
-		var tasks := task_container.get_children()
-
-		for task : Task in tasks:
-			tasks.push_back({
-				current_button_color = task.current_button_color,
-				text = task.text,
-			})
+		var tasks : Array[Node] = task_container.get_children()
 
 		projects.push_back({
 			text = project.text,
 			children = tasks,
 		})
-
-		config.set_value("projects", "tasks", tasks)
 
 	config.set_value("projects", "projects", projects)
 
@@ -54,7 +46,7 @@ func load_game() -> void:
 	pomodoro.current_round = config.get_value("pomodoro", "current_round")
 	pomodoro.productivity_state = config.get_value("pomodoro", "productivity_state")
 
-	# Remove existing tasks before adding new ones.
+	# Remove existing projects before adding new ones.
 	get_tree().call_group("persist", "queue_free")
 	load_projects(config)
 
@@ -70,10 +62,8 @@ func load_projects(config: ConfigFile) -> void:
 		project_manager.add_child(project)
 
 		var task_container : VBoxContainer = project.get_node_or_null("TaskContainer")
-		var tasks : Variant = config.get_value("projects", "tasks")
 		for child : Task in project_config.children:
 			var task := preload("res://scenes/task.tscn").instantiate() as Task
-			for task_config : Variant in tasks:
-				task.current_button_color = task_config.current_button_color
-				task.text = task_config.text
+			task.current_button_color = child.current_button_color
+			task.text = child.text
 			task_container.add_child(task)
