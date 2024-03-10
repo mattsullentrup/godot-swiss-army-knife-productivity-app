@@ -12,12 +12,14 @@
 [ext_resource type="Texture2D" uid="uid://c1avhvgbpp5di" path="res://addons/images/kenney_icons/right.png" id="10_hcbro"]
 
 [node name="Project" type="VBoxContainer" groups=["persist"]]
+focus_mode = 2
 theme_override_constants/separation = 15
 script = ExtResource("1_hop2a")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 4
+focus_mode = 2
 
 [node name="ToggleTasksButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
@@ -29,7 +31,6 @@ flat = true
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 size_flags_horizontal = 3
-focus_mode = 1
 theme_override_font_sizes/font_size = 32
 placeholder_text = "Enter project.."
 clear_button_enabled = true
@@ -68,6 +69,7 @@ icon_alignment = 1
 
 [node name="TaskContainer" type="VBoxContainer" parent="." node_paths=PackedStringArray("toggle_tasks_button")]
 layout_mode = 2
+focus_mode = 2
 script = ExtResource("8_ea4sd")
 task = ExtResource("2_vprcq")
 toggle_tasks_button = NodePath("../HBoxContainer/ToggleTasksButton")
@@ -75,6 +77,7 @@ folded_icon = ExtResource("10_hcbro")
 unfolded_icon = ExtResource("2_v6jp2")
 
 [connection signal="pressed" from="HBoxContainer/ToggleTasksButton" to="TaskContainer" method="_on_toggle_tasks_button_pressed"]
+[connection signal="focus_entered" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_focus_entered"]
 [connection signal="mouse_entered" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_exited"]
 [connection signal="text_changed" from="HBoxContainer/LineEdit" to="." method="_on_line_edit_text_changed"]
