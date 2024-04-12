@@ -28,17 +28,15 @@ icon = ExtResource("2_v6jp2")
 flat = true
 
 [node name="LineEdit" type="LineEdit" parent="HBoxContainer"]
-custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 placeholder_text = "Enter project.."
 clear_button_enabled = true
 script = ExtResource("3_jbruc")
 
 [node name="NewTaskButton" type="Button" parent="HBoxContainer"]
 texture_filter = 2
-custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_vertical = 4
 theme = ExtResource("2_odcyh")
@@ -48,7 +46,6 @@ icon = ExtResource("5_4a57h")
 icon_alignment = 1
 
 [node name="ResetButton" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_vertical = 4
 theme = ExtResource("2_odcyh")
@@ -58,7 +55,6 @@ icon = ExtResource("6_x2rjc")
 icon_alignment = 1
 
 [node name="DeleteButton" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_vertical = 4
 theme = ExtResource("2_odcyh")
