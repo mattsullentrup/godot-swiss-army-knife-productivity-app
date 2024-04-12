@@ -13,6 +13,7 @@ var panner_index : int = 1
 
 func _ready() -> void:
 	AudioServer.set_bus_effect_enabled(effects_bus_index, panner_index, false)
+	pan_speed = $AutopanSlider.value
 
 
 func _process(_delta: float) -> void:
@@ -23,7 +24,7 @@ func _process(_delta: float) -> void:
 			pan_speed = abs(pan_speed)
 		panner.pan += pan_speed
 		clampf(panner.pan, -1, 1)
-		print(panner.pan)
+# 		print(panner.pan)
 
 
 func _on_autopan_check_button_toggled(toggled_on: bool) -> void:
