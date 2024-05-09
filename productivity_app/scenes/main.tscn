@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://doy3uidslkhni"]
+[gd_scene load_steps=39 format=4 uid="uid://doy3uidslkhni"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_5i01b"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/new_theme.tres" id="2_618gk"]
@@ -13,7 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://dgov4kg5io00y" path="res://addons/images/kenney_icons/next.png" id="8_81kmv"]
 [ext_resource type="Texture2D" uid="uid://ldmdhpth6b1" path="res://addons/images/kenney_icons/stop.png" id="9_028wi"]
 [ext_resource type="Texture2D" uid="uid://cmm42xkdqt61" path="res://addons/images/kenney_icons/plus.png" id="10_v4jhx"]
-[ext_resource type="PackedScene" uid="uid://daot25v58e7k6" path="res://scenes/project.tscn" id="14_i4vj8"]
+[ext_resource type="PackedScene" uid="uid://daot25v58e7k6" path="res://scenes/project.tscn" id="14_6kmkw"]
+[ext_resource type="PackedScene" uid="uid://daot25v58e7k6" path="res://scenes/project.tscn" id="14_jy2c6"]
 [ext_resource type="PackedScene" uid="uid://dercwquryae2g" path="res://scenes/task.tscn" id="14_x731r"]
 [ext_resource type="StyleBox" uid="uid://q7qcork245o0" path="res://theme_data/red_button/normal_red_button.tres" id="15_70by7"]
 [ext_resource type="Script" path="res://scripts/time.gd" id="15_kccpl"]
@@ -291,6 +292,7 @@ alignment = 2
 [node name="NormalTimeRemainingLabel" type="Label" parent="CanvasLayer/GUI/VBoxContainer/GridContainer/Timers/VBoxContainer/NormalTimer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 64
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -364,9 +366,9 @@ theme_override_constants/margin_right = 15
 layout_mode = 2
 theme_override_constants/separation = 15
 script = ExtResource("3_8jc33")
-project = ExtResource("14_i4vj8")
+project = ExtResource("14_jy2c6")
 
-[node name="Project" parent="CanvasLayer/GUI/VBoxContainer/GridContainer/TaskVBoxContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/MarginContainer/ProjectManager" instance=ExtResource("14_i4vj8")]
+[node name="Project" parent="CanvasLayer/GUI/VBoxContainer/GridContainer/TaskVBoxContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/MarginContainer/ProjectManager" instance=ExtResource("14_6kmkw")]
 layout_mode = 2
 
 [node name="TaskContainer" parent="CanvasLayer/GUI/VBoxContainer/GridContainer/TaskVBoxContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/MarginContainer/ProjectManager/Project" index="1" node_paths=PackedStringArray("toggle_tasks_button")]
