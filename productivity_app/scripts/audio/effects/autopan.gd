@@ -1,10 +1,10 @@
 extends HBoxContainer
 
 
-@export var pan_speed : float = 0.0005
+@export var pan_speed: float = 0.0005
 
 var can_autopan := false
-var panner_index : int = 1
+var panner_index: int = 1
 
 @onready var effects_bus_index := AudioServer.get_bus_index("Effects")
 @onready var noise_bus_index := AudioServer.get_bus_index("Noise")

@@ -1,15 +1,15 @@
 extends PanelContainer
 
 
-@export var timer : Timer
-@export var time_remaining_label : Label
-@export var timer_option_button : OptionButton
+@export var timer: Timer
+@export var time_remaining_label: Label
+@export var timer_option_button: OptionButton
 
-var timer_length : float
-var overtime_start_time : float
+var timer_length: float
+var overtime_start_time: float
 var is_in_overtime := false
 
-@onready var notification_sound : AudioStreamPlayer = %NotificationSound
+@onready var notification_sound: AudioStreamPlayer = %NotificationSound
 
 
 func _ready() -> void:
@@ -24,24 +24,24 @@ func _process(_delta: float) -> void:
 	if not timer.is_stopped():
 		time_remaining_label.text = get_formatted_time_from_seconds(timer.time_left)
 	elif is_in_overtime:
-		var overtime : String = get_formatted_time_from_seconds(overtime_start_time - Time.get_unix_time_from_system())
+		var overtime: String = get_formatted_time_from_seconds(overtime_start_time - Time.get_unix_time_from_system())
 		time_remaining_label.text = overtime
 	else:
 		#timer_length = int(timer_length)
 		time_remaining_label.text = get_formatted_time_from_seconds(timer_length)
 
 
-func get_formatted_time_from_seconds(fuck : Variant) -> String:
-	#var fuck : int = type_convert(seconds, TYPE_INT)
-	var is_negative : bool = false
+func get_formatted_time_from_seconds(fuck: Variant) -> String:
+	#var fuck: int = type_convert(seconds, TYPE_INT)
+	var is_negative: bool = false
 	if fuck < 0:
 		fuck = abs(fuck)
 		is_negative = true
 
-	var hours : int = fuck / 3600.0
+	var hours: int = fuck / 3600.0
 	fuck -= hours * 3600
 
-	var minutes : int = fuck / 60.0
+	var minutes: int = fuck / 60.0
 	fuck -= minutes * 60
 
 

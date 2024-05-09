@@ -1,12 +1,12 @@
 extends VBoxContainer
 
 
-@export var audio_off_icon : CompressedTexture2D
-@export var audio_on_icon : CompressedTexture2D
+@export var audio_off_icon: CompressedTexture2D
+@export var audio_on_icon: CompressedTexture2D
 
-@onready var pink_noise : AudioStreamPlayer = %PinkNoise
-@onready var volume_h_slider : HSlider = %VolumeHSlider
-@onready var noise_button : Button = %NoiseButton
+@onready var pink_noise: AudioStreamPlayer = %PinkNoise
+@onready var volume_h_slider: HSlider = %VolumeHSlider
+@onready var noise_button: Button = %NoiseButton
 
 
 func _ready() -> void:
@@ -15,7 +15,7 @@ func _ready() -> void:
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Noise"), true)
 
 
-func _notification(what : int) -> void:
+func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		pink_noise.queue_free()
 

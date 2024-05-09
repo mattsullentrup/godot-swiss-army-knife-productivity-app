@@ -1,14 +1,14 @@
 extends HBoxContainer
 
 
-const RATE_HZ_MAX : float = 20
-const RATE_HZ_MIN : float = 0.01
+const RATE_HZ_MAX: float = 20
+const RATE_HZ_MIN: float = 0.01
 
-var phaser_index : int = 0
+var phaser_index: int = 0
 
 @onready var effects_bus := AudioServer.get_bus_index("Effects")
 @onready var phaser := AudioServer.get_bus_effect(effects_bus, 0) as AudioEffectPhaser
-@onready var rate_hz_h_slider : HSlider = %RateHzHSlider
+@onready var rate_hz_h_slider: HSlider = %RateHzHSlider
 
 
 func _ready() -> void:

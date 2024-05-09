@@ -1,11 +1,11 @@
 extends PanelContainer
 
 
-@onready var clock_label : Label = $ClockLabel
-@onready var date_label : Label = $DateLabel
+@onready var clock_label: Label = $ClockLabel
+@onready var date_label: Label = $DateLabel
 @onready var weekday_label: Label = $WeekdayLabel
 
-var datetime : Dictionary
+var datetime: Dictionary
 
 
 func _process(_delta: float) -> void:
@@ -18,7 +18,7 @@ func _process(_delta: float) -> void:
 
 
 func get_weekday() -> String:
-	var weekday : String
+	var weekday: String
 
 	match datetime.get("weekday"):
 		0:
@@ -48,9 +48,9 @@ func get_date() -> void:
 
 
 func get_time() -> void:
-	var hour : int = datetime.get("hour")
+	var hour: int = datetime.get("hour")
 	var twelve_hour_period := "AM"
-	var minute : int= datetime.get("minute")
+	var minute: int= datetime.get("minute")
 	var zero := ""
 
 	# Convert to american time

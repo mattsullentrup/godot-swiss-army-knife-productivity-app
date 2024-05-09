@@ -13,7 +13,7 @@ func _ready() -> void:
 	#var subchild1: TreeItem = create_item(child1)
 	#subchild1.set_text(0, "Tree - Subchild 1")
 
-	var new_task : TreeItem = create_item(root)
+	var new_task: TreeItem = create_item(root)
 	#root.add_child(new_task)
 
 	# Allow text to be changed
@@ -24,8 +24,8 @@ func _ready() -> void:
 
 
 func _on_item_selected() -> void:
-	var cell : TreeItem = get_selected()
-	
+	var cell: TreeItem = get_selected()
+
 	if not cell.is_selected(0):
 		return
 

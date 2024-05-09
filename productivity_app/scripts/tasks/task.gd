@@ -2,12 +2,12 @@ class_name Task
 extends HBoxContainer
 
 
-@export var task_state_button : Button
-@export var line_edit : LineEdit
+@export var task_state_button: Button
+@export var line_edit: LineEdit
 
-var current_button_color : int = 0
-var button_types : Array[StringName] = [&"RedButton", &"YellowButton", &"GreenButton"]
-var text : String
+var current_button_color: int = 0
+var button_types: Array[StringName] = [&"RedButton", &"YellowButton", &"GreenButton"]
+var text: String
 
 
 func _ready() -> void:

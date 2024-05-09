@@ -11,30 +11,30 @@ enum State {
 	OVERTIME,
 }
 
-@export var initial_state : State
-@export var pomodoro_timer : Timer
+@export var initial_state: State
+@export var pomodoro_timer: Timer
 
 @export_group("Labels")
-@export var round_label : Label
-@export var timer_message : Label
-@export var paused_message : Label
+@export var round_label: Label
+@export var timer_message: Label
+@export var paused_message: Label
 
-static var _time_to_display : float
-static var time_to_display : float:
+static var _time_to_display: float
+static var time_to_display: float:
 	get:
 		return _time_to_display
 
-var current_state : State = State.IDLE
-var productivity_state : State = State.WORK
-var overtime_start_time : float
-var timer_length : float
+var current_state: State = State.IDLE
+var productivity_state: State = State.WORK
+var overtime_start_time: float
+var timer_length: float
 
-@onready var short_break_length : float = 5 * 60
-@onready var long_break_length : float = 15 * 60
-@onready var work_round_length : float = 25 * 60
-@onready var current_round : int
+@onready var short_break_length: float = 5 * 60
+@onready var long_break_length: float = 15 * 60
+@onready var work_round_length: float = 25 * 60
+@onready var current_round: int
 @onready var start_button := %StartButton
-@onready var notification_sound : AudioStreamPlayer = %NotificationSound
+@onready var notification_sound: AudioStreamPlayer = %NotificationSound
 @onready var progress_bar := %ProgressBar
 
 
@@ -47,7 +47,7 @@ func _ready() -> void:
 	check_current_round()
 
 
-func _process(_delta : float) -> void:
+func _process(_delta: float) -> void:
 	if not pomodoro_timer.is_stopped():
 		progress_bar.value = pomodoro_timer.time_left
 		_time_to_display = pomodoro_timer.time_left
@@ -55,7 +55,7 @@ func _process(_delta : float) -> void:
 		_time_to_display = overtime_start_time - Time.get_unix_time_from_system()
 
 
-func change_state(new_state : State) -> void:
+func change_state(new_state: State) -> void:
 	timer_message.show()
 	paused_message.hide()
 
@@ -128,10 +128,10 @@ func determine_break_length_to_display() -> void:
 
 func save() -> Dictionary:
 	var save_dictionary := {
-		"filename" : get_scene_file_path(),
-		"parent" : get_parent().get_path(),
-		"current_round" : current_round,
-		"productivity_state" : productivity_state,
+		"filename": get_scene_file_path(),
+		"parent": get_parent().get_path(),
+		"current_round": current_round,
+		"productivity_state": productivity_state,
 	}
 	return save_dictionary
 
