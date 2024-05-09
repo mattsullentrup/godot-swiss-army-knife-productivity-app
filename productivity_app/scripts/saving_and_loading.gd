@@ -56,6 +56,9 @@ func load_projects(config: ConfigFile) -> void:
 
 	var project_manager: VBoxContainer = get_node(project_manager_node)
 
+	if projects == null:
+		return
+
 	for project_config: Variant in projects:
 		var project := preload("res://scenes/project.tscn").instantiate() as Project
 		project.text = project_config.text
@@ -67,3 +70,4 @@ func load_projects(config: ConfigFile) -> void:
 			task.current_button_color = child.current_button_color
 			task.text = child.text
 			task_container.add_child(task)
+			task.task_text_changed.connect(save_game)

@@ -2,6 +2,8 @@ class_name Task
 extends HBoxContainer
 
 
+signal task_text_changed
+
 @export var task_state_button: Button
 @export var line_edit: LineEdit
 
@@ -14,7 +16,6 @@ func _ready() -> void:
 	task_state_button.theme_type_variation = button_types[current_button_color % 3]
 	line_edit.text = text
 
-
 func _on_task_state_button_pressed() -> void:
 	current_button_color += 1
 	task_state_button.theme_type_variation = button_types[current_button_color % 3]
@@ -26,3 +27,8 @@ func _on_delete_button_pressed() -> void:
 
 func _on_line_edit_text_changed(new_text: String) -> void:
 	text = new_text
+
+
+func _on_line_edit_text_submitted(_new_text: String) -> void:
+	release_focus()
+	task_text_changed.emit()

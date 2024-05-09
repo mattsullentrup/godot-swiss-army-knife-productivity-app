@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/new_theme.tres" id="2_odcyh"]
 [ext_resource type="Texture2D" uid="uid://dmoykkrqddh8k" path="res://addons/images/kenney_icons/down.png" id="2_v6jp2"]
 [ext_resource type="PackedScene" uid="uid://dercwquryae2g" path="res://scenes/task.tscn" id="2_vprcq"]
-[ext_resource type="Script" path="res://scripts/tasks/hide_caret.gd" id="3_jbruc"]
+[ext_resource type="Script" path="res://scripts/tasks/task_text.gd" id="3_jbruc"]
 [ext_resource type="Texture2D" uid="uid://cmm42xkdqt61" path="res://addons/images/kenney_icons/plus.png" id="5_4a57h"]
 [ext_resource type="Texture2D" uid="uid://8v8i84xnoeup" path="res://addons/images/kenney_icons/return.png" id="6_x2rjc"]
 [ext_resource type="Texture2D" uid="uid://dgmvsxmm31bo7" path="res://addons/images/kenney_icons/cross.png" id="7_6vwoh"]
