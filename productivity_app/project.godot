@@ -62,6 +62,10 @@ folder_colors={
 "res://theme_data/yellow_button/": "yellow"
 }
 
+[global_group]
+
+persist=""
+
 [gui]
 
 theme/custom_font="res://addons/fonts/NeomatrixCode.ttf"
