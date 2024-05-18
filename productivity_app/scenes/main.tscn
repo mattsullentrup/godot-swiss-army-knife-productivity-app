@@ -28,7 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://dmacbvtrmou10" path="res://addons/images/kenney_icons/musicOff.png" id="22_subto"]
 [ext_resource type="Script" path="res://scripts/audio/effects/autopan.gd" id="23_u7lil"]
 [ext_resource type="Script" path="res://scripts/audio/effects/phaser.gd" id="24_ng8pc"]
-[ext_resource type="Script" path="res://scripts/saving_and_loading.gd" id="24_wdtw8"]
+[ext_resource type="Script" path="res://scripts/json_save_system.gd" id="29_s861o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fly2f"]
 bg_color = Color(0.24882, 0.24882, 0.24882, 1)
@@ -576,8 +576,9 @@ stream = SubResource("AudioStreamWAV_1mu4e")
 volume_db = -4.0
 bus = &"Noise"
 
-[node name="SavingAndLoading" type="Node" parent="."]
-script = ExtResource("24_wdtw8")
+[node name="JsonSavingAndLoading" type="Node" parent="."]
+script = ExtResource("29_s861o")
+project_manager_node = NodePath("../CanvasLayer/GUI/VBoxContainer/GridContainer/TaskVBoxContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/MarginContainer/ProjectManager")
 
 [connection signal="timeout" from="CanvasLayer/GUI/VBoxContainer/GridContainer/Timers/VBoxContainer/PomodoroTimer/PomodoroTimer" to="CanvasLayer/GUI/VBoxContainer/GridContainer/Timers/VBoxContainer/PomodoroTimer" method="_on_pomodoro_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/GUI/VBoxContainer/GridContainer/Timers/VBoxContainer/PomodoroTimer/VBoxContainer/ButtonManager/StartButton" to="CanvasLayer/GUI/VBoxContainer/GridContainer/Timers/VBoxContainer/PomodoroTimer" method="_on_start_button_pressed"]
@@ -597,8 +598,8 @@ script = ExtResource("24_wdtw8")
 [connection signal="value_changed" from="CanvasLayer/GUI/VBoxContainer/GridContainer/SoundsVBoxContainer/NoisePanelContainer/VBoxContainer/Phaser/RateHzHSlider" to="CanvasLayer/GUI/VBoxContainer/GridContainer/SoundsVBoxContainer/NoisePanelContainer/VBoxContainer/Phaser" method="_on_range_min_hz_h_slider_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/GUI/VBoxContainer/GridContainer/SoundsVBoxContainer/NoisePanelContainer/VBoxContainer/NoiseVolume/VolumeHSlider" to="CanvasLayer/GUI/VBoxContainer/GridContainer/SoundsVBoxContainer/NoisePanelContainer/VBoxContainer" method="_on_volume_h_slider_value_changed"]
 [connection signal="toggled" from="CanvasLayer/GUI/VBoxContainer/GridContainer/SoundsVBoxContainer/NoisePanelContainer/VBoxContainer/NoiseButton" to="CanvasLayer/GUI/VBoxContainer/GridContainer/SoundsVBoxContainer/NoisePanelContainer/VBoxContainer" method="_on_noise_button_toggled"]
-[connection signal="pressed" from="CanvasLayer/GUI/VBoxContainer/Time/SaveButton" to="SavingAndLoading" method="save_game"]
-[connection signal="pressed" from="CanvasLayer/GUI/VBoxContainer/Time/LoadButton" to="SavingAndLoading" method="load_game"]
+[connection signal="pressed" from="CanvasLayer/GUI/VBoxContainer/Time/SaveButton" to="JsonSavingAndLoading" method="save_game"]
+[connection signal="pressed" from="CanvasLayer/GUI/VBoxContainer/Time/LoadButton" to="JsonSavingAndLoading" method="load_game"]
 
 [editable path="CanvasLayer/GUI/VBoxContainer/GridContainer/TaskVBoxContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/MarginContainer/ProjectManager/Project"]
 [editable path="CanvasLayer/GUI/VBoxContainer/GridContainer/TaskVBoxContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/MarginContainer/ProjectManager/Project/TaskContainer/Task"]
