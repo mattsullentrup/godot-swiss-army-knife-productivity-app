@@ -11,11 +11,11 @@ const SAVE_PATH = "user://save_json.json"
 @export var project_manager_node: NodePath
 
 
-#func _notification(what: int) -> void:
-	#if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		#save_game()
-	#elif what == NOTIFICATION_ENTER_TREE:
-		#load_game()
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		save_game()
+	elif what == NOTIFICATION_ENTER_TREE:
+		load_game()
 
 
 func save_game() -> void:
@@ -68,4 +68,4 @@ func load_game() -> void:
 			task.current_button_color = child.current_button_color
 			task.text = child.text
 			task_container.add_child(task)
-			task.task_text_changed.connect(save_game)
+			#task.task_text_changed.connect(save_game)

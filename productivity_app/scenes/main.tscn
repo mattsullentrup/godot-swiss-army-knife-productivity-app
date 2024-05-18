@@ -580,6 +580,10 @@ bus = &"Noise"
 script = ExtResource("29_s861o")
 project_manager_node = NodePath("../CanvasLayer/GUI/VBoxContainer/GridContainer/TaskVBoxContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/MarginContainer/ProjectManager")
 
+[node name="AutosaveTimer" type="Timer" parent="."]
+wait_time = 60.0
+autostart = true
+
 [connection signal="timeout" from="CanvasLayer/GUI/VBoxContainer/GridContainer/Timers/VBoxContainer/PomodoroTimer/PomodoroTimer" to="CanvasLayer/GUI/VBoxContainer/GridContainer/Timers/VBoxContainer/PomodoroTimer" method="_on_pomodoro_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/GUI/VBoxContainer/GridContainer/Timers/VBoxContainer/PomodoroTimer/VBoxContainer/ButtonManager/StartButton" to="CanvasLayer/GUI/VBoxContainer/GridContainer/Timers/VBoxContainer/PomodoroTimer" method="_on_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/GUI/VBoxContainer/GridContainer/Timers/VBoxContainer/PomodoroTimer/VBoxContainer/ButtonManager/GoBackButton" to="CanvasLayer/GUI/VBoxContainer/GridContainer/Timers/VBoxContainer/PomodoroTimer" method="_on_go_back_button_pressed"]
@@ -600,6 +604,7 @@ project_manager_node = NodePath("../CanvasLayer/GUI/VBoxContainer/GridContainer/
 [connection signal="toggled" from="CanvasLayer/GUI/VBoxContainer/GridContainer/SoundsVBoxContainer/NoisePanelContainer/VBoxContainer/NoiseButton" to="CanvasLayer/GUI/VBoxContainer/GridContainer/SoundsVBoxContainer/NoisePanelContainer/VBoxContainer" method="_on_noise_button_toggled"]
 [connection signal="pressed" from="CanvasLayer/GUI/VBoxContainer/Time/SaveButton" to="JsonSavingAndLoading" method="save_game"]
 [connection signal="pressed" from="CanvasLayer/GUI/VBoxContainer/Time/LoadButton" to="JsonSavingAndLoading" method="load_game"]
+[connection signal="timeout" from="AutosaveTimer" to="JsonSavingAndLoading" method="save_game"]
 
 [editable path="CanvasLayer/GUI/VBoxContainer/GridContainer/TaskVBoxContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/MarginContainer/ProjectManager/Project"]
 [editable path="CanvasLayer/GUI/VBoxContainer/GridContainer/TaskVBoxContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/MarginContainer/ProjectManager/Project/TaskContainer/Task"]
