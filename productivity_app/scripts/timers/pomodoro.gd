@@ -219,4 +219,3 @@ func _on_stop_button_pressed() -> void:
 	check_current_round()
 	_time_to_display = work_round_length
 	change_state(State.IDLE)
-

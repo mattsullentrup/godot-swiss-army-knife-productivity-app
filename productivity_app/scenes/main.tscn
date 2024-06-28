@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://doy3uidslkhni"]
+[gd_scene load_steps=37 format=4 uid="uid://doy3uidslkhni"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_5i01b"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/new_theme.tres" id="2_618gk"]
@@ -29,22 +29,6 @@
 [ext_resource type="Script" path="res://scripts/audio/effects/autopan.gd" id="23_u7lil"]
 [ext_resource type="Script" path="res://scripts/audio/effects/phaser.gd" id="24_ng8pc"]
 [ext_resource type="Script" path="res://scripts/json_save_system.gd" id="29_s861o"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fly2f"]
-bg_color = Color(0.24882, 0.24882, 0.24882, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0.391381, 0.391381, 0.391381, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-expand_margin_left = 10.0
-expand_margin_top = 5.0
-expand_margin_right = 10.0
-expand_margin_bottom = 5.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_p2h0a"]
 font_size = 100
@@ -158,10 +142,11 @@ text = "Paused"
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_fly2f")
+theme = ExtResource("2_618gk")
 
 [node name="RoundLabel" type="Label" parent="CanvasLayer/GUI/VBoxContainer/GridContainer/Timers/VBoxContainer/PomodoroTimer/VBoxContainer/HBoxContainer/PanelContainer"]
 layout_mode = 2
+theme = ExtResource("2_618gk")
 theme_override_font_sizes/font_size = 48
 text = "1/4"
 horizontal_alignment = 1
@@ -298,13 +283,15 @@ vertical_alignment = 1
 
 [node name="NormalTimerStartButton" type="Button" parent="CanvasLayer/GUI/VBoxContainer/GridContainer/Timers/VBoxContainer/NormalTimer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_618gk")
+theme_type_variation = &"PurpleButton"
 text = "Start
 "
 
 [node name="NormalTimerStopButton" type="Button" parent="CanvasLayer/GUI/VBoxContainer/GridContainer/Timers/VBoxContainer/NormalTimer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_618gk")
-theme_type_variation = &"StopButton"
+theme_type_variation = &"PurpleButton"
 text = "Stop
 "
 
@@ -370,13 +357,8 @@ project = ExtResource("14_8oe1m")
 [node name="Project" parent="CanvasLayer/GUI/VBoxContainer/GridContainer/TaskVBoxContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/MarginContainer/ProjectManager" instance=ExtResource("14_8oe1m")]
 layout_mode = 2
 
-[node name="TaskContainer" parent="CanvasLayer/GUI/VBoxContainer/GridContainer/TaskVBoxContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/MarginContainer/ProjectManager/Project" index="1" node_paths=PackedStringArray("toggle_tasks_button")]
-toggle_tasks_button = NodePath("../HBoxContainer/ToggleTasksButton")
-
-[node name="Task" parent="CanvasLayer/GUI/VBoxContainer/GridContainer/TaskVBoxContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/MarginContainer/ProjectManager/Project/TaskContainer" index="0" node_paths=PackedStringArray("task_state_button", "line_edit") instance=ExtResource("14_x731r")]
+[node name="Task" parent="CanvasLayer/GUI/VBoxContainer/GridContainer/TaskVBoxContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/MarginContainer/ProjectManager/Project/TaskContainer" index="0" instance=ExtResource("14_x731r")]
 layout_mode = 2
-task_state_button = NodePath("TaskStateButton")
-line_edit = NodePath("LineEdit")
 
 [node name="LineEdit" parent="CanvasLayer/GUI/VBoxContainer/GridContainer/TaskVBoxContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/MarginContainer/ProjectManager/Project/TaskContainer/Task" index="1"]
 text = "asdfadfgadgadadfadfafdgsdfgsdfgsdfgsdfgsdfgsdfgsdfgdadfg"
@@ -527,6 +509,8 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme = ExtResource("2_618gk")
+theme_type_variation = &"PurpleButton"
 theme_override_constants/icon_max_width = 50
 toggle_mode = true
 icon = ExtResource("22_subto")
@@ -556,11 +540,13 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="SaveButton" type="Button" parent="CanvasLayer/GUI/VBoxContainer/Time"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 text = "save"
 
 [node name="LoadButton" type="Button" parent="CanvasLayer/GUI/VBoxContainer/Time"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 text = "load"
