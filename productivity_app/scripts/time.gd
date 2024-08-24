@@ -1,9 +1,9 @@
 extends PanelContainer
 
 
-@onready var clock_label: Label = $ClockLabel
-@onready var date_label: Label = $DateLabel
-@onready var weekday_label: Label = $WeekdayLabel
+@onready var clock_label: Label = %ClockLabel
+@onready var date_label: Label = %DateLabel
+@onready var weekday_label: Label = %WeekdayLabel
 
 var datetime: Dictionary
 
