@@ -121,9 +121,9 @@ size_flags_vertical = 3
 theme = ExtResource("2_618gk")
 script = ExtResource("4_vjfd7")
 pomodoro_timer = NodePath("PomodoroTimer")
-round_label = NodePath("VBoxContainer/HBoxContainer/PanelContainer/RoundLabel")
-timer_message = NodePath("VBoxContainer/HBoxContainer/CenterContainer/TimerMessage")
-paused_message = NodePath("VBoxContainer/HBoxContainer/PausedContainer/PausedLabel")
+round_label = NodePath("VBoxContainer/HBoxContainer/RoundLabel")
+timer_message = NodePath("VBoxContainer/HBoxContainer/TimerMessage")
+paused_message = NodePath("VBoxContainer/HBoxContainer/PausedLabel")
 
 [node name="PomodoroTimer" type="Timer" parent="GUI/VBoxContainer/HBoxContainer/VBoxContainer/PomodoroTimer"]
 wait_time = 125.666
@@ -139,36 +139,23 @@ alignment = 1
 layout_mode = 2
 alignment = 1
 
-[node name="PausedContainer" type="CenterContainer" parent="GUI/VBoxContainer/HBoxContainer/VBoxContainer/PomodoroTimer/VBoxContainer/HBoxContainer"]
+[node name="PausedLabel" type="Label" parent="GUI/VBoxContainer/HBoxContainer/VBoxContainer/PomodoroTimer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 2
-
-[node name="PausedLabel" type="Label" parent="GUI/VBoxContainer/HBoxContainer/VBoxContainer/PomodoroTimer/VBoxContainer/HBoxContainer/PausedContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 3
 text = "Paused"
 
-[node name="PanelContainer" type="PanelContainer" parent="GUI/VBoxContainer/HBoxContainer/VBoxContainer/PomodoroTimer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
+[node name="RoundLabel" type="Label" parent="GUI/VBoxContainer/HBoxContainer/VBoxContainer/PomodoroTimer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("2_618gk")
-
-[node name="RoundLabel" type="Label" parent="GUI/VBoxContainer/HBoxContainer/VBoxContainer/PomodoroTimer/VBoxContainer/HBoxContainer/PanelContainer"]
-layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("2_618gk")
 theme_override_font_sizes/font_size = 48
 text = "1/4"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="GUI/VBoxContainer/HBoxContainer/VBoxContainer/PomodoroTimer/VBoxContainer/HBoxContainer"]
+[node name="TimerMessage" type="Label" parent="GUI/VBoxContainer/HBoxContainer/VBoxContainer/PomodoroTimer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 10
-
-[node name="TimerMessage" type="Label" parent="GUI/VBoxContainer/HBoxContainer/VBoxContainer/PomodoroTimer/VBoxContainer/HBoxContainer/CenterContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 3
 text = "Break
 "
 horizontal_alignment = 2
