@@ -42,17 +42,20 @@ corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8m0aa"]
 bg_color = Color(0.36, 0.36, 0.36, 1)
+skew = Vector2(0.2, 0)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3bueh"]
+content_margin_left = 4.0
 bg_color = Color(0.4851, 0.637047, 0.77, 1)
-corner_radius_top_left = 10
+skew = Vector2(0.4, 0)
+corner_radius_top_left = 100
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+corner_radius_bottom_left = 100
 
 [sub_resource type="Theme" id="Theme_4ijq2"]
 
@@ -171,7 +174,6 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 size_flags_vertical = 6
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_styles/background = SubResource("StyleBoxFlat_8m0aa")
 theme_override_styles/fill = SubResource("StyleBoxFlat_3bueh")
 value = 49.46

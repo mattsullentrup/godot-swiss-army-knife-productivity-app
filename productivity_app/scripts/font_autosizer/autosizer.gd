@@ -33,7 +33,9 @@ static func _update_font_size(
 	while true:
 		line.clear()
 
-		var mid_font_size := font_size_range.x + roundi((font_size_range.y - font_size_range.x) * 0.5)
+		var mid_font_size := font_size_range.x\
+				+ roundi((font_size_range.y - font_size_range.x) * 0.5)
+
 		if not line.add_string(text, font, mid_font_size):
 			push_warning("Could not create a string!")
 			return

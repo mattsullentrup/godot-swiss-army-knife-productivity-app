@@ -39,7 +39,7 @@ var timer_length: float
 
 
 func _ready() -> void:
-	progress_bar.value = progress_bar.max_value
+	progress_bar.value = 0
 	timer_length = work_round_length
 	_time_to_display = timer_length
 	timer_message.text = "Work" if productivity_state == State.WORK else "Break"
@@ -49,7 +49,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if not pomodoro_timer.is_stopped():
-		progress_bar.value = pomodoro_timer.time_left
+		progress_bar.value = progress_bar.max_value - pomodoro_timer.time_left
 		_time_to_display = pomodoro_timer.time_left
 	elif current_state == State.OVERTIME:
 		_time_to_display = overtime_start_time - Time.get_unix_time_from_system()
@@ -96,7 +96,7 @@ func change_state(new_state: State) -> void:
 		State.IDLE:
 			pomodoro_timer.stop()
 			timer_message.hide()
-			progress_bar.value = progress_bar.max_value
+			progress_bar.value = 0
 			#_time_to_display = timer_length
 
 	current_state = new_state
