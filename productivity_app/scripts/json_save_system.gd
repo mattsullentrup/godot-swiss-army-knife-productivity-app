@@ -20,13 +20,11 @@ func _notification(what: int) -> void:
 func _save() -> void:
 	var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 
-	# JSON doesn't support many of Godot's types such as Vector2.
-	# var_to_str can be used to convert any Variant to a String.
 	var save_dict: Dictionary = {
 		projects = []
 	}
 
-	for project in get_tree().get_nodes_in_group(&"project"):
+	for project in get_tree().get_nodes_in_group(&"Project"):
 		var task_container: VBoxContainer = project.get_node_or_null("TaskContainer")
 		var tasks: Array[Node] = task_container.get_children()
 
@@ -44,27 +42,34 @@ func _load() -> void:
 		return
 
 	var file := FileAccess.open(SAVE_PATH, FileAccess.READ)
-	var json := JSON.new()
-	json.parse(file.get_line())
-	var save_dict := json.get_data() as Dictionary
-	var project_manager: VBoxContainer = get_node(project_manager_node)
+	while file.get_position() < file.get_length():
+		var json := JSON.new()
+		var parse_result: Error = json.parse(file.get_line())
 
-	# Remove existing enemies before adding new ones.
-	get_tree().call_group("project", "queue_free")
+		if not parse_result == OK:
+			print(
+					"JSON Parse Error: ", json.get_error_message(), " in ", file, " at line ",
+					json.get_error_line()
+			)
+			continue
 
-	if save_dict.projects == null:
-		return
+		var save_dict: Variant = json.get_data()
+		var project_manager: VBoxContainer = get_node(project_manager_node)
 
-	for project_config: Variant in save_dict.projects:
-		var project := preload("res://scenes/project.tscn").instantiate() as Project
-		project.text = str_to_var(project_config.text)
-		project_manager.add_child(project)
+		get_tree().call_group("Project", "queue_free")
 
-		var task_container: VBoxContainer = project.get_node_or_null("TaskContainer")
+		if save_dict is not Dictionary or save_dict.projects == null:
+			return
 
-		for child: Task in str_to_var(project_config.children):
-			var task := preload("res://scenes/task.tscn").instantiate() as Task
-			task.current_button_color = child.current_button_color
-			task.text = child.text
-			task_container.add_child(task)
-			#task.task_text_changed.connect(save_game)
+		for saved_project: Variant in save_dict.projects:
+			var new_project := preload("res://scenes/project.tscn").instantiate() as Project
+			new_project.text = saved_project.text
+			project_manager.add_child(new_project)
+
+			var task_container: VBoxContainer = new_project.get_node_or_null("TaskContainer")
+			var saved_project_children: String = saved_project.children
+			for child: Task in str_to_var(saved_project_children):
+				var task := preload("res://scenes/task.tscn").instantiate() as Task
+				task.current_button_color = child.current_button_color
+				task.text = child.text
+				task_container.add_child(task)

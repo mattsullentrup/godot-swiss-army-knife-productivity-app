@@ -65,7 +65,7 @@ folder_colors={
 
 [global_group]
 
-persist=""
+Persist=""
 
 [gui]
 

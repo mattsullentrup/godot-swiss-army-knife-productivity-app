@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/tasks/task_text.gd" id="3_kr566"]
 [ext_resource type="Texture2D" uid="uid://dgmvsxmm31bo7" path="res://addons/images/kenney_icons/cross.png" id="4_8gaic"]
 
-[node name="Task" type="HBoxContainer" node_paths=PackedStringArray("task_state_button", "line_edit") groups=["persist", "task"]]
+[node name="Task" type="HBoxContainer" node_paths=PackedStringArray("task_state_button", "line_edit") groups=["Persist", "Task"]]
 offset_right = 261.0
 offset_bottom = 50.0
 size_flags_horizontal = 3
