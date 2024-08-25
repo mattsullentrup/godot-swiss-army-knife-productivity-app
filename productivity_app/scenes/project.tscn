@@ -12,13 +12,14 @@
 [ext_resource type="Texture2D" uid="uid://c1avhvgbpp5di" path="res://addons/images/kenney_icons/right.png" id="10_hcbro"]
 
 [node name="Project" type="VBoxContainer" groups=["persist", "project"]]
+offset_right = 265.0
+offset_bottom = 65.0
 focus_mode = 2
 theme_override_constants/separation = 15
 script = ExtResource("1_hop2a")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
-size_flags_vertical = 4
 focus_mode = 2
 
 [node name="ToggleTasksButton" type="Button" parent="HBoxContainer"]
@@ -32,6 +33,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
 placeholder_text = "Enter project.."
+expand_to_text_length = true
 clear_button_enabled = true
 script = ExtResource("3_jbruc")
 
