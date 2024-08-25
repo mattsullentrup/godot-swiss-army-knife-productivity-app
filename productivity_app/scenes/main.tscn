@@ -69,7 +69,6 @@ stereo = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = 41.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -86,7 +85,6 @@ theme_override_constants/separation = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
 theme_override_constants/separation = 10
 
 [node name="LeftVBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
@@ -467,6 +465,7 @@ page = 115.0
 
 [node name="Time" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 theme = ExtResource("2_618gk")
 script = ExtResource("15_kccpl")
 
