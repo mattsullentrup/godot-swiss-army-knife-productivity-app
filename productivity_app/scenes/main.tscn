@@ -202,8 +202,6 @@ alignment = 1
 
 [node name="NormalTimer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer" node_paths=PackedStringArray("timer", "time_remaining_label", "timer_option_button")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 theme = ExtResource("2_618gk")
 script = ExtResource("3_rcetv")
 timer = NodePath("NormalTimer")
@@ -215,33 +213,43 @@ wait_time = 10.0
 one_shot = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NormalTimer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_constants/separation = 10
-alignment = 2
 
 [node name="NormalTimeRemainingLabel" type="Label" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 46
 text = "00:00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="NormalTimerStartButton" type="Button" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer"]
+custom_minimum_size = Vector2(105, 0)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme = ExtResource("2_618gk")
 theme_type_variation = &"PurpleButton"
 text = "Start
 "
 
 [node name="NormalTimerStopButton" type="Button" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer"]
+custom_minimum_size = Vector2(105, 0)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme = ExtResource("2_618gk")
 theme_type_variation = &"PurpleButton"
 text = "Stop
 "
 
 [node name="NormalTimeOptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer"]
+custom_minimum_size = Vector2(105, 0)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme = ExtResource("2_618gk")
 alignment = 1
 selected = 0
