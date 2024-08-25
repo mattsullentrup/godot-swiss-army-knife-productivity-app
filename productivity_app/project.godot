@@ -53,6 +53,7 @@ folder_colors={
 "res://scenes/": "blue",
 "res://scripts/": "purple",
 "res://scripts/audio/": "pink",
+"res://scripts/font_autosizer/": "red",
 "res://scripts/tasks/": "green",
 "res://scripts/timers/": "orange",
 "res://theme_data/": "teal",

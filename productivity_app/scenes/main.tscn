@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://cmm42xkdqt61" path="res://addons/images/kenney_icons/plus.png" id="10_v4jhx"]
 [ext_resource type="PackedScene" uid="uid://daot25v58e7k6" path="res://scenes/project.tscn" id="14_8oe1m"]
 [ext_resource type="PackedScene" uid="uid://dercwquryae2g" path="res://scenes/task.tscn" id="14_x731r"]
-[ext_resource type="Script" path="res://scripts/time.gd" id="15_kccpl"]
+[ext_resource type="Script" path="res://scripts/timers/time.gd" id="15_kccpl"]
 [ext_resource type="Script" path="res://scripts/audio/noise.gd" id="19_580iq"]
 [ext_resource type="Texture2D" uid="uid://d2avw8bt6jq2t" path="res://addons/images/kenney_icons/audioOff.png" id="20_ttxmr"]
 [ext_resource type="Texture2D" uid="uid://o1fkxxcgpcoy" path="res://addons/images/kenney_icons/musicOn.png" id="21_dm3lq"]
