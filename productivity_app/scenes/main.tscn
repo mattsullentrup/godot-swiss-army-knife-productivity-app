@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://doy3uidslkhni"]
+[gd_scene load_steps=31 format=4 uid="uid://doy3uidslkhni"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_5i01b"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/theme.tres" id="2_618gk"]
@@ -24,6 +24,21 @@
 [ext_resource type="Script" path="res://scripts/audio/effects/autopan.gd" id="23_u7lil"]
 [ext_resource type="Script" path="res://scripts/audio/effects/phaser.gd" id="24_ng8pc"]
 [ext_resource type="Script" path="res://scripts/json_save_system.gd" id="29_s861o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8awij"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.141176, 0.141176, 0.141176, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8m0aa"]
 bg_color = Color(0.36, 0.36, 0.36, 1)
@@ -114,19 +129,18 @@ one_shot = true
 layout_mode = 2
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer"]
+[node name="HBoxContainer" type="PanelContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 2
-alignment = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_8awij")
 
 [node name="PausedLabel" type="Label" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 0
 text = "Paused"
 
 [node name="RoundLabel" type="Label" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 theme = ExtResource("2_618gk")
 theme_override_font_sizes/font_size = 48
 text = "1/4"
@@ -135,7 +149,7 @@ vertical_alignment = 1
 
 [node name="TimerMessage" type="Label" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 8
 text = "Break
 "
 horizontal_alignment = 2
