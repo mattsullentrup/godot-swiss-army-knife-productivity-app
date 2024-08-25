@@ -1,7 +1,7 @@
 [gd_scene load_steps=30 format=4 uid="uid://doy3uidslkhni"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_5i01b"]
-[ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/new_theme.tres" id="2_618gk"]
+[ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/theme.tres" id="2_618gk"]
 [ext_resource type="Script" path="res://scripts/tasks/project_manager.gd" id="3_8jc33"]
 [ext_resource type="Script" path="res://scripts/timers/normal_timer.gd" id="3_rcetv"]
 [ext_resource type="Script" path="res://scripts/timers/pomodoro.gd" id="4_vjfd7"]
@@ -180,7 +180,6 @@ text = "
 "
 icon = ExtResource("5_tbsx4")
 icon_alignment = 1
-expand_icon = true
 
 [node name="GoBackButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons"]
 layout_mode = 2
@@ -189,7 +188,6 @@ theme = ExtResource("2_618gk")
 theme_type_variation = &"PurpleButton"
 icon = ExtResource("6_doo8k")
 icon_alignment = 1
-expand_icon = true
 
 [node name="PauseButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons"]
 layout_mode = 2

@@ -66,10 +66,10 @@ func _load() -> void:
 			new_project.text = saved_project.text
 			project_manager.add_child(new_project)
 
-			var task_container: VBoxContainer = new_project.get_node_or_null("TaskContainer")
-			var saved_project_children: String = saved_project.children
-			for child: Task in str_to_var(saved_project_children):
-				var task := preload("res://scenes/task.tscn").instantiate() as Task
-				task.current_button_color = child.current_button_color
-				task.text = child.text
-				task_container.add_child(task)
+			#var task_container: VBoxContainer = new_project.get_node_or_null("TaskContainer")
+			#var saved_project_children: String = saved_project.children
+			#for child: Task in str_to_var(saved_project_children):
+				#var task := preload("res://scenes/task.tscn").instantiate() as Task
+				#task.current_button_color = child.current_button_color
+				#task.text = child.text
+				#task_container.add_child(task)

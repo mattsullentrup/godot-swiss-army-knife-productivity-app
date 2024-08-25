@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://daot25v58e7k6"]
 
 [ext_resource type="Script" path="res://scripts/tasks/project.gd" id="1_hop2a"]
-[ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/new_theme.tres" id="2_odcyh"]
+[ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/theme.tres" id="2_odcyh"]
 [ext_resource type="Texture2D" uid="uid://dmoykkrqddh8k" path="res://addons/images/kenney_icons/down.png" id="2_v6jp2"]
 [ext_resource type="PackedScene" uid="uid://dercwquryae2g" path="res://scenes/task.tscn" id="2_vprcq"]
 [ext_resource type="Script" path="res://scripts/tasks/task_text.gd" id="3_jbruc"]
@@ -40,28 +40,22 @@ script = ExtResource("3_jbruc")
 [node name="NewTaskButton" type="Button" parent="HBoxContainer"]
 texture_filter = 2
 layout_mode = 2
-size_flags_vertical = 4
 theme = ExtResource("2_odcyh")
 theme_type_variation = &"GreenButton"
-theme_override_constants/icon_max_width = 40
 icon = ExtResource("5_4a57h")
 icon_alignment = 1
 
 [node name="ResetButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 4
 theme = ExtResource("2_odcyh")
 theme_type_variation = &"PurpleButton"
-theme_override_constants/icon_max_width = 40
 icon = ExtResource("6_x2rjc")
 icon_alignment = 1
 
 [node name="DeleteButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 4
 theme = ExtResource("2_odcyh")
 theme_type_variation = &"RedButton"
-theme_override_constants/icon_max_width = 40
 icon = ExtResource("7_6vwoh")
 icon_alignment = 1
 

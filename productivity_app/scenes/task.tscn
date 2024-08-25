@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dercwquryae2g"]
 
 [ext_resource type="Script" path="res://scripts/tasks/task.gd" id="1_m21r0"]
-[ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/new_theme.tres" id="2_r0grc"]
+[ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/theme.tres" id="2_r0grc"]
 [ext_resource type="Script" path="res://scripts/tasks/task_text.gd" id="3_kr566"]
 [ext_resource type="Texture2D" uid="uid://dgmvsxmm31bo7" path="res://addons/images/kenney_icons/cross.png" id="4_8gaic"]
 
@@ -34,6 +34,7 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = ExtResource("2_r0grc")
 theme_type_variation = &"RedButton"
+theme_override_constants/icon_max_width = 40
 icon = ExtResource("4_8gaic")
 icon_alignment = 1
 
