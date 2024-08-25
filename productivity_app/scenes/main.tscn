@@ -341,12 +341,6 @@ layout_mode = 2
 text = "Autopan
 "
 
-[node name="PanLabel" type="Label" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Autopan"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "strength
-"
-
 [node name="AutopanSlider" type="HSlider" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Autopan"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -364,12 +358,6 @@ script = ExtResource("24_ng8pc")
 [node name="PhaserCheckButton" type="CheckButton" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Phaser"]
 layout_mode = 2
 text = "Phaser
-"
-
-[node name="RateHzLabel" type="Label" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Phaser"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "rate
 "
 
 [node name="RateHzHSlider" type="HSlider" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Phaser"]
