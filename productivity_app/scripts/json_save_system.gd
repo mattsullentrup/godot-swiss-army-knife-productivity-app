@@ -1,10 +1,7 @@
 extends Node
-# This script shows how to save data using the JSON file format.
-# JSON is a widely used file format, but not all Godot types can be
-# stored natively. For example, integers get converted into doubles,
-# and to store Vector2 and other non-JSON types you need to convert
-# them, such as to a String using var_to_str.
 
+
+signal game_saved
 
 const SAVE_PATH = "user://save_json.json"
 
@@ -13,12 +10,14 @@ const SAVE_PATH = "user://save_json.json"
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		save_game()
+		_save()
+		await game_saved
+		print("game saved")
 	elif what == NOTIFICATION_ENTER_TREE:
-		load_game()
+		_load()
 
 
-func save_game() -> void:
+func _save() -> void:
 	var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 
 	# JSON doesn't support many of Godot's types such as Vector2.
@@ -39,7 +38,7 @@ func save_game() -> void:
 	file.store_line(JSON.stringify(save_dict))
 
 
-func load_game() -> void:
+func _load() -> void:
 	if not FileAccess.file_exists(SAVE_PATH):
 		print("save file does not exist")
 		return

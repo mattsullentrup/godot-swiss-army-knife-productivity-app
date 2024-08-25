@@ -521,10 +521,6 @@ bus = &"Noise"
 script = ExtResource("29_s861o")
 project_manager_node = NodePath("../VBoxContainer/HBoxContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager")
 
-[node name="AutosaveTimer" type="Timer" parent="."]
-wait_time = 60.0
-autostart = true
-
 [connection signal="timeout" from="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer/PomodoroTimer" to="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer" method="_on_pomodoro_timer_timeout"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons/StartButton" to="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer" method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons/GoBackButton" to="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer" method="_on_go_back_button_pressed"]
@@ -544,7 +540,6 @@ autostart = true
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/TaskListPanelContainer/VBoxContainer/NewProjectButton" to="VBoxContainer/HBoxContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager" method="_on_new_project_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Time/HBoxContainer/SaveButton" to="JsonSavingAndLoading" method="save_game"]
 [connection signal="pressed" from="VBoxContainer/Time/HBoxContainer/LoadButton" to="JsonSavingAndLoading" method="load_game"]
-[connection signal="timeout" from="AutosaveTimer" to="JsonSavingAndLoading" method="save_game"]
 
 [editable path="VBoxContainer/HBoxContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager/Project"]
 [editable path="VBoxContainer/HBoxContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager/Project/TaskContainer/Task"]
