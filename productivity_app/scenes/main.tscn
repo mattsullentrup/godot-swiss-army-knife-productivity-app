@@ -82,15 +82,16 @@ script = ExtResource("1_5i01b")
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 10
+alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/separation = 10
 
 [node name="LeftVBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
-alignment = 1
 
 [node name="PomodoroTimer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer" node_paths=PackedStringArray("pomodoro_timer", "round_label", "timer_message", "paused_message")]
 layout_mode = 2
@@ -212,7 +213,6 @@ icon_alignment = 1
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
-alignment = 1
 
 [node name="NormalTimer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer" node_paths=PackedStringArray("timer", "time_remaining_label", "timer_option_button")]
 layout_mode = 2
@@ -413,7 +413,6 @@ icon = ExtResource("22_subto")
 [node name="TaskListPanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
 theme = ExtResource("2_618gk")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/TaskListPanelContainer"]
@@ -465,7 +464,6 @@ page = 115.0
 
 [node name="Time" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
 theme = ExtResource("2_618gk")
 script = ExtResource("15_kccpl")
 
