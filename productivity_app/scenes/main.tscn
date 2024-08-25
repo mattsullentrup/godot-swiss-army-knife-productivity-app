@@ -84,17 +84,18 @@ layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="UpperContainer" type="HSplitContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
+split_offset = 395
 
-[node name="LeftVBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="LeftVBoxContainer" type="VBoxContainer" parent="VBoxContainer/UpperContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="PomodoroTimer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer" node_paths=PackedStringArray("pomodoro_timer", "round_label", "timer_message", "paused_message")]
+[node name="PomodoroTimer" type="PanelContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer" node_paths=PackedStringArray("pomodoro_timer", "round_label", "timer_message", "paused_message")]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.5
@@ -105,25 +106,25 @@ round_label = NodePath("VBoxContainer/HBoxContainer/RoundLabel")
 timer_message = NodePath("VBoxContainer/HBoxContainer/TimerMessage")
 paused_message = NodePath("VBoxContainer/HBoxContainer/PausedLabel")
 
-[node name="PomodoroTimer" type="Timer" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer"]
+[node name="PomodoroTimer" type="Timer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer"]
 wait_time = 125.666
 one_shot = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer"]
 layout_mode = 2
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 2
 alignment = 1
 
-[node name="PausedLabel" type="Label" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/HBoxContainer"]
+[node name="PausedLabel" type="Label" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Paused"
 
-[node name="RoundLabel" type="Label" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/HBoxContainer"]
+[node name="RoundLabel" type="Label" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_618gk")
@@ -132,14 +133,14 @@ text = "1/4"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TimerMessage" type="Label" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/HBoxContainer"]
+[node name="TimerMessage" type="Label" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Break
 "
 horizontal_alignment = 2
 
-[node name="TimeRemainingLabel" type="Label" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer"]
+[node name="TimeRemainingLabel" type="Label" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 6
@@ -150,7 +151,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("5_qs481")
 
-[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
@@ -161,7 +162,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_3bueh")
 value = 49.46
 show_percentage = false
 
-[node name="Buttons" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer"]
+[node name="Buttons" type="HBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 3
@@ -169,7 +170,7 @@ size_flags_stretch_ratio = 0.7
 theme_override_constants/separation = 15
 alignment = 1
 
-[node name="StartButton" type="Button" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons"]
+[node name="StartButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -181,7 +182,7 @@ icon = ExtResource("5_tbsx4")
 icon_alignment = 1
 expand_icon = true
 
-[node name="GoBackButton" type="Button" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons"]
+[node name="GoBackButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_618gk")
@@ -190,7 +191,7 @@ icon = ExtResource("6_doo8k")
 icon_alignment = 1
 expand_icon = true
 
-[node name="PauseButton" type="Button" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons"]
+[node name="PauseButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_618gk")
@@ -200,7 +201,7 @@ text = "
 icon = ExtResource("7_gawv8")
 icon_alignment = 1
 
-[node name="SkipButton" type="Button" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons"]
+[node name="SkipButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_618gk")
@@ -208,7 +209,7 @@ theme_type_variation = &"PurpleButton"
 icon = ExtResource("8_81kmv")
 icon_alignment = 1
 
-[node name="StopButton" type="Button" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons"]
+[node name="StopButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "Reset"
@@ -217,12 +218,12 @@ theme_type_variation = &"RedButton"
 icon = ExtResource("9_028wi")
 icon_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="NormalTimer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer" node_paths=PackedStringArray("timer", "time_remaining_label", "timer_option_button")]
+[node name="NormalTimer" type="PanelContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer" node_paths=PackedStringArray("timer", "time_remaining_label", "timer_option_button")]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_618gk")
@@ -231,49 +232,50 @@ timer = NodePath("NormalTimer")
 time_remaining_label = NodePath("VBoxContainer/NormalTimeRemainingLabel")
 timer_option_button = NodePath("VBoxContainer/NormalTimeOptionButton")
 
-[node name="NormalTimer" type="Timer" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NormalTimer"]
+[node name="NormalTimer" type="Timer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer"]
 wait_time = 10.0
 one_shot = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NormalTimer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="NormalTimeRemainingLabel" type="Label" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer"]
+[node name="NormalTimeRemainingLabel" type="Label" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
+size_flags_vertical = 6
 theme_override_font_sizes/font_size = 46
 text = "00:00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NormalTimerStartButton" type="Button" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer"]
+[node name="NormalTimerStartButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer"]
 custom_minimum_size = Vector2(105, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 8
 theme = ExtResource("2_618gk")
 theme_type_variation = &"PurpleButton"
 text = "Start
 "
 
-[node name="NormalTimerStopButton" type="Button" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer"]
+[node name="NormalTimerStopButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer"]
 custom_minimum_size = Vector2(105, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 8
 theme = ExtResource("2_618gk")
 theme_type_variation = &"PurpleButton"
 text = "Stop
 "
 
-[node name="NormalTimeOptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer"]
+[node name="NormalTimeOptionButton" type="OptionButton" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer"]
 custom_minimum_size = Vector2(105, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 8
 theme = ExtResource("2_618gk")
 alignment = 1
 selected = 0
@@ -281,49 +283,49 @@ item_count = 1
 popup/item_0/text = "1"
 popup/item_0/id = 1
 
-[node name="@PopupMenu@183188" type="PopupMenu" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/NormalTimeOptionButton"]
+[node name="@PopupMenu@183188" type="PopupMenu" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/NormalTimeOptionButton"]
 item_count = 1
 item_0/text = "1"
 item_0/checkable = 2
 item_0/checked = true
 item_0/id = 1
 
-[node name="@ScrollContainer@183184" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/NormalTimeOptionButton/@PopupMenu@183188"]
+[node name="@ScrollContainer@183184" type="ScrollContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/NormalTimeOptionButton/@PopupMenu@183188"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_hyyvc")
 
-[node name="@Control@183185" type="Control" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/NormalTimeOptionButton/@PopupMenu@183188/@ScrollContainer@183184"]
+[node name="@Control@183185" type="Control" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/NormalTimeOptionButton/@PopupMenu@183188/@ScrollContainer@183184"]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="_h_scroll2" type="HScrollBar" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/NormalTimeOptionButton/@PopupMenu@183188/@ScrollContainer@183184"]
+[node name="_h_scroll2" type="HScrollBar" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/NormalTimeOptionButton/@PopupMenu@183188/@ScrollContainer@183184"]
 visible = false
 layout_mode = 2
 max_value = 0.0
 
-[node name="_v_scroll2" type="VScrollBar" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/NormalTimeOptionButton/@PopupMenu@183188/@ScrollContainer@183184"]
+[node name="_v_scroll2" type="VScrollBar" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/NormalTimeOptionButton/@PopupMenu@183188/@ScrollContainer@183184"]
 visible = false
 layout_mode = 2
 max_value = 24.0
 page = 24.0
 
-[node name="@Timer@183186" type="Timer" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/NormalTimeOptionButton/@PopupMenu@183188"]
+[node name="@Timer@183186" type="Timer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/NormalTimeOptionButton/@PopupMenu@183188"]
 wait_time = 0.3
 one_shot = true
 
-[node name="@Timer@183187" type="Timer" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/NormalTimeOptionButton/@PopupMenu@183188"]
+[node name="@Timer@183187" type="Timer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/NormalTimeOptionButton/@PopupMenu@183188"]
 wait_time = 0.3
 one_shot = true
 
-[node name="NoisePanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer"]
+[node name="NoisePanelContainer" type="PanelContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_618gk")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer"]
 layout_mode = 2
 theme_override_constants/separation = 15
 alignment = 2
@@ -331,17 +333,17 @@ script = ExtResource("19_580iq")
 audio_off_icon = ExtResource("22_subto")
 audio_on_icon = ExtResource("21_dm3lq")
 
-[node name="Autopan" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer"]
+[node name="Autopan" type="HBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer"]
 layout_mode = 2
 script = ExtResource("23_u7lil")
 pan_speed = 0.005
 
-[node name="AutopanCheckButton" type="CheckButton" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Autopan"]
+[node name="AutopanCheckButton" type="CheckButton" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Autopan"]
 layout_mode = 2
 text = "Autopan
 "
 
-[node name="AutopanSlider" type="HSlider" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Autopan"]
+[node name="AutopanSlider" type="HSlider" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Autopan"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -351,16 +353,16 @@ max_value = 0.027
 step = 0.001
 value = 0.01
 
-[node name="Phaser" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer"]
+[node name="Phaser" type="HBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer"]
 layout_mode = 2
 script = ExtResource("24_ng8pc")
 
-[node name="PhaserCheckButton" type="CheckButton" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Phaser"]
+[node name="PhaserCheckButton" type="CheckButton" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Phaser"]
 layout_mode = 2
 text = "Phaser
 "
 
-[node name="RateHzHSlider" type="HSlider" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Phaser"]
+[node name="RateHzHSlider" type="HSlider" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Phaser"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -372,16 +374,16 @@ step = 0.001
 value = 0.01
 exp_edit = true
 
-[node name="NoiseVolume" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer"]
+[node name="NoiseVolume" type="HBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="AudioOff" type="NinePatchRect" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/NoiseVolume"]
+[node name="AudioOff" type="NinePatchRect" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/NoiseVolume"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 texture = ExtResource("20_ttxmr")
 
-[node name="VolumeHSlider" type="HSlider" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/NoiseVolume"]
+[node name="VolumeHSlider" type="HSlider" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/NoiseVolume"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -391,12 +393,12 @@ max_value = 1.0
 step = 0.01
 value = 0.251
 
-[node name="AudioMax" type="NinePatchRect" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/NoiseVolume"]
+[node name="AudioMax" type="NinePatchRect" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/NoiseVolume"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 texture = ExtResource("21_of0bo")
 
-[node name="NoiseButton" type="Button" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer"]
+[node name="NoiseButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
@@ -408,16 +410,16 @@ theme_override_constants/icon_max_width = 50
 toggle_mode = true
 icon = ExtResource("22_subto")
 
-[node name="TaskListPanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="TaskListPanelContainer" type="PanelContainer" parent="VBoxContainer/UpperContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_618gk")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/TaskListPanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/UpperContainer/TaskListPanelContainer"]
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="NewProjectButton" type="Button" parent="VBoxContainer/HBoxContainer/TaskListPanelContainer/VBoxContainer"]
+[node name="NewProjectButton" type="Button" parent="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 60)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -428,33 +430,33 @@ icon = ExtResource("10_v4jhx")
 icon_alignment = 1
 expand_icon = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/TaskListPanelContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ProjectManager" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer"]
+[node name="ProjectManager" type="VBoxContainer" parent="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 15
 script = ExtResource("3_8jc33")
 project = ExtResource("14_8oe1m")
 
-[node name="Project" parent="VBoxContainer/HBoxContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager" instance=ExtResource("14_8oe1m")]
+[node name="Project" parent="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager" instance=ExtResource("14_8oe1m")]
 layout_mode = 2
 
-[node name="Task" parent="VBoxContainer/HBoxContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager/Project/TaskContainer" index="0" instance=ExtResource("14_x731r")]
+[node name="Task" parent="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager/Project/TaskContainer" index="0" instance=ExtResource("14_x731r")]
 layout_mode = 2
 
-[node name="LineEdit" parent="VBoxContainer/HBoxContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager/Project/TaskContainer/Task" index="1"]
+[node name="LineEdit" parent="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager/Project/TaskContainer/Task" index="1"]
 text = "gsdfgsdfgsdggdfhdfgdadfg"
 
-[node name="_h_scroll2" type="HScrollBar" parent="VBoxContainer/HBoxContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer"]
+[node name="_h_scroll2" type="HScrollBar" parent="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer"]
 visible = false
 layout_mode = 2
 max_value = 489.0
 page = 489.0
 
-[node name="_v_scroll2" type="VScrollBar" parent="VBoxContainer/HBoxContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer"]
+[node name="_v_scroll2" type="VScrollBar" parent="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer"]
 visible = false
 layout_mode = 2
 max_value = 115.0
@@ -519,27 +521,27 @@ bus = &"Noise"
 
 [node name="JsonSavingAndLoading" type="Node" parent="."]
 script = ExtResource("29_s861o")
-project_manager_node = NodePath("../VBoxContainer/HBoxContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager")
+project_manager_node = NodePath("../VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager")
 
-[connection signal="timeout" from="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer/PomodoroTimer" to="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer" method="_on_pomodoro_timer_timeout"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons/StartButton" to="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer" method="_on_start_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons/GoBackButton" to="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer" method="_on_go_back_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons/PauseButton" to="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer" method="_on_pause_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons/SkipButton" to="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer" method="_on_skip_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons/StopButton" to="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer" method="_on_stop_button_pressed"]
-[connection signal="timeout" from="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/NormalTimer" to="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_timer_timeout"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/NormalTimerStartButton" to="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_timer_start_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/NormalTimerStopButton" to="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_timer_stop_button_pressed"]
-[connection signal="item_selected" from="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/NormalTimeOptionButton" to="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_time_option_button_item_selected"]
-[connection signal="toggled" from="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Autopan/AutopanCheckButton" to="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Autopan" method="_on_autopan_check_button_toggled"]
-[connection signal="value_changed" from="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Autopan/AutopanSlider" to="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Autopan" method="_on_autopan_slider_value_changed"]
-[connection signal="toggled" from="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Phaser/PhaserCheckButton" to="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Phaser" method="_on_phaser_check_button_toggled"]
-[connection signal="value_changed" from="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Phaser/RateHzHSlider" to="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Phaser" method="_on_range_min_hz_h_slider_value_changed"]
-[connection signal="value_changed" from="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/NoiseVolume/VolumeHSlider" to="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer" method="_on_volume_h_slider_value_changed"]
-[connection signal="toggled" from="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/NoiseButton" to="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer" method="_on_noise_button_toggled"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/TaskListPanelContainer/VBoxContainer/NewProjectButton" to="VBoxContainer/HBoxContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager" method="_on_new_project_button_pressed"]
+[connection signal="timeout" from="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/PomodoroTimer" to="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer" method="_on_pomodoro_timer_timeout"]
+[connection signal="pressed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons/StartButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer" method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons/GoBackButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer" method="_on_go_back_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons/PauseButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer" method="_on_pause_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons/SkipButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer" method="_on_skip_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons/StopButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer" method="_on_stop_button_pressed"]
+[connection signal="timeout" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/NormalTimer" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_timer_timeout"]
+[connection signal="pressed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/NormalTimerStartButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_timer_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/NormalTimerStopButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_timer_stop_button_pressed"]
+[connection signal="item_selected" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/NormalTimeOptionButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_time_option_button_item_selected"]
+[connection signal="toggled" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Autopan/AutopanCheckButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Autopan" method="_on_autopan_check_button_toggled"]
+[connection signal="value_changed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Autopan/AutopanSlider" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Autopan" method="_on_autopan_slider_value_changed"]
+[connection signal="toggled" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Phaser/PhaserCheckButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Phaser" method="_on_phaser_check_button_toggled"]
+[connection signal="value_changed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Phaser/RateHzHSlider" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Phaser" method="_on_range_min_hz_h_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/NoiseVolume/VolumeHSlider" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer" method="_on_volume_h_slider_value_changed"]
+[connection signal="toggled" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/NoiseButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer" method="_on_noise_button_toggled"]
+[connection signal="pressed" from="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/NewProjectButton" to="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager" method="_on_new_project_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Time/HBoxContainer/SaveButton" to="JsonSavingAndLoading" method="save_game"]
 [connection signal="pressed" from="VBoxContainer/Time/HBoxContainer/LoadButton" to="JsonSavingAndLoading" method="load_game"]
 
-[editable path="VBoxContainer/HBoxContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager/Project"]
-[editable path="VBoxContainer/HBoxContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager/Project/TaskContainer/Task"]
+[editable path="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager/Project"]
+[editable path="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager/Project/TaskContainer/Task"]

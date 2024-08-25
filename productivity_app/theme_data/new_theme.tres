@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=20 format=3 uid="uid://leiuhrufh5o8"]
+[gd_resource type="Theme" load_steps=21 format=3 uid="uid://leiuhrufh5o8"]
 
 [ext_resource type="StyleBox" uid="uid://cmvp1wmd6lqix" path="res://theme_data/default_button/default_button_hover_style_box.tres" id="1_f4r5j"]
 [ext_resource type="StyleBox" uid="uid://cmtgv0h1thlak" path="res://theme_data/default_button/default_button_normal_style_box.tres" id="2_osdfq"]
@@ -16,6 +16,7 @@
 [ext_resource type="StyleBox" uid="uid://cmkmda63cjri1" path="res://theme_data/yellow_button/normal_yellow_button.tres" id="8_1bujh"]
 [ext_resource type="StyleBox" uid="uid://ba5v0gfmv7orv" path="res://theme_data/yellow_button/hover_yellow_button.tres" id="8_s31vh"]
 [ext_resource type="StyleBox" uid="uid://wefvfxiigyb0" path="res://theme_data/yellow_button/pressed_yellow_button.tres" id="10_3ovlt"]
+[ext_resource type="FontFile" uid="uid://rk3w5j7f11hp" path="res://addons/fonts/NeomatrixCode.ttf" id="11_rt34r"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_abdh1"]
 
@@ -43,6 +44,8 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [resource]
+default_font = ExtResource("11_rt34r")
+default_font_size = 32
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
@@ -78,7 +81,7 @@ LineEdit/styles/normal = ExtResource("4_tyvpi")
 OptionButton/styles/hover = ExtResource("5_1jxht")
 OptionButton/styles/normal = ExtResource("6_lv5ij")
 OptionButton/styles/pressed = ExtResource("7_173pg")
-PanelContainer/fonts/NewFont = null
+PanelContainer/fonts/NewFont = ExtResource("11_rt34r")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_f20hw")
 PurpleButton/base_type = &"Button"
 PurpleButton/styles/hover = ExtResource("5_1jxht")
