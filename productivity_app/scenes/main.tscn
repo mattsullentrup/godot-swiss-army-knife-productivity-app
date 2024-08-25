@@ -5,7 +5,6 @@
 [ext_resource type="Script" path="res://scripts/tasks/project_manager.gd" id="3_8jc33"]
 [ext_resource type="Script" path="res://scripts/timers/normal_timer.gd" id="3_rcetv"]
 [ext_resource type="Script" path="res://scripts/timers/pomodoro.gd" id="4_vjfd7"]
-[ext_resource type="Script" path="res://scripts/timers/time_remaining_label.gd" id="5_qs481"]
 [ext_resource type="Texture2D" uid="uid://c1avhvgbpp5di" path="res://addons/images/kenney_icons/right.png" id="5_tbsx4"]
 [ext_resource type="Texture2D" uid="uid://cwjn2up7w5c3" path="res://addons/images/kenney_icons/previous.png" id="6_doo8k"]
 [ext_resource type="AudioStream" uid="uid://q3h7vgwqou6l" path="res://addons/sounds/notification2.wav" id="7_80g3q"]
@@ -13,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dgov4kg5io00y" path="res://addons/images/kenney_icons/next.png" id="8_81kmv"]
 [ext_resource type="Texture2D" uid="uid://ldmdhpth6b1" path="res://addons/images/kenney_icons/stop.png" id="9_028wi"]
 [ext_resource type="Texture2D" uid="uid://cmm42xkdqt61" path="res://addons/images/kenney_icons/plus.png" id="10_v4jhx"]
+[ext_resource type="Script" path="res://scripts/font_autosizer/autosize_label.gd" id="11_s85bg"]
 [ext_resource type="PackedScene" uid="uid://daot25v58e7k6" path="res://scenes/project.tscn" id="14_8oe1m"]
 [ext_resource type="PackedScene" uid="uid://dercwquryae2g" path="res://scenes/task.tscn" id="14_x731r"]
 [ext_resource type="Script" path="res://scripts/timers/time.gd" id="15_kccpl"]
@@ -145,11 +145,12 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 6
 theme = ExtResource("2_618gk")
-theme_override_font_sizes/font_size = 100
+theme_override_font_sizes/font_size = 125
 text = "00:00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("5_qs481")
+script = ExtResource("11_s85bg")
+max_font_size = 160
 
 [node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer"]
 unique_name_in_owner = true
@@ -244,10 +245,12 @@ alignment = 1
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 size_flags_vertical = 6
-theme_override_font_sizes/font_size = 46
+theme_override_font_sizes/font_size = 53
 text = "00:00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("11_s85bg")
+max_font_size = 100
 
 [node name="NormalTimerStartButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer"]
 custom_minimum_size = Vector2(105, 0)
