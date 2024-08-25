@@ -92,10 +92,12 @@ theme_override_constants/separation = 10
 [node name="LeftVBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
+alignment = 1
 
 [node name="PomodoroTimer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer" node_paths=PackedStringArray("pomodoro_timer", "round_label", "timer_message", "paused_message")]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
 theme = ExtResource("2_618gk")
 script = ExtResource("4_vjfd7")
 pomodoro_timer = NodePath("PomodoroTimer")
@@ -109,11 +111,11 @@ one_shot = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer"]
 layout_mode = 2
-theme_override_constants/separation = 24
 alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 2
 alignment = 1
 
 [node name="PausedLabel" type="Label" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/HBoxContainer"]
@@ -125,6 +127,7 @@ text = "Paused"
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_618gk")
+theme_override_font_sizes/font_size = 48
 text = "1/4"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -139,8 +142,9 @@ horizontal_alignment = 2
 [node name="TimeRemainingLabel" type="Label" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 6
 theme = ExtResource("2_618gk")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 100
 text = "00:00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -150,7 +154,7 @@ script = ExtResource("5_qs481")
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_vertical = 6
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_styles/background = SubResource("StyleBoxFlat_8m0aa")
 theme_override_styles/fill = SubResource("StyleBoxFlat_3bueh")
@@ -158,7 +162,10 @@ value = 49.46
 show_percentage = false
 
 [node name="Buttons" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.7
 theme_override_constants/separation = 15
 alignment = 1
 
@@ -212,10 +219,12 @@ icon_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/separation = 10
 
 [node name="NormalTimer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer" node_paths=PackedStringArray("timer", "time_remaining_label", "timer_option_button")]
 layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("2_618gk")
 script = ExtResource("3_rcetv")
 timer = NodePath("NormalTimer")
@@ -230,6 +239,7 @@ one_shot = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_constants/separation = 10
+alignment = 1
 
 [node name="NormalTimeRemainingLabel" type="Label" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 70)
@@ -315,7 +325,7 @@ theme = ExtResource("2_618gk")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 15
 alignment = 2
 script = ExtResource("19_580iq")
 audio_off_icon = ExtResource("22_subto")
