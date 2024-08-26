@@ -1,11 +1,11 @@
-extends Label
+extends Control
 
 
-var time_to_display: float
+@onready var _time_remaining_label: AutoSizeLabel = %TimeRemainingLabel
 
 
 func _process(_delta: float) -> void:
-	text = get_formatted_time_from_seconds(Pomodoro.time_to_display)
+	_time_remaining_label.text = get_formatted_time_from_seconds(Pomodoro.time_to_display)
 
 
 func get_formatted_time_from_seconds(seconds: Variant) -> String:
