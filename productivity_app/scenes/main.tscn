@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://doy3uidslkhni"]
+[gd_scene load_steps=33 format=4 uid="uid://doy3uidslkhni"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_5i01b"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/theme.tres" id="2_618gk"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://o1fkxxcgpcoy" path="res://addons/images/kenney_icons/musicOn.png" id="21_dm3lq"]
 [ext_resource type="Texture2D" uid="uid://ca0skkaornt5k" path="res://addons/images/kenney_icons/audioOn.png" id="21_of0bo"]
 [ext_resource type="Texture2D" uid="uid://dmacbvtrmou10" path="res://addons/images/kenney_icons/musicOff.png" id="22_subto"]
+[ext_resource type="Script" path="res://scripts/tasks/tree.gd" id="23_0tmek"]
 [ext_resource type="Script" path="res://scripts/audio/effects/autopan.gd" id="23_u7lil"]
 [ext_resource type="Script" path="res://scripts/audio/effects/phaser.gd" id="24_ng8pc"]
 [ext_resource type="Script" path="res://scripts/json_save_system.gd" id="29_s861o"]
@@ -450,6 +451,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -480,6 +482,13 @@ visible = false
 layout_mode = 2
 max_value = 115.0
 page = 115.0
+
+[node name="Tree" type="Tree" parent="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+column_titles_visible = true
+script = ExtResource("23_0tmek")
 
 [node name="Time" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -558,7 +567,7 @@ project_manager_node = NodePath("../VBoxContainer/UpperContainer/TaskListPanelCo
 [connection signal="value_changed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Phaser/RateHzHSlider" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Phaser" method="_on_range_min_hz_h_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/NoiseVolume/VolumeHSlider" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer" method="_on_volume_h_slider_value_changed"]
 [connection signal="toggled" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/NoiseButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer" method="_on_noise_button_toggled"]
-[connection signal="pressed" from="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/NewProjectButton" to="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager" method="_on_new_project_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/NewProjectButton" to="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/Tree" method="_on_new_project_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Time/HBoxContainer/SaveButton" to="JsonSavingAndLoading" method="save_game"]
 [connection signal="pressed" from="VBoxContainer/Time/HBoxContainer/LoadButton" to="JsonSavingAndLoading" method="load_game"]
 
