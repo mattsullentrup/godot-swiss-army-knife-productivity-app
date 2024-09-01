@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://doy3uidslkhni"]
+[gd_scene load_steps=30 format=4 uid="uid://doy3uidslkhni"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_5i01b"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/theme.tres" id="2_618gk"]
@@ -13,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://dgov4kg5io00y" path="res://addons/images/kenney_icons/next.png" id="8_81kmv"]
 [ext_resource type="Texture2D" uid="uid://ldmdhpth6b1" path="res://addons/images/kenney_icons/stop.png" id="9_028wi"]
 [ext_resource type="Texture2D" uid="uid://cmm42xkdqt61" path="res://addons/images/kenney_icons/plus.png" id="10_v4jhx"]
-[ext_resource type="Script" path="res://scripts/font_autosizer/autosize_label.gd" id="11_s85bg"]
 [ext_resource type="PackedScene" uid="uid://daot25v58e7k6" path="res://scenes/project.tscn" id="14_8oe1m"]
 [ext_resource type="PackedScene" uid="uid://dercwquryae2g" path="res://scenes/task.tscn" id="14_x731r"]
 [ext_resource type="Script" path="res://scripts/timers/time.gd" id="15_kccpl"]
@@ -88,6 +87,7 @@ alignment = 1
 
 [node name="UpperContainer" type="HSplitContainer" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/separation = 10
 split_offset = 395
 
@@ -98,7 +98,6 @@ alignment = 1
 
 [node name="PomodoroTimer" type="PanelContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer" node_paths=PackedStringArray("pomodoro_timer", "round_label", "timer_message", "paused_message")]
 layout_mode = 2
-size_flags_vertical = 4
 size_flags_stretch_ratio = 1.5
 theme = ExtResource("2_618gk")
 script = ExtResource("4_vjfd7")
@@ -144,14 +143,13 @@ horizontal_alignment = 2
 [node name="TimeRemainingLabel" type="Label" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 5
 theme = ExtResource("2_618gk")
-theme_override_font_sizes/font_size = 90
+theme_override_font_sizes/font_size = 80
 text = "00:00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
-script = ExtResource("11_s85bg")
-max_font_size = 90
 
 [node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer"]
 unique_name_in_owner = true
@@ -245,16 +243,13 @@ theme_override_constants/separation = 10
 alignment = 1
 
 [node name="NormalTimeRemainingLabel" type="Label" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 size_flags_vertical = 6
-theme_override_font_sizes/font_size = 53
+theme_override_font_sizes/font_size = 40
 text = "00:00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
-script = ExtResource("11_s85bg")
-max_font_size = 70
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer"]
 layout_mode = 2

@@ -1,7 +1,7 @@
 extends Control
 
 
-@onready var _time_remaining_label: AutoSizeLabel = %TimeRemainingLabel
+@onready var _time_remaining_label: Label = %TimeRemainingLabel
 
 
 func _process(_delta: float) -> void:
