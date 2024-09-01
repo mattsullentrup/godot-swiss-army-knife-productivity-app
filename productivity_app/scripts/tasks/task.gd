@@ -16,6 +16,7 @@ func _ready() -> void:
 	task_state_button.theme_type_variation = button_types[current_button_color % 3]
 	line_edit.text = text
 
+
 func _on_task_state_button_pressed() -> void:
 	current_button_color += 1
 	task_state_button.theme_type_variation = button_types[current_button_color % 3]

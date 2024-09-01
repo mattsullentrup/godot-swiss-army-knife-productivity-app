@@ -23,7 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://dmacbvtrmou10" path="res://addons/images/kenney_icons/musicOff.png" id="22_subto"]
 [ext_resource type="Script" path="res://scripts/audio/effects/autopan.gd" id="23_u7lil"]
 [ext_resource type="Script" path="res://scripts/audio/effects/phaser.gd" id="24_ng8pc"]
-[ext_resource type="Script" path="res://scripts/json_save_system.gd" id="29_s861o"]
+[ext_resource type="Script" path="res://save_system.gd" id="24_pcsud"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8awij"]
 content_margin_left = 10.0
@@ -389,6 +389,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="ProjectManager" type="VBoxContainer" parent="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 15
@@ -473,9 +474,8 @@ stream = SubResource("AudioStreamWAV_1mu4e")
 volume_db = -4.0
 bus = &"Noise"
 
-[node name="JsonSavingAndLoading" type="Node" parent="."]
-script = ExtResource("29_s861o")
-project_manager_node = NodePath("../VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager")
+[node name="SaveSystem" type="Node" parent="."]
+script = ExtResource("24_pcsud")
 
 [connection signal="timeout" from="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/PomodoroTimer" to="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer" method="_on_pomodoro_timer_timeout"]
 [connection signal="pressed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons/StartButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer" method="_on_start_button_pressed"]
@@ -493,8 +493,8 @@ project_manager_node = NodePath("../VBoxContainer/UpperContainer/TaskListPanelCo
 [connection signal="value_changed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Phaser/RateHzHSlider" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Phaser" method="_on_range_min_hz_h_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/NoiseVolume/VolumeHSlider" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer" method="_on_volume_h_slider_value_changed"]
 [connection signal="toggled" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/NoiseButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer" method="_on_noise_button_toggled"]
-[connection signal="pressed" from="VBoxContainer/Time/HBoxContainer/SaveButton" to="JsonSavingAndLoading" method="save_game"]
-[connection signal="pressed" from="VBoxContainer/Time/HBoxContainer/LoadButton" to="JsonSavingAndLoading" method="load_game"]
+[connection signal="pressed" from="VBoxContainer/Time/HBoxContainer/SaveButton" to="SaveSystem" method="save_game"]
+[connection signal="pressed" from="VBoxContainer/Time/HBoxContainer/LoadButton" to="SaveSystem" method="load_game"]
 
 [editable path="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager/Project"]
 [editable path="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager/Project/TaskContainer/Task"]

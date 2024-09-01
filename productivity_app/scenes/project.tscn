@@ -29,6 +29,7 @@ icon = ExtResource("2_v6jp2")
 flat = true
 
 [node name="LineEdit" type="LineEdit" parent="HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
@@ -60,6 +61,7 @@ icon = ExtResource("7_6vwoh")
 icon_alignment = 1
 
 [node name="TaskContainer" type="VBoxContainer" parent="." node_paths=PackedStringArray("toggle_tasks_button")]
+unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 2
 script = ExtResource("8_ea4sd")

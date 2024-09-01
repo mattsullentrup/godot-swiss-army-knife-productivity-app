@@ -51,6 +51,7 @@ folder_colors={
 "res://addons/fonts/": "gray",
 "res://addons/images/": "blue",
 "res://addons/sounds/": "orange",
+"res://resources/": "pink",
 "res://scenes/": "blue",
 "res://scripts/": "purple",
 "res://scripts/audio/": "pink",
