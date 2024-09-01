@@ -3,7 +3,8 @@ extends PanelContainer
 
 @export var timer: Timer
 @export var time_remaining_label: Label
-@export var timer_option_button: OptionButton
+
+@onready var option_button: OptionButton = %TimerOptionButton
 
 var timer_length: float
 var overtime_start_time: float
@@ -13,10 +14,10 @@ var is_in_overtime := false
 
 
 func _ready() -> void:
-	timer_option_button.selected = 0
+	option_button.selected = 0
 	for i in range(1, 13):
-		timer_option_button.add_item(str(i * 5), i * 5)
-	timer_length = timer_option_button.get_selected_id() * 60
+		option_button.add_item(str(i * 5), i * 5)
+	timer_length = option_button.get_selected_id() * 60
 	time_remaining_label.text = str(timer_length)
 
 
@@ -68,6 +69,6 @@ func _on_timer_timeout() -> void:
 	is_in_overtime = true
 
 
-func _on_time_option_button_item_selected(index: int) -> void:
-	timer_length = timer_option_button.get_item_id(index) * 60
+func _on_timer_option_button_item_selected(index: int) -> void:
+	timer_length = option_button.get_item_id(index) * 60
 	is_in_overtime = false
