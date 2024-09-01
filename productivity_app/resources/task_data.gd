@@ -3,4 +3,4 @@ extends Resource
 
 
 @export var text: String
-@export var color: Color
+@export var color_index: int

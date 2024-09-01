@@ -70,6 +70,6 @@ func _load() -> void:
 			#var saved_project_children: String = saved_project.children
 			#for child: Task in str_to_var(saved_project_children):
 				#var task := preload("res://scenes/task.tscn").instantiate() as Task
-				#task.current_button_color = child.current_button_color
+				#task.color_index = child.color_index
 				#task.text = child.text
 				#task_container.add_child(task)

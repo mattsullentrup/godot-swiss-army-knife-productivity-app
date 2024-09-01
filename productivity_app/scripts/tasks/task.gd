@@ -4,22 +4,40 @@ extends HBoxContainer
 
 signal task_text_changed
 
-@export var task_state_button: Button
-@export var line_edit: LineEdit
+@export var _task_state_button: Button
+@export var _line_edit: LineEdit
 
-var current_button_color: int = 0
+var save_data: TaskData
+var color_index: int = 0
 var button_types: Array[StringName] = [&"RedButton", &"YellowButton", &"GreenButton"]
 var text: String
 
 
 func _ready() -> void:
-	task_state_button.theme_type_variation = button_types[current_button_color % 3]
-	line_edit.text = text
+	if not save_data == null:
+		_load()
+		return
+	_line_edit.grab_focus()
+
+func save(tasks: Array[TaskData]) -> void:
+	var task_data := TaskData.new()
+	
+	task_data.text = _line_edit.text
+	task_data.color_index = color_index
+	
+	tasks.append(task_data)
+
+
+func _load() -> void:
+	_line_edit.text = save_data.text
+	
+	color_index = save_data.color_index
+	_task_state_button.theme_type_variation = button_types[color_index % 3]
 
 
 func _on_task_state_button_pressed() -> void:
-	current_button_color += 1
-	task_state_button.theme_type_variation = button_types[current_button_color % 3]
+	color_index += 1
+	_task_state_button.theme_type_variation = button_types[color_index % 3]
 
 
 func _on_delete_button_pressed() -> void:
