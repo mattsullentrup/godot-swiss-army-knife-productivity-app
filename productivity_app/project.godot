@@ -25,7 +25,7 @@ gdscript/warnings/unsafe_call_argument=1
 
 [display]
 
-window/size/viewport_width=1280
+window/size/viewport_width=1080
 window/size/viewport_height=720
 window/size/mode=3
 window/size/initial_position_type=2
@@ -33,6 +33,7 @@ window/size/initial_screen=1
 window/energy_saving/keep_screen_on=false
 window/stretch/aspect="ignore"
 window/dpi/allow_hidpi=false
+display_server/driver.linuxbsd="wayland"
 
 [dotnet]
 
