@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://doy3uidslkhni"]
+[gd_scene load_steps=29 format=4 uid="uid://doy3uidslkhni"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_5i01b"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/theme.tres" id="2_618gk"]
@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://ldmdhpth6b1" path="res://addons/images/kenney_icons/stop.png" id="9_028wi"]
 [ext_resource type="Texture2D" uid="uid://cmm42xkdqt61" path="res://addons/images/kenney_icons/plus.png" id="10_v4jhx"]
 [ext_resource type="PackedScene" uid="uid://daot25v58e7k6" path="res://scenes/project.tscn" id="14_8oe1m"]
-[ext_resource type="PackedScene" uid="uid://dercwquryae2g" path="res://scenes/task.tscn" id="14_x731r"]
 [ext_resource type="Script" path="res://scripts/timers/time.gd" id="15_kccpl"]
 [ext_resource type="Script" path="res://scripts/audio/noise.gd" id="19_580iq"]
 [ext_resource type="Texture2D" uid="uid://d2avw8bt6jq2t" path="res://addons/images/kenney_icons/audioOff.png" id="20_ttxmr"]
@@ -396,15 +395,6 @@ theme_override_constants/separation = 15
 script = ExtResource("3_8jc33")
 project = ExtResource("14_8oe1m")
 
-[node name="Project" parent="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager" instance=ExtResource("14_8oe1m")]
-layout_mode = 2
-
-[node name="Task" parent="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager/Project/TaskContainer" index="0" instance=ExtResource("14_x731r")]
-layout_mode = 2
-
-[node name="LineEdit" parent="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager/Project/TaskContainer/Task" index="1"]
-text = "gsdfgsdfgsdggdfhdfgdadfg"
-
 [node name="_h_scroll2" type="HScrollBar" parent="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer"]
 visible = false
 layout_mode = 2
@@ -493,8 +483,6 @@ script = ExtResource("24_pcsud")
 [connection signal="value_changed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Phaser/RateHzHSlider" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Phaser" method="_on_range_min_hz_h_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/NoiseVolume/VolumeHSlider" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer" method="_on_volume_h_slider_value_changed"]
 [connection signal="toggled" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/NoiseButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer" method="_on_noise_button_toggled"]
+[connection signal="pressed" from="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/NewProjectButton" to="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager" method="_on_new_project_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Time/HBoxContainer/SaveButton" to="SaveSystem" method="save_game"]
 [connection signal="pressed" from="VBoxContainer/Time/HBoxContainer/LoadButton" to="SaveSystem" method="load_game"]
-
-[editable path="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager/Project"]
-[editable path="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager/Project/TaskContainer/Task"]

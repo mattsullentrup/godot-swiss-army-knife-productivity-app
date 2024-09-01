@@ -3,25 +3,44 @@ extends VBoxContainer
 
 
 var text: String
+var save_data: ProjectData
 
 @onready var _line_edit: LineEdit = %LineEdit
 @onready var _task_container: VBoxContainer = %TaskContainer
 
 
 func _ready() -> void:
-	_line_edit.text = text
+	if not save_data == null:
+		_load()
+		return
+	_line_edit.grab_focus()
 
 
-func save(projects: Array[ProjectData]) -> void:
-	var project_data := ProjectData.new()
+func save(projects_data: Array[ProjectData]) -> void:
+	var data := ProjectData.new()
 	
-	project_data.scene_file_path = scene_file_path
+	data.scene_file_path = scene_file_path
+	data.text = text
 	
-	var tasks: Array[TaskData]
+	var tasks_data: Array[TaskData]
 	for task in _task_container.get_children():
-		task.save(tasks)
+		task.save(tasks_data)
+	data.tasks_data = tasks_data
 	
-	projects.append(project_data)
+	projects_data.append(data)
+
+
+func _load() -> void:
+	_line_edit.text = save_data.text
+	text = _line_edit.text
+	
+	for task_data in save_data.tasks_data:
+		var task_scene: Resource = load(task_data.scene_file_path)
+		var task: Node = task_scene.instantiate()
+		
+		task.save_data = task_data
+		
+		_task_container.add_child(task)
 
 
 func _on_delete_button_pressed() -> void:

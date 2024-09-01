@@ -4,28 +4,30 @@ extends HBoxContainer
 
 signal task_text_changed
 
-@export var _task_state_button: Button
-@export var _line_edit: LineEdit
-
 var save_data: TaskData
 var color_index: int = 0
 var button_types: Array[StringName] = [&"RedButton", &"YellowButton", &"GreenButton"]
 var text: String
 
+@onready var _line_edit: LineEdit = %LineEdit
+@onready var _task_state_button: Button = %TaskStateButton
+
 
 func _ready() -> void:
 	if not save_data == null:
 		_load()
-		return
-	_line_edit.grab_focus()
+	else:
+		_line_edit.grab_focus()
 
-func save(tasks: Array[TaskData]) -> void:
-	var task_data := TaskData.new()
+
+func save(tasks_data: Array[TaskData]) -> void:
+	var data := TaskData.new()
 	
-	task_data.text = _line_edit.text
-	task_data.color_index = color_index
+	data.text = _line_edit.text
+	data.color_index = color_index
+	data.scene_file_path = scene_file_path
 	
-	tasks.append(task_data)
+	tasks_data.append(data)
 
 
 func _load() -> void:

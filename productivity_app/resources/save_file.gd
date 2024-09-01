@@ -2,4 +2,4 @@ class_name SaveFile
 extends Resource
 
 
-@export var projects: Array[ProjectData]
+@export var projects_data: Array[ProjectData]
