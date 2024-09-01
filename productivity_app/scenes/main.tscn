@@ -88,7 +88,6 @@ alignment = 1
 
 [node name="UpperContainer" type="HSplitContainer" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
 theme_override_constants/separation = 10
 split_offset = 395
 
@@ -99,7 +98,7 @@ alignment = 1
 
 [node name="PomodoroTimer" type="PanelContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer" node_paths=PackedStringArray("pomodoro_timer", "round_label", "timer_message", "paused_message")]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 4
 size_flags_stretch_ratio = 1.5
 theme = ExtResource("2_618gk")
 script = ExtResource("4_vjfd7")
@@ -119,7 +118,7 @@ script = ExtResource("5_qs481")
 
 [node name="HBoxContainer" type="PanelContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 2
+size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_8awij")
 
 [node name="PausedLabel" type="Label" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/HBoxContainer"]
@@ -130,7 +129,7 @@ text = "Paused"
 [node name="RoundLabel" type="Label" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_618gk")
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 28
 text = "1/4"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -145,15 +144,14 @@ horizontal_alignment = 2
 [node name="TimeRemainingLabel" type="Label" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 6
 theme = ExtResource("2_618gk")
-theme_override_font_sizes/font_size = 125
+theme_override_font_sizes/font_size = 90
 text = "00:00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 script = ExtResource("11_s85bg")
-max_font_size = 160
+max_font_size = 90
 
 [node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer"]
 unique_name_in_owner = true
@@ -168,7 +166,6 @@ show_percentage = false
 [node name="Buttons" type="HBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-size_flags_vertical = 3
 size_flags_stretch_ratio = 0.7
 theme_override_constants/separation = 15
 alignment = 1
@@ -177,6 +174,7 @@ alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 theme = ExtResource("2_618gk")
 theme_type_variation = &"GreenButton"
 text = "
@@ -187,6 +185,7 @@ icon_alignment = 1
 [node name="GoBackButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 theme = ExtResource("2_618gk")
 theme_type_variation = &"PurpleButton"
 icon = ExtResource("6_doo8k")
@@ -195,6 +194,7 @@ icon_alignment = 1
 [node name="PauseButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 theme = ExtResource("2_618gk")
 theme_type_variation = &"YellowButton"
 text = "
@@ -205,6 +205,7 @@ icon_alignment = 1
 [node name="SkipButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 theme = ExtResource("2_618gk")
 theme_type_variation = &"PurpleButton"
 icon = ExtResource("8_81kmv")
@@ -213,6 +214,7 @@ icon_alignment = 1
 [node name="StopButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 tooltip_text = "Reset"
 theme = SubResource("Theme_4ijq2")
 theme_type_variation = &"RedButton"
@@ -252,7 +254,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 script = ExtResource("11_s85bg")
-max_font_size = 100
+max_font_size = 70
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer"]
 layout_mode = 2
