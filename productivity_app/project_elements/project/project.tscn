@@ -12,26 +12,35 @@
 [ext_resource type="Texture2D" uid="uid://c1avhvgbpp5di" path="res://addons/images/kenney_icons/right.png" id="10_hcbro"]
 
 [node name="Project" type="VBoxContainer" groups=["Persist", "Project"]]
-offset_right = 421.0
-offset_bottom = 65.0
+offset_right = 463.0
+offset_bottom = 95.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
 focus_mode = 2
 theme_override_constants/separation = 15
 script = ExtResource("1_hop2a")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
+size_flags_vertical = 4
 focus_mode = 2
 
 [node name="ToggleTasksButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
-theme_override_constants/icon_max_width = 25
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_constants/icon_max_width = 50
 icon = ExtResource("2_v6jp2")
 flat = true
+expand_icon = true
 
 [node name="LineEdit" type="LineEdit" parent="HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 2.0
+theme_override_constants/minimum_character_width = 15
 theme_override_font_sizes/font_size = 24
 placeholder_text = "Enter project.."
 expand_to_text_length = true
@@ -41,28 +50,38 @@ script = ExtResource("3_jbruc")
 [node name="NewTaskButton" type="Button" parent="HBoxContainer"]
 texture_filter = 2
 layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("2_odcyh")
 theme_type_variation = &"GreenButton"
+theme_override_constants/icon_max_width = 40
 icon = ExtResource("5_4a57h")
 icon_alignment = 1
+expand_icon = true
 
 [node name="ResetButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("2_odcyh")
 theme_type_variation = &"PurpleButton"
+theme_override_constants/icon_max_width = 60
 icon = ExtResource("6_x2rjc")
 icon_alignment = 1
+expand_icon = true
 
 [node name="DeleteButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("2_odcyh")
 theme_type_variation = &"RedButton"
+theme_override_constants/icon_max_width = 60
 icon = ExtResource("7_6vwoh")
 icon_alignment = 1
+expand_icon = true
 
 [node name="TaskContainer" type="VBoxContainer" parent="." node_paths=PackedStringArray("toggle_tasks_button")]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 3
 focus_mode = 2
 script = ExtResource("8_ea4sd")
 task = ExtResource("2_vprcq")
