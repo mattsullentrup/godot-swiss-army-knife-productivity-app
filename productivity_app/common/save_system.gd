@@ -38,6 +38,8 @@ func _load() -> void:
 	
 	for project_data in save_file.projects_data:
 		var project_scene_path: Resource = load(project_data.scene_file_path)
+		if project_scene_path == null:
+			return
 		var project: Node = project_scene_path.instantiate()
 		
 		project.save_data = project_data
