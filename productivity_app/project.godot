@@ -12,7 +12,7 @@ config_version=5
 
 config/name="grindset_simulator"
 config/tags=PackedStringArray("personal")
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://main/main.tscn"
 config/auto_accept_quit=false
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -51,19 +51,21 @@ folder_colors={
 "res://addons/fonts/": "gray",
 "res://addons/images/": "blue",
 "res://addons/sounds/": "orange",
+"res://common/": "gray",
+"res://main/": "purple",
+"res://project_elements/": "blue",
 "res://resources/": "pink",
-"res://scenes/": "blue",
 "res://scripts/": "purple",
 "res://scripts/audio/": "pink",
 "res://scripts/font_autosizer/": "red",
 "res://scripts/tasks/": "green",
 "res://scripts/timers/": "orange",
-"res://theme_data/": "teal",
-"res://theme_data/default_button/": "gray",
-"res://theme_data/green_button/": "green",
-"res://theme_data/purple_button/": "purple",
-"res://theme_data/red_button/": "red",
-"res://theme_data/yellow_button/": "yellow"
+"res://theme/": "teal",
+"res://theme/default_button/": "gray",
+"res://theme/green_button/": "green",
+"res://theme/purple_button/": "purple",
+"res://theme/red_button/": "red",
+"res://theme/yellow_button/": "yellow"
 }
 
 [global_group]

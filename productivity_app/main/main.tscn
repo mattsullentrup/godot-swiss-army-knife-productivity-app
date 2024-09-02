@@ -1,28 +1,28 @@
 [gd_scene load_steps=29 format=4 uid="uid://doy3uidslkhni"]
 
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_5i01b"]
-[ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme_data/theme.tres" id="2_618gk"]
-[ext_resource type="Script" path="res://scripts/tasks/project_manager.gd" id="3_8jc33"]
-[ext_resource type="Script" path="res://scripts/timers/normal_timer.gd" id="3_rcetv"]
-[ext_resource type="Script" path="res://scripts/timers/pomodoro.gd" id="4_vjfd7"]
-[ext_resource type="Script" path="res://scripts/timers/time_remaining_label.gd" id="5_qs481"]
-[ext_resource type="Texture2D" uid="uid://c1avhvgbpp5di" path="res://addons/images/kenney_icons/right.png" id="5_tbsx4"]
-[ext_resource type="Texture2D" uid="uid://cwjn2up7w5c3" path="res://addons/images/kenney_icons/previous.png" id="6_doo8k"]
-[ext_resource type="AudioStream" uid="uid://q3h7vgwqou6l" path="res://addons/sounds/notification2.wav" id="7_80g3q"]
-[ext_resource type="Texture2D" uid="uid://b21tp1ekqqfq1" path="res://addons/images/kenney_icons/pause.png" id="7_gawv8"]
-[ext_resource type="Texture2D" uid="uid://dgov4kg5io00y" path="res://addons/images/kenney_icons/next.png" id="8_81kmv"]
-[ext_resource type="Texture2D" uid="uid://ldmdhpth6b1" path="res://addons/images/kenney_icons/stop.png" id="9_028wi"]
-[ext_resource type="Texture2D" uid="uid://cmm42xkdqt61" path="res://addons/images/kenney_icons/plus.png" id="10_v4jhx"]
-[ext_resource type="PackedScene" uid="uid://daot25v58e7k6" path="res://scenes/project.tscn" id="14_8oe1m"]
-[ext_resource type="Script" path="res://scripts/timers/time.gd" id="15_kccpl"]
-[ext_resource type="Script" path="res://scripts/audio/noise.gd" id="19_580iq"]
-[ext_resource type="Texture2D" uid="uid://d2avw8bt6jq2t" path="res://addons/images/kenney_icons/audioOff.png" id="20_ttxmr"]
-[ext_resource type="Texture2D" uid="uid://o1fkxxcgpcoy" path="res://addons/images/kenney_icons/musicOn.png" id="21_dm3lq"]
-[ext_resource type="Texture2D" uid="uid://ca0skkaornt5k" path="res://addons/images/kenney_icons/audioOn.png" id="21_of0bo"]
-[ext_resource type="Texture2D" uid="uid://dmacbvtrmou10" path="res://addons/images/kenney_icons/musicOff.png" id="22_subto"]
-[ext_resource type="Script" path="res://scripts/audio/effects/autopan.gd" id="23_u7lil"]
-[ext_resource type="Script" path="res://scripts/audio/effects/phaser.gd" id="24_ng8pc"]
-[ext_resource type="Script" path="res://save_system.gd" id="24_pcsud"]
+[ext_resource type="Script" path="res://main/main.gd" id="1_kkm8q"]
+[ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme/theme.tres" id="2_32l1q"]
+[ext_resource type="Script" path="res://common/timers/pomodoro.gd" id="3_dx455"]
+[ext_resource type="Script" path="res://common/timers/time_remaining_label.gd" id="4_66j8g"]
+[ext_resource type="Texture2D" uid="uid://c1avhvgbpp5di" path="res://addons/images/kenney_icons/right.png" id="5_8pb4d"]
+[ext_resource type="Texture2D" uid="uid://cwjn2up7w5c3" path="res://addons/images/kenney_icons/previous.png" id="6_vcf4t"]
+[ext_resource type="Texture2D" uid="uid://b21tp1ekqqfq1" path="res://addons/images/kenney_icons/pause.png" id="7_po662"]
+[ext_resource type="Texture2D" uid="uid://dgov4kg5io00y" path="res://addons/images/kenney_icons/next.png" id="8_wfhyl"]
+[ext_resource type="Texture2D" uid="uid://ldmdhpth6b1" path="res://addons/images/kenney_icons/stop.png" id="9_iu3m5"]
+[ext_resource type="Script" path="res://common/timers/normal_timer.gd" id="10_tg7iy"]
+[ext_resource type="Script" path="res://common/audio/noise.gd" id="11_xr3k1"]
+[ext_resource type="Texture2D" uid="uid://dmacbvtrmou10" path="res://addons/images/kenney_icons/musicOff.png" id="12_syt3v"]
+[ext_resource type="Texture2D" uid="uid://o1fkxxcgpcoy" path="res://addons/images/kenney_icons/musicOn.png" id="13_nb1g7"]
+[ext_resource type="Script" path="res://common/audio/effects/autopan.gd" id="14_3rdur"]
+[ext_resource type="Script" path="res://common/audio/effects/phaser.gd" id="15_l4dqk"]
+[ext_resource type="Texture2D" uid="uid://d2avw8bt6jq2t" path="res://addons/images/kenney_icons/audioOff.png" id="16_qhct5"]
+[ext_resource type="Texture2D" uid="uid://ca0skkaornt5k" path="res://addons/images/kenney_icons/audioOn.png" id="17_lrwy8"]
+[ext_resource type="Texture2D" uid="uid://cmm42xkdqt61" path="res://addons/images/kenney_icons/plus.png" id="18_2xuuj"]
+[ext_resource type="Script" path="res://project_elements/project_manager.gd" id="19_iwwbs"]
+[ext_resource type="PackedScene" uid="uid://daot25v58e7k6" path="res://project_elements/project/project.tscn" id="20_ln4en"]
+[ext_resource type="Script" path="res://common/timers/time.gd" id="21_x82c0"]
+[ext_resource type="AudioStream" uid="uid://q3h7vgwqou6l" path="res://addons/sounds/notification2.wav" id="22_rkn0h"]
+[ext_resource type="Script" path="res://common/save_system.gd" id="23_upx4x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8awij"]
 content_margin_left = 10.0
@@ -77,7 +77,7 @@ theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
-script = ExtResource("1_5i01b")
+script = ExtResource("1_kkm8q")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -98,8 +98,8 @@ alignment = 1
 [node name="PomodoroTimer" type="PanelContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer" node_paths=PackedStringArray("pomodoro_timer", "round_label", "timer_message", "paused_message")]
 layout_mode = 2
 size_flags_stretch_ratio = 1.5
-theme = ExtResource("2_618gk")
-script = ExtResource("4_vjfd7")
+theme = ExtResource("2_32l1q")
+script = ExtResource("3_dx455")
 pomodoro_timer = NodePath("PomodoroTimer")
 round_label = NodePath("VBoxContainer/HBoxContainer/RoundLabel")
 timer_message = NodePath("VBoxContainer/HBoxContainer/TimerMessage")
@@ -112,7 +112,7 @@ one_shot = true
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer"]
 layout_mode = 2
 alignment = 1
-script = ExtResource("5_qs481")
+script = ExtResource("4_66j8g")
 
 [node name="HBoxContainer" type="PanelContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer"]
 layout_mode = 2
@@ -126,7 +126,7 @@ text = "Paused"
 
 [node name="RoundLabel" type="Label" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_618gk")
+theme = ExtResource("2_32l1q")
 theme_override_font_sizes/font_size = 28
 text = "1/4"
 horizontal_alignment = 1
@@ -143,7 +143,7 @@ horizontal_alignment = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 5
-theme = ExtResource("2_618gk")
+theme = ExtResource("2_32l1q")
 theme_override_font_sizes/font_size = 80
 text = "00:00:00"
 horizontal_alignment = 1
@@ -172,40 +172,40 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-theme = ExtResource("2_618gk")
+theme = ExtResource("2_32l1q")
 theme_type_variation = &"GreenButton"
 text = "
 "
-icon = ExtResource("5_tbsx4")
+icon = ExtResource("5_8pb4d")
 icon_alignment = 1
 
 [node name="GoBackButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-theme = ExtResource("2_618gk")
+theme = ExtResource("2_32l1q")
 theme_type_variation = &"PurpleButton"
-icon = ExtResource("6_doo8k")
+icon = ExtResource("6_vcf4t")
 icon_alignment = 1
 
 [node name="PauseButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-theme = ExtResource("2_618gk")
+theme = ExtResource("2_32l1q")
 theme_type_variation = &"YellowButton"
 text = "
 "
-icon = ExtResource("7_gawv8")
+icon = ExtResource("7_po662")
 icon_alignment = 1
 
 [node name="SkipButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-theme = ExtResource("2_618gk")
+theme = ExtResource("2_32l1q")
 theme_type_variation = &"PurpleButton"
-icon = ExtResource("8_81kmv")
+icon = ExtResource("8_wfhyl")
 icon_alignment = 1
 
 [node name="StopButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons"]
@@ -215,7 +215,7 @@ size_flags_vertical = 4
 tooltip_text = "Reset"
 theme = SubResource("Theme_4ijq2")
 theme_type_variation = &"RedButton"
-icon = ExtResource("9_028wi")
+icon = ExtResource("9_iu3m5")
 icon_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer"]
@@ -226,8 +226,8 @@ theme_override_constants/separation = 10
 [node name="NormalTimer" type="PanelContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer" node_paths=PackedStringArray("timer", "time_remaining_label")]
 layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource("2_618gk")
-script = ExtResource("3_rcetv")
+theme = ExtResource("2_32l1q")
+script = ExtResource("10_tg7iy")
 timer = NodePath("NormalTimer")
 time_remaining_label = NodePath("VBoxContainer/NormalTimeRemainingLabel")
 
@@ -256,13 +256,13 @@ size_flags_horizontal = 4
 
 [node name="NormalTimerStartButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_618gk")
+theme = ExtResource("2_32l1q")
 theme_type_variation = &"PurpleButton"
 text = "Start"
 
 [node name="NormalTimerStopButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_618gk")
+theme = ExtResource("2_32l1q")
 theme_type_variation = &"PurpleButton"
 text = "Stop
 "
@@ -276,19 +276,19 @@ popup/item_0/text = "1"
 
 [node name="NoisePanelContainer" type="PanelContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_618gk")
+theme = ExtResource("2_32l1q")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer"]
 layout_mode = 2
 theme_override_constants/separation = 15
 alignment = 2
-script = ExtResource("19_580iq")
-audio_off_icon = ExtResource("22_subto")
-audio_on_icon = ExtResource("21_dm3lq")
+script = ExtResource("11_xr3k1")
+audio_off_icon = ExtResource("12_syt3v")
+audio_on_icon = ExtResource("13_nb1g7")
 
 [node name="Autopan" type="HBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer"]
 layout_mode = 2
-script = ExtResource("23_u7lil")
+script = ExtResource("14_3rdur")
 pan_speed = 0.005
 
 [node name="AutopanCheckButton" type="CheckButton" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Autopan"]
@@ -308,7 +308,7 @@ value = 0.01
 
 [node name="Phaser" type="HBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer"]
 layout_mode = 2
-script = ExtResource("24_ng8pc")
+script = ExtResource("15_l4dqk")
 
 [node name="PhaserCheckButton" type="CheckButton" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Phaser"]
 layout_mode = 2
@@ -334,7 +334,7 @@ alignment = 1
 [node name="AudioOff" type="NinePatchRect" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/NoiseVolume"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture = ExtResource("20_ttxmr")
+texture = ExtResource("16_qhct5")
 
 [node name="VolumeHSlider" type="HSlider" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/NoiseVolume"]
 unique_name_in_owner = true
@@ -349,7 +349,7 @@ value = 0.251
 [node name="AudioMax" type="NinePatchRect" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/NoiseVolume"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture = ExtResource("21_of0bo")
+texture = ExtResource("17_lrwy8")
 
 [node name="NoiseButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -357,16 +357,16 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource("2_618gk")
+theme = ExtResource("2_32l1q")
 theme_type_variation = &"PurpleButton"
 theme_override_constants/icon_max_width = 50
 toggle_mode = true
-icon = ExtResource("22_subto")
+icon = ExtResource("12_syt3v")
 
 [node name="TaskListPanelContainer" type="PanelContainer" parent="VBoxContainer/UpperContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource("2_618gk")
+theme = ExtResource("2_32l1q")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/UpperContainer/TaskListPanelContainer"]
 layout_mode = 2
@@ -376,10 +376,10 @@ theme_override_constants/separation = 15
 custom_minimum_size = Vector2(100, 60)
 layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource("2_618gk")
+theme = ExtResource("2_32l1q")
 theme_type_variation = &"GreenButton"
 theme_override_constants/icon_max_width = 100
-icon = ExtResource("10_v4jhx")
+icon = ExtResource("18_2xuuj")
 icon_alignment = 1
 expand_icon = true
 
@@ -392,8 +392,8 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 15
-script = ExtResource("3_8jc33")
-project = ExtResource("14_8oe1m")
+script = ExtResource("19_iwwbs")
+project = ExtResource("20_ln4en")
 
 [node name="_h_scroll2" type="HScrollBar" parent="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer"]
 visible = false
@@ -409,8 +409,8 @@ page = 115.0
 
 [node name="Time" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_618gk")
-script = ExtResource("15_kccpl")
+theme = ExtResource("2_32l1q")
+script = ExtResource("21_x82c0")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Time"]
 layout_mode = 2
@@ -455,7 +455,7 @@ vertical_alignment = 1
 
 [node name="NotificationSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
-stream = ExtResource("7_80g3q")
+stream = ExtResource("22_rkn0h")
 volume_db = -3.0
 
 [node name="PinkNoise" type="AudioStreamPlayer" parent="."]
@@ -465,7 +465,7 @@ volume_db = -4.0
 bus = &"Noise"
 
 [node name="SaveSystem" type="Node" parent="."]
-script = ExtResource("24_pcsud")
+script = ExtResource("23_upx4x")
 
 [connection signal="timeout" from="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/PomodoroTimer" to="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer" method="_on_pomodoro_timer_timeout"]
 [connection signal="pressed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/Buttons/StartButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer" method="_on_start_button_pressed"]
