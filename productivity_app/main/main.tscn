@@ -386,6 +386,7 @@ expand_icon = true
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+horizontal_scroll_mode = 0
 
 [node name="ProjectManager" type="VBoxContainer" parent="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer"]
 unique_name_in_owner = true
