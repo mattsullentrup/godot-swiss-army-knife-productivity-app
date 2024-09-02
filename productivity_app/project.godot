@@ -39,11 +39,6 @@ display_server/driver.linuxbsd="wayland"
 
 project/assembly_name="UntitledProductivityApp"
 
-[editor]
-
-version_control/plugin_name="GitPlugin"
-version_control/autoload_on_startup=true
-
 [file_customization]
 
 folder_colors={
