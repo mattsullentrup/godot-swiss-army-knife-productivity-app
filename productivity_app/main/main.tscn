@@ -157,7 +157,7 @@ max_font_size = 191
 
 [node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 15)
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_styles/background = SubResource("StyleBoxFlat_8m0aa")
@@ -400,6 +400,7 @@ horizontal_scroll_mode = 0
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/separation = 15
 script = ExtResource("19_iwwbs")
 project = ExtResource("20_ln4en")
@@ -423,19 +424,8 @@ script = ExtResource("21_x82c0")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Time"]
 layout_mode = 2
+theme_override_constants/separation = 75
 alignment = 1
-
-[node name="SaveButton" type="Button" parent="VBoxContainer/Time/HBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 0
-text = "save"
-
-[node name="LoadButton" type="Button" parent="VBoxContainer/Time/HBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-text = "load"
 
 [node name="ClockLabel" type="Label" parent="VBoxContainer/Time/HBoxContainer"]
 unique_name_in_owner = true
@@ -493,5 +483,3 @@ script = ExtResource("23_upx4x")
 [connection signal="value_changed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/NoiseVolume/VolumeHSlider" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer" method="_on_volume_h_slider_value_changed"]
 [connection signal="toggled" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/NoiseButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer" method="_on_noise_button_toggled"]
 [connection signal="pressed" from="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/NewProjectButton" to="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager" method="_on_new_project_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Time/HBoxContainer/SaveButton" to="SaveSystem" method="save_game"]
-[connection signal="pressed" from="VBoxContainer/Time/HBoxContainer/LoadButton" to="SaveSystem" method="load_game"]
