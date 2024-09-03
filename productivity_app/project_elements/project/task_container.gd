@@ -9,14 +9,14 @@ extends VBoxContainer
 var are_children_visible := true
 
 
-func _create_new_task(_unnecessary_text: String = "") -> void:
+func create_new_task(_unnecessary_text: String = "") -> void:
 	var new_task: Task = task.instantiate()
 	add_child(new_task)
-	new_task.line_edit.text_submitted.connect(_create_new_task)
+	new_task.line_edit.text_submitted.connect(create_new_task)
 
 
 func _on_new_task_button_pressed() -> void:
-	_create_new_task()
+	create_new_task()
 
 
 func _on_toggle_tasks_button_pressed() -> void:
@@ -41,4 +41,4 @@ func _on_reset_button_pressed() -> void:
 
 
 func _on_line_edit_text_submitted(_new_text: String) -> void:
-	_create_new_task()
+	create_new_task()

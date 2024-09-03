@@ -40,6 +40,8 @@ func _load() -> void:
 
 		_task_container.add_child(task)
 
+		task.line_edit.text_submitted.connect(_task_container.create_new_task)
+
 
 func _on_delete_button_pressed() -> void:
 	queue_free()
