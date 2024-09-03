@@ -8,10 +8,15 @@
 [node name="Task" type="HBoxContainer" groups=["Persist", "Task"]]
 offset_right = 261.0
 offset_bottom = 50.0
-size_flags_horizontal = 10
+size_flags_horizontal = 3
 focus_mode = 2
 theme_override_constants/separation = 15
 script = ExtResource("1_e0rqx")
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
 
 [node name="TaskStateButton" type="Button" parent="."]
 unique_name_in_owner = true
@@ -25,6 +30,7 @@ theme_type_variation = &"RedButton"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
 theme_override_constants/minimum_character_width = 24
 placeholder_text = "Enter task..."
 script = ExtResource("3_pdtx7")

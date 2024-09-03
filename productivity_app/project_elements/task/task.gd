@@ -22,17 +22,17 @@ func _ready() -> void:
 
 func save(tasks_data: Array[TaskData]) -> void:
 	var data := TaskData.new()
-	
+
 	data.text = _line_edit.text
 	data.color_index = color_index
 	data.scene_file_path = scene_file_path
-	
+
 	tasks_data.append(data)
 
 
 func _load() -> void:
 	_line_edit.text = save_data.text
-	
+
 	color_index = save_data.color_index
 	_task_state_button.theme_type_variation = button_types[color_index % 3]
 

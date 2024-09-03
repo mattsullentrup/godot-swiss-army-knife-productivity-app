@@ -14,6 +14,7 @@
 [node name="Project" type="VBoxContainer" groups=["Persist", "Project"]]
 offset_right = 463.0
 offset_bottom = 95.0
+size_flags_horizontal = 3
 size_flags_vertical = 4
 focus_mode = 2
 theme_override_constants/separation = 15
@@ -83,6 +84,7 @@ expand_icon = true
 [node name="TaskContainer" type="VBoxContainer" parent="." node_paths=PackedStringArray("toggle_tasks_button")]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 9
 size_flags_vertical = 3
 focus_mode = 2
 script = ExtResource("8_ea4sd")
