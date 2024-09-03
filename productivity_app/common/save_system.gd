@@ -19,11 +19,11 @@ func _notification(what: int) -> void:
 func _save() -> void:
 	var save_file := SaveFile.new()
 	var projects_data: Array[ProjectData]
-	
+
 	get_tree().call_group("Project", "save", projects_data)
-	
+
 	save_file.projects_data = projects_data
-	
+
 	ResourceSaver.save(save_file, SAVE_PATH)
 
 
@@ -35,13 +35,13 @@ func _load() -> void:
 
 	if save_file == null:
 		return
-	
+
 	for project_data in save_file.projects_data:
 		var project_scene_path: Resource = load(project_data.scene_file_path)
 		if project_scene_path == null:
 			return
 		var project: Node = project_scene_path.instantiate()
-		
+
 		project.save_data = project_data
-		
+
 		_project_manager.add_child(project)

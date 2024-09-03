@@ -2,7 +2,6 @@ class_name Project
 extends VBoxContainer
 
 
-var text: String
 var save_data: ProjectData
 
 @onready var _line_edit: LineEdit = %LineEdit
@@ -20,7 +19,7 @@ func save(projects_data: Array[ProjectData]) -> void:
 	var data := ProjectData.new()
 
 	data.scene_file_path = scene_file_path
-	data.text = text
+	data.text = _line_edit.text
 
 	var tasks_data: Array[TaskData]
 	for task in _task_container.get_children():
@@ -32,7 +31,6 @@ func save(projects_data: Array[ProjectData]) -> void:
 
 func _load() -> void:
 	_line_edit.text = save_data.text
-	text = _line_edit.text
 
 	for task_data in save_data.tasks_data:
 		var task_scene: Resource = load(task_data.scene_file_path)
@@ -45,7 +43,3 @@ func _load() -> void:
 
 func _on_delete_button_pressed() -> void:
 	queue_free()
-
-
-func _on_line_edit_text_changed(new_text: String) -> void:
-	text = new_text
