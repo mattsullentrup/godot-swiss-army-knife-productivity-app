@@ -41,7 +41,6 @@ corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8m0aa"]
 bg_color = Color(0.36, 0.36, 0.36, 1)
-skew = Vector2(0.2, 0)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -50,7 +49,6 @@ corner_radius_bottom_left = 10
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3bueh"]
 content_margin_left = 4.0
 bg_color = Color(0.4851, 0.637047, 0.77, 1)
-skew = Vector2(0.4, 0)
 corner_radius_top_left = 100
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -97,6 +95,7 @@ alignment = 1
 
 [node name="PomodoroTimer" type="PanelContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer" node_paths=PackedStringArray("pomodoro_timer", "round_label", "timer_message", "paused_message")]
 layout_mode = 2
+size_flags_vertical = 3
 size_flags_stretch_ratio = 1.5
 theme = ExtResource("2_32l1q")
 script = ExtResource("3_dx455")
@@ -115,8 +114,9 @@ alignment = 1
 script = ExtResource("4_66j8g")
 
 [node name="HBoxContainer" type="PanelContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
-size_flags_vertical = 0
+size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_8awij")
 
 [node name="PausedLabel" type="Label" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer/HBoxContainer"]
@@ -157,7 +157,7 @@ layout_mode = 2
 size_flags_vertical = 6
 theme_override_styles/background = SubResource("StyleBoxFlat_8m0aa")
 theme_override_styles/fill = SubResource("StyleBoxFlat_3bueh")
-value = 49.46
+value = 50.0
 show_percentage = false
 
 [node name="Buttons" type="HBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer"]
