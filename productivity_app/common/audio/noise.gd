@@ -17,7 +17,7 @@ func _ready() -> void:
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		pink_noise.queue_free()
+		pink_noise.free()
 
 
 func _on_noise_button_toggled(toggled_on: bool) -> void:
