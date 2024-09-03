@@ -15,7 +15,9 @@ config/tags=PackedStringArray("personal")
 run/main_scene="res://main/main.tscn"
 config/auto_accept_quit=false
 config/features=PackedStringArray("4.3", "GL Compatibility")
+run/max_fps=30
 run/low_processor_mode=true
+run/low_processor_mode_sleep_usec=14000
 boot_splash/show_image=false
 config/icon="res://addons/images/kenney_icons/cross.png"
 
@@ -36,6 +38,7 @@ window/energy_saving/keep_screen_on=false
 window/stretch/aspect="ignore"
 window/dpi/allow_hidpi=false
 display_server/driver.linuxbsd="wayland"
+window/vsync/vsync_mode=0
 
 [dotnet]
 
