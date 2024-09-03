@@ -1,3 +1,4 @@
+class_name NoiseContainer
 extends VBoxContainer
 
 

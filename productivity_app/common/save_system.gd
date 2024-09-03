@@ -2,7 +2,11 @@ class_name SaveSystem
 extends Node
 
 
+signal game_saved
+
 const SAVE_PATH = "user://save.tres"
+
+var is_game_saved := false
 
 @onready var _project_manager: VBoxContainer = %ProjectManager
 
@@ -25,6 +29,9 @@ func _save() -> void:
 	save_file.projects_data = projects_data
 
 	ResourceSaver.save(save_file, SAVE_PATH)
+
+	is_game_saved = true
+	game_saved.emit()
 
 
 func _load() -> void:
