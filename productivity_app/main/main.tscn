@@ -285,7 +285,8 @@ popup/item_0/text = "1"
 layout_mode = 2
 theme = ExtResource("2_32l1q")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer"]
+[node name="NoiseVBoxContainer" type="VBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 15
 alignment = 2
@@ -293,17 +294,17 @@ script = ExtResource("11_xr3k1")
 audio_off_icon = ExtResource("12_syt3v")
 audio_on_icon = ExtResource("13_nb1g7")
 
-[node name="Autopan" type="HBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer"]
+[node name="Autopan" type="HBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer"]
 layout_mode = 2
 script = ExtResource("14_3rdur")
 pan_speed = 0.005
 
-[node name="AutopanCheckButton" type="CheckButton" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Autopan"]
+[node name="AutopanCheckButton" type="CheckButton" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/Autopan"]
 layout_mode = 2
 text = "Autopan
 "
 
-[node name="AutopanSlider" type="HSlider" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Autopan"]
+[node name="AutopanSlider" type="HSlider" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/Autopan"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -313,16 +314,16 @@ max_value = 0.027
 step = 0.001
 value = 0.01
 
-[node name="Phaser" type="HBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer"]
+[node name="Phaser" type="HBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer"]
 layout_mode = 2
 script = ExtResource("15_l4dqk")
 
-[node name="PhaserCheckButton" type="CheckButton" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Phaser"]
+[node name="PhaserCheckButton" type="CheckButton" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/Phaser"]
 layout_mode = 2
 text = "Phaser
 "
 
-[node name="RateHzHSlider" type="HSlider" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Phaser"]
+[node name="RateHzHSlider" type="HSlider" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/Phaser"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -334,16 +335,16 @@ step = 0.001
 value = 0.01
 exp_edit = true
 
-[node name="NoiseVolume" type="HBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer"]
+[node name="NoiseVolume" type="HBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="AudioOff" type="NinePatchRect" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/NoiseVolume"]
+[node name="AudioOff" type="NinePatchRect" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/NoiseVolume"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 texture = ExtResource("16_qhct5")
 
-[node name="VolumeHSlider" type="HSlider" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/NoiseVolume"]
+[node name="VolumeHSlider" type="HSlider" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/NoiseVolume"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -353,12 +354,12 @@ max_value = 1.0
 step = 0.01
 value = 0.251
 
-[node name="AudioMax" type="NinePatchRect" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/NoiseVolume"]
+[node name="AudioMax" type="NinePatchRect" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/NoiseVolume"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 texture = ExtResource("17_lrwy8")
 
-[node name="NoiseButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer"]
+[node name="NoiseButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
@@ -393,6 +394,7 @@ expand_icon = true
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+follow_focus = true
 horizontal_scroll_mode = 0
 
 [node name="ProjectManager" type="VBoxContainer" parent="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer"]
@@ -485,12 +487,12 @@ script = ExtResource("23_upx4x")
 [connection signal="pressed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/VBoxContainer/NormalTimerStartButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_timer_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/VBoxContainer/NormalTimerStopButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_timer_stop_button_pressed"]
 [connection signal="item_selected" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/VBoxContainer/TimerOptionButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_timer_option_button_item_selected"]
-[connection signal="toggled" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Autopan/AutopanCheckButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Autopan" method="_on_autopan_check_button_toggled"]
-[connection signal="value_changed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Autopan/AutopanSlider" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Autopan" method="_on_autopan_slider_value_changed"]
-[connection signal="toggled" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Phaser/PhaserCheckButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Phaser" method="_on_phaser_check_button_toggled"]
-[connection signal="value_changed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Phaser/RateHzHSlider" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/Phaser" method="_on_range_min_hz_h_slider_value_changed"]
-[connection signal="value_changed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/NoiseVolume/VolumeHSlider" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer" method="_on_volume_h_slider_value_changed"]
-[connection signal="toggled" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer/NoiseButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/VBoxContainer" method="_on_noise_button_toggled"]
+[connection signal="toggled" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/Autopan/AutopanCheckButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/Autopan" method="_on_autopan_check_button_toggled"]
+[connection signal="value_changed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/Autopan/AutopanSlider" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/Autopan" method="_on_autopan_slider_value_changed"]
+[connection signal="toggled" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/Phaser/PhaserCheckButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/Phaser" method="_on_phaser_check_button_toggled"]
+[connection signal="value_changed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/Phaser/RateHzHSlider" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/Phaser" method="_on_range_min_hz_h_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/NoiseVolume/VolumeHSlider" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer" method="_on_volume_h_slider_value_changed"]
+[connection signal="toggled" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/NoiseButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer" method="_on_noise_button_toggled"]
 [connection signal="pressed" from="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/NewProjectButton" to="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager" method="_on_new_project_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Time/HBoxContainer/SaveButton" to="SaveSystem" method="save_game"]
 [connection signal="pressed" from="VBoxContainer/Time/HBoxContainer/LoadButton" to="SaveSystem" method="load_game"]
