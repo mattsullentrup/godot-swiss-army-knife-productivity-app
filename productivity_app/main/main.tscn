@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://cmm42xkdqt61" path="res://addons/images/kenney_icons/plus.png" id="18_2xuuj"]
 [ext_resource type="Script" path="res://project_elements/project_manager.gd" id="19_iwwbs"]
 [ext_resource type="PackedScene" uid="uid://daot25v58e7k6" path="res://project_elements/project/project.tscn" id="20_ln4en"]
-[ext_resource type="Script" path="res://common/timers/time.gd" id="21_x82c0"]
+[ext_resource type="Script" path="res://common/timers/time_and_date.gd" id="21_x82c0"]
 [ext_resource type="AudioStream" uid="uid://q3h7vgwqou6l" path="res://addons/sounds/notification2.wav" id="22_rkn0h"]
 [ext_resource type="Script" path="res://common/save_system.gd" id="23_upx4x"]
 
@@ -417,24 +417,24 @@ layout_mode = 2
 max_value = 115.0
 page = 115.0
 
-[node name="Time" type="PanelContainer" parent="VBoxContainer"]
+[node name="TimeAndDateContainer" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_32l1q")
 script = ExtResource("21_x82c0")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Time"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TimeAndDateContainer"]
 layout_mode = 2
 theme_override_constants/separation = 75
 alignment = 1
 
-[node name="ClockLabel" type="Label" parent="VBoxContainer/Time/HBoxContainer"]
+[node name="ClockLabel" type="Label" parent="VBoxContainer/TimeAndDateContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 42
 text = "12:00:00"
 
-[node name="WeekdayLabel" type="Label" parent="VBoxContainer/Time/HBoxContainer"]
+[node name="WeekdayLabel" type="Label" parent="VBoxContainer/TimeAndDateContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -443,7 +443,7 @@ text = "12:00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DateLabel" type="Label" parent="VBoxContainer/Time/HBoxContainer"]
+[node name="DateLabel" type="Label" parent="VBoxContainer/TimeAndDateContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
