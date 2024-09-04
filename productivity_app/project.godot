@@ -50,6 +50,7 @@ folder_colors={
 "res://addons/images/": "blue",
 "res://addons/sounds/": "orange",
 "res://common/": "gray",
+"res://common/timers/pomodoro_state_machine/": "teal",
 "res://main/": "purple",
 "res://project_elements/": "blue",
 "res://resources/": "pink",
