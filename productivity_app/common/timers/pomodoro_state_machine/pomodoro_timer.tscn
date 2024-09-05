@@ -171,8 +171,9 @@ theme_type_variation = &"RedButton"
 icon = ExtResource("9_fqhqh")
 icon_alignment = 1
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_8h7i8")
+initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("10_els1o")

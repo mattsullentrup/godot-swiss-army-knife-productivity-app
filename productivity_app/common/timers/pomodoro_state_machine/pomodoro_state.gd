@@ -1,8 +1,8 @@
 class_name PomodoroState
-extends Node
+extends StateMachine
 
 
-var state_machine: PomodoroStateMachine
+var state_machine: StateMachine
 
 
 func _enter(_previous_state: PomodoroState) -> void:

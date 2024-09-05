@@ -1,5 +1,6 @@
 class_name PomodoroStateMachine
-extends Node
+#extends "res://common/timers/pomodoro_state_machine/state_machine.gd"
+extends StateMachine
 
 
 enum Round {
@@ -17,13 +18,8 @@ enum ProductivityState {
 
 const MINUTE_MULTIPLIER = 60
 
-@export var initial_state: Node
-
 static var time_to_display: float
 
-var states: Dictionary = {}
-var current_state: PomodoroState = null
-var previous_state: PomodoroState = null
 var notification_sound: AudioStreamPlayer = null
 var productivity_state: int
 var timer_length: float
@@ -39,46 +35,9 @@ var timer_length: float
 func _ready() -> void:
 	_setup_states()
 
-	short_break_length *= MINUTE_MULTIPLIER
-	long_break_length *= MINUTE_MULTIPLIER
-	work_round_length *= MINUTE_MULTIPLIER
-
 
 func _process(_delta: float) -> void:
 	current_state._update()
-
-
-func _setup_states() -> void:
-	if initial_state == null:
-		initial_state = get_child(0)
-
-	for child in get_children():
-		if child is PomodoroState:
-			var state: PomodoroState = child
-			states[state.name.to_lower()] = state
-			initialize(state)
-			continue
-
-		push_error("Child" + child.name + " is not a State")
-
-	change_state(initial_state.name)
-
-
-func initialize(state: PomodoroState) -> void:
-	state.state_machine = self
-
-
-func change_state(new_state_name: String) -> void:
-	var new_state: PomodoroState = states.get(new_state_name.to_lower())
-	if not new_state or current_state == new_state:
-		return
-
-	if current_state:
-		current_state._exit()
-
-	previous_state = current_state
-	current_state = new_state
-	current_state._enter(previous_state)
 
 
 func _get_current_round() -> void:
@@ -87,18 +46,18 @@ func _get_current_round() -> void:
 
 
 func _on_start_button_pressed() -> void:
-	#change_state("Work")
-
-	match current_state:
-		states["Overtime"]:
-			if productivity_state == ProductivityState.BREAK:
-				change_state("Work")
-			else:
-				change_state("Work")
-		states["Idle"]:
-			change_state(ProductivityState.get(productivity_state))
-		_:
-			print("start button unavailable")
+	change_state("Work")
+#
+	#match current_state:
+		#states["Overtime"]:
+			#if productivity_state == ProductivityState.BREAK:
+				#change_state("Work")
+			#else:
+				#change_state("Work")
+		#states["Idle"]:
+			#change_state(ProductivityState.get(productivity_state))
+		#_:
+			#print("start button unavailable")
 
 
 func _on_go_back_button_pressed() -> void:
