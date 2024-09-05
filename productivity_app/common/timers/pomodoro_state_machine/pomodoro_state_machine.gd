@@ -1,5 +1,4 @@
 class_name PomodoroStateMachine
-#extends "res://common/timers/pomodoro_state_machine/state_machine.gd"
 extends StateMachine
 
 
@@ -14,6 +13,14 @@ enum Round {
 enum ProductivityState {
 	BREAK,
 	WORK,
+}
+
+enum ButtonTypes {
+	START,
+	GO_BACK,
+	PAUSE,
+	SKIP,
+	STOP,
 }
 
 const MINUTE_MULTIPLIER = 60
@@ -46,7 +53,8 @@ func _get_current_round() -> void:
 
 
 func _on_start_button_pressed() -> void:
-	change_state("Work")
+	#change_state("Work")
+	current_state._on_button_pressed(ButtonTypes.START)
 #
 	#match current_state:
 		#states["Overtime"]:
