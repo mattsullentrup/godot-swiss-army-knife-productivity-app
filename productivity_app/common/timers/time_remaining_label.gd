@@ -5,7 +5,9 @@ extends Control
 
 
 func _process(_delta: float) -> void:
-	_time_remaining_label.text = get_formatted_time_from_seconds(Pomodoro.time_to_display)
+	_time_remaining_label.text = get_formatted_time_from_seconds(
+			PomodoroStateMachine.time_to_display
+	)
 
 
 func get_formatted_time_from_seconds(seconds: Variant) -> String:
