@@ -1,7 +1,7 @@
-extends PomodoroState
+extends State
 
 
-func _enter(_previous_state: PomodoroState) -> void:
+func _enter(_previous_state: State) -> void:
 	super(_previous_state)
 	state_machine.pomodoro_timer.stop()
 	get_parent().time_to_display = 0

@@ -1,11 +1,11 @@
-class_name PomodoroState
+class_name State
 extends StateMachine
 
 
 var state_machine: StateMachine
 
 
-func _enter(_previous_state: PomodoroState) -> void:
+func _enter(_previous_state: State) -> void:
 	print("Entering " + self.name)
 
 

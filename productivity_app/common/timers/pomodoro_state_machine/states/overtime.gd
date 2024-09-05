@@ -1,10 +1,10 @@
-extends PomodoroState
+extends State
 
 
 var _overtime_start_time: float
 
 
-func _enter(_previous_state: PomodoroState) -> void:
+func _enter(_previous_state: State) -> void:
 	super(_previous_state)
 
 	_overtime_start_time = Time.get_unix_time_from_system()
