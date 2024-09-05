@@ -5,6 +5,11 @@ var _wants_to_quit := false
 
 @onready var _save_system: SaveSystem = $SaveSystem
 @onready var _pink_noise: AudioStreamPlayer = %PinkNoise
+@onready var _pomodoro_timer: PanelContainer = %PomodoroTimer
+
+
+func _ready() -> void:
+	_pomodoro_timer.get_node("StateMachine").notification_sound = %NotificationSound
 
 
 func _input(event: InputEvent) -> void:

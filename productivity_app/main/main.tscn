@@ -26,7 +26,7 @@ loop_mode = 1
 loop_end = 260000
 stereo = true
 
-[node name="GUI" type="MarginContainer"]
+[node name="Main" type="MarginContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -57,8 +57,11 @@ theme_override_constants/separation = 10
 alignment = 1
 
 [node name="PomodoroTimer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer" instance=ExtResource("2_ko8bp")]
+unique_name_in_owner = true
 layout_mode = 2
-script = null
+
+[node name="TimeRemainingLabel" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer" index="1"]
+theme_override_font_sizes/font_size = 125
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer"]
 layout_mode = 2
@@ -314,3 +317,5 @@ script = ExtResource("23_upx4x")
 [connection signal="value_changed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/NoiseVolume/VolumeHSlider" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer" method="_on_volume_h_slider_value_changed"]
 [connection signal="toggled" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/NoiseButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer" method="_on_noise_button_toggled"]
 [connection signal="pressed" from="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/NewProjectButton" to="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager" method="_on_new_project_button_pressed"]
+
+[editable path="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer"]

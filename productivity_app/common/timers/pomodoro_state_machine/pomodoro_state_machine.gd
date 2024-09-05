@@ -1,34 +1,6 @@
 class_name PomodoroStateMachine
 extends Node
 
-#@export var initial_state: PomodoroState = null
-#
-#@onready var state: PomodoroState = (func get_initial_state() -> PomodoroState:
-		#return initial_state if initial_state != null else get_child(0)
-#).call()
-#
-#
-#func _ready() -> void:
-	#for state_node: PomodoroState in find_children("*", "PomodorState"):
-		#state_node.finished.connect(_transition_to_next_state)
-#
-	#await owner.ready
-	#state.enter("")
-#
-#
-#func _transition_to_next_state(target_state_path: String, data: Dictionary) -> void:
-	#if not has_node(target_state_path):
-		#printerr(
-				#owner.name + ": Trying to transition to state " + target_state_path\
-				#+ "but it does not exist."
-		#)
-		#return
-#
-	#var previous_state_path := state.name
-	#state._exit()
-	#state = get_node(target_state_path)
-	#state._enter(previous_state_path, data)
-
 
 @export var initial_state: Node
 
@@ -37,8 +9,10 @@ static var time_to_display: float
 var states: Dictionary = {}
 var current_state: PomodoroState = null
 var previous_state: PomodoroState = null
+var notification_sound: AudioStreamPlayer = null
 
-@onready var _pomodoro_timer: Timer = %PomodoroTimer
+@onready var pomodoro_timer: Timer = %PomodoroTimer
+@onready var progress_bar: ProgressBar = %ProgressBar
 
 
 func _ready() -> void:
@@ -66,8 +40,8 @@ func _process(_delta: float) -> void:
 
 
 func initialize(state: PomodoroState) -> void:
-	state.connect("state_changing", _on_state_changing)
-	state.pomodoro_timer = _pomodoro_timer
+	#state.connect("state_changing", _on_state_changing)
+	state.state_machine = self
 
 
 func change_state(source_state: PomodoroState, new_state_name: String) -> void:

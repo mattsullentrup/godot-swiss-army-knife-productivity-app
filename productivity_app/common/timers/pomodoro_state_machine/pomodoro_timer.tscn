@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ckw6bd8a72tum"]
+[gd_scene load_steps=19 format=3 uid="uid://ckw6bd8a72tum"]
 
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme/theme.tres" id="1_nq85o"]
 [ext_resource type="Script" path="res://common/timers/pomodoro_state_machine/pomodoro_state_machine.gd" id="2_8h7i8"]
@@ -11,6 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://ldmdhpth6b1" path="res://addons/images/kenney_icons/stop.png" id="9_fqhqh"]
 [ext_resource type="Script" path="res://common/timers/pomodoro_state_machine/states/idle.gd" id="10_els1o"]
 [ext_resource type="Script" path="res://common/timers/pomodoro_state_machine/states/work.gd" id="11_eb6g3"]
+[ext_resource type="Script" path="res://common/timers/pomodoro_state_machine/states/break.gd" id="12_eupsq"]
+[ext_resource type="Script" path="res://common/timers/pomodoro_state_machine/states/paused.gd" id="13_mc60c"]
+[ext_resource type="Script" path="res://common/timers/pomodoro_state_machine/states/overtime.gd" id="14_aha51"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8awij"]
 content_margin_left = 10.0
@@ -176,6 +179,15 @@ script = ExtResource("10_els1o")
 
 [node name="Work" type="Node" parent="StateMachine"]
 script = ExtResource("11_eb6g3")
+
+[node name="Break" type="Node" parent="StateMachine"]
+script = ExtResource("12_eupsq")
+
+[node name="Paused" type="Node" parent="StateMachine"]
+script = ExtResource("13_mc60c")
+
+[node name="Overtime" type="Node" parent="StateMachine"]
+script = ExtResource("14_aha51")
 
 [connection signal="timeout" from="PomodoroTimer" to="StateMachine" method="_on_pomodoro_timer_timeout"]
 [connection signal="pressed" from="VBoxContainer/Buttons/StartButton" to="StateMachine" method="_on_start_button_pressed"]

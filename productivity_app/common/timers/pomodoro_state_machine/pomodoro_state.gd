@@ -2,10 +2,10 @@ class_name PomodoroState
 extends Node
 
 
-@warning_ignore("unused_signal")
-signal state_changing(current: PomodoroState, new_state_name: String)
+#@warning_ignore("unused_signal")
+#signal state_changing(current: PomodoroState, new_state_name: String)
 
-var pomodoro_timer: Timer = null
+var state_machine: PomodoroStateMachine
 
 
 func _enter() -> void:
