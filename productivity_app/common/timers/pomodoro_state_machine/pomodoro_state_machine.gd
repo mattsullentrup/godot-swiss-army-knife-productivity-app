@@ -25,8 +25,7 @@ enum ButtonTypes {
 
 const MINUTE_MULTIPLIER = 60
 
-static var time_to_display: float
-
+var time_to_display: float
 var notification_sound: AudioStreamPlayer = null
 var productivity_state: int
 var timer_length: float
@@ -53,35 +52,23 @@ func _get_current_round() -> void:
 
 
 func _on_start_button_pressed() -> void:
-	#change_state("Work")
 	current_state._on_button_pressed(ButtonTypes.START)
-#
-	#match current_state:
-		#states["Overtime"]:
-			#if productivity_state == ProductivityState.BREAK:
-				#change_state("Work")
-			#else:
-				#change_state("Work")
-		#states["Idle"]:
-			#change_state(ProductivityState.get(productivity_state))
-		#_:
-			#print("start button unavailable")
 
 
 func _on_go_back_button_pressed() -> void:
-	pass # Replace with function body.
+	current_state._on_button_pressed(ButtonTypes.GO_BACK)
 
 
 func _on_pause_button_pressed() -> void:
-	pass # Replace with function body.
+	current_state._on_button_pressed(ButtonTypes.PAUSE)
 
 
 func _on_skip_button_pressed() -> void:
-	pass # Replace with function body.
+	current_state._on_button_pressed(ButtonTypes.SKIP)
 
 
 func _on_stop_button_pressed() -> void:
-	change_state("Idle")
+	current_state._on_button_pressed(ButtonTypes.STOP)
 
 
 func _on_pomodoro_timer_timeout() -> void:
