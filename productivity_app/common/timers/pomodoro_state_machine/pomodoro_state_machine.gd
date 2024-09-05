@@ -28,23 +28,18 @@ func _ready() -> void:
 
 		push_error("Child" + child.name + " is not a State")
 
-	change_state(null, initial_state.name)
+	change_state(initial_state.name)
 
 
 func _process(_delta: float) -> void:
 	current_state._update()
 
-	#if not _pomodoro_timer.is_stopped():
-		#progress_bar.value = progress_bar.max_value - _pomodoro_timer.time_left
-		#time_to_display = _pomodoro_timer.time_left
-
 
 func initialize(state: PomodoroState) -> void:
-	#state.connect("state_changing", _on_state_changing)
 	state.state_machine = self
 
 
-func change_state(source_state: PomodoroState, new_state_name: String) -> void:
+func change_state(new_state_name: String) -> void:
 	var new_state: PomodoroState = states.get(new_state_name.to_lower())
 	if not new_state or current_state == new_state:
 		return
@@ -52,17 +47,13 @@ func change_state(source_state: PomodoroState, new_state_name: String) -> void:
 	if current_state:
 		current_state._exit()
 
-	previous_state = source_state
+	previous_state = current_state
 	current_state = new_state
 	current_state._enter(previous_state)
 
 
-func _on_state_changing(source_state: PomodoroState, new_state_name: String) -> void:
-	change_state(source_state, new_state_name)
-
-
 func _on_start_button_pressed() -> void:
-	change_state(current_state, "Work")
+	change_state("Work")
 
 
 func _on_go_back_button_pressed() -> void:
@@ -78,7 +69,7 @@ func _on_skip_button_pressed() -> void:
 
 
 func _on_stop_button_pressed() -> void:
-	change_state(current_state, "Idle")
+	change_state("Idle")
 
 
 func _on_pomodoro_timer_timeout() -> void:
