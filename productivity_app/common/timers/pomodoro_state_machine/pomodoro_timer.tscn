@@ -47,7 +47,7 @@ corner_radius_bottom_left = 100
 
 [sub_resource type="Theme" id="Theme_4ijq2"]
 
-[node name="PomodoroTimer" type="PanelContainer"]
+[node name="PomodoroTimerContainer" type="PanelContainer"]
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.5
 theme = ExtResource("1_nq85o")

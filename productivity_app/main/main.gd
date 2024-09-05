@@ -5,7 +5,7 @@ var _wants_to_quit := false
 
 @onready var _save_system: SaveSystem = $SaveSystem
 @onready var _pink_noise: AudioStreamPlayer = %PinkNoise
-@onready var _pomodoro_timer: PanelContainer = %PomodoroTimer
+@onready var _pomodoro_timer: PanelContainer = %PomodoroTimerContainer
 
 
 func _ready() -> void:

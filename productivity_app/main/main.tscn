@@ -56,11 +56,11 @@ layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="PomodoroTimer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer" instance=ExtResource("2_ko8bp")]
+[node name="PomodoroTimerContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer" instance=ExtResource("2_ko8bp")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="TimeRemainingLabel" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer/VBoxContainer" index="1"]
+[node name="TimeRemainingLabel" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimerContainer/VBoxContainer" index="1"]
 theme_override_font_sizes/font_size = 125
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer"]
@@ -89,7 +89,7 @@ alignment = 1
 [node name="NormalTimeRemainingLabel" type="Label" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 53
 text = "00:00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -318,4 +318,4 @@ script = ExtResource("23_upx4x")
 [connection signal="toggled" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/NoiseButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer" method="_on_noise_button_toggled"]
 [connection signal="pressed" from="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/NewProjectButton" to="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager" method="_on_new_project_button_pressed"]
 
-[editable path="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimer"]
+[editable path="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimerContainer"]

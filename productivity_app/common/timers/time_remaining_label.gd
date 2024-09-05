@@ -2,11 +2,11 @@ extends Control
 
 
 @onready var _time_remaining_label: Label = %TimeRemainingLabel
-
+@onready var _state_machine: PomodoroStateMachine = get_node("../StateMachine")
 
 func _process(_delta: float) -> void:
 	_time_remaining_label.text = get_formatted_time_from_seconds(
-			PomodoroStateMachine.time_to_display
+			_state_machine.time_to_display
 	)
 
 
