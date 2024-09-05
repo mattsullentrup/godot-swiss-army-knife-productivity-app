@@ -2,6 +2,8 @@ class_name PomodoroStateMachine
 extends Node
 
 
+const MINUTE_MULTIPLIER = 60
+
 @export var initial_state: Node
 
 static var time_to_display: float
@@ -13,9 +15,25 @@ var notification_sound: AudioStreamPlayer = null
 
 @onready var pomodoro_timer: Timer = %PomodoroTimer
 @onready var progress_bar: ProgressBar = %ProgressBar
+@onready var short_break_length: float = 5
+@onready var long_break_length: float = 15
+@onready var work_round_length: float = 25
+@onready var current_round: int
 
 
 func _ready() -> void:
+	_setup_states()
+
+	short_break_length *= MINUTE_MULTIPLIER
+	long_break_length *= MINUTE_MULTIPLIER
+	work_round_length *= MINUTE_MULTIPLIER
+
+
+func _process(_delta: float) -> void:
+	current_state._update()
+
+
+func _setup_states() -> void:
 	if initial_state == null:
 		initial_state = get_child(0)
 
@@ -29,10 +47,6 @@ func _ready() -> void:
 		push_error("Child" + child.name + " is not a State")
 
 	change_state(initial_state.name)
-
-
-func _process(_delta: float) -> void:
-	current_state._update()
 
 
 func initialize(state: PomodoroState) -> void:
@@ -73,4 +87,4 @@ func _on_stop_button_pressed() -> void:
 
 
 func _on_pomodoro_timer_timeout() -> void:
-	pass # Replace with function body.
+	change_state("Overtime")

@@ -19,13 +19,3 @@ func _exit() -> void:
 
 func _update() -> void:
 	pass
-
-
-#signal finished(next_state_path: String, data: Dictionary)
-
-#func _enter(previous_state_path: String, data: Dictionary) -> void:
-	#pass
-#
-#
-#func _exit() -> void:
-	#pass
