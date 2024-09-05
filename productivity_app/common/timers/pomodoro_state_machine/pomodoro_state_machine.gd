@@ -54,7 +54,7 @@ func change_state(source_state: PomodoroState, new_state_name: String) -> void:
 
 	previous_state = source_state
 	current_state = new_state
-	current_state._enter()
+	current_state._enter(previous_state)
 
 
 func _on_state_changing(source_state: PomodoroState, new_state_name: String) -> void:

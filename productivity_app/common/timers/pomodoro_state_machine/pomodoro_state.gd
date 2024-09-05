@@ -8,7 +8,7 @@ extends Node
 var state_machine: PomodoroStateMachine
 
 
-func _enter() -> void:
+func _enter(_previous_state: PomodoroState) -> void:
 	print("Entering " + self.name)
 
 

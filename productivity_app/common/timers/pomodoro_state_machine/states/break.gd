@@ -1,8 +1,8 @@
 extends PomodoroState
 
 
-func _enter() -> void:
-	super()
+func _enter(_previous_state: PomodoroState) -> void:
+	super(_previous_state)
 
 
 func _exit() -> void:
