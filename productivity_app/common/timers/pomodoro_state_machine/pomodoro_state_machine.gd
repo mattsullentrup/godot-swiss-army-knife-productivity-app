@@ -25,9 +25,9 @@ enum ButtonTypes {
 
 const MINUTE_MULTIPLIER = 60
 
-var time_to_display: float
 var notification_sound: AudioStreamPlayer = null
 var productivity_state: int
+var time_to_display: float
 var timer_length: float
 
 @onready var pomodoro_timer: Timer = %PomodoroTimer
@@ -40,6 +40,7 @@ var timer_length: float
 
 func _ready() -> void:
 	_setup_states()
+	_connect_buttons()
 
 
 func _process(_delta: float) -> void:
@@ -49,6 +50,18 @@ func _process(_delta: float) -> void:
 func _get_current_round() -> void:
 	current_round = wrap(current_round, Round.FIRST, Round.FOURTH + 1)
 	#round_label.text = str(current_round) + '/4'
+
+
+func _connect_buttons() -> void:
+	for button: Button in %Buttons.get_children():
+		button.pressed.connect(_on_button_pressed.bind(button.get_index()))
+
+
+func _on_button_pressed(button_index: int) -> void:
+	#var keys = ButtonTypes.keys()
+	#var values = ButtonTypes.values()
+	var button_type = ButtonTypes.find_key(button_index)
+	current_state._on_button_pressed(button_type)
 
 
 func _on_start_button_pressed() -> void:

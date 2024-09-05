@@ -114,6 +114,7 @@ value = 50.0
 show_percentage = false
 
 [node name="Buttons" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_stretch_ratio = 0.7
