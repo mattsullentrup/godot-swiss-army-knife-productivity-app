@@ -27,6 +27,7 @@ func _setup_states() -> void:
 
 func initialize(state: State) -> void:
 	state.state_machine = self
+	state.finished.connect(change_state)
 
 
 func change_state(new_state_name: String) -> void:

@@ -2,6 +2,9 @@ class_name State
 extends StateMachine
 
 
+@warning_ignore("unused_signal")
+signal finished(next_state: String)
+
 var state_machine: StateMachine
 
 

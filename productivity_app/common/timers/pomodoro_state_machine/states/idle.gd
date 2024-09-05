@@ -7,5 +7,6 @@ func _enter(_previous_state: State) -> void:
 	get_parent().time_to_display = 0
 
 
-func _on_button_pressed(_button: PomodoroStateMachine.ButtonTypes) -> void:
-	pass
+func _on_button_pressed(button: PomodoroStateMachine.ButtonTypes) -> void:
+	if button == PomodoroStateMachine.ButtonTypes.START:
+		finished.emit("Work")
