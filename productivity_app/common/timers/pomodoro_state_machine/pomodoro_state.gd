@@ -2,9 +2,6 @@ class_name PomodoroState
 extends Node
 
 
-#@warning_ignore("unused_signal")
-#signal state_changing(current: PomodoroState, new_state_name: String)
-
 var state_machine: PomodoroStateMachine
 
 
