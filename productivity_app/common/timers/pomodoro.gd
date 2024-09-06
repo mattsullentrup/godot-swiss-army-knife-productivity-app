@@ -3,7 +3,7 @@ extends PanelContainer
 
 
 enum Round { ZERO, FIRST, SECOND, THIRD, FOURTH }
-enum State {
+enum PomoState {
 	IDLE,
 	PAUSED,
 	WORK,
@@ -11,7 +11,7 @@ enum State {
 	OVERTIME,
 }
 
-@export var initial_state: State
+@export var initial_state: PomoState
 @export var pomodoro_timer: Timer
 
 @export_group("Labels")
@@ -24,8 +24,8 @@ static var time_to_display: float:
 	get:
 		return _time_to_display
 
-var current_state: State = State.IDLE
-var productivity_state: State = State.WORK
+var current_state: PomoState = PomoState.IDLE
+var productivity_state: PomoState = PomoState.WORK
 var overtime_start_time: float
 var timer_length: float
 
@@ -42,7 +42,7 @@ func _ready() -> void:
 	progress_bar.value = 0
 	timer_length = work_round_length
 	_time_to_display = timer_length
-	timer_message.text = "Work" if productivity_state == State.WORK else "Break"
+	timer_message.text = "Work" if productivity_state == PomoState.WORK else "Break"
 	determine_break_length_to_display()
 	check_current_round()
 
@@ -51,31 +51,31 @@ func _process(_delta: float) -> void:
 	if not pomodoro_timer.is_stopped():
 		progress_bar.value = progress_bar.max_value - pomodoro_timer.time_left
 		_time_to_display = pomodoro_timer.time_left
-	elif current_state == State.OVERTIME:
+	elif current_state == PomoState.OVERTIME:
 		_time_to_display = overtime_start_time - Time.get_unix_time_from_system()
 
 
-func change_state(new_state: State) -> void:
+func change_state(new_state: PomoState) -> void:
 	timer_message.show()
 	paused_message.hide()
 
 	match new_state:
-		State.WORK:
+		PomoState.WORK:
 			pomodoro_timer.paused = false
-			if current_state == State.PAUSED:
+			if current_state == PomoState.PAUSED:
 				paused_message.hide()
 			else:
-				if current_state != State.IDLE:
+				if current_state != PomoState.IDLE:
 					current_round += 1
 				check_current_round()
 				timer_length = work_round_length
 				pomodoro_timer.start(timer_length)
 				progress_bar.max_value = timer_length
 				timer_message.text = "Work"
-				productivity_state = State.WORK
-		State.BREAK:
+				productivity_state = PomoState.WORK
+		PomoState.BREAK:
 			pomodoro_timer.paused = false
-			if current_state == State.PAUSED:
+			if current_state == PomoState.PAUSED:
 				paused_message.hide()
 			else:
 				if current_round == Round.FOURTH:
@@ -85,15 +85,15 @@ func change_state(new_state: State) -> void:
 				pomodoro_timer.start(timer_length)
 				progress_bar.max_value = timer_length
 				timer_message.text = "Break"
-				productivity_state = State.BREAK
-		State.PAUSED:
+				productivity_state = PomoState.BREAK
+		PomoState.PAUSED:
 			pomodoro_timer.paused = true
 			paused_message.show()
-		State.OVERTIME:
+		PomoState.OVERTIME:
 			overtime_start_time = Time.get_unix_time_from_system()
 			notification_sound.play()
 			progress_bar.value = 0
-		State.IDLE:
+		PomoState.IDLE:
 			pomodoro_timer.stop()
 			timer_message.hide()
 			progress_bar.value = 0
@@ -106,8 +106,8 @@ func change_state(new_state: State) -> void:
 func print_state_conditions() -> void:
 	print("-------------------")
 	print("current round: ", Round.find_key(current_round))
-	print("current state: ", State.find_key(current_state))
-	print("prod state: ", State.find_key(productivity_state))
+	print("current PomoState: ", PomoState.find_key(current_state))
+	print("prod PomoState: ", PomoState.find_key(productivity_state))
 	print("-------------------")
 
 
@@ -117,7 +117,7 @@ func check_current_round() -> void:
 
 
 func determine_break_length_to_display() -> void:
-	if productivity_state != State.BREAK:
+	if productivity_state != PomoState.BREAK:
 		return
 
 	if current_round == Round.FOURTH:
@@ -137,35 +137,35 @@ func save() -> Dictionary:
 
 
 func _on_pomodoro_timer_timeout() -> void:
-	change_state(State.OVERTIME)
+	change_state(PomoState.OVERTIME)
 
 
 func _on_start_button_pressed() -> void:
 	match current_state:
-		State.OVERTIME:
-			if productivity_state == State.BREAK:
-				change_state(State.WORK)
+		PomoState.OVERTIME:
+			if productivity_state == PomoState.BREAK:
+				change_state(PomoState.WORK)
 			else:
-				change_state(State.BREAK)
-		State.IDLE:
+				change_state(PomoState.BREAK)
+		PomoState.IDLE:
 			change_state(productivity_state)
 		_:
 			print("start button unavailable")
 
 
 func _on_go_back_button_pressed() -> void:
-	if current_state == State.IDLE:
-		if productivity_state == State.BREAK:
-			productivity_state = State.WORK
+	if current_state == PomoState.IDLE:
+		if productivity_state == PomoState.BREAK:
+			productivity_state = PomoState.WORK
 			_time_to_display = work_round_length
 		else:
-			productivity_state = State.BREAK
+			productivity_state = PomoState.BREAK
 			current_round -= 1
 			check_current_round()
 			determine_break_length_to_display()
 	else:
-		change_state(State.IDLE)
-		if productivity_state == State.BREAK:
+		change_state(PomoState.IDLE)
+		if productivity_state == PomoState.BREAK:
 			determine_break_length_to_display()
 		else:
 			_time_to_display = work_round_length
@@ -175,47 +175,47 @@ func _on_go_back_button_pressed() -> void:
 
 func _on_pause_button_pressed() -> void:
 	match current_state:
-		State.IDLE, State.OVERTIME:
+		PomoState.IDLE, PomoState.OVERTIME:
 			print("pause unavailable")
-		State.PAUSED:
+		PomoState.PAUSED:
 			change_state(productivity_state)
 		_:
-			change_state(State.PAUSED)
+			change_state(PomoState.PAUSED)
 
 
 func _on_skip_button_pressed() -> void:
 	match current_state:
-		State.IDLE:
-			if productivity_state == State.BREAK:
-				productivity_state = State.WORK
+		PomoState.IDLE:
+			if productivity_state == PomoState.BREAK:
+				productivity_state = PomoState.WORK
 				_time_to_display = work_round_length
 				current_round += 1
 			else:
-				productivity_state = State.BREAK
+				productivity_state = PomoState.BREAK
 				determine_break_length_to_display()
-		State.BREAK:
+		PomoState.BREAK:
 			current_round += 1
-			productivity_state = State.WORK
+			productivity_state = PomoState.WORK
 			_time_to_display = work_round_length
-		State.WORK:
-			productivity_state = State.BREAK
+		PomoState.WORK:
+			productivity_state = PomoState.BREAK
 			determine_break_length_to_display()
-		State.OVERTIME:
-			if productivity_state == State.BREAK:
-				productivity_state = State.WORK
+		PomoState.OVERTIME:
+			if productivity_state == PomoState.BREAK:
+				productivity_state = PomoState.WORK
 				_time_to_display = work_round_length
 				current_round += 1
 			else:
-				productivity_state = State.BREAK
+				productivity_state = PomoState.BREAK
 				determine_break_length_to_display()
-	change_state(State.IDLE)
+	change_state(PomoState.IDLE)
 
 	check_current_round()
 
 
 func _on_stop_button_pressed() -> void:
-	productivity_state = State.WORK
+	productivity_state = PomoState.WORK
 	current_round = Round.FIRST
 	check_current_round()
 	_time_to_display = work_round_length
-	change_state(State.IDLE)
+	change_state(PomoState.IDLE)
