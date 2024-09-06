@@ -54,34 +54,9 @@ func _get_current_round() -> void:
 
 func _connect_buttons() -> void:
 	for button: Button in %Buttons.get_children():
-		button.pressed.connect(_on_button_pressed.bind(button.get_index()))
-
-
-func _on_button_pressed(button_index: int) -> void:
-	#var keys = ButtonTypes.keys()
-	#var values = ButtonTypes.values()
-	var button_type = ButtonTypes.find_key(button_index)
-	current_state._on_button_pressed(button_type)
-
-
-func _on_start_button_pressed() -> void:
-	current_state._on_button_pressed(ButtonTypes.START)
-
-
-func _on_go_back_button_pressed() -> void:
-	current_state._on_button_pressed(ButtonTypes.GO_BACK)
-
-
-func _on_pause_button_pressed() -> void:
-	current_state._on_button_pressed(ButtonTypes.PAUSE)
-
-
-func _on_skip_button_pressed() -> void:
-	current_state._on_button_pressed(ButtonTypes.SKIP)
-
-
-func _on_stop_button_pressed() -> void:
-	current_state._on_button_pressed(ButtonTypes.STOP)
+		button.pressed.connect(func () -> void:
+				current_state._on_button_pressed(button.get_index())
+		)
 
 
 func _on_pomodoro_timer_timeout() -> void:

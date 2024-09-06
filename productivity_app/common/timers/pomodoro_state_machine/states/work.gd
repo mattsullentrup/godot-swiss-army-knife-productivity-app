@@ -10,5 +10,6 @@ func _update() -> void:
 	state_machine.time_to_display = state_machine.pomodoro_timer.time_left
 
 
-func _on_button_pressed(_button: PomodoroStateMachine.ButtonTypes) -> void:
-	pass
+func _on_button_pressed(button: int) -> void:
+	if button == PomodoroStateMachine.ButtonTypes.STOP:
+		finished.emit("Idle")
