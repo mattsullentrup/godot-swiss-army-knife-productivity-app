@@ -1,3 +1,4 @@
+class_name PausedState
 extends State
 
 
