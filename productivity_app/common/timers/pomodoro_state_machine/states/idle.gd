@@ -10,5 +10,5 @@ func _enter(_previous_state: State) -> void:
 
 #func _on_button_pressed(button: PomodoroStateMachine.ButtonTypes) -> void:
 func _on_button_pressed(button: int) -> void:
-	if button == state_machine.ButtonTypes.START:
+	if button == ButtonTypes.START:
 		finished.emit("Work")

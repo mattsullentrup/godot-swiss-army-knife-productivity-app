@@ -22,5 +22,5 @@ func _update() -> void:
 	get_parent().time_to_display = _overtime_start_time - Time.get_unix_time_from_system()
 
 
-func _on_button_pressed(_button: PomodoroStateMachine.ButtonTypes) -> void:
+func _on_button_pressed(_button: ButtonTypes) -> void:
 	pass

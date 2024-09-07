@@ -12,5 +12,5 @@ func _update() -> void:
 
 
 func _on_button_pressed(button: int) -> void:
-	if button == PomodoroStateMachine.ButtonTypes.STOP:
+	if button == ButtonTypes.STOP:
 		finished.emit("Idle")

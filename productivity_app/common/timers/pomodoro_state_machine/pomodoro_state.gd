@@ -5,6 +5,14 @@ extends StateMachine
 @warning_ignore("unused_signal")
 signal finished(next_state: String)
 
+enum ButtonTypes {
+	START,
+	GO_BACK,
+	PAUSE,
+	SKIP,
+	STOP,
+}
+
 var state_machine: StateMachine
 
 

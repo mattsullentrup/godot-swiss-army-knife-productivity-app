@@ -15,14 +15,6 @@ enum ProductivityState {
 	WORK,
 }
 
-enum ButtonTypes {
-	START,
-	GO_BACK,
-	PAUSE,
-	SKIP,
-	STOP,
-}
-
 const MINUTE_MULTIPLIER = 60
 
 var notification_sound: AudioStreamPlayer = null
