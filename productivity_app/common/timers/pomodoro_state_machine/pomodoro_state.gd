@@ -1,5 +1,5 @@
 class_name State
-extends StateMachine
+extends Node
 
 
 @warning_ignore("unused_signal")
@@ -13,6 +13,11 @@ enum ButtonTypes {
 	STOP,
 }
 
+enum ProductivityStates {
+	BREAK,
+	WORK,
+}
+
 var state_machine: StateMachine
 
 
@@ -20,13 +25,13 @@ func _enter(_previous_state: State) -> void:
 	print("Entering " + self.name)
 
 
+func _update() -> void:
+	pass
+
+
 func _exit() -> void:
 	print("Exiting " + self.name)
 	print("~~~~~~~~")
-
-
-func _update() -> void:
-	pass
 
 
 #func _on_button_pressed(_button: PomodoroStateMachine.ButtonTypes) -> void:

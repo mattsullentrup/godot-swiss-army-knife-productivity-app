@@ -10,17 +10,12 @@ enum Round {
 	FOURTH,
 }
 
-enum ProductivityState {
-	BREAK,
-	WORK,
-}
-
 const MINUTE_MULTIPLIER = 60
 
 var notification_sound: AudioStreamPlayer = null
-var productivity_state: int
 var time_to_display: float
 var timer_length: float
+var productivity_state := State.ProductivityStates.BREAK
 
 @onready var pomodoro_timer: Timer = %PomodoroTimer
 @onready var progress_bar: ProgressBar = %ProgressBar
