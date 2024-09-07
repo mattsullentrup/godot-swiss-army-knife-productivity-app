@@ -22,15 +22,15 @@ func _setup_states() -> void:
 
 		push_error("Child" + child.name + " is not a State")
 
-	change_state(initial_state.name)
+	_change_state(initial_state.name)
 
 
 func initialize(state: State) -> void:
 	state.state_machine = self
-	state.finished.connect(change_state)
+	state.finished.connect(_change_state)
 
 
-func change_state(new_state_name: String) -> void:
+func _change_state(new_state_name: String) -> void:
 	var new_state: State = states.get(new_state_name.to_lower())
 	if not new_state or current_state == new_state:
 		return
