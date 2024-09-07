@@ -14,12 +14,14 @@ func _enter(_previous_state: State) -> void:
 	state_machine.progress_bar.value = 0
 
 
+func _update() -> void:
+	get_parent().time_to_display = (
+			_overtime_start_time - Time.get_unix_time_from_system()
+	)
+
+
 func _exit() -> void:
 	super()
-
-
-func _update() -> void:
-	get_parent().time_to_display = _overtime_start_time - Time.get_unix_time_from_system()
 
 
 func _on_button_pressed(_button: ButtonTypes) -> void:

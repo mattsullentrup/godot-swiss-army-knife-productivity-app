@@ -8,7 +8,14 @@ func _enter(_previous_state: State) -> void:
 	state_machine.time_to_display = 0
 
 
-#func _on_button_pressed(button: PomodoroStateMachine.ButtonTypes) -> void:
+func _exit() -> void:
+	super()
+
+
 func _on_button_pressed(button: int) -> void:
-	if button == ButtonTypes.START:
-		finished.emit("Work")
+	match button:
+		ButtonTypes.START:
+			if state_machine.productivity_state == ProductivityStates.BREAK:
+				finished.emit("Work")
+			else:
+				finished.emit("Break")
