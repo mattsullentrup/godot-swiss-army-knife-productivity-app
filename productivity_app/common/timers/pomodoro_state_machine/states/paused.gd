@@ -2,8 +2,8 @@ class_name PausedState
 extends State
 
 
-func _enter(_previous_state: State) -> void:
-	super(_previous_state)
+func _enter(previous_state: State) -> void:
+	super(previous_state)
 	state_machine.pomodoro_timer.paused = true
 
 
@@ -13,7 +13,6 @@ func _update() -> void:
 
 func _exit() -> void:
 	super()
-
 	state_machine.pomodoro_timer.paused = false
 
 

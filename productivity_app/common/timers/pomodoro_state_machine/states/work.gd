@@ -2,8 +2,8 @@ class_name WorkState
 extends State
 
 
-func _enter(_previous_state: State) -> void:
-	super(_previous_state)
+func _enter(previous_state: State) -> void:
+	super(previous_state)
 
 	state_machine.pomodoro_timer.start()
 	state_machine.productivity_state = ProductivityStates.WORK
