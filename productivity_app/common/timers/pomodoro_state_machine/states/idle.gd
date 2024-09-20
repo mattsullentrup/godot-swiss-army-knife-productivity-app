@@ -15,18 +15,17 @@ func _on_button_pressed(button: int) -> void:
 	match button:
 		ButtonTypes.START:
 			finished.emit("Work")
-			state_machine.productivity_state = ProductivityStates.WORK
 		ButtonTypes.SKIP:
 			if state_machine.productivity_state == ProductivityStates.BREAK:
-				state_machine.productivity_state = ProductivityStates.WORK
+				finished.emit("Work")
 				state_machine.current_round += 1
 			else:
-				state_machine.productivity_state = ProductivityStates.BREAK
+				finished.emit("Break")
 		ButtonTypes.GO_BACK:
 			if state_machine.productivity_state == ProductivityStates.BREAK:
-				state_machine.productivity_state = ProductivityStates.WORK
+				finished.emit("Work")
 			else:
-				state_machine.productivity_state = ProductivityStates.BREAK
+				finished.emit("Break")
 				state_machine.current_round -= 1
 
 
