@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://ckw6bd8a72tum"]
+[gd_scene load_steps=20 format=3 uid="uid://ckw6bd8a72tum"]
 
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme/theme.tres" id="1_nq85o"]
+[ext_resource type="Script" path="res://common/timers/pomodoro_state_machine/pomodoro_timer_container.gd" id="2_6bsd6"]
 [ext_resource type="Script" path="res://common/timers/pomodoro_state_machine/pomodoro_state_machine.gd" id="2_8h7i8"]
 [ext_resource type="Script" path="res://common/timers/time_remaining_label.gd" id="3_cod8j"]
 [ext_resource type="Script" path="res://common/font_autosizer/autosize_label.gd" id="4_cctnv"]
@@ -51,29 +52,30 @@ corner_radius_bottom_left = 100
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.5
 theme = ExtResource("1_nq85o")
+script = ExtResource("2_6bsd6")
 
 [node name="PomodoroTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 125.666
 one_shot = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="GUIVBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 alignment = 1
 script = ExtResource("3_cod8j")
 
-[node name="HBoxContainer" type="PanelContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="PanelContainer" parent="GUIVBoxContainer"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_styles/panel = SubResource("StyleBoxFlat_8awij")
 
-[node name="PausedLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="PausedLabel" type="Label" parent="GUIVBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Paused"
 
-[node name="RoundLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="RoundLabel" type="Label" parent="GUIVBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("1_nq85o")
@@ -82,14 +84,14 @@ text = "1/4"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TimerMessage" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="TimerMessage" type="Label" parent="GUIVBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 text = "Break
 "
 horizontal_alignment = 2
 
-[node name="TimeRemainingLabel" type="Label" parent="VBoxContainer"]
+[node name="TimeRemainingLabel" type="Label" parent="GUIVBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 5
@@ -104,7 +106,7 @@ script = ExtResource("4_cctnv")
 min_font_size = 32
 max_font_size = 191
 
-[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="GUIVBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
@@ -114,7 +116,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_3bueh")
 value = 50.0
 show_percentage = false
 
-[node name="Buttons" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Buttons" type="HBoxContainer" parent="GUIVBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
@@ -122,7 +124,7 @@ size_flags_stretch_ratio = 0.7
 theme_override_constants/separation = 15
 alignment = 1
 
-[node name="StartButton" type="Button" parent="VBoxContainer/Buttons"]
+[node name="StartButton" type="Button" parent="GUIVBoxContainer/Buttons"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -134,7 +136,7 @@ text = "
 icon = ExtResource("5_qrp43")
 icon_alignment = 1
 
-[node name="GoBackButton" type="Button" parent="VBoxContainer/Buttons"]
+[node name="GoBackButton" type="Button" parent="GUIVBoxContainer/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -143,7 +145,7 @@ theme_type_variation = &"PurpleButton"
 icon = ExtResource("6_wlngn")
 icon_alignment = 1
 
-[node name="PauseButton" type="Button" parent="VBoxContainer/Buttons"]
+[node name="PauseButton" type="Button" parent="GUIVBoxContainer/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -154,7 +156,7 @@ text = "
 icon = ExtResource("7_4b0t7")
 icon_alignment = 1
 
-[node name="SkipButton" type="Button" parent="VBoxContainer/Buttons"]
+[node name="SkipButton" type="Button" parent="GUIVBoxContainer/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -163,7 +165,7 @@ theme_type_variation = &"PurpleButton"
 icon = ExtResource("8_w7v3y")
 icon_alignment = 1
 
-[node name="StopButton" type="Button" parent="VBoxContainer/Buttons"]
+[node name="StopButton" type="Button" parent="GUIVBoxContainer/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -193,8 +195,8 @@ script = ExtResource("13_mc60c")
 script = ExtResource("14_aha51")
 
 [connection signal="timeout" from="PomodoroTimer" to="StateMachine" method="_on_pomodoro_timer_timeout"]
-[connection signal="pressed" from="VBoxContainer/Buttons/StartButton" to="StateMachine" method="_on_start_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Buttons/GoBackButton" to="StateMachine" method="_on_go_back_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Buttons/PauseButton" to="StateMachine" method="_on_pause_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Buttons/SkipButton" to="StateMachine" method="_on_skip_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Buttons/StopButton" to="StateMachine" method="_on_stop_button_pressed"]
+[connection signal="pressed" from="GUIVBoxContainer/Buttons/StartButton" to="StateMachine" method="_on_start_button_pressed"]
+[connection signal="pressed" from="GUIVBoxContainer/Buttons/GoBackButton" to="StateMachine" method="_on_go_back_button_pressed"]
+[connection signal="pressed" from="GUIVBoxContainer/Buttons/PauseButton" to="StateMachine" method="_on_pause_button_pressed"]
+[connection signal="pressed" from="GUIVBoxContainer/Buttons/SkipButton" to="StateMachine" method="_on_skip_button_pressed"]
+[connection signal="pressed" from="GUIVBoxContainer/Buttons/StopButton" to="StateMachine" method="_on_stop_button_pressed"]
