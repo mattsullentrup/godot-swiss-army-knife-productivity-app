@@ -18,7 +18,7 @@ enum ProductivityStates {
 	WORK,
 }
 
-var state_machine: StateMachine
+var state_machine: PomodoroStateMachine
 
 
 func _enter(_previous_state: State) -> void:

@@ -56,7 +56,7 @@ script = ExtResource("2_6bsd6")
 
 [node name="PomodoroTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 125.666
+wait_time = 5.0
 one_shot = true
 
 [node name="GUIVBoxContainer" type="VBoxContainer" parent="."]
@@ -200,3 +200,4 @@ script = ExtResource("14_aha51")
 [connection signal="pressed" from="GUIVBoxContainer/Buttons/PauseButton" to="StateMachine" method="_on_pause_button_pressed"]
 [connection signal="pressed" from="GUIVBoxContainer/Buttons/SkipButton" to="StateMachine" method="_on_skip_button_pressed"]
 [connection signal="pressed" from="GUIVBoxContainer/Buttons/StopButton" to="StateMachine" method="_on_stop_button_pressed"]
+[connection signal="round_changed" from="StateMachine" to="." method="_on_state_machine_round_changed"]

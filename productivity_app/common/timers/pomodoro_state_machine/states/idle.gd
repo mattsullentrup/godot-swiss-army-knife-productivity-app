@@ -6,6 +6,7 @@ func _enter(_previous_state: State) -> void:
 	super(_previous_state)
 	_reset_state_machine()
 
+
 func _exit() -> void:
 	super()
 
@@ -33,6 +34,6 @@ func _on_button_pressed(button: int) -> void:
 
 func _reset_state_machine() -> void:
 	state_machine.pomodoro_timer.stop()
-	state_machine.time_to_display = 0
-	state_machine.current_round = 0
+	state_machine.time_to_display = 0.0
+	state_machine.current_round = 1
 	state_machine.productivity_state = State.ProductivityStates.BREAK

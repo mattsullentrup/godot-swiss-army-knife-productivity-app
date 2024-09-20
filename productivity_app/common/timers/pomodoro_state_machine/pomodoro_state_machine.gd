@@ -2,21 +2,28 @@ class_name PomodoroStateMachine
 extends StateMachine
 
 
-enum Round {
-	ZERO,
-	FIRST,
-	SECOND,
-	THIRD,
-	FOURTH,
-}
+signal round_changed(new_round: int)
+
+#enum Round {
+	#ZERO,
+	#FIRST,
+	#SECOND,
+	#THIRD,
+	#FOURTH,
+#}
 
 const MINUTE_MULTIPLIER = 60
+const MAX_ROUND = 5
 
 var notification_sound: AudioStreamPlayer = null
 var time_to_display: float
 var timer_length: float
 var productivity_state := State.ProductivityStates.BREAK
-var current_round: Round
+var current_round: int:
+	set(value):
+		current_round = value
+		current_round = wrap(current_round, 1, MAX_ROUND)
+		round_changed.emit(current_round)
 
 @onready var round_label: Label = %RoundLabel
 @onready var pomodoro_timer: Timer = %PomodoroTimer
@@ -37,12 +44,12 @@ func _process(_delta: float) -> void:
 
 func _change_state(new_state_name: String) -> void:
 	super(new_state_name)
-	_get_current_round()
+	#_get_current_round()
 
 
-func _get_current_round() -> void:
-	current_round = wrap(current_round, Round.FIRST, Round.FOURTH + 1)
-	round_label.text = str(current_round) + '/4'
+#func _get_current_round() -> void:
+	#current_round = wrap(current_round, Round.FIRST, Round.FOURTH + 1)
+	#round_label.text = str(current_round) + '/4'
 
 
 func _connect_buttons() -> void:
