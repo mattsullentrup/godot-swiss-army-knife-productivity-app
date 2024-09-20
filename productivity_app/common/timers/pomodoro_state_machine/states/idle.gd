@@ -6,6 +6,8 @@ func _enter(_previous_state: State) -> void:
 	super(_previous_state)
 	state_machine.pomodoro_timer.stop()
 	state_machine.time_to_display = 0
+	state_machine.current_round = 0
+	state_machine.productivity_state = State.ProductivityStates.BREAK
 
 
 func _exit() -> void:
