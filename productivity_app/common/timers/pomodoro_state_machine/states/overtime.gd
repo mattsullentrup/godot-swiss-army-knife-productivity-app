@@ -15,7 +15,7 @@ func _enter(_previous_state: State) -> void:
 
 
 func _update() -> void:
-	get_parent().time_to_display = (
+	state_machine.time_to_display = (
 			_overtime_start_time - Time.get_unix_time_from_system()
 	)
 
@@ -24,5 +24,25 @@ func _exit() -> void:
 	super()
 
 
-func _on_button_pressed(_button: ButtonTypes) -> void:
-	pass
+func _on_button_pressed(button: ButtonTypes) -> void:
+	match button:
+		ButtonTypes.START:
+			if state_machine.productivity_state == ProductivityStates.BREAK:
+				state_machine.current_round += 1
+				finished.emit("Work")
+			else:
+				finished.emit("Break")
+		ButtonTypes.SKIP:
+			if state_machine.productivity_state == ProductivityStates.BREAK:
+				state_machine.current_round += 1
+				finished.emit("Work")
+			else:
+				finished.emit("Break")
+		ButtonTypes.GO_BACK:
+			if state_machine.productivity_state == ProductivityStates.BREAK:
+				finished.emit("Work")
+			else:
+				state_machine.current_round -= 1
+				finished.emit("Break")
+		ButtonTypes.STOP:
+			finished.emit("Idle")
