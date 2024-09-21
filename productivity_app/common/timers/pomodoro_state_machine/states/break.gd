@@ -15,7 +15,7 @@ func _enter(previous_state: State) -> void:
 
 
 func _update() -> void:
-	pass
+	state_machine.time_to_display = state_machine.pomodoro_timer.time_left
 
 
 func _exit() -> void:

@@ -34,6 +34,5 @@ func _exit() -> void:
 	print("~~~~~~~~")
 
 
-#func _on_button_pressed(_button: PomodoroStateMachine.ButtonTypes) -> void:
 func _on_button_pressed(_button: int) -> void:
 	pass
