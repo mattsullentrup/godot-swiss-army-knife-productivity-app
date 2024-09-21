@@ -21,9 +21,16 @@ enum ProductivityState {
 var state_machine: PomodoroStateMachine
 
 
+func _print_state_info(transition_status: String) -> void:
+	printt(
+			transition_status + ' ' + self.name + ' | ' \
+			+ ProductivityState.find_key(state_machine.productivity_state) + ' | ' \
+			+ "round: " + str(state_machine.current_round) + ' | ' \
+			+ "timer: " + str(state_machine.pomodoro_timer.time_left)
+	)
+
 func _enter(_previous_state: State) -> void:
-	printt("Entering " + self.name + ' | ' \
-			+ ProductivityState.find_key(state_machine.productivity_state))
+	_print_state_info("Entering")
 
 
 func _update() -> void:
@@ -31,8 +38,7 @@ func _update() -> void:
 
 
 func _exit() -> void:
-	print("Exiting " + self.name + ' | ' \
-			+ ProductivityState.find_key(state_machine.productivity_state))
+	_print_state_info("Exiting")
 	print("~~~~~~~~")
 
 
