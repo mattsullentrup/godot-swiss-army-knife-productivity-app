@@ -11,7 +11,7 @@ func _enter(previous_state: State) -> void:
 	_overtime_start_time = Time.get_unix_time_from_system()
 
 	state_machine.notification_sound.play()
-	state_machine.progress_bar.value = 0
+	#state_machine.progress_bar.value = 0
 
 
 func _update() -> void:
