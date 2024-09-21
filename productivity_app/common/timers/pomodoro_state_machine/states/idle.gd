@@ -37,6 +37,8 @@ func _on_button_pressed(button: ButtonType) -> void:
 				#ProductivityState.find_key(state_machine.productivity_state) + ' | ' \
 				#+ "round: " + str(state_machine.current_round)
 			#)
+		ButtonType.STOP:
+			_reset_state_machine()
 
 
 func _reset_state_machine() -> void:
