@@ -35,9 +35,7 @@ func _on_button_pressed(button: ButtonType) -> void:
 		ButtonType.SKIP:
 			state_machine.productivity_state = ProductivityState.WORK
 			state_machine.current_round += 1
-			state_machine.pomodoro_timer.stop()
 			finished.emit("Idle")
 		ButtonType.GO_BACK:
 			state_machine.productivity_state = ProductivityState.BREAK
-			state_machine.pomodoro_timer.stop()
 			finished.emit("Idle")

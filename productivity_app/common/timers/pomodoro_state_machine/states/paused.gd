@@ -30,5 +30,4 @@ func _on_button_pressed(button: ButtonType) -> void:
 				state_machine.productivity_state = ProductivityState.WORK
 				state_machine.current_round += 1
 
-			state_machine.pomodoro_timer.stop()
 			finished.emit("idle")
