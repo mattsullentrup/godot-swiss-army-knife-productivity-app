@@ -16,16 +16,12 @@ func _on_button_pressed(button: ButtonType) -> void:
 		ButtonType.START:
 			finished.emit(ProductivityState.find_key(state_machine.productivity_state))
 		ButtonType.SKIP:
+			finished.emit("Idle")
 			if state_machine.productivity_state == ProductivityState.BREAK:
-				finished.emit("Work")
 				state_machine.current_round += 1
-			else:
-				finished.emit("Break")
 		ButtonType.GO_BACK:
-			if state_machine.productivity_state == ProductivityState.BREAK:
-				finished.emit("Work")
-			else:
-				finished.emit("Break")
+			finished.emit("Idle")
+			if state_machine.productivity_state == ProductivityState.WORK:
 				state_machine.current_round -= 1
 
 

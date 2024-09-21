@@ -4,11 +4,11 @@ extends State
 
 func _enter(previous_state: State) -> void:
 	match state_machine.states.find_key(previous_state):
-		"Idle", "Overtime":
+		"idle", "overtime":
 			state_machine.pomodoro_timer.start()
-		"Paused":
+		"paused":
 			state_machine.pomodoro_timer.paused = false
-		"Work", "Break":
+		"work", "break":
 			state_machine.pomodoro_timer.stop()
 		_:
 			print("No previous state")
