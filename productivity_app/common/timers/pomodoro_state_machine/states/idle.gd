@@ -11,7 +11,7 @@ func _exit() -> void:
 	super()
 
 
-func _on_button_pressed(button: int) -> void:
+func _on_button_pressed(button: ButtonTypes) -> void:
 	match button:
 		ButtonTypes.START:
 			finished.emit("Work")

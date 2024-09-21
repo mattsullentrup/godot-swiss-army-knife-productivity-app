@@ -34,5 +34,5 @@ func _exit() -> void:
 	print("~~~~~~~~")
 
 
-func _on_button_pressed(_button: int) -> void:
+func _on_button_pressed(_button: ButtonTypes) -> void:
 	pass

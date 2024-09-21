@@ -28,5 +28,3 @@ func _on_button_pressed(button: ButtonTypes) -> void:
 			finished.emit("Idle")
 		ButtonTypes.PAUSE:
 			finished.emit("Paused")
-		ButtonTypes.START:
-			finished.emit("Work")

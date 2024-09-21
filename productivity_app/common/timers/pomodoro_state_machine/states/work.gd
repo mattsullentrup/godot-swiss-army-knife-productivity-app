@@ -22,9 +22,11 @@ func _exit() -> void:
 	super()
 
 
-func _on_button_pressed(button: int) -> void:
+func _on_button_pressed(button: ButtonTypes) -> void:
 	match button:
 		ButtonTypes.STOP:
 			finished.emit("Idle")
 		ButtonTypes.PAUSE:
 			finished.emit("Paused")
+		ButtonTypes.SKIP:
+			pass
