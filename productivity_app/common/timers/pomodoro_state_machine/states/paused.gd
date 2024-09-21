@@ -23,3 +23,5 @@ func _on_button_pressed(button: ButtonType) -> void:
 				finished.emit("Break")
 			else:
 				finished.emit("Work")
+		ButtonType.STOP:
+			finished.emit("Idle")
