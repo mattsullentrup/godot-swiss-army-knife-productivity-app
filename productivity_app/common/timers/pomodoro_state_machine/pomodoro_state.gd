@@ -22,7 +22,8 @@ var state_machine: PomodoroStateMachine
 
 
 func _enter(_previous_state: State) -> void:
-	print("Entering " + self.name)
+	printt("Entering " + self.name + ' | ' \
+			+ ProductivityState.find_key(state_machine.productivity_state))
 
 
 func _update() -> void:
@@ -30,7 +31,8 @@ func _update() -> void:
 
 
 func _exit() -> void:
-	print("Exiting " + self.name)
+	print("Exiting " + self.name + ' | ' \
+			+ ProductivityState.find_key(state_machine.productivity_state))
 	print("~~~~~~~~")
 
 

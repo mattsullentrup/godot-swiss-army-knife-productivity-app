@@ -18,4 +18,4 @@ func _ready() -> void:
 
 func _on_state_machine_round_changed(new_round: Variant) -> void:
 	_round_label.text = str(new_round) + '/4'
-	print(new_round)
+	#print(new_round)

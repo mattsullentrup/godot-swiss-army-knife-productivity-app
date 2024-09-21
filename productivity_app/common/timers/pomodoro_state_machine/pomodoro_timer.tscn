@@ -56,7 +56,7 @@ script = ExtResource("2_6bsd6")
 
 [node name="PomodoroTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 5.0
+wait_time = 7.0
 one_shot = true
 
 [node name="GUIVBoxContainer" type="VBoxContainer" parent="."]
