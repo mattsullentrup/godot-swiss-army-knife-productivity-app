@@ -13,7 +13,7 @@ var long_break_length: float = 15
 var work_round_length: float = 25
 var time_to_display: float
 var timer_length: float
-var productivity_state := State.ProductivityStates.BREAK
+var productivity_state := State.ProductivityState.BREAK
 var current_round: int:
 	set(value):
 		current_round = value

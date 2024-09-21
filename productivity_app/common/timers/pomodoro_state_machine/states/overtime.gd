@@ -24,25 +24,25 @@ func _exit() -> void:
 	super()
 
 
-func _on_button_pressed(button: ButtonTypes) -> void:
+func _on_button_pressed(button: ButtonType) -> void:
 	match button:
-		ButtonTypes.START:
-			if state_machine.productivity_state == ProductivityStates.BREAK:
+		ButtonType.START:
+			if state_machine.productivity_state == ProductivityState.BREAK:
 				state_machine.current_round += 1
 				finished.emit("Work")
 			else:
 				finished.emit("Break")
-		ButtonTypes.SKIP:
-			if state_machine.productivity_state == ProductivityStates.BREAK:
+		ButtonType.SKIP:
+			if state_machine.productivity_state == ProductivityState.BREAK:
 				state_machine.current_round += 1
 				finished.emit("Work")
 			else:
 				finished.emit("Break")
-		ButtonTypes.GO_BACK:
-			if state_machine.productivity_state == ProductivityStates.BREAK:
+		ButtonType.GO_BACK:
+			if state_machine.productivity_state == ProductivityState.BREAK:
 				finished.emit("Work")
 			else:
 				state_machine.current_round -= 1
 				finished.emit("Break")
-		ButtonTypes.STOP:
+		ButtonType.STOP:
 			finished.emit("Idle")

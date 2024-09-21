@@ -5,7 +5,7 @@ extends Node
 @warning_ignore("unused_signal")
 signal finished(next_state: String)
 
-enum ButtonTypes {
+enum ButtonType {
 	START,
 	GO_BACK,
 	PAUSE,
@@ -13,7 +13,7 @@ enum ButtonTypes {
 	STOP,
 }
 
-enum ProductivityStates {
+enum ProductivityState {
 	BREAK,
 	WORK,
 }
@@ -34,5 +34,5 @@ func _exit() -> void:
 	print("~~~~~~~~")
 
 
-func _on_button_pressed(_button: ButtonTypes) -> void:
+func _on_button_pressed(_button: ButtonType) -> void:
 	pass

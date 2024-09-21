@@ -16,10 +16,10 @@ func _exit() -> void:
 	state_machine.pomodoro_timer.paused = false
 
 
-func _on_button_pressed(button: ButtonTypes) -> void:
+func _on_button_pressed(button: ButtonType) -> void:
 	match button:
-		ButtonTypes.PAUSE, ButtonTypes.START:
-			if state_machine.productivity_state == ProductivityStates.BREAK:
+		ButtonType.PAUSE, ButtonType.START:
+			if state_machine.productivity_state == ProductivityState.BREAK:
 				finished.emit("Break")
 			else:
 				finished.emit("Work")

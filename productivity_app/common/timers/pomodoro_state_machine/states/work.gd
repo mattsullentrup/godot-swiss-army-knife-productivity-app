@@ -11,7 +11,7 @@ func _enter(previous_state: State) -> void:
 		"paused":
 			state_machine.pomodoro_timer.paused = false
 
-	state_machine.productivity_state = ProductivityStates.WORK
+	state_machine.productivity_state = ProductivityState.WORK
 
 
 func _update() -> void:
@@ -22,11 +22,11 @@ func _exit() -> void:
 	super()
 
 
-func _on_button_pressed(button: ButtonTypes) -> void:
+func _on_button_pressed(button: ButtonType) -> void:
 	match button:
-		ButtonTypes.STOP:
+		ButtonType.STOP:
 			finished.emit("Idle")
-		ButtonTypes.PAUSE:
+		ButtonType.PAUSE:
 			finished.emit("Paused")
-		ButtonTypes.SKIP:
+		ButtonType.SKIP:
 			pass
