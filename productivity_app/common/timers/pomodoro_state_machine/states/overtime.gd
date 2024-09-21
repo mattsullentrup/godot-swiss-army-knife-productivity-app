@@ -45,4 +45,5 @@ func _on_button_pressed(button: ButtonType) -> void:
 				state_machine.current_round -= 1
 				finished.emit("Break")
 		ButtonType.STOP:
+			state_machine.productivity_state = ProductivityState.WORK
 			finished.emit("Idle")
