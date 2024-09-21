@@ -24,6 +24,7 @@ var current_round: int:
 
 
 func _ready() -> void:
+	current_round = 1
 	_setup_states()
 	_connect_buttons()
 

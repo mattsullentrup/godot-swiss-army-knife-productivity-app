@@ -4,7 +4,7 @@ extends State
 
 func _enter(previous_state: State) -> void:
 	super(previous_state)
-	_reset_state_machine()
+	#_reset_state_machine()
 
 
 func _exit() -> void:
@@ -22,10 +22,8 @@ func _on_button_pressed(button: ButtonType) -> void:
 				state_machine.productivity_state = ProductivityState.WORK
 			else:
 				state_machine.productivity_state = ProductivityState.BREAK
-			#printt(
-				#ProductivityState.find_key(state_machine.productivity_state) + ' | ' \
-				#+ "round: " + str(state_machine.current_round)
-			#)
+
+			_print_status()
 		ButtonType.GO_BACK:
 			finished.emit("Idle")
 			if state_machine.productivity_state == ProductivityState.WORK:
@@ -33,13 +31,17 @@ func _on_button_pressed(button: ButtonType) -> void:
 				state_machine.productivity_state = ProductivityState.BREAK
 			else:
 				state_machine.productivity_state = ProductivityState.WORK
-			#printt(
-				#ProductivityState.find_key(state_machine.productivity_state) + ' | ' \
-				#+ "round: " + str(state_machine.current_round)
-			#)
+
+			_print_status()
 		ButtonType.STOP:
 			_reset_state_machine()
 
+
+func _print_status() -> void:
+	printt(
+		ProductivityState.find_key(state_machine.productivity_state) + ' | ' \
+		+ "round: " + str(state_machine.current_round)
+	)
 
 func _reset_state_machine() -> void:
 	state_machine.pomodoro_timer.stop()

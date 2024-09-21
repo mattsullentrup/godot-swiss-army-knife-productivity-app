@@ -16,6 +16,10 @@ func _ready() -> void:
 	_gui_v_box_container.state_machine = $StateMachine
 
 
+func _process(_delta: float) -> void:
+	%TimeRemainingLabel.text = str($StateMachine.time_to_display)
+
+
 func _on_state_machine_round_changed(new_round: Variant) -> void:
 	_round_label.text = str(new_round) + '/4'
 	#print(new_round)

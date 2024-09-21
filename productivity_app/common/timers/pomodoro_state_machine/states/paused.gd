@@ -20,10 +20,6 @@ func _on_button_pressed(button: ButtonType) -> void:
 	match button:
 		ButtonType.PAUSE, ButtonType.START:
 			finished.emit(ProductivityState.find_key(state_machine.productivity_state))
-			#if state_machine.productivity_state == ProductivityState.BREAK:
-				#finished.emit("Break")
-			#else:
-				#finished.emit("Work")
 		ButtonType.STOP:
 			state_machine.productivity_state = ProductivityState.WORK
 			finished.emit("Idle")
