@@ -5,7 +5,12 @@ extends State
 func _enter(previous_state: State) -> void:
 	super(previous_state)
 
-	state_machine.pomodoro_timer.start()
+	match state_machine.states.find_key(previous_state):
+		"idle", "overtime":
+			state_machine.pomodoro_timer.start()
+		"paused":
+			state_machine.pomodoro_timer.paused = false
+
 	state_machine.productivity_state = ProductivityStates.WORK
 
 
