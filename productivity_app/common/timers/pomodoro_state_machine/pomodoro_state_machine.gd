@@ -3,6 +3,7 @@ extends StateMachine
 
 
 signal round_changed(new_round: int)
+signal state_changed(new_state_name: String)
 
 const MINUTE_MULTIPLIER = 60
 const MAX_ROUND = 5
@@ -36,6 +37,7 @@ func _process(_delta: float) -> void:
 
 func _change_state(new_state_name: String) -> void:
 	super(new_state_name)
+	state_changed.emit(new_state_name)
 
 
 func _connect_buttons() -> void:

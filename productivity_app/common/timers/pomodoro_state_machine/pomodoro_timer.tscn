@@ -71,6 +71,7 @@ size_flags_vertical = 6
 theme_override_styles/panel = SubResource("StyleBoxFlat_8awij")
 
 [node name="PausedLabel" type="Label" parent="GUIVBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Paused"
@@ -84,7 +85,8 @@ text = "1/4"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TimerMessage" type="Label" parent="GUIVBoxContainer/HBoxContainer"]
+[node name="ProductivityStateLabel" type="Label" parent="GUIVBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 text = "Break
@@ -202,3 +204,4 @@ script = ExtResource("14_aha51")
 [connection signal="pressed" from="GUIVBoxContainer/Buttons/SkipButton" to="StateMachine" method="_on_skip_button_pressed"]
 [connection signal="pressed" from="GUIVBoxContainer/Buttons/StopButton" to="StateMachine" method="_on_stop_button_pressed"]
 [connection signal="round_changed" from="StateMachine" to="." method="_on_state_machine_round_changed"]
+[connection signal="state_changed" from="StateMachine" to="." method="_on_state_machine_state_changed"]
