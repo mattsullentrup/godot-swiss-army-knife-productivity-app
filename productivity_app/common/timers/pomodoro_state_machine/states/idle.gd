@@ -19,10 +19,24 @@ func _on_button_pressed(button: ButtonType) -> void:
 			finished.emit("Idle")
 			if state_machine.productivity_state == ProductivityState.BREAK:
 				state_machine.current_round += 1
+				state_machine.productivity_state = ProductivityState.WORK
+			else:
+				state_machine.productivity_state = ProductivityState.BREAK
+			#printt(
+				#ProductivityState.find_key(state_machine.productivity_state) + ' | ' \
+				#+ "round: " + str(state_machine.current_round)
+			#)
 		ButtonType.GO_BACK:
 			finished.emit("Idle")
 			if state_machine.productivity_state == ProductivityState.WORK:
 				state_machine.current_round -= 1
+				state_machine.productivity_state = ProductivityState.BREAK
+			else:
+				state_machine.productivity_state = ProductivityState.WORK
+			#printt(
+				#ProductivityState.find_key(state_machine.productivity_state) + ' | ' \
+				#+ "round: " + str(state_machine.current_round)
+			#)
 
 
 func _reset_state_machine() -> void:
