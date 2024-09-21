@@ -4,6 +4,7 @@ extends State
 
 func _enter(previous_state: State) -> void:
 	super(previous_state)
+	state_machine.time_to_display = 0
 	state_machine.pomodoro_timer.stop()
 
 

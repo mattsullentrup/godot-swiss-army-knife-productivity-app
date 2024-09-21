@@ -5,7 +5,10 @@ extends State
 func _enter(previous_state: State) -> void:
 	match state_machine.states.find_key(previous_state):
 		"idle", "overtime":
-			state_machine.pomodoro_timer.start()
+			if state_machine.current_round == 4:
+				state_machine.pomodoro_timer.start(state_machine.long_break_length)
+			else:
+				state_machine.pomodoro_timer.start(state_machine.short_break_length)
 		"paused":
 			state_machine.pomodoro_timer.paused = false
 		"work", "break":

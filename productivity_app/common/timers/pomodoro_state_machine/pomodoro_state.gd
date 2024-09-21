@@ -20,10 +20,6 @@ enum ProductivityState {
 
 var state_machine: PomodoroStateMachine
 
-@onready var state_name: StringName:
-	get:
-		return self.name.to_lower()
-
 
 func _print_state_info(transition_status: String) -> void:
 	printt(

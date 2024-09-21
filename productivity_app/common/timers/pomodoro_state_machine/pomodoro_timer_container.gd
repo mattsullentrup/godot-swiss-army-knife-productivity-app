@@ -5,6 +5,8 @@ var _progress_bar: ProgressBar
 var _gui_v_box_container: VBoxContainer
 var _round_label: Label
 
+@onready var _state_machine: PomodoroStateMachine = %StateMachine
+
 
 func _enter_tree() -> void:
 	_progress_bar = %ProgressBar
@@ -13,7 +15,7 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
-	_gui_v_box_container.state_machine = $StateMachine
+	_gui_v_box_container.state_machine = _state_machine
 
 
 func _process(_delta: float) -> void:
