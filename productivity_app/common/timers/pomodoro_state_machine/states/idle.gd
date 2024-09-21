@@ -47,7 +47,7 @@ func _print_status() -> void:
 
 func _reset_state_machine() -> void:
 	state_machine.pomodoro_timer.stop()
-	state_machine.time_to_display = 0.0
+	state_machine.time_to_display = state_machine.work_round_length
 	state_machine.current_round = 1
 	state_machine.productivity_state = State.ProductivityState.WORK
 
