@@ -32,7 +32,7 @@ func initialize(state: State) -> void:
 
 func _change_state(new_state_name: String) -> void:
 	var new_state: State = states.get(new_state_name.to_lower())
-	if not new_state or current_state == new_state:
+	if not new_state:
 		return
 
 	if current_state:

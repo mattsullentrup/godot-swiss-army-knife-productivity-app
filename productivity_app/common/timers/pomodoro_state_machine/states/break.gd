@@ -32,6 +32,7 @@ func _exit() -> void:
 func _on_button_pressed(button: ButtonType) -> void:
 	match button:
 		ButtonType.STOP:
+			state_machine.productivity_state = ProductivityState.WORK
 			finished.emit("Idle")
 		ButtonType.PAUSE:
 			finished.emit("Paused")

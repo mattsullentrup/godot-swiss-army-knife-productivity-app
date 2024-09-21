@@ -4,7 +4,8 @@ extends State
 
 func _enter(previous_state: State) -> void:
 	super(previous_state)
-	state_machine.time_to_display = 0
+	state_machine.time_to_display = _determine_time_to_display()
+
 	state_machine.pomodoro_timer.stop()
 
 
@@ -48,4 +49,18 @@ func _reset_state_machine() -> void:
 	state_machine.pomodoro_timer.stop()
 	state_machine.time_to_display = 0.0
 	state_machine.current_round = 1
-	#state_machine.productivity_state = State.ProductivityState.BREAK
+	state_machine.productivity_state = State.ProductivityState.WORK
+
+
+func _determine_time_to_display() -> float:
+	match state_machine.productivity_state:
+		ProductivityState.BREAK when state_machine.current_round == 4:
+			return state_machine.long_break_length
+		ProductivityState.BREAK:
+			return state_machine.short_break_length
+		ProductivityState.WORK:
+			return state_machine.work_round_length
+		_:
+			return 0
+
+	#return -1
