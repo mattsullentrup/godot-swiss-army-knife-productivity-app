@@ -31,3 +31,5 @@ func _on_button_pressed(button: ButtonType) -> void:
 				state_machine.current_round += 1
 
 			finished.emit("idle")
+		ButtonType.GO_BACK:
+			finished.emit("idle")
