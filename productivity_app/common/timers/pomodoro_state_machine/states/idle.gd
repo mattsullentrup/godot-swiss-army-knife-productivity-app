@@ -37,6 +37,7 @@ func _on_button_pressed(button: ButtonType) -> void:
 			_print_status()
 		ButtonType.STOP:
 			_reset_state_machine()
+			finished.emit("idle")
 
 
 func _print_status() -> void:
