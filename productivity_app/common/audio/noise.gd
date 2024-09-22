@@ -12,8 +12,8 @@ extends VBoxContainer
 
 func _ready() -> void:
 	pink_noise.volume_db = linear_to_db(volume_h_slider.value)
-	pink_noise.playing = true
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("Noise"), true)
+	#pink_noise.playing = true
+	#AudioServer.set_bus_mute(AudioServer.get_bus_index("Noise"), true)
 
 
 func _notification(what: int) -> void:
@@ -23,10 +23,10 @@ func _notification(what: int) -> void:
 
 
 func _on_noise_button_toggled(toggled_on: bool) -> void:
-	# pink_noise.playing = toggled_on
-	toggled_on = not toggled_on
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("Noise"), toggled_on)
-	noise_button.icon = audio_on_icon if not toggled_on else audio_off_icon
+	#toggled_on = not toggled_on
+	pink_noise.playing = toggled_on
+	#AudioServer.set_bus_mute(AudioServer.get_bus_index("Noise"), toggled_on)
+	noise_button.icon = audio_on_icon if toggled_on else audio_off_icon
 
 
 func _on_volume_h_slider_value_changed(value: float) -> void:
