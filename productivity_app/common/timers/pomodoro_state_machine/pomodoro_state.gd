@@ -13,6 +13,9 @@ enum ButtonType {
 	STOP,
 }
 
+static var is_break_state := false
+
+# References
 var state_machine: PomodoroStateMachine
 var idle_state: IdleState
 var work_state: WorkState
@@ -40,7 +43,7 @@ func _init(
 func _print_state_info(transition_status: String) -> void:
 	printt(
 			transition_status + ' ' + self.name + ' | ' \
-			+ "is_break_state: " + str(state_machine.is_break_state) + ' | ' \
+			+ "is_break_state: " + str(is_break_state) + ' | ' \
 			+ "round: " + str(state_machine.current_round) + ' | ' \
 			+ "timer: " + str(state_machine.pomodoro_timer.time_left)
 	)

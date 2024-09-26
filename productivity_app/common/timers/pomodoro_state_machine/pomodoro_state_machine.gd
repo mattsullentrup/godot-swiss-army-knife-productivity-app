@@ -23,7 +23,7 @@ var long_break_length: float = 15 * MINUTE_MULTIPLIER
 var work_round_length: float = 25 * MINUTE_MULTIPLIER
 var time_to_display: float
 var timer_length: float
-var is_break_state := false
+#var is_break_state := false
 
 var current_round: int:
 	set(value):
@@ -74,11 +74,7 @@ func _setup_states() -> void:
 
 
 func _change_state(new_state: State) -> void:
-	state_changed.emit(new_state, is_break_state, time_to_display)
-	#var new_state: State = states.get(new_state_name.to_lower())
-	#if not new_state:
-		#return
-
+	state_changed.emit(new_state, new_state.is_break_state, time_to_display)
 	if current_state:
 		current_state._exit()
 

@@ -16,22 +16,25 @@ func _exit() -> void:
 func _on_button_pressed(button: ButtonType) -> void:
 	match button:
 		ButtonType.START:
-			finished.emit(break_state if state_machine.is_break_state else work_state)
-		ButtonType.SKIP:
-			if state_machine.is_break_state:
-				state_machine.current_round += 1
-				state_machine.is_break_state = false
+			if is_break_state:
+				finished.emit(break_state)
 			else:
-				state_machine.is_break_state = true
+				finished.emit(work_state)
+		ButtonType.SKIP:
+			if is_break_state:
+				state_machine.current_round += 1
+				is_break_state = false
+			else:
+				is_break_state = true
 
 			finished.emit(idle_state)
 			_print_status()
 		ButtonType.GO_BACK:
-			if state_machine.is_break_state == false:
+			if is_break_state == false:
 				state_machine.current_round -= 1
-				state_machine.is_break_state = true
+				is_break_state = true
 			else:
-				state_machine.is_break_state = false
+				is_break_state = false
 
 			finished.emit(idle_state)
 			_print_status()
@@ -42,7 +45,7 @@ func _on_button_pressed(button: ButtonType) -> void:
 
 func _print_status() -> void:
 	printt(
-		"is break state: " + str(state_machine.is_break_state) + ' | ' \
+		"is break state: " + str(is_break_state) + ' | ' \
 		+ "round: " + str(state_machine.current_round)
 	)
 
@@ -50,11 +53,11 @@ func _reset_state_machine() -> void:
 	state_machine.pomodoro_timer.stop()
 	state_machine.time_to_display = state_machine.work_round_length
 	state_machine.current_round = 1
-	state_machine.is_break_state = false
+	is_break_state = false
 
 
 func _determine_time_to_display() -> float:
-	match state_machine.is_break_state:
+	match is_break_state:
 		true when state_machine.current_round == state_machine.MAX_ROUND:
 			return state_machine.long_break_length
 		true:
