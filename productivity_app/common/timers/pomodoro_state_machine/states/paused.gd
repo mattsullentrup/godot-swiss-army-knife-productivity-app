@@ -16,7 +16,7 @@ func _exit() -> void:
 	state_machine.pomodoro_timer.paused = false
 
 
-func _on_button_pressed(button: ButtonType) -> void:
+func _on_button_pressed(button: Button) -> void:
 	match button:
 		ButtonType.PAUSE, ButtonType.START:
 			if is_break_state:

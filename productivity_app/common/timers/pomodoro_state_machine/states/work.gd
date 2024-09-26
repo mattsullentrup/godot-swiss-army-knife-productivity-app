@@ -26,7 +26,7 @@ func _exit() -> void:
 	super()
 
 
-func _on_button_pressed(button: ButtonType) -> void:
+func _on_button_pressed(button: Button) -> void:
 	match button:
 		ButtonType.STOP:
 			finished.emit(idle_state)

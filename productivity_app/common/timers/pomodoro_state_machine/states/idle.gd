@@ -13,9 +13,9 @@ func _exit() -> void:
 	super()
 
 
-func _on_button_pressed(button: ButtonType) -> void:
+func _on_button_pressed(button: Button) -> void:
 	match button:
-		ButtonType.START:
+		_start_button:
 			if is_break_state:
 				finished.emit(break_state)
 			else:

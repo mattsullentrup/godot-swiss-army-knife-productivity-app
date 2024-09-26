@@ -23,6 +23,12 @@ var break_state: BreakState
 var paused_state: PausedState
 var overtime_state: OvertimeState
 
+@onready var _start_button: Button = %StartButton
+@onready var _go_back_button: Button = %GoBackButton
+@onready var _pause_button: Button = %PauseButton
+@onready var _skip_button: Button = %SkipButton
+@onready var _stop_button: Button = %StopButton
+
 
 func _initialize(p_state_machine: PomodoroStateMachine = null, p_states: Array = []) -> void:
 	state_machine = p_state_machine
@@ -58,5 +64,5 @@ func _exit() -> void:
 	print("~~~~~~~~")
 
 
-func _on_button_pressed(_button: ButtonType) -> void:
+func _on_button_pressed(_button: Button) -> void:
 	pass
