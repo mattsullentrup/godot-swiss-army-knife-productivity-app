@@ -5,14 +5,6 @@ extends Node
 @warning_ignore("unused_signal")
 signal finished(next_state: State)
 
-enum ButtonType {
-	START,
-	GO_BACK,
-	PAUSE,
-	SKIP,
-	STOP,
-}
-
 static var is_break_state := false
 
 # References
@@ -23,14 +15,18 @@ var break_state: BreakState
 var paused_state: PausedState
 var overtime_state: OvertimeState
 
-@onready var _start_button: Button = %StartButton
-@onready var _go_back_button: Button = %GoBackButton
-@onready var _pause_button: Button = %PauseButton
-@onready var _skip_button: Button = %SkipButton
-@onready var _stop_button: Button = %StopButton
+var _start_button: Button
+var _go_back_button: Button
+var _pause_button: Button
+var _skip_button: Button
+var _stop_button: Button
 
 
-func _initialize(p_state_machine: PomodoroStateMachine = null, p_states: Array = []) -> void:
+func _initialize(
+			p_state_machine: PomodoroStateMachine = null,
+			p_states: Array = [],
+			p_buttons: Array = []
+) -> void:
 	state_machine = p_state_machine
 	if p_states == null:
 		push_error("states array is null")
@@ -41,6 +37,12 @@ func _initialize(p_state_machine: PomodoroStateMachine = null, p_states: Array =
 	break_state = p_states[2]
 	paused_state = p_states[3]
 	overtime_state = p_states[4]
+
+	_start_button = p_buttons[0]
+	_go_back_button = p_buttons[1]
+	_pause_button = p_buttons[2]
+	_skip_button = p_buttons[3]
+	_stop_button = p_buttons[4]
 
 
 func _print_state_info(transition_status: String) -> void:

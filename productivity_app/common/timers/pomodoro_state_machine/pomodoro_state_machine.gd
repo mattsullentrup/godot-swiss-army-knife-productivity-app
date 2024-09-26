@@ -14,7 +14,7 @@ const MAX_ROUND = 4
 
 @export var initial_state: Node
 
-var states: Dictionary = {}
+var buttons: Array[Button]
 var current_state: State = null
 var previous_state: State = null
 var notification_sound: AudioStreamPlayer = null
@@ -31,17 +31,12 @@ var current_round: int:
 		round_changed.emit(current_round)
 
 @onready var pomodoro_timer: Timer = %PomodoroTimer
-@onready var idle_state: IdleState = $Idle
-@onready var work_state: WorkState = $Work
-@onready var break_state: BreakState = $Break
-@onready var paused_state: PausedState = $Paused
-@onready var overtime_state: OvertimeState = $Overtime
 
 
 func _ready() -> void:
 	current_round = 1
-	_setup_states()
 	_connect_buttons()
+	_setup_states()
 
 
 func _process(_delta: float) -> void:
@@ -50,23 +45,18 @@ func _process(_delta: float) -> void:
 
 func _connect_buttons() -> void:
 	for button: Button in %Buttons.get_children():
-		button.pressed.connect(func () -> void:
-				current_state._on_button_pressed(button.get_index())
-		)
+		buttons.append(button)
+		button.pressed.connect(_on_button_pressed.bind(button))
 
 
 func _setup_states() -> void:
 	if initial_state == null:
 		initial_state = get_child(0)
 
-	for child in get_children():
-		if child is State:
-			var state: State = child
-			state.finished.connect(_change_state)
-			state._init(self, idle_state, work_state, break_state, paused_state, overtime_state)
-			continue
-
-		push_error("Child" + child.name + " is not a State")
+	var states: Array = get_children().filter(func(x: Node) -> bool: return x is State)
+	for state: State in states:
+		state.finished.connect(_change_state)
+		state._initialize(self, states, buttons)
 
 	_change_state(initial_state)
 
@@ -82,3 +72,7 @@ func _change_state(new_state: Node) -> void:
 	previous_state = current_state
 	current_state = new_state
 	current_state._enter(previous_state)
+
+
+func _on_button_pressed(button: Button) -> void:
+	current_state._on_button_pressed(button)

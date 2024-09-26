@@ -26,21 +26,21 @@ func _exit() -> void:
 
 func _on_button_pressed(button: Button) -> void:
 	match button:
-		ButtonType.START:
+		_start_button:
 			if is_break_state == true:
 				state_machine.current_round += 1
 				finished.emit(work_state)
 			else:
 				finished.emit(break_state)
-		ButtonType.SKIP:
+		_skip_button:
 			if is_break_state:
 				state_machine.current_round += 1
 				is_break_state = false
 			else:
 				is_break_state = true
 			finished.emit(idle_state)
-		ButtonType.GO_BACK:
+		_go_back_button:
 			finished.emit(idle_state)
-		ButtonType.STOP:
+		_stop_button:
 			is_break_state = false
 			finished.emit(idle_state)

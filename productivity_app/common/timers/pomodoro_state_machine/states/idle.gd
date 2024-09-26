@@ -5,7 +5,6 @@ extends State
 func _enter(previous_state: State) -> void:
 	super(previous_state)
 	state_machine.time_to_display = _determine_time_to_display()
-
 	state_machine.pomodoro_timer.stop()
 
 
@@ -20,7 +19,7 @@ func _on_button_pressed(button: Button) -> void:
 				finished.emit(break_state)
 			else:
 				finished.emit(work_state)
-		ButtonType.SKIP:
+		_skip_button:
 			if is_break_state:
 				state_machine.current_round += 1
 				is_break_state = false
@@ -29,7 +28,7 @@ func _on_button_pressed(button: Button) -> void:
 
 			finished.emit(idle_state)
 			_print_status()
-		ButtonType.GO_BACK:
+		_go_back_button:
 			if is_break_state == false:
 				state_machine.current_round -= 1
 				is_break_state = true
@@ -38,7 +37,7 @@ func _on_button_pressed(button: Button) -> void:
 
 			finished.emit(idle_state)
 			_print_status()
-		ButtonType.STOP:
+		_stop_button:
 			_reset_state_machine()
 			finished.emit(idle_state)
 
