@@ -19,10 +19,10 @@ func _exit() -> void:
 func _on_button_pressed(button: ButtonType) -> void:
 	match button:
 		ButtonType.PAUSE, ButtonType.START:
-			finished.emit("Break" if state_machine.is_break_state else "Work")
+			finished.emit(break_state if state_machine.is_break_state else work_state)
 		ButtonType.STOP:
 			state_machine.is_break_state = false
-			finished.emit("Idle")
+			finished.emit(idle_state)
 		ButtonType.SKIP:
 			if state_machine.is_break_state:
 				state_machine.is_break_state = false
@@ -30,6 +30,6 @@ func _on_button_pressed(button: ButtonType) -> void:
 			else:
 				state_machine.is_break_state = true
 
-			finished.emit("idle")
+			finished.emit(idle_state)
 		ButtonType.GO_BACK:
-			finished.emit("idle")
+			finished.emit(idle_state)

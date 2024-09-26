@@ -29,18 +29,18 @@ func _on_button_pressed(button: ButtonType) -> void:
 		ButtonType.START:
 			if state_machine.is_break_state == true:
 				state_machine.current_round += 1
-				finished.emit("Work")
+				finished.emit(work_state)
 			else:
-				finished.emit("Break")
+				finished.emit(break_state)
 		ButtonType.SKIP:
 			if state_machine.is_break_state:
 				state_machine.current_round += 1
 				state_machine.is_break_state = false
 			else:
 				state_machine.is_break_state = true
-			finished.emit("Idle")
+			finished.emit(idle_state)
 		ButtonType.GO_BACK:
-			finished.emit("Idle")
+			finished.emit(idle_state)
 		ButtonType.STOP:
 			state_machine.is_break_state = false
-			finished.emit("Idle")
+			finished.emit(idle_state)

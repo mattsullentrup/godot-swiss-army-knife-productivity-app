@@ -3,12 +3,12 @@ extends State
 
 
 func _enter(previous_state: State) -> void:
-	match state_machine.states.find_key(previous_state):
-		"idle", "overtime":
+	match previous_state:
+		idle_state, overtime_state:
 			state_machine.pomodoro_timer.start(state_machine.work_round_length)
-		"paused":
+		paused_state:
 			state_machine.pomodoro_timer.paused = false
-		"work", "break":
+		work_state, break_state:
 			state_machine.pomodoro_timer.stop()
 		_:
 			print("No previous state")
@@ -29,12 +29,12 @@ func _exit() -> void:
 func _on_button_pressed(button: ButtonType) -> void:
 	match button:
 		ButtonType.STOP:
-			finished.emit("Idle")
+			finished.emit(idle_state)
 		ButtonType.PAUSE:
-			finished.emit("Paused")
+			finished.emit(paused_state)
 		ButtonType.SKIP:
 			state_machine.is_break_state = true
-			finished.emit("Idle")
+			finished.emit(idle_state)
 		ButtonType.GO_BACK:
 			state_machine.is_break_state = false
-			finished.emit("Idle")
+			finished.emit(idle_state)

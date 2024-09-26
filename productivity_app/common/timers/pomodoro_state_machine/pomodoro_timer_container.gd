@@ -35,11 +35,11 @@ func _on_state_machine_round_changed(new_round: Variant) -> void:
 
 
 func _on_state_machine_state_changed(
-		new_state_name: String,
+		new_state: State,
 		is_break_state: bool,
 		progress_bar_max_value: float
 ) -> void:
-	_paused_label.visible = new_state_name == "Paused"
+	_paused_label.visible = new_state == PausedState
 
 	#var productivity_text: String = State.ProductivityState.find_key(productivity_state)
 	#productivity_text = productivity_text.to_lower()

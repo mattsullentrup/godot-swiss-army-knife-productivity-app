@@ -1,5 +1,5 @@
 class_name PomodoroStateMachine
-extends StateMachine
+extends Node
 
 
 signal round_changed(new_round: int)
@@ -12,6 +12,11 @@ signal state_changed(
 const MINUTE_MULTIPLIER = 60
 const MAX_ROUND = 4
 
+@export var initial_state: Node
+
+var states: Dictionary = {}
+var current_state: State = null
+var previous_state: State = null
 var notification_sound: AudioStreamPlayer = null
 var short_break_length: float = 5 * MINUTE_MULTIPLIER
 var long_break_length: float = 15 * MINUTE_MULTIPLIER
@@ -27,6 +32,11 @@ var current_round: int:
 		round_changed.emit(current_round)
 
 @onready var pomodoro_timer: Timer = %PomodoroTimer
+@onready var idle_state: IdleState = $Idle
+@onready var work_state: WorkState = $Work
+@onready var break_state: BreakState = $Break
+@onready var paused_state: PausedState = $Paused
+@onready var overtime_state: OvertimeState = $Overtime
 
 
 func _ready() -> void:
@@ -39,11 +49,6 @@ func _process(_delta: float) -> void:
 	current_state._update()
 
 
-func _change_state(new_state_name: String) -> void:
-	super(new_state_name)
-	state_changed.emit(new_state_name, is_break_state, time_to_display)
-
-
 func _connect_buttons() -> void:
 	for button: Button in %Buttons.get_children():
 		button.pressed.connect(func () -> void:
@@ -51,5 +56,32 @@ func _connect_buttons() -> void:
 		)
 
 
-func _on_pomodoro_timer_timeout() -> void:
-	_change_state("Overtime")
+func _setup_states() -> void:
+	if initial_state == null:
+		initial_state = get_child(0)
+
+	for child in get_children():
+		if child is State:
+			var state: State = child
+			#states[state.name.to_lower()] = state
+			state.finished.connect(_change_state)
+			state._init(self, idle_state, work_state, break_state, paused_state, overtime_state)
+			continue
+
+		push_error("Child" + child.name + " is not a State")
+
+	_change_state(initial_state)
+
+
+func _change_state(new_state: State) -> void:
+	state_changed.emit(new_state, is_break_state, time_to_display)
+	#var new_state: State = states.get(new_state_name.to_lower())
+	#if not new_state:
+		#return
+
+	if current_state:
+		current_state._exit()
+
+	previous_state = current_state
+	current_state = new_state
+	current_state._enter(previous_state)
