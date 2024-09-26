@@ -24,20 +24,17 @@ var paused_state: PausedState
 var overtime_state: OvertimeState
 
 
-func _init(
-		p_state_machine: PomodoroStateMachine = null,
-		p_idle_state: IdleState = null,
-		p_work_state: WorkState = null,
-		p_break_state: BreakState = null,
-		p_paused_state: PausedState = null,
-		p_overtime_state: OvertimeState = null
-) -> void:
+func _initialize(p_state_machine: PomodoroStateMachine = null, p_states: Array = []) -> void:
 	state_machine = p_state_machine
-	idle_state = p_idle_state
-	work_state = p_work_state
-	break_state = p_break_state
-	paused_state = p_paused_state
-	overtime_state = p_overtime_state
+	if p_states == null:
+		push_error("states array is null")
+		return
+
+	idle_state = p_states[0]
+	work_state = p_states[1]
+	break_state = p_states[2]
+	paused_state = p_states[3]
+	overtime_state = p_states[4]
 
 
 func _print_state_info(transition_status: String) -> void:
