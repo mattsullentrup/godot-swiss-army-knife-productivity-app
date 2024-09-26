@@ -23,7 +23,6 @@ var long_break_length: float = 15 * MINUTE_MULTIPLIER
 var work_round_length: float = 25 * MINUTE_MULTIPLIER
 var time_to_display: float
 var timer_length: float
-#var is_break_state := false
 
 var current_round: int:
 	set(value):
@@ -63,7 +62,6 @@ func _setup_states() -> void:
 	for child in get_children():
 		if child is State:
 			var state: State = child
-			#states[state.name.to_lower()] = state
 			state.finished.connect(_change_state)
 			state._init(self, idle_state, work_state, break_state, paused_state, overtime_state)
 			continue
@@ -73,7 +71,10 @@ func _setup_states() -> void:
 	_change_state(initial_state)
 
 
-func _change_state(new_state: State) -> void:
+func _change_state(new_state: Node) -> void:
+	if new_state is not State:
+		return
+
 	state_changed.emit(new_state, new_state.is_break_state, time_to_display)
 	if current_state:
 		current_state._exit()
