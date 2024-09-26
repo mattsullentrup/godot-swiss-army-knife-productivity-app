@@ -23,13 +23,13 @@ func _notification(what: int) -> void:
 
 
 func _quit() -> void:
-		_wants_to_quit = true
-		get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
+	_wants_to_quit = true
+	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 
-		if _pink_noise.is_inside_tree():
-			await _pink_noise.tree_exited
-		if not _save_system.is_game_saved:
-			await _save_system.game_saved
+	if _pink_noise.is_inside_tree():
+		await _pink_noise.tree_exited
+	if not _save_system.is_game_saved:
+		await _save_system.game_saved
 
-		#get_tree().quit()
-		get_tree().quit.call_deferred()
+	#get_tree().quit()
+	get_tree().quit.call_deferred()

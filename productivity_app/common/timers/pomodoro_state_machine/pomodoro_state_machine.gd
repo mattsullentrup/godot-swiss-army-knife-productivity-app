@@ -5,12 +5,12 @@ extends StateMachine
 signal round_changed(new_round: int)
 signal state_changed(
 		new_state_name: String,
-		productivity_state: State.ProductivityState,
+		is_break_state: bool,
 		progress_bar_max_value: float
 )
 
 const MINUTE_MULTIPLIER = 60
-const MAX_ROUND = 5
+const MAX_ROUND = 4
 
 var notification_sound: AudioStreamPlayer = null
 var short_break_length: float = 5 * MINUTE_MULTIPLIER
@@ -18,12 +18,12 @@ var long_break_length: float = 15 * MINUTE_MULTIPLIER
 var work_round_length: float = 25 * MINUTE_MULTIPLIER
 var time_to_display: float
 var timer_length: float
+var is_break_state := false
 
-var productivity_state := State.ProductivityState.WORK
 var current_round: int:
 	set(value):
 		current_round = value
-		current_round = wrap(current_round, 1, MAX_ROUND)
+		current_round = wrap(current_round, 1, MAX_ROUND + 1)
 		round_changed.emit(current_round)
 
 @onready var pomodoro_timer: Timer = %PomodoroTimer
@@ -41,7 +41,7 @@ func _process(_delta: float) -> void:
 
 func _change_state(new_state_name: String) -> void:
 	super(new_state_name)
-	state_changed.emit(new_state_name, productivity_state, time_to_display)
+	state_changed.emit(new_state_name, is_break_state, time_to_display)
 
 
 func _connect_buttons() -> void:

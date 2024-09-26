@@ -13,7 +13,7 @@ func _enter(previous_state: State) -> void:
 		_:
 			print("No previous state")
 
-	state_machine.productivity_state = ProductivityState.WORK
+	state_machine.is_break_state = false
 
 	super(previous_state)
 
@@ -33,8 +33,8 @@ func _on_button_pressed(button: ButtonType) -> void:
 		ButtonType.PAUSE:
 			finished.emit("Paused")
 		ButtonType.SKIP:
-			state_machine.productivity_state = ProductivityState.BREAK
+			state_machine.is_break_state = true
 			finished.emit("Idle")
 		ButtonType.GO_BACK:
-			state_machine.productivity_state = ProductivityState.WORK
+			state_machine.is_break_state = false
 			finished.emit("Idle")

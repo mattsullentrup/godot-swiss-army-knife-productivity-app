@@ -13,18 +13,13 @@ enum ButtonType {
 	STOP,
 }
 
-enum ProductivityState {
-	BREAK,
-	WORK,
-}
-
 var state_machine: PomodoroStateMachine
 
 
 func _print_state_info(transition_status: String) -> void:
 	printt(
 			transition_status + ' ' + self.name + ' | ' \
-			+ ProductivityState.find_key(state_machine.productivity_state) + ' | ' \
+			+ "is_break_state: " + str(state_machine.is_break_state) + ' | ' \
 			+ "round: " + str(state_machine.current_round) + ' | ' \
 			+ "timer: " + str(state_machine.pomodoro_timer.time_left)
 	)
