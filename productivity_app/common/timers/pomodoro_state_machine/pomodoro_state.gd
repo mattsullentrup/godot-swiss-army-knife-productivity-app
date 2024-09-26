@@ -32,11 +32,25 @@ func _initialize(
 		push_error("states array is null")
 		return
 
+	var time_start: int = Time.get_ticks_usec()
 	idle_state = p_states[0]
 	work_state = p_states[1]
 	break_state = p_states[2]
 	paused_state = p_states[3]
 	overtime_state = p_states[4]
+	var time_end: int = Time.get_ticks_usec()
+	print(time_end - time_start)
+
+	#var time_start_2: int = Time.get_ticks_usec()
+	## This feels stupid but would work if the order of state nodes in the tree got mixed up
+	#idle_state = p_states.filter(func(x: Node) -> bool: return x is IdleState).front()
+	#work_state = p_states.filter(func(x: Node) -> bool: return x is WorkState).front()
+	#break_state = p_states.filter(func(x: Node) -> bool: return x is BreakState).front()
+	#paused_state = p_states.filter(func(x: Node) -> bool: return x is PausedState).front()
+	#overtime_state = p_states.filter(func(x: Node) -> bool: return x is OvertimeState).front()
+	#var time_end_2: int = Time.get_ticks_usec()
+	#print(time_end_2 - time_start_2)
+	#print("~~~~~~")
 
 	_start_button = p_buttons[0]
 	_go_back_button = p_buttons[1]
