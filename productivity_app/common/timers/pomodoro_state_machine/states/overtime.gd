@@ -20,10 +20,6 @@ func _update() -> void:
 	)
 
 
-func _exit() -> void:
-	super()
-
-
 func _on_button_pressed(button: Button) -> void:
 	match button:
 		_start_button:

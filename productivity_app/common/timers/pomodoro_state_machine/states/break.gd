@@ -25,10 +25,6 @@ func _update() -> void:
 	state_machine.time_to_display = state_machine.pomodoro_timer.time_left
 
 
-func _exit() -> void:
-	super()
-
-
 func _on_button_pressed(button: Button) -> void:
 	match button:
 		_stop_button:

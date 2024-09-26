@@ -4,12 +4,9 @@ extends State
 
 func _enter(previous_state: State) -> void:
 	super(previous_state)
-	state_machine.time_to_display = _determine_time_to_display()
+
 	state_machine.pomodoro_timer.stop()
-
-
-func _exit() -> void:
-	super()
+	state_machine.time_to_display = _determine_time_to_display()
 
 
 func _on_button_pressed(button: Button) -> void:
@@ -49,7 +46,6 @@ func _print_status() -> void:
 	)
 
 func _reset_state_machine() -> void:
-	state_machine.pomodoro_timer.stop()
 	state_machine.time_to_display = state_machine.work_round_length
 	state_machine.current_round = 1
 	is_break_state = false
@@ -65,5 +61,3 @@ func _determine_time_to_display() -> float:
 			return state_machine.work_round_length
 		_:
 			return 0
-
-	#return -1

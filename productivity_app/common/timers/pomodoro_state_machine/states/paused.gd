@@ -7,10 +7,6 @@ func _enter(previous_state: State) -> void:
 	state_machine.pomodoro_timer.paused = true
 
 
-func _update() -> void:
-	pass
-
-
 func _exit() -> void:
 	super()
 	state_machine.pomodoro_timer.paused = false
