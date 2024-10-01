@@ -51,7 +51,7 @@ folder_colors={
 "res://addons/images/": "blue",
 "res://addons/sounds/": "orange",
 "res://common/": "gray",
-"res://common/timers/pomodoro_state_machine/": "teal",
+"res://gui/": "orange",
 "res://main/": "purple",
 "res://project_elements/": "blue",
 "res://resources/": "pink",
@@ -65,7 +65,9 @@ folder_colors={
 "res://theme/green_button/": "green",
 "res://theme/purple_button/": "purple",
 "res://theme/red_button/": "red",
-"res://theme/yellow_button/": "yellow"
+"res://theme/yellow_button/": "yellow",
+"res://timers/": "green",
+"res://timers/pomodoro_state_machine/": "teal"
 }
 
 [global_group]

@@ -2,8 +2,7 @@ class_name PausedState
 extends State
 
 
-func _enter(previous_state: State) -> void:
-	super(previous_state)
+func _enter() -> void:
 	state_machine.pomodoro_timer.paused = true
 
 
@@ -14,22 +13,22 @@ func _exit() -> void:
 
 func _on_button_pressed(button: Button) -> void:
 	match button:
-		_pause_button, _start_button:
+		buttons.pause, buttons.start:
 			if is_break_state:
-				finished.emit(break_state)
+				finished.emit(states.break)
 			else:
-				finished.emit(work_state)
-		_stop_button:
+				finished.emit(states.work)
+		buttons.stop:
 			is_break_state = false
 			state_machine.current_round = 1
-			finished.emit(idle_state)
-		_skip_button:
+			finished.emit(states.idle)
+		buttons.skip:
 			if is_break_state:
 				is_break_state = false
 				state_machine.current_round += 1
 			else:
 				is_break_state = true
 
-			finished.emit(idle_state)
-		_go_back_button:
-			finished.emit(idle_state)
+			finished.emit(states.idle)
+		buttons.go_back:
+			finished.emit(states.idle)

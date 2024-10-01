@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_kkm8q"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme/theme.tres" id="2_32l1q"]
-[ext_resource type="PackedScene" uid="uid://ckw6bd8a72tum" path="res://common/timers/pomodoro_state_machine/pomodoro_timer.tscn" id="2_ko8bp"]
+[ext_resource type="PackedScene" uid="uid://ckw6bd8a72tum" path="res://timers/pomodoro_state_machine/pomodoro_timer.tscn" id="2_ko8bp"]
 [ext_resource type="Script" path="res://common/font_autosizer/autosize_label.gd" id="5_t2ptj"]
-[ext_resource type="Script" path="res://common/timers/normal_timer.gd" id="10_tg7iy"]
+[ext_resource type="Script" path="res://timers/normal_timer.gd" id="10_tg7iy"]
 [ext_resource type="Script" path="res://common/audio/noise.gd" id="11_xr3k1"]
 [ext_resource type="Texture2D" uid="uid://dmacbvtrmou10" path="res://addons/images/kenney_icons/musicOff.png" id="12_syt3v"]
 [ext_resource type="Texture2D" uid="uid://o1fkxxcgpcoy" path="res://addons/images/kenney_icons/musicOn.png" id="13_nb1g7"]
@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://cmm42xkdqt61" path="res://addons/images/kenney_icons/plus.png" id="18_2xuuj"]
 [ext_resource type="Script" path="res://project_elements/project_manager.gd" id="19_iwwbs"]
 [ext_resource type="PackedScene" uid="uid://daot25v58e7k6" path="res://project_elements/project/project.tscn" id="20_ln4en"]
-[ext_resource type="Script" path="res://common/timers/time_and_date.gd" id="21_x82c0"]
+[ext_resource type="Script" path="res://gui/time_and_date.gd" id="21_x82c0"]
 [ext_resource type="AudioStream" uid="uid://q3h7vgwqou6l" path="res://addons/sounds/notification2.wav" id="22_rkn0h"]
 [ext_resource type="Script" path="res://common/save_system.gd" id="23_upx4x"]
 
@@ -89,7 +89,7 @@ alignment = 1
 [node name="NormalTimeRemainingLabel" type="Label" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 53
 text = "00:00:00"
 horizontal_alignment = 1
 vertical_alignment = 1

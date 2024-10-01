@@ -1,20 +1,15 @@
-[gd_scene load_steps=20 format=3 uid="uid://ckw6bd8a72tum"]
+[gd_scene load_steps=15 format=3 uid="uid://ckw6bd8a72tum"]
 
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme/theme.tres" id="1_nq85o"]
-[ext_resource type="Script" path="res://common/timers/pomodoro_state_machine/pomodoro_timer_container.gd" id="2_6bsd6"]
-[ext_resource type="Script" path="res://common/timers/pomodoro_state_machine/pomodoro_state_machine.gd" id="2_8h7i8"]
-[ext_resource type="Script" path="res://common/timers/time_remaining_label.gd" id="3_cod8j"]
+[ext_resource type="Script" path="res://gui/pomodoro_timer_container.gd" id="2_6bsd6"]
+[ext_resource type="Script" path="res://timers/pomodoro_state_machine/state_machine.gd" id="2_8h7i8"]
+[ext_resource type="Script" path="res://gui/time_remaining_label.gd" id="3_cod8j"]
 [ext_resource type="Script" path="res://common/font_autosizer/autosize_label.gd" id="4_cctnv"]
 [ext_resource type="Texture2D" uid="uid://c1avhvgbpp5di" path="res://addons/images/kenney_icons/right.png" id="5_qrp43"]
 [ext_resource type="Texture2D" uid="uid://cwjn2up7w5c3" path="res://addons/images/kenney_icons/previous.png" id="6_wlngn"]
 [ext_resource type="Texture2D" uid="uid://b21tp1ekqqfq1" path="res://addons/images/kenney_icons/pause.png" id="7_4b0t7"]
 [ext_resource type="Texture2D" uid="uid://dgov4kg5io00y" path="res://addons/images/kenney_icons/next.png" id="8_w7v3y"]
 [ext_resource type="Texture2D" uid="uid://ldmdhpth6b1" path="res://addons/images/kenney_icons/stop.png" id="9_fqhqh"]
-[ext_resource type="Script" path="res://common/timers/pomodoro_state_machine/states/idle.gd" id="10_els1o"]
-[ext_resource type="Script" path="res://common/timers/pomodoro_state_machine/states/work.gd" id="11_eb6g3"]
-[ext_resource type="Script" path="res://common/timers/pomodoro_state_machine/states/break.gd" id="12_eupsq"]
-[ext_resource type="Script" path="res://common/timers/pomodoro_state_machine/states/paused.gd" id="13_mc60c"]
-[ext_resource type="Script" path="res://common/timers/pomodoro_state_machine/states/overtime.gd" id="14_aha51"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8awij"]
 content_margin_left = 10.0
@@ -181,25 +176,9 @@ theme_type_variation = &"RedButton"
 icon = ExtResource("9_fqhqh")
 icon_alignment = 1
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_8h7i8")
-initial_state = NodePath("Idle")
-
-[node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("10_els1o")
-
-[node name="Work" type="Node" parent="StateMachine"]
-script = ExtResource("11_eb6g3")
-
-[node name="Break" type="Node" parent="StateMachine"]
-script = ExtResource("12_eupsq")
-
-[node name="Paused" type="Node" parent="StateMachine"]
-script = ExtResource("13_mc60c")
-
-[node name="Overtime" type="Node" parent="StateMachine"]
-script = ExtResource("14_aha51")
 
 [connection signal="timeout" from="PomodoroTimer" to="StateMachine" method="_on_pomodoro_timer_timeout"]
 [connection signal="round_changed" from="StateMachine" to="." method="_on_state_machine_round_changed"]

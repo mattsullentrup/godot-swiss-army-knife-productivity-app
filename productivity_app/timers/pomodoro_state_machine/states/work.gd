@@ -2,20 +2,18 @@ class_name WorkState
 extends State
 
 
-func _enter(previous_state: State) -> void:
-	match previous_state:
-		idle_state, overtime_state:
+func _enter() -> void:
+	match state_machine.previous_state:
+		states.idle, states.overtime:
 			state_machine.pomodoro_timer.start(state_machine.work_round_length)
-		paused_state:
+		states.paused:
 			state_machine.pomodoro_timer.paused = false
-		work_state, break_state:
+		states.work, states.break:
 			state_machine.pomodoro_timer.stop()
 		_:
 			print("No previous state")
 
 	is_break_state = false
-
-	super(previous_state)
 
 
 func _update() -> void:
@@ -24,14 +22,14 @@ func _update() -> void:
 
 func _on_button_pressed(button: Button) -> void:
 	match button:
-		_stop_button:
+		buttons.stop:
 			state_machine.current_round = 1
-			finished.emit(idle_state)
-		_pause_button:
-			finished.emit(paused_state)
-		_skip_button:
+			finished.emit(states.idle)
+		buttons.pause:
+			finished.emit(states.paused)
+		buttons.skip:
 			is_break_state = true
-			finished.emit(idle_state)
-		_go_back_button:
+			finished.emit(states.idle)
+		buttons.go_back:
 			is_break_state = false
-			finished.emit(idle_state)
+			finished.emit(states.idle)

@@ -2,41 +2,39 @@ class_name IdleState
 extends State
 
 
-func _enter(previous_state: State) -> void:
-	super(previous_state)
-
+func _enter() -> void:
 	state_machine.pomodoro_timer.stop()
 	state_machine.time_to_display = _determine_time_to_display()
 
 
 func _on_button_pressed(button: Button) -> void:
 	match button:
-		_start_button:
+		buttons.start:
 			if is_break_state:
-				finished.emit(break_state)
+				finished.emit(states.break)
 			else:
-				finished.emit(work_state)
-		_skip_button:
+				finished.emit(states.work)
+		buttons.skip:
 			if is_break_state:
 				state_machine.current_round += 1
 				is_break_state = false
 			else:
 				is_break_state = true
 
-			finished.emit(idle_state)
+			finished.emit(states.idle)
 			_print_status()
-		_go_back_button:
+		buttons.go_back:
 			if is_break_state == false:
 				state_machine.current_round -= 1
 				is_break_state = true
 			else:
 				is_break_state = false
 
-			finished.emit(idle_state)
+			finished.emit(states.idle)
 			_print_status()
-		_stop_button:
+		buttons.stop:
 			_reset_state_machine()
-			finished.emit(idle_state)
+			finished.emit(states.idle)
 
 
 func _print_status() -> void:
