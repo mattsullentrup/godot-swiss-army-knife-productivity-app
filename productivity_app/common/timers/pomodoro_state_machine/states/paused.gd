@@ -21,6 +21,7 @@ func _on_button_pressed(button: Button) -> void:
 				finished.emit(work_state)
 		_stop_button:
 			is_break_state = false
+			state_machine.current_round = 1
 			finished.emit(idle_state)
 		_skip_button:
 			if is_break_state:

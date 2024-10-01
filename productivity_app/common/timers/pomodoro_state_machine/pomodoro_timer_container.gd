@@ -26,7 +26,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	_time_remaining_label.text = str(_state_machine.time_to_display)
+	#_time_remaining_label.text = str(_state_machine.time_to_display)
 	_progress_bar.value = _progress_bar.max_value - _pomodoro_timer.time_left
 
 
