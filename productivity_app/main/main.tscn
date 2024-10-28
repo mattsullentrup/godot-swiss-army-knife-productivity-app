@@ -233,7 +233,13 @@ layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="ProjectManager" type="VBoxContainer" parent="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 20
+
+[node name="ProjectManager" type="VBoxContainer" parent="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -241,18 +247,6 @@ size_flags_vertical = 3
 theme_override_constants/separation = 15
 script = ExtResource("19_iwwbs")
 project = ExtResource("20_ln4en")
-
-[node name="_h_scroll2" type="HScrollBar" parent="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer"]
-visible = false
-layout_mode = 2
-max_value = 489.0
-page = 489.0
-
-[node name="_v_scroll2" type="VScrollBar" parent="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer"]
-visible = false
-layout_mode = 2
-max_value = 115.0
-page = 115.0
 
 [node name="TimeAndDateContainer" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -313,6 +307,6 @@ script = ExtResource("23_upx4x")
 [connection signal="value_changed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/Phaser/RateHzHSlider" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/Phaser" method="_on_range_min_hz_h_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/NoiseVolume/VolumeHSlider" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer" method="_on_volume_h_slider_value_changed"]
 [connection signal="toggled" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/NoiseButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer" method="_on_noise_button_toggled"]
-[connection signal="pressed" from="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/NewProjectButton" to="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/ProjectManager" method="_on_new_project_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/NewProjectButton" to="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/MarginContainer/ProjectManager" method="_on_new_project_button_pressed"]
 
 [editable path="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimerContainer"]
