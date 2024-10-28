@@ -1,10 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://ckw6bd8a72tum"]
+[gd_scene load_steps=14 format=3 uid="uid://ckw6bd8a72tum"]
 
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme/theme.tres" id="1_nq85o"]
 [ext_resource type="Script" path="res://gui/pomodoro_timer_container.gd" id="2_6bsd6"]
 [ext_resource type="Script" path="res://timers/pomodoro_state_machine/state_machine.gd" id="2_8h7i8"]
 [ext_resource type="Script" path="res://gui/time_remaining_label.gd" id="3_cod8j"]
-[ext_resource type="Script" path="res://common/font_autosizer/autosize_label.gd" id="4_cctnv"]
 [ext_resource type="Texture2D" uid="uid://c1avhvgbpp5di" path="res://addons/images/kenney_icons/right.png" id="5_qrp43"]
 [ext_resource type="Texture2D" uid="uid://cwjn2up7w5c3" path="res://addons/images/kenney_icons/previous.png" id="6_wlngn"]
 [ext_resource type="Texture2D" uid="uid://b21tp1ekqqfq1" path="res://addons/images/kenney_icons/pause.png" id="7_4b0t7"]
@@ -99,9 +98,6 @@ text = "00:00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
-script = ExtResource("4_cctnv")
-min_font_size = 32
-max_font_size = 191
 
 [node name="ProgressBar" type="ProgressBar" parent="GUIVBoxContainer"]
 unique_name_in_owner = true
