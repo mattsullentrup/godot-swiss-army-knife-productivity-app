@@ -21,7 +21,6 @@ func _ready() -> void:
 		line_edit.grab_focus()
 
 	_drag_and_drop_behaviour.task = self
-	_drag_and_drop_behaviour.task_container = get_parent()
 
 
 func save(tasks_data: Array[TaskData]) -> void:

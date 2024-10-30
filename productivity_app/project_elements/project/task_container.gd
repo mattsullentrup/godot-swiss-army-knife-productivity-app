@@ -9,6 +9,39 @@ extends VBoxContainer
 var are_children_visible := true
 
 
+func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
+	return data is Task
+
+
+func _drop_data(at_position: Vector2, data: Variant) -> void:
+	if data is not Node: return
+
+	var data_node: Node = data
+	var task_size: float = data_node.size.y
+	var child_dropped_on := _get_child_dropped_on(task_size, at_position.y)
+	if child_dropped_on == null or child_dropped_on == data_node: return
+
+	# get new index relative to child dropped on
+	var new_index: int = child_dropped_on.get_index()
+	var data_index: int = data_node.get_index()
+	var child_y_mid_point: float = child_dropped_on.position.y + task_size / 2
+	if data_index > new_index and child_y_mid_point < at_position.y:
+		new_index += 1
+	elif data_index < new_index and child_y_mid_point > at_position.y:
+		new_index -= 1
+
+	new_index = clampi(new_index, 0, 100)
+	move_child(data_node, new_index)
+
+
+func _get_child_dropped_on(task_size: float, at_position_vertical: float) -> Node:
+	for child in get_children():
+		if child.position.y + task_size > at_position_vertical:
+			return child
+
+	return null
+
+
 func create_new_task(_unnecessary_text: String = "") -> void:
 	var new_task: Task = task.instantiate()
 	add_child(new_task)
@@ -42,35 +75,3 @@ func _on_reset_button_pressed() -> void:
 
 func _on_line_edit_text_submitted(_new_text: String) -> void:
 	create_new_task()
-
-
-func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
-	return data is Task
-
-
-func _drop_data(at_position: Vector2, data: Variant) -> void:
-	if data is not Node:
-		return
-
-	var data_node: Node = data
-
-	var node_below: Node
-	for child in get_children():
-		if child == node_below:
-			continue
-
-		var child_y_position: float = child.position.y + child.size.y / 2
-		if child_y_position <= at_position.y:
-			node_below = child
-		elif child_y_position > at_position.y:
-			break
-
-	if node_below == null:
-		return
-
-	var index: int
-	if node_below != null:
-		index = node_below.get_index()
-		index = clampi(index, 0, 100)
-
-	move_child(data_node, index)
