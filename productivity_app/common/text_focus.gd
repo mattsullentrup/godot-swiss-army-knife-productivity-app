@@ -16,3 +16,9 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	is_mouse_hovering = false
+
+
+#func _drop_data(at_position: Vector2, data: Variant) -> void:
+	#if data is Task:
+		#data.get_parent().remove_child(data)
+		#get_parent().add_child(data)

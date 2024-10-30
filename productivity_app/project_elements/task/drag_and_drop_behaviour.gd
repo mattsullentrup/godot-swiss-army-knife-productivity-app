@@ -7,6 +7,7 @@ signal task_dropped(at_position: Vector2, data: Variant)
 var task: Task
 var task_container: Control
 ## TODO: store vertical size on startup to calculate midpoint
+@onready var mid_point := size.y / 2
 
 
 #func _ready() -> void:
@@ -34,29 +35,15 @@ func _get_drag_data(at_position: Vector2) -> Variant:
 
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
-	#print(task)
-	return true
+	return data is Task
 
 
 func _drop_data(at_position: Vector2, data: Variant) -> void:
-	### TODO: Fix dragged node being replaced by node dragged over
-	#var node_below: Node
-	#for child in task_container.get_children():
-		#if child == task:
-			#continue
-#
-		#var pos = child.position.y
-		#var task_pos = task.position.y
-		#if child.position.y < task.position.y:
-			#node_below = child
-		#elif child.position.y > task.position.y:
-			#break
-#
-	#var index: int
-	#if node_below != null:
-		#index = node_below.get_index()
-#
-	#task_container.move_child(task, index)
-
 	printt(at_position, data.position, task.position)
-	## TODO: call move child on task container depending on data position relative to midpoint
+	var index := task.get_index()
+	if at_position.y >= mid_point:
+		task_container.move_child(data, index)
+	else:
+		var new_index := index - 1
+		new_index = clampi(new_index, 0, 100)
+		task_container.move_child(data, new_index)
