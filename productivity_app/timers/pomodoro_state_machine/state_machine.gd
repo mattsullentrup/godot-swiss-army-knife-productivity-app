@@ -107,15 +107,15 @@ func _change_state(new_state: State) -> void:
 
 	state_changed.emit(new_state, new_state.is_break_state, time_to_display)
 	if current_state:
-		_print_state_info("exiting")
+		#_print_state_info("exiting")
 		current_state._exit()
 
 	previous_state = current_state
 	current_state = new_state
 	current_state._enter()
 
-	_print_state_info("Exiting")
-	print("~~~~~~~~")
+	#_print_state_info("Exiting")
+	#print("~~~~~~~~")
 
 
 func _on_button_pressed(button: Button) -> void:
