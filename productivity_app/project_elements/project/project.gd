@@ -12,6 +12,7 @@ func _ready() -> void:
 	if not save_data == null:
 		_load()
 		return
+
 	_line_edit.grab_focus()
 
 

@@ -21,6 +21,10 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 	var child_dropped_on := _get_child_dropped_on(task_size, at_position.y)
 	if child_dropped_on == null or child_dropped_on == data_node: return
 
+	if data_node not in get_children():
+		data_node.get_parent().remove_child(data_node)
+		add_child(data_node)
+
 	# get new index relative to child dropped on
 	var new_index: int = child_dropped_on.get_index()
 	var data_index: int = data_node.get_index()
