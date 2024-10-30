@@ -64,14 +64,6 @@ func _process(_delta: float) -> void:
 		data.append(height)
 		prev_hz = hz
 
-	#TODO:
-	# Fix noise spectrum not displaying vanilla pink noise
-	# var is_making_noise := false
-	# if data.any(func(number: int) -> bool: return number > 0):
-	# 	is_making_noise = true
-
-	# if not is_making_noise: return
-
 
 	for i in range(VU_COUNT):
 		if data[i] > max_values[i]:
