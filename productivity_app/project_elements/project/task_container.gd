@@ -1,3 +1,4 @@
+class_name TaskContainer
 extends VBoxContainer
 
 
@@ -15,9 +16,6 @@ var task_height: float
 
 #region Drag and drop behaviour
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
-	if separator == null:
-		return data is Task
-
 	if data is not Node:
 		return false
 
@@ -27,8 +25,14 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	if child_hovered_over == null:
 		return data is Task
 
-	_move_child_to_new_index(child_hovered_over, separator, at_position)
+	if separator == null:
+		var other_container := data_node.get_parent() as TaskContainer
+		if other_container != null:
+			separator = other_container.separator
+			other_container.separator = null
+			_reparent_node_from_different_container(separator, other_container)
 
+	_move_child_to_new_index(child_hovered_over, separator, at_position)
 	return data is Task
 
 
@@ -44,13 +48,13 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 	if child_dropped_on == null:
 		return
 
-	_reparent_node_from_different_project(data_node)
+	_reparent_node_from_different_container(data_node, data_node.get_parent() as TaskContainer)
 	_move_child_to_new_index(child_dropped_on, data_node, at_position)
 
 
-func _reparent_node_from_different_project(node: Node) -> void:
+func _reparent_node_from_different_container(node: Node, different_container: TaskContainer) -> void:
 	if node not in get_children():
-		node.get_parent().remove_child(node)
+		different_container.remove_child(node)
 		add_child(node)
 
 
