@@ -1,8 +1,9 @@
-class_name DragAndDropBehaviour
+class_name DragAndDropTextureRect
 extends TextureRect
 
 
 var task: Task
+#var task_container: VBoxContainer
 
 
 func _get_drag_data(_at_position: Vector2) -> Variant:
@@ -11,4 +12,7 @@ func _get_drag_data(_at_position: Vector2) -> Variant:
 
 	preview.modulate = Color(preview.modulate, 0.5)
 	set_drag_preview(preview)
+	var separator: HSeparator = HSeparator.new()
+	task.get_parent().separator = separator
+	task.get_parent().add_child(separator)
 	return task

@@ -11,7 +11,7 @@ var text: String
 
 @onready var line_edit: LineEdit = %LineEdit
 @onready var _task_state_button: Button = %TaskStateButton
-@onready var _drag_and_drop_behaviour: DragAndDropBehaviour = $DragAndDropBehaviour
+@onready var _drag_and_drop_texture_rect: DragAndDropTextureRect = $DragAndDropTextureRect
 
 
 func _ready() -> void:
@@ -20,7 +20,8 @@ func _ready() -> void:
 	else:
 		line_edit.grab_focus()
 
-	_drag_and_drop_behaviour.task = self
+	_drag_and_drop_texture_rect.task = self
+	#_drag_and_drop_texture_rect.task_container = get_parent()
 
 
 func save(tasks_data: Array[TaskData]) -> void:

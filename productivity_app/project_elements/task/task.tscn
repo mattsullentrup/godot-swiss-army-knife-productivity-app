@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bxrb8mrga0oq8" path="res://addons/images/kenney_icons/barsHorizontal.png" id="2_5e7eu"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme/theme.tres" id="2_jvgun"]
 [ext_resource type="Script" path="res://common/text_focus.gd" id="3_pdtx7"]
-[ext_resource type="Script" path="res://project_elements/task/drag_and_drop_behaviour.gd" id="3_s01g3"]
+[ext_resource type="Script" path="res://project_elements/task/drag_and_drop_texture_rect.gd" id="3_s01g3"]
 [ext_resource type="Texture2D" uid="uid://dgmvsxmm31bo7" path="res://addons/images/kenney_icons/cross.png" id="4_3wct2"]
 
 [node name="Task" type="HBoxContainer" groups=["Persist", "Task"]]
@@ -15,7 +15,7 @@ focus_mode = 2
 theme_override_constants/separation = 15
 script = ExtResource("1_e0rqx")
 
-[node name="DragAndDropBehaviour" type="TextureRect" parent="."]
+[node name="DragAndDropTextureRect" type="TextureRect" parent="."]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 texture = ExtResource("2_5e7eu")
