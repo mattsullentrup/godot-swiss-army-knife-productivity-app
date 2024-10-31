@@ -44,11 +44,14 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 	if child_dropped_on == null:
 		return
 
-	if data_node not in get_children():
-		data_node.get_parent().remove_child(data_node)
-		add_child(data_node)
-
+	_reparent_node_from_different_project(data_node)
 	_move_child_to_new_index(child_dropped_on, data_node, at_position)
+
+
+func _reparent_node_from_different_project(node: Node) -> void:
+	if node not in get_children():
+		node.get_parent().remove_child(node)
+		add_child(node)
 
 
 func _move_child_to_new_index(child_under_mouse: Node, node_to_move: Node, at_position: Vector2) -> void:
