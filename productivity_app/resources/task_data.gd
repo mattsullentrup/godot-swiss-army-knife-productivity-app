@@ -1,7 +1,6 @@
 class_name TaskData
-extends Resource
+extends ToDoItemData
 
 
-@export var text: String
 @export var color_index: int
-@export var scene_file_path: String
+@export var sub_tasks_data: Array[SubTaskData]

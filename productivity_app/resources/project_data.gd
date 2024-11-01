@@ -1,7 +1,5 @@
 class_name ProjectData
-extends Resource
+extends ToDoItemData
 
 
 @export var tasks_data: Array[TaskData]
-@export var scene_file_path: String
-@export var text: String
