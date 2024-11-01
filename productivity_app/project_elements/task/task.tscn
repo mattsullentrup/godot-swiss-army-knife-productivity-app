@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://project_elements/task/drag_and_drop_texture_rect.gd" id="3_s01g3"]
 [ext_resource type="Texture2D" uid="uid://dgmvsxmm31bo7" path="res://addons/images/kenney_icons/cross.png" id="4_3wct2"]
 
-[node name="Task" type="HBoxContainer" groups=["Persist", "Task"]]
+[node name="Task" type="HBoxContainer" groups=["Saveables", "Task"]]
 offset_right = 261.0
 offset_bottom = 50.0
 size_flags_horizontal = 3

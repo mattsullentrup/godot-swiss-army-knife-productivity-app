@@ -71,7 +71,7 @@ folder_colors={
 
 [global_group]
 
-Persist=""
+Saveables=""
 
 [gui]
 
