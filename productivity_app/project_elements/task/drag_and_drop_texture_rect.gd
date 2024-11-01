@@ -2,7 +2,7 @@ class_name DragAndDropTextureRect
 extends TextureRect
 
 
-var task: Task
+var task: ToDoItem
 #var task_container: VBoxContainer
 
 

@@ -1,5 +1,5 @@
 class_name Project
-extends VBoxContainer
+extends ToDoItem
 
 
 var save_data: ProjectData

@@ -1,4 +1,4 @@
-class_name Task
+class_name SubTask
 extends ToDoItem
 
 
@@ -21,6 +21,7 @@ func _ready() -> void:
 		line_edit.grab_focus()
 
 	_drag_and_drop_texture_rect.task = self
+	#_drag_and_drop_texture_rect.task_container = get_parent()
 
 
 func save(tasks_data: Array[TaskData]) -> void:
