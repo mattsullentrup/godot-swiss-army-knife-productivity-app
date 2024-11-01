@@ -73,6 +73,10 @@ folder_colors={
 
 Persist=""
 
+[gui]
+
+theme/custom_font="res://addons/fonts/NeomatrixCode.ttf"
+
 [input]
 
 quit={

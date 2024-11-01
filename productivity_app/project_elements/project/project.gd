@@ -25,8 +25,8 @@ func save(projects_data: Array[ProjectData]) -> void:
 	var tasks_data: Array[TaskData]
 	for task in _task_container.get_children():
 		task.save(tasks_data)
-	data.tasks_data = tasks_data
 
+	data.tasks_data = tasks_data
 	projects_data.append(data)
 
 
@@ -36,11 +36,8 @@ func _load() -> void:
 	for task_data in save_data.tasks_data:
 		var task_scene: Resource = load(task_data.scene_file_path)
 		var task: Node = task_scene.instantiate()
-
 		task.save_data = task_data
-
 		_task_container.add_child(task)
-
 		task.line_edit.text_submitted.connect(_task_container.create_new_task)
 
 
