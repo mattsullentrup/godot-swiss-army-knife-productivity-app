@@ -20,8 +20,7 @@ func save(projects_data: Array[ProjectData]) -> void:
 
 
 func _load() -> void:
-	save_data = _save_data as ProjectData
-	if save_data == null:
+	if save_data is not ProjectData:
 		return
 
 	line_edit.text = save_data.text

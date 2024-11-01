@@ -9,6 +9,7 @@ var button_types: Array[StringName] = [&"RedButton", &"YellowButton", &"GreenBut
 var text: String
 
 @onready var _task_state_button: Button = %TaskStateButton
+@onready var _task_container: VBoxContainer = %TaskContainer
 
 
 func save(tasks_data: Array[TaskData]) -> void:
@@ -17,19 +18,28 @@ func save(tasks_data: Array[TaskData]) -> void:
 	data.text = line_edit.text
 	data.color_index = color_index
 	data.scene_file_path = scene_file_path
+	var sub_tasks_data: Array[SubTaskData]
+	for task in _task_container.get_children():
+		task.save(sub_tasks_data)
 
+	data.sub_tasks_data = sub_tasks_data
 	tasks_data.append(data)
 
 
 func _load() -> void:
-	save_data = _save_data as TaskData
-	if save_data == null:
+	if _save_data is not TaskData:
 		return
 
-	line_edit.text = save_data.text
-
-	color_index = save_data.color_index
+	line_edit.text = _save_data.text
+	color_index = _save_data.color_index
 	_task_state_button.theme_type_variation = button_types[color_index % 3]
+
+	for sub_task_data: SubTaskData in _save_data.sub_tasks_data:
+		var sub_task_scene: Resource = load(sub_task_data.scene_file_path)
+		var sub_task: Node = sub_task_scene.instantiate()
+		sub_task.save_data = sub_task_data
+		_task_container.add_child(sub_task)
+		sub_task.line_edit.text_submitted.connect(_task_container.create_new_task)
 
 
 func _on_task_state_button_pressed() -> void:

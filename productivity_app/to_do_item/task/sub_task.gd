@@ -11,8 +11,8 @@ var text: String
 @onready var _task_state_button: Button = %TaskStateButton
 
 
-func save(tasks_data: Array[TaskData]) -> void:
-	var data := TaskData.new()
+func save(tasks_data: Array[SubTaskData]) -> void:
+	var data := SubTaskData.new()
 
 	data.text = line_edit.text
 	data.color_index = color_index
@@ -22,9 +22,12 @@ func save(tasks_data: Array[TaskData]) -> void:
 
 
 func _load() -> void:
-	line_edit.text = save_data.text
+	if _save_data is not SubTaskData:
+		return
 
-	color_index = save_data.color_index
+	line_edit.text = _save_data.text
+
+	color_index = _save_data.color_index
 	_task_state_button.theme_type_variation = button_types[color_index % 3]
 
 
