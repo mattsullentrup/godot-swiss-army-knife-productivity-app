@@ -25,9 +25,7 @@ func _save() -> void:
 	var projects_data: Array[ProjectData]
 
 	get_tree().call_group("Project", "save", projects_data)
-
 	save_file.projects_data = projects_data
-
 	ResourceSaver.save(save_file, SAVE_PATH)
 
 	is_game_saved = true
@@ -39,7 +37,6 @@ func _load() -> void:
 		return
 
 	var save_file := load(SAVE_PATH) as SaveFile
-
 	if save_file == null:
 		return
 
@@ -47,8 +44,7 @@ func _load() -> void:
 		var project_scene_path: Resource = load(project_data.scene_file_path)
 		if project_scene_path == null:
 			return
+
 		var project: Node = project_scene_path.instantiate()
-
 		project.save_data = project_data
-
 		_project_manager.add_child(project)
