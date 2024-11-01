@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://qud52qfsuv1o"]
+[gd_scene load_steps=6 format=3 uid="uid://qud52qfsuv1o"]
 
-[ext_resource type="Script" path="res://project_elements/task/sub_task.gd" id="1_gnbng"]
-[ext_resource type="Texture2D" uid="uid://bxrb8mrga0oq8" path="res://addons/images/kenney_icons/barsHorizontal.png" id="2_47mfq"]
-[ext_resource type="Script" path="res://project_elements/task/drag_and_drop_texture_rect.gd" id="3_6wc2s"]
+[ext_resource type="Script" path="res://to_do_item/task/sub_task.gd" id="1_gnbng"]
+[ext_resource type="PackedScene" uid="uid://cmguvp3hu2b3f" path="res://to_do_item/to_do_item_action_texture_rect.tscn" id="2_lmxne"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme/theme.tres" id="4_wtvk2"]
 [ext_resource type="Script" path="res://common/text_focus.gd" id="5_gsm6q"]
 [ext_resource type="Texture2D" uid="uid://dgmvsxmm31bo7" path="res://addons/images/kenney_icons/cross.png" id="6_t20v8"]
@@ -15,15 +14,9 @@ focus_mode = 2
 theme_override_constants/separation = 15
 script = ExtResource("1_gnbng")
 
-[node name="DragAndDropTextureRect" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(30, 30)
+[node name="ToDoItemActionTextureRect" parent="." instance=ExtResource("2_lmxne")]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 4
-mouse_default_cursor_shape = 2
-texture = ExtResource("2_47mfq")
-expand_mode = 1
-stretch_mode = 4
-script = ExtResource("3_6wc2s")
 
 [node name="TaskStateButton" type="Button" parent="."]
 unique_name_in_owner = true

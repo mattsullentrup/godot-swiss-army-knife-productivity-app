@@ -1,22 +1,22 @@
-[gd_scene load_steps=11 format=3 uid="uid://daot25v58e7k6"]
+[gd_scene load_steps=11 format=3 uid="uid://bxxevkfb1rv8o"]
 
-[ext_resource type="Script" path="res://project_elements/project/project.gd" id="1_hop2a"]
-[ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme/theme.tres" id="2_odcyh"]
-[ext_resource type="Texture2D" uid="uid://dmoykkrqddh8k" path="res://addons/images/kenney_icons/down.png" id="2_v6jp2"]
-[ext_resource type="PackedScene" uid="uid://dercwquryae2g" path="res://project_elements/task/task.tscn" id="2_vprcq"]
-[ext_resource type="Script" path="res://common/text_focus.gd" id="3_jbruc"]
-[ext_resource type="Texture2D" uid="uid://cmm42xkdqt61" path="res://addons/images/kenney_icons/plus.png" id="5_4a57h"]
-[ext_resource type="Texture2D" uid="uid://8v8i84xnoeup" path="res://addons/images/kenney_icons/return.png" id="6_x2rjc"]
-[ext_resource type="Texture2D" uid="uid://dgmvsxmm31bo7" path="res://addons/images/kenney_icons/cross.png" id="7_6vwoh"]
-[ext_resource type="Script" path="res://project_elements/project/task_container.gd" id="8_ea4sd"]
-[ext_resource type="Texture2D" uid="uid://c1avhvgbpp5di" path="res://addons/images/kenney_icons/right.png" id="10_hcbro"]
+[ext_resource type="Script" path="res://to_do_item/task/task.gd" id="1_e0rqx"]
+[ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme/theme.tres" id="2_jvgun"]
+[ext_resource type="PackedScene" uid="uid://cmguvp3hu2b3f" path="res://to_do_item/to_do_item_action_texture_rect.tscn" id="2_ow43e"]
+[ext_resource type="Texture2D" uid="uid://dmoykkrqddh8k" path="res://addons/images/kenney_icons/down.png" id="2_qxhkb"]
+[ext_resource type="Script" path="res://common/text_focus.gd" id="3_pdtx7"]
+[ext_resource type="Texture2D" uid="uid://dgmvsxmm31bo7" path="res://addons/images/kenney_icons/cross.png" id="4_3wct2"]
+[ext_resource type="Texture2D" uid="uid://cmm42xkdqt61" path="res://addons/images/kenney_icons/plus.png" id="5_2mxuq"]
+[ext_resource type="Texture2D" uid="uid://8v8i84xnoeup" path="res://addons/images/kenney_icons/return.png" id="6_8huod"]
+[ext_resource type="Script" path="res://to_do_item/project/task_container.gd" id="8_j3pgj"]
+[ext_resource type="Texture2D" uid="uid://c1avhvgbpp5di" path="res://addons/images/kenney_icons/right.png" id="9_wq7mb"]
 
-[node name="Project" type="VBoxContainer" groups=["Project", "Saveables"]]
+[node name="Task" type="VBoxContainer" groups=["Saveables"]]
 offset_right = 463.0
 offset_bottom = 95.0
 focus_mode = 2
 theme_override_constants/separation = 20
-script = ExtResource("1_hop2a")
+script = ExtResource("1_e0rqx")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -24,12 +24,18 @@ size_flags_vertical = 4
 focus_mode = 2
 theme_override_constants/separation = 20
 
-[node name="ToggleTasksButton" type="Button" parent="HBoxContainer"]
+[node name="ToDoItemActionTextureRect" parent="HBoxContainer" instance=ExtResource("2_ow43e")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TaskStateButton" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme_override_constants/icon_max_width = 28
-icon = ExtResource("2_v6jp2")
-flat = true
+theme = ExtResource("2_jvgun")
+theme_type_variation = &"RedButton"
 
 [node name="LineEdit" type="LineEdit" parent="HBoxContainer"]
 unique_name_in_owner = true
@@ -41,7 +47,7 @@ theme_override_font_sizes/font_size = 34
 placeholder_text = "Enter project.."
 alignment = 1
 clear_button_enabled = true
-script = ExtResource("3_jbruc")
+script = ExtResource("3_pdtx7")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
@@ -55,10 +61,10 @@ custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
-theme = ExtResource("2_odcyh")
+theme = ExtResource("2_jvgun")
 theme_type_variation = &"GreenButton"
 theme_override_constants/icon_max_width = 40
-icon = ExtResource("5_4a57h")
+icon = ExtResource("5_2mxuq")
 icon_alignment = 1
 expand_icon = true
 
@@ -67,10 +73,10 @@ custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
-theme = ExtResource("2_odcyh")
+theme = ExtResource("2_jvgun")
 theme_type_variation = &"PurpleButton"
 theme_override_constants/icon_max_width = 60
-icon = ExtResource("6_x2rjc")
+icon = ExtResource("6_8huod")
 icon_alignment = 1
 expand_icon = true
 
@@ -79,10 +85,10 @@ custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
-theme = ExtResource("2_odcyh")
+theme = ExtResource("2_jvgun")
 theme_type_variation = &"RedButton"
 theme_override_constants/icon_max_width = 60
-icon = ExtResource("7_6vwoh")
+icon = ExtResource("4_3wct2")
 icon_alignment = 1
 expand_icon = true
 
@@ -90,18 +96,16 @@ expand_icon = true
 layout_mode = 2
 theme_override_constants/margin_left = 40
 
-[node name="TaskContainer" type="VBoxContainer" parent="MarginContainer" node_paths=PackedStringArray("toggle_tasks_button")]
+[node name="TaskContainer" type="VBoxContainer" parent="MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 2
-script = ExtResource("8_ea4sd")
-task = ExtResource("2_vprcq")
-toggle_tasks_button = NodePath("../../HBoxContainer/ToggleTasksButton")
-folded_icon = ExtResource("10_hcbro")
-unfolded_icon = ExtResource("2_v6jp2")
+script = ExtResource("8_j3pgj")
+task = null
+folded_icon = ExtResource("9_wq7mb")
+unfolded_icon = ExtResource("2_qxhkb")
 
-[connection signal="pressed" from="HBoxContainer/ToggleTasksButton" to="MarginContainer/TaskContainer" method="_on_toggle_tasks_button_pressed"]
 [connection signal="mouse_entered" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_exited"]
 [connection signal="text_submitted" from="HBoxContainer/LineEdit" to="MarginContainer/TaskContainer" method="_on_line_edit_text_submitted"]

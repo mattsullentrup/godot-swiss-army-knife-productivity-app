@@ -4,23 +4,20 @@ extends ToDoItem
 
 signal task_text_changed
 
-var save_data: TaskData
 var color_index: int = 0
 var button_types: Array[StringName] = [&"RedButton", &"YellowButton", &"GreenButton"]
 var text: String
 
-@onready var line_edit: LineEdit = %LineEdit
 @onready var _task_state_button: Button = %TaskStateButton
-@onready var _drag_and_drop_texture_rect: DragAndDropTextureRect = $DragAndDropTextureRect
 
 
-func _ready() -> void:
-	if not save_data == null:
-		_load()
-	else:
-		line_edit.grab_focus()
-
-	_drag_and_drop_texture_rect.task = self
+#func _ready() -> void:
+	#if not save_data == null:
+		#_load()
+	#else:
+		#line_edit.grab_focus()
+#
+	#_to_do_item_action_texture_rect.to_do_item = self
 
 
 func save(tasks_data: Array[TaskData]) -> void:
@@ -34,6 +31,7 @@ func save(tasks_data: Array[TaskData]) -> void:
 
 
 func _load() -> void:
+	#var save_data := _save_data as TaskData
 	line_edit.text = save_data.text
 
 	color_index = save_data.color_index

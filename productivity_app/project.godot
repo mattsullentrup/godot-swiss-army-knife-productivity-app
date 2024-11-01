@@ -52,7 +52,6 @@ folder_colors={
 "res://common/": "gray",
 "res://gui/": "orange",
 "res://main/": "purple",
-"res://project_elements/": "blue",
 "res://resources/": "pink",
 "res://scripts/": "purple",
 "res://scripts/audio/": "pink",
@@ -66,7 +65,8 @@ folder_colors={
 "res://theme/red_button/": "red",
 "res://theme/yellow_button/": "yellow",
 "res://timers/": "green",
-"res://timers/pomodoro_state_machine/": "teal"
+"res://timers/pomodoro_state_machine/": "teal",
+"res://to_do_item/": "blue"
 }
 
 [global_group]
