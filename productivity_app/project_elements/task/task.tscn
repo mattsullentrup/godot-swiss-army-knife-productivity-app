@@ -16,9 +16,13 @@ theme_override_constants/separation = 15
 script = ExtResource("1_e0rqx")
 
 [node name="DragAndDropTextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
+size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 texture = ExtResource("2_5e7eu")
+expand_mode = 1
+stretch_mode = 4
 script = ExtResource("3_s01g3")
 
 [node name="TaskStateButton" type="Button" parent="."]
@@ -32,6 +36,7 @@ theme_type_variation = &"RedButton"
 
 [node name="LineEdit" type="LineEdit" parent="."]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
