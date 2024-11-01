@@ -21,6 +21,9 @@ func save(projects_data: Array[ProjectData]) -> void:
 
 func _load() -> void:
 	save_data = _save_data as ProjectData
+	if save_data == null:
+		return
+
 	line_edit.text = save_data.text
 
 	for task_data: TaskData in save_data.tasks_data:

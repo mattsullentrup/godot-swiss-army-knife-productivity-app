@@ -11,15 +11,6 @@ var text: String
 @onready var _task_state_button: Button = %TaskStateButton
 
 
-#func _ready() -> void:
-	#if not save_data == null:
-		#_load()
-	#else:
-		#line_edit.grab_focus()
-#
-	#_to_do_item_action_texture_rect.to_do_item = self
-
-
 func save(tasks_data: Array[TaskData]) -> void:
 	var data := TaskData.new()
 
@@ -31,7 +22,10 @@ func save(tasks_data: Array[TaskData]) -> void:
 
 
 func _load() -> void:
-	#var save_data := _save_data as TaskData
+	save_data = _save_data as TaskData
+	if save_data == null:
+		return
+
 	line_edit.text = save_data.text
 
 	color_index = save_data.color_index
