@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bxxevkfb1rv8o"]
+[gd_scene load_steps=12 format=3 uid="uid://bxxevkfb1rv8o"]
 
 [ext_resource type="Script" path="res://to_do_item/task/task.gd" id="1_e0rqx"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme/theme.tres" id="2_jvgun"]
@@ -9,13 +9,15 @@
 [ext_resource type="Texture2D" uid="uid://cmm42xkdqt61" path="res://addons/images/kenney_icons/plus.png" id="5_2mxuq"]
 [ext_resource type="Texture2D" uid="uid://8v8i84xnoeup" path="res://addons/images/kenney_icons/return.png" id="6_8huod"]
 [ext_resource type="Script" path="res://to_do_item/project/task_container.gd" id="8_j3pgj"]
+[ext_resource type="PackedScene" uid="uid://qud52qfsuv1o" path="res://to_do_item/task/sub_task.tscn" id="9_he6e1"]
 [ext_resource type="Texture2D" uid="uid://c1avhvgbpp5di" path="res://addons/images/kenney_icons/right.png" id="9_wq7mb"]
 
 [node name="Task" type="VBoxContainer" groups=["Saveables"]]
 offset_right = 463.0
 offset_bottom = 95.0
+size_flags_horizontal = 3
 focus_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 6
 script = ExtResource("1_e0rqx")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -39,13 +41,11 @@ theme_type_variation = &"RedButton"
 
 [node name="LineEdit" type="LineEdit" parent="HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/minimum_character_width = 15
-theme_override_font_sizes/font_size = 34
+theme_override_font_sizes/font_size = 24
 placeholder_text = "Enter project.."
-alignment = 1
 clear_button_enabled = true
 script = ExtResource("3_pdtx7")
 
@@ -101,11 +101,13 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 2
+theme_override_constants/separation = 5
 script = ExtResource("8_j3pgj")
-task = null
+task = ExtResource("9_he6e1")
 folded_icon = ExtResource("9_wq7mb")
 unfolded_icon = ExtResource("2_qxhkb")
 
+[connection signal="gui_input" from="HBoxContainer/ToDoItemActionTextureRect" to="." method="_on_to_do_item_action_texture_rect_gui_input"]
 [connection signal="mouse_entered" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_exited"]
 [connection signal="text_submitted" from="HBoxContainer/LineEdit" to="MarginContainer/TaskContainer" method="_on_line_edit_text_submitted"]

@@ -85,7 +85,7 @@ func _get_child_under_mouse(task_size: float, at_position_vertical: float) -> No
 
 #region Task management
 func create_new_task(_unnecessary_text: String = "") -> void:
-	var new_task: Task = task.instantiate()
+	var new_task: ToDoItem = task.instantiate()
 	add_child(new_task)
 	new_task.line_edit.text_submitted.connect(create_new_task)
 

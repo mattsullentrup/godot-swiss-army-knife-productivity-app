@@ -48,3 +48,8 @@ func _on_line_edit_text_changed(new_text: String) -> void:
 func _on_line_edit_text_submitted(_new_text: String) -> void:
 	release_focus()
 	task_text_changed.emit()
+
+
+func _on_to_do_item_action_texture_rect_gui_input(event: InputEvent) -> void:
+	var mouse_button := event as InputEventMouseButton
+	if mouse_button == null: return

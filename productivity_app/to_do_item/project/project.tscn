@@ -107,6 +107,7 @@ folded_icon = ExtResource("10_hcbro")
 unfolded_icon = ExtResource("2_v6jp2")
 
 [connection signal="pressed" from="HBoxContainer/ToggleTasksButton" to="MarginContainer/TaskContainer" method="_on_toggle_tasks_button_pressed"]
+[connection signal="gui_input" from="HBoxContainer/ToDoItemActionTextureRect" to="." method="_on_to_do_item_action_texture_rect_gui_input"]
 [connection signal="mouse_entered" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_exited"]
 [connection signal="text_submitted" from="HBoxContainer/LineEdit" to="MarginContainer/TaskContainer" method="_on_line_edit_text_submitted"]

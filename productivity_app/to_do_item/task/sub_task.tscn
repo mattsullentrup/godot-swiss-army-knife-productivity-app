@@ -21,15 +21,16 @@ layout_mode = 2
 [node name="TaskStateButton" type="Button" parent="."]
 unique_name_in_owner = true
 texture_filter = 2
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 theme = ExtResource("4_wtvk2")
 theme_type_variation = &"RedButton"
 
 [node name="LineEdit" type="LineEdit" parent="."]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
@@ -38,12 +39,14 @@ placeholder_text = "Enter task..."
 script = ExtResource("5_gsm6q")
 
 [node name="DeleteButton" type="Button" parent="."]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 theme = ExtResource("4_wtvk2")
 theme_type_variation = &"RedButton"
-theme_override_constants/icon_max_width = 40
+theme_override_constants/icon_max_width = 28
 icon = ExtResource("6_t20v8")
 icon_alignment = 1
 

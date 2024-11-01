@@ -36,3 +36,8 @@ func _load() -> void:
 
 func _on_delete_button_pressed() -> void:
 	queue_free()
+
+
+func _on_to_do_item_action_texture_rect_gui_input(event: InputEvent) -> void:
+	var mouse_button := event as InputEventMouseButton
+	if mouse_button == null: return
