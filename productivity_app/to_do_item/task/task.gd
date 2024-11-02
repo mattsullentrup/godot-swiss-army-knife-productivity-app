@@ -2,7 +2,7 @@ class_name Task
 extends ToDoItemParent
 
 
-signal task_text_changed
+#signal task_text_changed
 
 var color_index: int = 0
 var button_types: Array[StringName] = [&"RedButton", &"YellowButton", &"GreenButton"]
@@ -28,19 +28,10 @@ func _on_task_state_button_pressed() -> void:
 	_task_state_button.theme_type_variation = button_types[color_index % 3]
 
 
-func _on_delete_button_pressed() -> void:
-	queue_free()
-
-
 func _on_line_edit_text_changed(new_text: String) -> void:
 	text = new_text
 
 
 func _on_line_edit_text_submitted(_new_text: String) -> void:
 	release_focus()
-	task_text_changed.emit()
-
-
-func _on_to_do_item_action_texture_rect_gui_input(event: InputEvent) -> void:
-	var mouse_button := event as InputEventMouseButton
-	if mouse_button == null: return
+	#task_text_changed.emit()
