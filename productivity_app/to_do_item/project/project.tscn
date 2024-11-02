@@ -25,16 +25,16 @@ size_flags_vertical = 4
 focus_mode = 2
 theme_override_constants/separation = 20
 
+[node name="ToDoItemActionTextureRect" parent="HBoxContainer" instance=ExtResource("3_4c8ki")]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="ToggleTasksButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_constants/icon_max_width = 28
 icon = ExtResource("2_v6jp2")
 flat = true
-
-[node name="ToDoItemActionTextureRect" parent="HBoxContainer" instance=ExtResource("3_4c8ki")]
-unique_name_in_owner = true
-layout_mode = 2
 
 [node name="LineEdit" type="LineEdit" parent="HBoxContainer"]
 unique_name_in_owner = true
@@ -106,8 +106,8 @@ toggle_tasks_button = NodePath("../../HBoxContainer/ToggleTasksButton")
 folded_icon = ExtResource("10_hcbro")
 unfolded_icon = ExtResource("2_v6jp2")
 
-[connection signal="pressed" from="HBoxContainer/ToggleTasksButton" to="MarginContainer/TaskContainer" method="_on_toggle_tasks_button_pressed"]
 [connection signal="gui_input" from="HBoxContainer/ToDoItemActionTextureRect" to="." method="_on_to_do_item_action_texture_rect_gui_input"]
+[connection signal="pressed" from="HBoxContainer/ToggleTasksButton" to="MarginContainer/TaskContainer" method="_on_toggle_tasks_button_pressed"]
 [connection signal="mouse_entered" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_exited"]
 [connection signal="text_submitted" from="HBoxContainer/LineEdit" to="MarginContainer/TaskContainer" method="_on_line_edit_text_submitted"]

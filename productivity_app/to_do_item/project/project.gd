@@ -1,42 +1,7 @@
 class_name Project
-extends ToDoItem
+extends ToDoItemParent
 
 
-@onready var _task_container: VBoxContainer = %TaskContainer
-
-
-func save(projects_data: Array[ProjectData]) -> void:
-	var data := ProjectData.new()
-
-	data.scene_file_path = scene_file_path
-	data.text = line_edit.text
-
-	var tasks_data: Array[TaskData]
-	for task in _task_container.get_children():
-		task.save(tasks_data)
-
-	data.tasks_data = tasks_data
-	projects_data.append(data)
-
-
-func _load() -> void:
-	if save_data is not ProjectData:
-		return
-
-	line_edit.text = save_data.text
-
-	for task_data: TaskData in save_data.tasks_data:
-		var task_scene: Resource = load(task_data.scene_file_path)
-		var task: Node = task_scene.instantiate()
-		task.save_data = task_data
-		_task_container.add_child(task)
-		task.line_edit.text_submitted.connect(_task_container.create_new_task)
-
-
-func _on_delete_button_pressed() -> void:
-	queue_free()
-
-
-func _on_to_do_item_action_texture_rect_gui_input(event: InputEvent) -> void:
-	var mouse_button := event as InputEventMouseButton
-	if mouse_button == null: return
+func save(projects_data: Array[ToDoItemData]) -> void:
+	new_save_data = ProjectData.new()
+	super(projects_data)

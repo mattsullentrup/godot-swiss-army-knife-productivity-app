@@ -2,13 +2,14 @@ class_name ToDoItem
 extends Container
 
 
-var save_data: Resource:
+var new_save_data: ToDoItemData
+var save_data: ToDoItemData:
 	get:
 		return _save_data
 	set(value):
 		_save_data = value
 
-var _save_data: Resource
+var _save_data: ToDoItemData
 
 @onready var line_edit: LineEdit = %LineEdit
 @onready var _to_do_item_action_texture_rect: ToDoItemActionTextureRect = %ToDoItemActionTextureRect

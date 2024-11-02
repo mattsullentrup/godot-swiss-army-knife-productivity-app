@@ -3,4 +3,4 @@ extends ToDoItemData
 
 
 @export var color_index: int
-@export var sub_tasks_data: Array[SubTaskData]
+@export var tasks_data: Array[TaskData]

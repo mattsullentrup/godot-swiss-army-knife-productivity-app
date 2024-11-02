@@ -22,10 +22,10 @@ func _notification(what: int) -> void:
 
 func _save() -> void:
 	var save_file := SaveFile.new()
-	var projects_data: Array[ProjectData]
+	var projects_data: Array[ToDoItemData]
 
 	get_tree().call_group("Project", "save", projects_data)
-	save_file.projects_data = projects_data
+	save_file.projects_data.assign(projects_data)
 	ResourceSaver.save(save_file, SAVE_PATH)
 
 	is_game_saved = true
