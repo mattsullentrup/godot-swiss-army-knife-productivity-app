@@ -53,14 +53,14 @@ func _load() -> void:
 		task.line_edit.text_submitted.connect(create_new_task)
 
 
-func create_new_task(_text: String) -> void:
+func create_new_task(_text: String = "") -> void:
 	var new_task: ToDoItem = child_task_type.instantiate()
-	add_child(new_task)
+	_task_container.add_child(new_task)
 	new_task.line_edit.text_submitted.connect(create_new_task)
 
 
 func _on_toggle_tasks_button_pressed() -> void:
-	var children: Array[Node] = get_children()
+	var children: Array[Node] = _task_container.get_children()
 	if are_children_visible:
 		for child in children:
 			child.hide()

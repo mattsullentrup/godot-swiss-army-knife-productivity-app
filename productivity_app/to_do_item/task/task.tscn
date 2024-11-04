@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bxxevkfb1rv8o"]
+[gd_scene load_steps=11 format=3 uid="uid://bxxevkfb1rv8o"]
 
 [ext_resource type="Script" path="res://to_do_item/task/task.gd" id="1_e0rqx"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme/theme.tres" id="2_jvgun"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://8v8i84xnoeup" path="res://addons/images/kenney_icons/return.png" id="6_8huod"]
 [ext_resource type="Script" path="res://to_do_item/project/task_container.gd" id="8_j3pgj"]
 [ext_resource type="PackedScene" uid="uid://qud52qfsuv1o" path="res://to_do_item/task/sub_task.tscn" id="9_he6e1"]
-[ext_resource type="Texture2D" uid="uid://c1avhvgbpp5di" path="res://addons/images/kenney_icons/right.png" id="9_wq7mb"]
 
 [node name="Task" type="VBoxContainer" groups=["Saveables"]]
 offset_right = 463.0
@@ -19,6 +18,7 @@ size_flags_horizontal = 3
 focus_mode = 2
 theme_override_constants/separation = 6
 script = ExtResource("1_e0rqx")
+child_task_type = ExtResource("9_he6e1")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -113,9 +113,6 @@ size_flags_vertical = 3
 focus_mode = 2
 theme_override_constants/separation = 5
 script = ExtResource("8_j3pgj")
-task = ExtResource("9_he6e1")
-folded_icon = ExtResource("9_wq7mb")
-unfolded_icon = ExtResource("2_qxhkb")
 
 [connection signal="mouse_entered" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_exited"]

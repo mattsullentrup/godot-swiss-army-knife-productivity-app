@@ -3,13 +3,13 @@ extends VBoxContainer
 
 
 const MAX_TASKS = 100
-
-@export var task: PackedScene
-@export var toggle_tasks_button: Button
-@export var folded_icon: CompressedTexture2D
-@export var unfolded_icon: CompressedTexture2D
-
-var are_children_visible := true
+#
+#@export var task: PackedScene
+#@export var toggle_tasks_button: Button
+#@export var folded_icon: CompressedTexture2D
+#@export var unfolded_icon: CompressedTexture2D
+#
+#var are_children_visible := true
 var separator: HSeparator
 var task_height: float
 

@@ -1,29 +1,56 @@
-[gd_resource type="Resource" script_class="SaveFile" load_steps=7 format=3]
+[gd_resource type="Resource" script_class="SaveFile" load_steps=11 format=3]
 
 [ext_resource type="Script" path="res://resources/project_data.gd" id="1"]
 [ext_resource type="Script" path="res://resources/save_file.gd" id="2"]
 [ext_resource type="Script" path="res://resources/task_data.gd" id="2_0xm18"]
 
-[sub_resource type="Resource" id="Resource_cya5y"]
+[sub_resource type="Resource" id="Resource_32oup"]
 script = ExtResource("2_0xm18")
 color_index = 0
 tasks_data = Array[ExtResource("2_0xm18")]([])
 scene_file_path = "res://to_do_item/task/sub_task.tscn"
 text = "afds"
 
-[sub_resource type="Resource" id="Resource_0h3hy"]
+[sub_resource type="Resource" id="Resource_145sb"]
 script = ExtResource("2_0xm18")
 color_index = 0
-tasks_data = Array[ExtResource("2_0xm18")]([SubResource("Resource_cya5y")])
+tasks_data = Array[ExtResource("2_0xm18")]([])
+scene_file_path = "res://to_do_item/task/sub_task.tscn"
+text = "fdsa"
+
+[sub_resource type="Resource" id="Resource_4wbrn"]
+script = ExtResource("2_0xm18")
+color_index = 0
+tasks_data = Array[ExtResource("2_0xm18")]([SubResource("Resource_32oup"), SubResource("Resource_145sb")])
 scene_file_path = "res://to_do_item/task/task.tscn"
 text = "fdsa"
 
-[sub_resource type="Resource" id="Resource_dp7yf"]
+[sub_resource type="Resource" id="Resource_pku1d"]
+script = ExtResource("2_0xm18")
+color_index = 0
+tasks_data = Array[ExtResource("2_0xm18")]([])
+scene_file_path = "res://to_do_item/task/sub_task.tscn"
+text = "a"
+
+[sub_resource type="Resource" id="Resource_ohncn"]
+script = ExtResource("2_0xm18")
+color_index = 0
+tasks_data = Array[ExtResource("2_0xm18")]([SubResource("Resource_pku1d")])
+scene_file_path = "res://to_do_item/task/task.tscn"
+text = "asfasdfasdf"
+
+[sub_resource type="Resource" id="Resource_xdxmj"]
 script = ExtResource("1")
-tasks_data = Array[ExtResource("2_0xm18")]([SubResource("Resource_0h3hy")])
+tasks_data = Array[ExtResource("2_0xm18")]([SubResource("Resource_4wbrn"), SubResource("Resource_ohncn")])
 scene_file_path = "res://to_do_item/project/project.tscn"
 text = "asdf"
 
+[sub_resource type="Resource" id="Resource_fek82"]
+script = ExtResource("1")
+tasks_data = Array[ExtResource("2_0xm18")]([])
+scene_file_path = "res://to_do_item/project/project.tscn"
+text = "sadfasdf"
+
 [resource]
 script = ExtResource("2")
-projects_data = Array[ExtResource("1")]([SubResource("Resource_dp7yf")])
+projects_data = Array[ExtResource("1")]([SubResource("Resource_xdxmj"), SubResource("Resource_fek82")])

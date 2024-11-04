@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://daot25v58e7k6"]
+[gd_scene load_steps=11 format=3 uid="uid://daot25v58e7k6"]
 
 [ext_resource type="Script" path="res://to_do_item/project/project.gd" id="1_hop2a"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme/theme.tres" id="2_odcyh"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://8v8i84xnoeup" path="res://addons/images/kenney_icons/return.png" id="6_x2rjc"]
 [ext_resource type="Texture2D" uid="uid://dgmvsxmm31bo7" path="res://addons/images/kenney_icons/cross.png" id="7_6vwoh"]
 [ext_resource type="Script" path="res://to_do_item/project/task_container.gd" id="8_ea4sd"]
-[ext_resource type="Texture2D" uid="uid://c1avhvgbpp5di" path="res://addons/images/kenney_icons/right.png" id="10_hcbro"]
 
 [node name="Project" type="VBoxContainer" groups=["Project", "Saveables"]]
 offset_right = 463.0
@@ -18,6 +17,7 @@ offset_bottom = 95.0
 focus_mode = 2
 theme_override_constants/separation = 20
 script = ExtResource("1_hop2a")
+child_task_type = ExtResource("2_vprcq")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -98,16 +98,12 @@ expand_icon = true
 layout_mode = 2
 theme_override_constants/margin_left = 40
 
-[node name="TaskContainer" type="VBoxContainer" parent="MarginContainer" node_paths=PackedStringArray("toggle_tasks_button")]
+[node name="TaskContainer" type="VBoxContainer" parent="MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 2
 script = ExtResource("8_ea4sd")
-task = ExtResource("2_vprcq")
-toggle_tasks_button = NodePath("../../HBoxContainer/ToggleTasksButton")
-folded_icon = ExtResource("10_hcbro")
-unfolded_icon = ExtResource("2_v6jp2")
 
 [connection signal="mouse_entered" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_exited"]
