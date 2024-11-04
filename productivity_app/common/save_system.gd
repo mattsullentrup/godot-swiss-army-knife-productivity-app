@@ -4,7 +4,10 @@ extends Node
 
 signal game_saved
 
-const SAVE_PATH = "user://save.tres"
+# Use different saves for editor and exported project to prevent breaking
+# the save I have for everyday use when making changes
+const USER_SAVE_PATH = "user://save.tres"
+const EDITOR_SAVE_PATH = "res://editor_save/save.tres"
 
 var is_game_saved := false
 
@@ -26,17 +29,21 @@ func _save() -> void:
 
 	get_tree().call_group("Project", "save", projects_data)
 	save_file.projects_data.assign(projects_data)
-	ResourceSaver.save(save_file, SAVE_PATH)
+
+	var save_path := _get_save_path()
+	ResourceSaver.save(save_file, save_path)
 
 	is_game_saved = true
 	game_saved.emit()
 
 
 func _load() -> void:
-	if not FileAccess.file_exists(SAVE_PATH):
+	var save_path := _get_save_path()
+
+	if not FileAccess.file_exists(save_path):
 		return
 
-	var save_file := load(SAVE_PATH) as SaveFile
+	var save_file := load(save_path) as SaveFile
 	if save_file == null:
 		return
 
@@ -48,3 +55,7 @@ func _load() -> void:
 		var project: Node = project_scene_path.instantiate()
 		project.save_data = project_data
 		_project_manager.add_child(project)
+
+
+func _get_save_path() -> String:
+	return EDITOR_SAVE_PATH if OS.has_feature("editor") else USER_SAVE_PATH
