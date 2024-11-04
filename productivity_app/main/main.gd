@@ -28,8 +28,8 @@ func _quit() -> void:
 
 	if _pink_noise.is_inside_tree():
 		await _pink_noise.tree_exited
+
 	if not _save_system.is_game_saved:
 		await _save_system.game_saved
 
-	#get_tree().quit()
 	get_tree().quit.call_deferred()

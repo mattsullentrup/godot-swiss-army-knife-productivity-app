@@ -2,8 +2,6 @@ class_name SubTask
 extends ToDoItem
 
 
-#signal task_text_changed
-
 var color_index: int = 0
 var button_types: Array[StringName] = [&"RedButton", &"YellowButton", &"GreenButton"]
 var text: String
@@ -46,4 +44,3 @@ func _on_line_edit_text_changed(new_text: String) -> void:
 
 func _on_line_edit_text_submitted(_new_text: String) -> void:
 	release_focus()
-	#task_text_changed.emit()

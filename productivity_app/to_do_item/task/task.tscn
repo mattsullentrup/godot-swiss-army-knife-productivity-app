@@ -26,6 +26,14 @@ size_flags_vertical = 4
 focus_mode = 2
 theme_override_constants/separation = 20
 
+[node name="ToggleTasksButton" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_constants/icon_max_width = 28
+icon = ExtResource("2_qxhkb")
+flat = true
+
 [node name="ToDoItemActionTextureRect" parent="HBoxContainer" instance=ExtResource("2_ow43e")]
 unique_name_in_owner = true
 layout_mode = 2
@@ -46,7 +54,6 @@ size_flags_horizontal = 3
 theme_override_constants/minimum_character_width = 15
 theme_override_font_sizes/font_size = 24
 placeholder_text = "Enter project.."
-clear_button_enabled = true
 script = ExtResource("3_pdtx7")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
@@ -56,6 +63,7 @@ size_flags_horizontal = 2
 theme_override_constants/separation = 10
 
 [node name="NewTaskButton" type="Button" parent="HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 texture_filter = 2
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
@@ -69,6 +77,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="ResetButton" type="Button" parent="HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -81,6 +90,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="DeleteButton" type="Button" parent="HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -107,10 +117,5 @@ task = ExtResource("9_he6e1")
 folded_icon = ExtResource("9_wq7mb")
 unfolded_icon = ExtResource("2_qxhkb")
 
-[connection signal="gui_input" from="HBoxContainer/ToDoItemActionTextureRect" to="." method="_on_to_do_item_action_texture_rect_gui_input"]
 [connection signal="mouse_entered" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_exited"]
-[connection signal="text_submitted" from="HBoxContainer/LineEdit" to="MarginContainer/TaskContainer" method="_on_line_edit_text_submitted"]
-[connection signal="pressed" from="HBoxContainer/HBoxContainer/NewTaskButton" to="MarginContainer/TaskContainer" method="_on_new_task_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/HBoxContainer/ResetButton" to="MarginContainer/TaskContainer" method="_on_reset_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/HBoxContainer/DeleteButton" to="." method="_on_delete_button_pressed"]
