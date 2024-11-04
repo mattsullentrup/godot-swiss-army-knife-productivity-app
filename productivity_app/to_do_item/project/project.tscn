@@ -1,14 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://daot25v58e7k6"]
+[gd_scene load_steps=11 format=3 uid="uid://daot25v58e7k6"]
 
 [ext_resource type="Script" path="res://to_do_item/project/project.gd" id="1_hop2a"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme/theme.tres" id="2_odcyh"]
+[ext_resource type="PackedScene" uid="uid://bxxevkfb1rv8o" path="res://to_do_item/task/task.tscn" id="2_s6jf4"]
 [ext_resource type="Texture2D" uid="uid://dmoykkrqddh8k" path="res://addons/images/kenney_icons/down.png" id="2_v6jp2"]
 [ext_resource type="PackedScene" uid="uid://cmguvp3hu2b3f" path="res://to_do_item/to_do_item_action_texture_rect.tscn" id="3_4c8ki"]
 [ext_resource type="Script" path="res://common/text_focus.gd" id="3_jbruc"]
 [ext_resource type="Texture2D" uid="uid://cmm42xkdqt61" path="res://addons/images/kenney_icons/plus.png" id="5_4a57h"]
 [ext_resource type="Texture2D" uid="uid://8v8i84xnoeup" path="res://addons/images/kenney_icons/return.png" id="6_x2rjc"]
 [ext_resource type="Texture2D" uid="uid://dgmvsxmm31bo7" path="res://addons/images/kenney_icons/cross.png" id="7_6vwoh"]
-[ext_resource type="Script" path="res://to_do_item/project/task_container.gd" id="8_ea4sd"]
+[ext_resource type="Script" path="res://gui/drag_and_drop_container.gd" id="8_ea4sd"]
 
 [node name="Project" type="VBoxContainer" groups=["Project", "Saveables"]]
 offset_right = 463.0
@@ -16,6 +17,7 @@ offset_bottom = 95.0
 focus_mode = 2
 theme_override_constants/separation = 20
 script = ExtResource("1_hop2a")
+_child_task_scene = ExtResource("2_s6jf4")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -102,6 +104,7 @@ layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 2
 script = ExtResource("8_ea4sd")
+_child_type = "Task"
 
 [connection signal="mouse_entered" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_exited"]

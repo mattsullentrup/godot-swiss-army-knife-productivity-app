@@ -1,14 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxxevkfb1rv8o"]
+[gd_scene load_steps=11 format=3 uid="uid://bxxevkfb1rv8o"]
 
 [ext_resource type="Script" path="res://to_do_item/task/task.gd" id="1_e0rqx"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme/theme.tres" id="2_jvgun"]
 [ext_resource type="PackedScene" uid="uid://cmguvp3hu2b3f" path="res://to_do_item/to_do_item_action_texture_rect.tscn" id="2_ow43e"]
 [ext_resource type="Texture2D" uid="uid://dmoykkrqddh8k" path="res://addons/images/kenney_icons/down.png" id="2_qxhkb"]
+[ext_resource type="PackedScene" uid="uid://qud52qfsuv1o" path="res://to_do_item/task/sub_task.tscn" id="2_t6lhc"]
 [ext_resource type="Script" path="res://common/text_focus.gd" id="3_pdtx7"]
 [ext_resource type="Texture2D" uid="uid://dgmvsxmm31bo7" path="res://addons/images/kenney_icons/cross.png" id="4_3wct2"]
 [ext_resource type="Texture2D" uid="uid://cmm42xkdqt61" path="res://addons/images/kenney_icons/plus.png" id="5_2mxuq"]
 [ext_resource type="Texture2D" uid="uid://8v8i84xnoeup" path="res://addons/images/kenney_icons/return.png" id="6_8huod"]
-[ext_resource type="Script" path="res://to_do_item/project/task_container.gd" id="8_j3pgj"]
+[ext_resource type="Script" path="res://gui/drag_and_drop_container.gd" id="8_j3pgj"]
 
 [node name="Task" type="VBoxContainer" groups=["Saveables"]]
 offset_right = 463.0
@@ -17,6 +18,7 @@ size_flags_horizontal = 3
 focus_mode = 2
 theme_override_constants/separation = 6
 script = ExtResource("1_e0rqx")
+_child_task_scene = ExtResource("2_t6lhc")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -111,6 +113,7 @@ size_flags_vertical = 3
 focus_mode = 2
 theme_override_constants/separation = 5
 script = ExtResource("8_j3pgj")
+_child_type = "SubTask"
 
 [connection signal="mouse_entered" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_exited"]

@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends DragAndDropContainer
 
 
 @export var project: PackedScene

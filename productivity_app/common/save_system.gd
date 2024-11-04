@@ -39,7 +39,6 @@ func _save() -> void:
 
 func _load() -> void:
 	var save_path := _get_save_path()
-
 	if not FileAccess.file_exists(save_path):
 		return
 

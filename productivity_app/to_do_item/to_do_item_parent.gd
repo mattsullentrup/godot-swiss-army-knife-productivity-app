@@ -6,7 +6,7 @@ const FOLDED_ICON = preload("res://addons/images/kenney_icons/right.png")
 const UNFOLDED_ICON = preload("res://addons/images/kenney_icons/down.png")
 const MAX_CHILD_TASKS = 100
 
-@export var _child_task_type: PackedScene
+@export var _child_task_scene: PackedScene
 
 var _are_children_visible := true
 
@@ -54,9 +54,9 @@ func _load() -> void:
 
 
 func create_new_task(_text: String = "") -> void:
-	var new_task: ToDoItem = _child_task_type.instantiate()
-	new_task.line_edit.text_submitted.connect(create_new_task)
+	var new_task: ToDoItem = _child_task_scene.instantiate()
 	_task_container.add_child(new_task)
+	new_task.line_edit.text_submitted.connect(create_new_task)
 
 
 func _on_toggle_tasks_button_pressed() -> void:
