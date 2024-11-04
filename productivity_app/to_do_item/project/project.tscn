@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://daot25v58e7k6"]
+[gd_scene load_steps=10 format=3 uid="uid://daot25v58e7k6"]
 
 [ext_resource type="Script" path="res://to_do_item/project/project.gd" id="1_hop2a"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme/theme.tres" id="2_odcyh"]
 [ext_resource type="Texture2D" uid="uid://dmoykkrqddh8k" path="res://addons/images/kenney_icons/down.png" id="2_v6jp2"]
-[ext_resource type="PackedScene" uid="uid://bxxevkfb1rv8o" path="res://to_do_item/task/task.tscn" id="2_vprcq"]
 [ext_resource type="PackedScene" uid="uid://cmguvp3hu2b3f" path="res://to_do_item/to_do_item_action_texture_rect.tscn" id="3_4c8ki"]
 [ext_resource type="Script" path="res://common/text_focus.gd" id="3_jbruc"]
 [ext_resource type="Texture2D" uid="uid://cmm42xkdqt61" path="res://addons/images/kenney_icons/plus.png" id="5_4a57h"]
@@ -17,7 +16,6 @@ offset_bottom = 95.0
 focus_mode = 2
 theme_override_constants/separation = 20
 script = ExtResource("1_hop2a")
-child_task_type = ExtResource("2_vprcq")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2

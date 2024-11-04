@@ -6,9 +6,9 @@ const FOLDED_ICON = preload("res://addons/images/kenney_icons/right.png")
 const UNFOLDED_ICON = preload("res://addons/images/kenney_icons/down.png")
 const MAX_CHILD_TASKS = 100
 
-@export var child_task_type: PackedScene
+@export var _child_task_type: PackedScene
 
-var are_children_visible := true
+var _are_children_visible := true
 
 @onready var _task_container: VBoxContainer = %TaskContainer
 @onready var _toggle_tasks_button: Button = %ToggleTasksButton
@@ -54,27 +54,29 @@ func _load() -> void:
 
 
 func create_new_task(_text: String = "") -> void:
-	var new_task: ToDoItem = child_task_type.instantiate()
-	_task_container.add_child(new_task)
+	var new_task: ToDoItem = _child_task_type.instantiate()
 	new_task.line_edit.text_submitted.connect(create_new_task)
+	_task_container.add_child(new_task)
 
 
 func _on_toggle_tasks_button_pressed() -> void:
 	var children: Array[Node] = _task_container.get_children()
-	if are_children_visible:
+	if _are_children_visible:
 		for child in children:
 			child.hide()
-		are_children_visible = false
+
+		_are_children_visible = false
 		_toggle_tasks_button.icon = FOLDED_ICON
 	else:
 		for child in children:
 			child.show()
-		are_children_visible = true
+
+		_are_children_visible = true
 		_toggle_tasks_button.icon = UNFOLDED_ICON
 
 
 func _on_reset_button_pressed() -> void:
-	var children: Array = get_children()
+	var children: Array = _task_container.get_children()
 	for child: Node in children:
 		child.color_index = 0
 		child.get_node("TaskStateButton").theme_type_variation = child.button_types[0]
