@@ -7,8 +7,12 @@ const MAX_TASKS = 100
 
 @export_enum("Project", "Task", "SubTask") var _child_type: String = "Project"
 
-var separator: HSeparator
+static var separator: HSeparator
 var task_height: float
+
+
+func _ready() -> void:
+	separator = HSeparator.new()
 
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
@@ -21,16 +25,13 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 		return false
 
 	task_height = data_node.size.y
-	var child_hovered_over := _get_child_under_mouse(task_height, at_position.y)
+	var child_hovered_over := _get_child_under_mouse(at_position.y)
 	if child_hovered_over == null:
 		return is_child_type
 
-	if separator == null:
-		var other_container := data_node.get_parent() as DragAndDropContainer
-		if other_container != null:
-			separator = other_container.separator
-			other_container.separator = null
-			_reparent_node_from_different_container(separator, other_container)
+	if not separator.get_parent() == self:
+		@warning_ignore("standalone_ternary")
+		add_child(separator) if separator.get_parent() == null else separator.reparent(self)
 
 	if is_child_type:
 		_move_child_to_new_index(child_hovered_over, separator, at_position)
@@ -39,29 +40,21 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 
 
 func _drop_data(at_position: Vector2, data: Variant) -> void:
-	if separator != null:
-		separator.queue_free()
+	separator.get_parent().remove_child(separator)
 
 	if data is not Node:
 		return
 
 	var data_node: Node = data
-	var child_dropped_on := _get_child_under_mouse(task_height, at_position.y)
+	var child_dropped_on := _get_child_under_mouse(at_position.y)
 	if child_dropped_on == null:
 		return
 
-	_reparent_node_from_different_container(
-			data_node, data_node.get_parent() as DragAndDropContainer
-	)
+	if not is_ancestor_of(data_node):
+		data_node.reparent(self)
+
 	_move_child_to_new_index(child_dropped_on, data_node, at_position)
 
-
-func _reparent_node_from_different_container(
-		node: Node, different_container: DragAndDropContainer
-) -> void:
-	if node not in get_children():
-		different_container.remove_child(node)
-		add_child(node)
 
 
 func _move_child_to_new_index(
@@ -79,12 +72,13 @@ func _move_child_to_new_index(
 	move_child(node_to_move, new_index)
 
 
-func _get_child_under_mouse(task_size: float, at_position_vertical: float) -> Node:
+func _get_child_under_mouse(at_position_y: float) -> Node:
 	for child in get_children():
 		if child == separator:
-			continue
+			#continue
+			pass
 
-		if child.position.y + task_size > at_position_vertical:
+		if child.position.y + task_height > at_position_y:
 			return child
 
 	return null

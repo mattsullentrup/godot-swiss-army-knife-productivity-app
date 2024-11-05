@@ -104,7 +104,7 @@ expand_icon = true
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-theme_override_constants/margin_left = 40
+theme_override_constants/margin_left = 120
 
 [node name="TaskContainer" type="VBoxContainer" parent="MarginContainer"]
 unique_name_in_owner = true
