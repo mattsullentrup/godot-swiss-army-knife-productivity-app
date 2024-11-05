@@ -9,6 +9,11 @@ var text: String
 @onready var _task_state_button: Button = %TaskStateButton
 
 
+func _ready() -> void:
+	super()
+	%TaskStateButton.pressed.connect(_on_task_state_button_pressed)
+
+
 func save(tasks_data: Array[ToDoItemData]) -> void:
 	new_save_data = TaskData.new()
 	new_save_data.color_index = color_index

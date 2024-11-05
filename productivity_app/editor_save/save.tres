@@ -1,56 +1,77 @@
-[gd_resource type="Resource" script_class="SaveFile" load_steps=11 format=3]
+[gd_resource type="Resource" script_class="SaveFile" load_steps=14 format=3]
 
 [ext_resource type="Script" path="res://resources/project_data.gd" id="1"]
 [ext_resource type="Script" path="res://resources/save_file.gd" id="2"]
 [ext_resource type="Script" path="res://resources/task_data.gd" id="2_0xm18"]
 
-[sub_resource type="Resource" id="Resource_32oup"]
-script = ExtResource("2_0xm18")
-color_index = 0
-tasks_data = Array[ExtResource("2_0xm18")]([])
-scene_file_path = "res://to_do_item/task/sub_task.tscn"
-text = "afds"
-
-[sub_resource type="Resource" id="Resource_145sb"]
-script = ExtResource("2_0xm18")
-color_index = 0
-tasks_data = Array[ExtResource("2_0xm18")]([])
-scene_file_path = "res://to_do_item/task/sub_task.tscn"
-text = "fdsa"
-
-[sub_resource type="Resource" id="Resource_4wbrn"]
-script = ExtResource("2_0xm18")
-color_index = 0
-tasks_data = Array[ExtResource("2_0xm18")]([SubResource("Resource_32oup"), SubResource("Resource_145sb")])
-scene_file_path = "res://to_do_item/task/task.tscn"
-text = "fdsa"
-
-[sub_resource type="Resource" id="Resource_pku1d"]
+[sub_resource type="Resource" id="Resource_nkppw"]
 script = ExtResource("2_0xm18")
 color_index = 0
 tasks_data = Array[ExtResource("2_0xm18")]([])
 scene_file_path = "res://to_do_item/task/sub_task.tscn"
 text = "a"
 
-[sub_resource type="Resource" id="Resource_ohncn"]
+[sub_resource type="Resource" id="Resource_qsaj2"]
+script = ExtResource("2_0xm18")
+color_index = 1
+tasks_data = Array[ExtResource("2_0xm18")]([])
+scene_file_path = "res://to_do_item/task/sub_task.tscn"
+text = "b"
+
+[sub_resource type="Resource" id="Resource_21bnx"]
+script = ExtResource("2_0xm18")
+color_index = 5
+tasks_data = Array[ExtResource("2_0xm18")]([])
+scene_file_path = "res://to_do_item/task/sub_task.tscn"
+text = "c"
+
+[sub_resource type="Resource" id="Resource_51ju1"]
 script = ExtResource("2_0xm18")
 color_index = 0
-tasks_data = Array[ExtResource("2_0xm18")]([SubResource("Resource_pku1d")])
+tasks_data = Array[ExtResource("2_0xm18")]([SubResource("Resource_nkppw"), SubResource("Resource_qsaj2"), SubResource("Resource_21bnx")])
 scene_file_path = "res://to_do_item/task/task.tscn"
-text = "asfasdfasdf"
+text = "1"
 
-[sub_resource type="Resource" id="Resource_xdxmj"]
+[sub_resource type="Resource" id="Resource_v412h"]
+script = ExtResource("2_0xm18")
+color_index = 1
+tasks_data = Array[ExtResource("2_0xm18")]([])
+scene_file_path = "res://to_do_item/task/sub_task.tscn"
+text = "a"
+
+[sub_resource type="Resource" id="Resource_jvx0h"]
+script = ExtResource("2_0xm18")
+color_index = 5
+tasks_data = Array[ExtResource("2_0xm18")]([])
+scene_file_path = "res://to_do_item/task/sub_task.tscn"
+text = "b"
+
+[sub_resource type="Resource" id="Resource_bturu"]
+script = ExtResource("2_0xm18")
+color_index = 6
+tasks_data = Array[ExtResource("2_0xm18")]([])
+scene_file_path = "res://to_do_item/task/sub_task.tscn"
+text = "c"
+
+[sub_resource type="Resource" id="Resource_x3f5k"]
+script = ExtResource("2_0xm18")
+color_index = 0
+tasks_data = Array[ExtResource("2_0xm18")]([SubResource("Resource_v412h"), SubResource("Resource_jvx0h"), SubResource("Resource_bturu")])
+scene_file_path = "res://to_do_item/task/task.tscn"
+text = "2"
+
+[sub_resource type="Resource" id="Resource_4rfuc"]
 script = ExtResource("1")
-tasks_data = Array[ExtResource("2_0xm18")]([SubResource("Resource_4wbrn"), SubResource("Resource_ohncn")])
+tasks_data = Array[ExtResource("2_0xm18")]([SubResource("Resource_51ju1"), SubResource("Resource_x3f5k")])
 scene_file_path = "res://to_do_item/project/project.tscn"
-text = "asdf"
+text = "project 1"
 
-[sub_resource type="Resource" id="Resource_fek82"]
+[sub_resource type="Resource" id="Resource_ipk1w"]
 script = ExtResource("1")
 tasks_data = Array[ExtResource("2_0xm18")]([])
 scene_file_path = "res://to_do_item/project/project.tscn"
-text = "sadfasdf"
+text = "project 2"
 
 [resource]
 script = ExtResource("2")
-projects_data = Array[ExtResource("1")]([SubResource("Resource_xdxmj"), SubResource("Resource_fek82")])
+projects_data = Array[ExtResource("1")]([SubResource("Resource_4rfuc"), SubResource("Resource_ipk1w")])
