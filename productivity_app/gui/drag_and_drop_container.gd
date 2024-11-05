@@ -7,8 +7,9 @@ const MAX_TASKS = 100
 
 @export_enum("Project", "Task", "SubTask") var _child_type: String = "Project"
 
-static var separator: HSeparator
 var task_height: float
+static var child_hovered_over: Node
+static var separator: HSeparator
 
 
 func _ready() -> void:
@@ -25,7 +26,7 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 		return false
 
 	task_height = data_node.size.y
-	var child_hovered_over := _get_child_under_mouse(at_position.y)
+	child_hovered_over = _get_child_under_mouse(at_position.y)
 	if child_hovered_over == null:
 		return is_child_type
 
