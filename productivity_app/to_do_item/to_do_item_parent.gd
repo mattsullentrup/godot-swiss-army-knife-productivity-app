@@ -27,6 +27,22 @@ func _ready() -> void:
 	_delete_button.pressed.connect(func() -> void: queue_free())
 
 
+func _gui_input(event: InputEvent) -> void:
+	var mouse_motion := event as InputEventMouseMotion
+	if mouse_motion != null:
+		for child: Control in _task_container.get_children():
+			if Rect2(Vector2(), child.size).has_point(child.get_local_mouse_position()):
+				return
+
+		print(_type)
+		var is_mouse_in_rect := Rect2(Vector2(), size).has_point(get_local_mouse_position())
+		if item_hovered_over == null and is_mouse_in_rect:
+			item_hovered_over = self
+			accept_event()
+		elif item_hovered_over == self and not is_mouse_in_rect:
+			item_hovered_over = null
+
+
 func save(data: Array[ToDoItemData]) -> void:
 	new_save_data.scene_file_path = scene_file_path
 	new_save_data.text = line_edit.text

@@ -13,7 +13,8 @@ static var separator: HSeparator
 
 
 func _ready() -> void:
-	separator = HSeparator.new()
+	if separator == null:
+		separator = HSeparator.new()
 
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
@@ -26,7 +27,7 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 		return false
 
 	task_height = data_node.size.y
-	child_hovered_over = _get_child_under_mouse(at_position.y)
+	#child_hovered_over = _get_child_under_mouse(at_position.y)
 	if child_hovered_over == null:
 		return is_child_type
 
@@ -40,22 +41,21 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	return is_child_type
 
 
-func _drop_data(at_position: Vector2, data: Variant) -> void:
-	separator.get_parent().remove_child(separator)
-
-	if data is not Node:
-		return
-
-	var data_node: Node = data
-	var child_dropped_on := _get_child_under_mouse(at_position.y)
-	if child_dropped_on == null:
-		return
-
-	if not is_ancestor_of(data_node):
-		data_node.reparent(self)
-
-	_move_child_to_new_index(child_dropped_on, data_node, at_position)
-
+#func _drop_data(at_position: Vector2, data: Variant) -> void:
+	#separator.get_parent().remove_child(separator)
+#
+	#if data is not Node:
+		#return
+#
+	#var data_node: Node = data
+	#var child_dropped_on := _get_child_under_mouse(at_position.y)
+	#if child_dropped_on == null:
+		#return
+#
+	#if not is_ancestor_of(data_node):
+		#data_node.reparent(self)
+#
+	#_move_child_to_new_index(child_dropped_on, data_node, at_position)
 
 
 func _move_child_to_new_index(
@@ -71,18 +71,18 @@ func _move_child_to_new_index(
 
 	new_index = clampi(new_index, 0, MAX_TASKS)
 	move_child(node_to_move, new_index)
-
-
-func _get_child_under_mouse(at_position_y: float) -> Node:
-	for child in get_children():
-		if child == separator:
-			#continue
-			pass
-
-		if child.position.y + task_height > at_position_y:
-			return child
-
-	return null
+#
+#
+#func _get_child_under_mouse(at_position_y: float) -> Node:
+	#for child in get_children():
+		#if child == separator:
+			##continue
+			#pass
+#
+		#if child.position.y + task_height > at_position_y:
+			#return child
+#
+	#return null
 
 
 func _is_node_child_type(node: Node) -> bool:

@@ -20,7 +20,8 @@ func _create_new_project() -> void:
 
 func _on_mouse_exited() -> void:
 	if not Rect2(Vector2(), size).has_point(get_local_mouse_position()):
+		pass
 		#print("mouse exited")
-		child_hovered_over = null
-		if separator.is_inside_tree():
-			separator.get_parent().remove_child(separator)
+		#child_hovered_over = null
+		#if separator.is_inside_tree():
+			#separator.get_parent().remove_child(separator)
