@@ -24,7 +24,6 @@ func _process(_delta: float) -> void:
 			pan_speed = abs(pan_speed)
 		panner.pan += pan_speed
 		clampf(panner.pan, -1, 1)
-# 		print(panner.pan)
 
 
 func _on_autopan_check_button_toggled(toggled_on: bool) -> void:

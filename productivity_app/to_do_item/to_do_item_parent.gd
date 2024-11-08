@@ -30,17 +30,29 @@ func _ready() -> void:
 func _gui_input(event: InputEvent) -> void:
 	var mouse_motion := event as InputEventMouseMotion
 	if mouse_motion != null:
-		for child: Control in _task_container.get_children():
-			if Rect2(Vector2(), child.size).has_point(child.get_local_mouse_position()):
-				return
+		var rect = Rect2(Vector2(), _task_container.size)
+		var mouse = _task_container.get_local_mouse_position()
+		#printt(rect, mouse)
+		if rect.has_point(mouse) and item_hovered_over == self:
+			item_hovered_over = null
+			return
+		#for child: Control in _task_container.get_children():
+			#printt(child.size, child.get_local_mouse_position())
+			#if Rect2(Vector2(), child.size).has_point(child.get_local_mouse_position()):
+				#return
 
-		print(_type)
+		#print(_type)
 		var is_mouse_in_rect := Rect2(Vector2(), size).has_point(get_local_mouse_position())
 		if item_hovered_over == null and is_mouse_in_rect:
 			item_hovered_over = self
 			accept_event()
-		elif item_hovered_over == self and not is_mouse_in_rect:
-			item_hovered_over = null
+
+
+#func _drop_data(at_position: Vector2, data: Variant) -> void:
+	#if item_hovered_over == self:
+		#pass
+#
+	#pass
 
 
 func save(data: Array[ToDoItemData]) -> void:

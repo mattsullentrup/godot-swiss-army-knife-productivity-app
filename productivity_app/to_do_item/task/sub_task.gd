@@ -13,39 +13,10 @@ func _gui_input(event: InputEvent) -> void:
 	var mouse_motion := event as InputEventMouseMotion
 	if mouse_motion != null:
 		var is_mouse_in_rect := Rect2(Vector2(), size).has_point(get_local_mouse_position())
+		#printt(size, get_local_mouse_position())
 		if is_mouse_in_rect:
-			print(_type)
-		if item_hovered_over == null and is_mouse_in_rect:
 			item_hovered_over = self
 			accept_event()
-		elif item_hovered_over == self and not is_mouse_in_rect:
-			item_hovered_over = null
-
-
-func _get_drag_data(_at_position: Vector2) -> Variant:
-	var preview := self.duplicate() as SubTask
-	if preview == null:
-		return
-
-	preview.modulate = Color(preview.modulate, 0.5)
-	set_drag_preview(preview)
-
-	#var separator: HSeparator = HSeparator.new()
-	#separator.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	#to_do_item.get_parent().separator = separator
-	#to_do_item.get_parent().add_child(separator)
-
-	return self
-
-
-func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
-	if data is not Node:
-		return false
-
-	var data_node: Node = data
-	var data_type: StringName = data_node.get_script().get_global_name()
-	var result := data_type == _type
-	return result
 
 
 func save(tasks_data: Array[ToDoItemData]) -> void:

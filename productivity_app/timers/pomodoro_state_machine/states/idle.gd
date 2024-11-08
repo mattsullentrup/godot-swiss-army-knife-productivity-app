@@ -22,7 +22,6 @@ func _on_button_pressed(button: Button) -> void:
 				is_break_state = true
 
 			finished.emit(states.idle)
-			#_print_status()
 		buttons.go_back:
 			if is_break_state == false:
 				state_machine.current_round -= 1
@@ -31,7 +30,6 @@ func _on_button_pressed(button: Button) -> void:
 				is_break_state = false
 
 			finished.emit(states.idle)
-			#_print_status()
 		buttons.stop:
 			_reset_state_machine()
 			finished.emit(states.idle)
