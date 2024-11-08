@@ -35,12 +35,6 @@ func _on_button_pressed(button: Button) -> void:
 			finished.emit(states.idle)
 
 
-func _print_status() -> void:
-	printt(
-		"is break state: " + str(is_break_state) + ' | ' \
-		+ "round: " + str(state_machine.current_round)
-	)
-
 func _reset_state_machine() -> void:
 	state_machine.time_to_display = state_machine.work_round_length
 	state_machine.current_round = 1

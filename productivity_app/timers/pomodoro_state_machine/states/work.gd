@@ -10,8 +10,7 @@ func _enter() -> void:
 			state_machine.pomodoro_timer.paused = false
 		states.work, states.break:
 			state_machine.pomodoro_timer.stop()
-		_:
-			print("No previous state")
+
 
 	is_break_state = false
 

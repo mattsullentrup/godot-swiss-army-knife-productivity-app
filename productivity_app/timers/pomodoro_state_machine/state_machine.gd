@@ -95,8 +95,6 @@ func _setup_states() -> void:
 	for state: State in states.values():
 		state.finished.connect(_change_state)
 		states_array.append(state)
-		#printt(is_instance_of(state, WorkState), typeof(state), state is WorkState)
-		#state._init(self, states, buttons)
 
 	_change_state(initial_state)
 
@@ -107,25 +105,12 @@ func _change_state(new_state: State) -> void:
 
 	state_changed.emit(new_state, new_state.is_break_state, time_to_display)
 	if current_state:
-		#_print_state_info("exiting")
 		current_state._exit()
 
 	previous_state = current_state
 	current_state = new_state
 	current_state._enter()
 
-	#_print_state_info("Exiting")
-	#print("~~~~~~~~")
-
 
 func _on_button_pressed(button: Button) -> void:
 	current_state._on_button_pressed(button)
-
-
-func _print_state_info(transition_status: String) -> void:
-	printt(
-			transition_status + ' ' + self.name + ' | ' \
-			+ "is_break_state: " + str(current_state.is_break_state) + ' | ' \
-			+ "round: " + str(current_round) + ' | ' \
-			+ "timer: " + str(pomodoro_timer.time_left)
-	)

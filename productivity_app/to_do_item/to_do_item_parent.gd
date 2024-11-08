@@ -30,6 +30,9 @@ func _ready() -> void:
 func _gui_input(event: InputEvent) -> void:
 	var mouse_motion := event as InputEventMouseMotion
 	if mouse_motion != null:
+		#if item_hovered_over != null and is_ancestor_of(item_hovered_over):
+			#return
+
 		var rect = Rect2(Vector2(), _task_container.size)
 		var mouse = _task_container.get_local_mouse_position()
 		#printt(rect, mouse)

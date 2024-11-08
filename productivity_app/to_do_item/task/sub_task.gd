@@ -13,7 +13,6 @@ func _gui_input(event: InputEvent) -> void:
 	var mouse_motion := event as InputEventMouseMotion
 	if mouse_motion != null:
 		var is_mouse_in_rect := Rect2(Vector2(), size).has_point(get_local_mouse_position())
-		#printt(size, get_local_mouse_position())
 		if is_mouse_in_rect:
 			item_hovered_over = self
 			accept_event()

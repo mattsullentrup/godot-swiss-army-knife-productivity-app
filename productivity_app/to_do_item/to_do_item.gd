@@ -25,6 +25,7 @@ func _ready() -> void:
 		line_edit.grab_focus()
 
 	_to_do_item_action_texture_rect.to_do_item = self
+	#mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 
 
@@ -36,12 +37,21 @@ func _load() -> void:
 	return
 
 
-func _try_drop(at_position: Vector2, data: Variant) -> void:
-	pass
+#func _on_mouse_entered() -> void:
+	#if is_ancestor_of(item_hovered_over):
+		#return
+	#else:
+		#print("mouse entered " + self.name)
 
 
 func _on_mouse_exited() -> void:
-	if not Rect2(Vector2(), size).has_point(get_local_mouse_position()) and item_hovered_over == self:
-		if _type == "SubTask":
-			pass
-		item_hovered_over = null
+	pass
+	#for child in get_parent().get_children():
+		#if child is HSeparator:
+			#printt(child.size, child.get_local_mouse_position())
+			#var is_mouse_in_rect := Rect2(Vector2(), child.size).has_point(child.get_local_mouse_position())
+			#if is_mouse_in_rect:
+				#return
+#
+	#if not Rect2(Vector2(), size).has_point(get_local_mouse_position()) and item_hovered_over == self:
+		#item_hovered_over = null
