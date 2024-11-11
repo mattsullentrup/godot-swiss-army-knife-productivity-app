@@ -19,6 +19,8 @@ var _save_data: ToDoItemData
 func _ready() -> void:
 	if not _save_data == null:
 		_load()
+	else:
+		line_edit.grab_focus()
 
 
 func save(_data: Array) -> void:

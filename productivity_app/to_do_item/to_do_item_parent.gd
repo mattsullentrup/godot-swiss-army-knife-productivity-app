@@ -50,13 +50,15 @@ func _load() -> void:
 		var task: Node = task_scene.instantiate()
 		task.save_data = task_data
 		_task_container.add_child(task)
-		task.line_edit.text_submitted.connect(create_new_task)
+		if self is Task:
+			task.line_edit.text_submitted.connect(create_new_task)
 
 
 func create_new_task(_text: String = "") -> void:
 	var new_task: ToDoItem = _child_task_scene.instantiate()
 	_task_container.add_child(new_task)
-	new_task.line_edit.text_submitted.connect(create_new_task)
+	if self is Task:
+		new_task.line_edit.text_submitted.connect(create_new_task)
 
 
 func _on_toggle_tasks_button_pressed() -> void:
