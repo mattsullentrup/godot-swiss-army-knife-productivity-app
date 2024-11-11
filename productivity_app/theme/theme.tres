@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=21 format=3 uid="uid://leiuhrufh5o8"]
+[gd_resource type="Theme" load_steps=27 format=3 uid="uid://leiuhrufh5o8"]
 
 [ext_resource type="StyleBox" uid="uid://cmvp1wmd6lqix" path="res://theme/default_button/default_button_hover_style_box.tres" id="1_rfpvr"]
 [ext_resource type="StyleBox" uid="uid://cmtgv0h1thlak" path="res://theme/default_button/default_button_normal_style_box.tres" id="2_c3wnd"]
@@ -19,6 +19,18 @@
 [ext_resource type="StyleBox" uid="uid://wefvfxiigyb0" path="res://theme/yellow_button/pressed_yellow_button.tres" id="17_vi0rg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_abdh1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uxu0u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r4f4q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ohn4h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6pflt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m3yna"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i5bed"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f20hw"]
 content_margin_left = 25.0
@@ -70,6 +82,15 @@ CheckButton/styles/hover = ExtResource("4_k4281")
 CheckButton/styles/hover_pressed = ExtResource("4_k4281")
 CheckButton/styles/normal = ExtResource("5_hqx1r")
 CheckButton/styles/pressed = ExtResource("6_el5cm")
+EmptyButton/base_type = &"Button"
+EmptyButton/colors/icon_hover_color = Color(1, 1, 1, 0.705882)
+EmptyButton/colors/icon_pressed_color = Color(1, 1, 1, 0.588235)
+EmptyButton/styles/disabled = SubResource("StyleBoxEmpty_uxu0u")
+EmptyButton/styles/focus = SubResource("StyleBoxEmpty_r4f4q")
+EmptyButton/styles/hover = SubResource("StyleBoxEmpty_ohn4h")
+EmptyButton/styles/hover_pressed = SubResource("StyleBoxEmpty_6pflt")
+EmptyButton/styles/normal = SubResource("StyleBoxEmpty_m3yna")
+EmptyButton/styles/pressed = SubResource("StyleBoxEmpty_i5bed")
 GreenButton/base_type = &"Button"
 GreenButton/styles/hover = ExtResource("7_kwm5m")
 GreenButton/styles/normal = ExtResource("8_r1nth")

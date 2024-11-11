@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://doy3uidslkhni"]
+[gd_scene load_steps=22 format=4 uid="uid://doy3uidslkhni"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_kkm8q"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme/theme.tres" id="2_32l1q"]
@@ -8,10 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://dmacbvtrmou10" path="res://addons/images/kenney_icons/musicOff.png" id="12_syt3v"]
 [ext_resource type="Texture2D" uid="uid://o1fkxxcgpcoy" path="res://addons/images/kenney_icons/musicOn.png" id="13_nb1g7"]
 [ext_resource type="Script" path="res://common/audio/effects/autopan.gd" id="14_3rdur"]
+[ext_resource type="Texture2D" uid="uid://bd0fsisxremer" path="res://addons/images/kenney_icons/gear.png" id="15_f1adf"]
 [ext_resource type="Script" path="res://common/audio/effects/phaser.gd" id="15_l4dqk"]
 [ext_resource type="Texture2D" uid="uid://d2avw8bt6jq2t" path="res://addons/images/kenney_icons/audioOff.png" id="16_qhct5"]
 [ext_resource type="Texture2D" uid="uid://ca0skkaornt5k" path="res://addons/images/kenney_icons/audioOn.png" id="17_lrwy8"]
 [ext_resource type="Texture2D" uid="uid://cmm42xkdqt61" path="res://addons/images/kenney_icons/plus.png" id="18_2xuuj"]
+[ext_resource type="Script" path="res://main/settings_window.gd" id="19_5gfq3"]
 [ext_resource type="Script" path="res://to_do_item/project_manager.gd" id="19_iwwbs"]
 [ext_resource type="PackedScene" uid="uid://daot25v58e7k6" path="res://to_do_item/project/project.tscn" id="20_ln4en"]
 [ext_resource type="Script" path="res://gui/time_and_date.gd" id="21_x82c0"]
@@ -24,6 +26,9 @@ format = 1
 loop_mode = 1
 loop_end = 260000
 stereo = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q7mmu"]
+bg_color = Color(0.4482, 0.48033, 0.54, 1)
 
 [node name="Main" type="MarginContainer"]
 anchors_preset = 15
@@ -214,16 +219,16 @@ theme_override_constants/icon_max_width = 50
 toggle_mode = true
 icon = ExtResource("12_syt3v")
 
-[node name="TaskListPanelContainer" type="PanelContainer" parent="VBoxContainer/UpperContainer"]
+[node name="RightContainer" type="PanelContainer" parent="VBoxContainer/UpperContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_32l1q")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/UpperContainer/TaskListPanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/UpperContainer/RightContainer"]
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="NewProjectButton" type="Button" parent="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer"]
+[node name="NewProjectButton" type="Button" parent="VBoxContainer/UpperContainer/RightContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 60)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -235,18 +240,18 @@ icon = ExtResource("18_2xuuj")
 icon_alignment = 1
 expand_icon = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/UpperContainer/RightContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/UpperContainer/RightContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_right = 20
 
-[node name="ProjectManager" type="VBoxContainer" parent="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/MarginContainer"]
+[node name="ProjectManager" type="VBoxContainer" parent="VBoxContainer/UpperContainer/RightContainer/VBoxContainer/ScrollContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -254,6 +259,15 @@ size_flags_vertical = 3
 theme_override_constants/separation = 15
 script = ExtResource("19_iwwbs")
 project = ExtResource("20_ln4en")
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer/UpperContainer/RightContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme = ExtResource("2_32l1q")
+theme_type_variation = &"EmptyButton"
+theme_override_constants/icon_max_width = 40
+icon = ExtResource("15_f1adf")
 
 [node name="TimeAndDateContainer" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -304,6 +318,36 @@ bus = &"Noise"
 [node name="SaveSystem" type="Node" parent="."]
 script = ExtResource("23_upx4x")
 
+[node name="SettingsWindow" type="Window" parent="."]
+title = "Preferences"
+initial_position = 2
+size = Vector2i(300, 200)
+min_size = Vector2i(250, 0)
+script = ExtResource("19_5gfq3")
+
+[node name="Panel" type="Panel" parent="SettingsWindow"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_q7mmu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsWindow"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckButton" type="CheckButton" parent="SettingsWindow/VBoxContainer"]
+layout_mode = 2
+text = "Do something"
+
+[node name="CheckButton2" type="CheckButton" parent="SettingsWindow/VBoxContainer"]
+layout_mode = 2
+text = "Do something else"
+
 [connection signal="timeout" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/NormalTimer" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_timer_timeout"]
 [connection signal="pressed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/VBoxContainer/NormalTimerStartButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_timer_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/VBoxContainer/NormalTimerStopButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_timer_stop_button_pressed"]
@@ -314,6 +358,8 @@ script = ExtResource("23_upx4x")
 [connection signal="value_changed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/Phaser/RateHzHSlider" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/Phaser" method="_on_range_min_hz_h_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/NoiseVolume/VolumeHSlider" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer" method="_on_volume_h_slider_value_changed"]
 [connection signal="toggled" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/NoiseButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer" method="_on_noise_button_toggled"]
-[connection signal="pressed" from="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/NewProjectButton" to="VBoxContainer/UpperContainer/TaskListPanelContainer/VBoxContainer/ScrollContainer/MarginContainer/ProjectManager" method="_on_new_project_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/UpperContainer/RightContainer/VBoxContainer/NewProjectButton" to="VBoxContainer/UpperContainer/RightContainer/VBoxContainer/ScrollContainer/MarginContainer/ProjectManager" method="_on_new_project_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/UpperContainer/RightContainer/OptionsButton" to="SettingsWindow" method="_on_options_button_pressed"]
+[connection signal="close_requested" from="SettingsWindow" to="SettingsWindow" method="_on_close_requested"]
 
 [editable path="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimerContainer"]
