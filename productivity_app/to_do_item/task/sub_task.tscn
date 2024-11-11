@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://qud52qfsuv1o"]
+[gd_scene load_steps=6 format=3 uid="uid://qud52qfsuv1o"]
 
 [ext_resource type="Script" path="res://to_do_item/task/sub_task.gd" id="1_gnbng"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme/theme.tres" id="4_wtvk2"]
 [ext_resource type="Script" path="res://common/text_focus.gd" id="5_gsm6q"]
+[ext_resource type="PackedScene" uid="uid://k3kk6cce7y0k" path="res://to_do_item/move_buttons_container.tscn" id="5_mg4ai"]
 [ext_resource type="Texture2D" uid="uid://dgmvsxmm31bo7" path="res://addons/images/kenney_icons/cross.png" id="6_t20v8"]
 
 [node name="SubTask" type="HBoxContainer" groups=["Saveables", "Task"]]
@@ -44,6 +45,9 @@ theme_type_variation = &"RedButton"
 theme_override_constants/icon_max_width = 28
 icon = ExtResource("6_t20v8")
 icon_alignment = 1
+
+[node name="MoveButtonsContainer" parent="." instance=ExtResource("5_mg4ai")]
+layout_mode = 2
 
 [connection signal="pressed" from="TaskStateButton" to="." method="_on_task_state_button_pressed"]
 [connection signal="mouse_entered" from="LineEdit" to="LineEdit" method="_on_mouse_entered"]

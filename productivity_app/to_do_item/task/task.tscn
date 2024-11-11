@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxxevkfb1rv8o"]
+[gd_scene load_steps=11 format=3 uid="uid://bxxevkfb1rv8o"]
 
 [ext_resource type="Script" path="res://to_do_item/task/task.gd" id="1_e0rqx"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme/theme.tres" id="2_jvgun"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cmm42xkdqt61" path="res://addons/images/kenney_icons/plus.png" id="5_2mxuq"]
 [ext_resource type="Texture2D" uid="uid://8v8i84xnoeup" path="res://addons/images/kenney_icons/return.png" id="6_8huod"]
 [ext_resource type="Script" path="res://gui/drag_and_drop_container.gd" id="8_j3pgj"]
+[ext_resource type="PackedScene" uid="uid://k3kk6cce7y0k" path="res://to_do_item/move_buttons_container.tscn" id="9_c4f85"]
 
 [node name="Task" type="VBoxContainer" groups=["Saveables"]]
 offset_right = 463.0
@@ -96,6 +97,9 @@ theme_override_constants/icon_max_width = 60
 icon = ExtResource("4_3wct2")
 icon_alignment = 1
 expand_icon = true
+
+[node name="MoveButtonsContainer" parent="HBoxContainer/HBoxContainer" instance=ExtResource("9_c4f85")]
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
