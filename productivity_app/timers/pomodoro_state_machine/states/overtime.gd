@@ -3,19 +3,19 @@ extends State
 
 
 var _overtime_start_time: float
+var _time_passed: float
 
 
 func _enter() -> void:
 	_overtime_start_time = Time.get_unix_time_from_system()
 
 	state_machine.notification_sound.play()
-	#state_machine.progress_bar.value = 0
+	_time_passed = 0
 
 
 func _update() -> void:
-	state_machine.time_to_display = (
-			_overtime_start_time - Time.get_unix_time_from_system()
-	)
+	_time_passed = _overtime_start_time - Time.get_unix_time_from_system()
+	state_machine.time_to_display = _time_passed
 
 
 func _on_button_pressed(button: Button) -> void:

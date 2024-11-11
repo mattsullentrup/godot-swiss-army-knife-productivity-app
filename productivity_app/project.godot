@@ -22,6 +22,10 @@ run/low_processor_mode_sleep_usec=14000
 boot_splash/show_image=false
 config/icon="res://addons/images/kenney_icons/cross.png"
 
+[autoload]
+
+Settings="*res://config/settings/settings.gd"
+
 [debug]
 
 gdscript/warnings/untyped_declaration=1
@@ -51,9 +55,9 @@ folder_colors={
 "res://addons/images/": "blue",
 "res://addons/sounds/": "orange",
 "res://common/": "gray",
+"res://config/": "pink",
 "res://gui/": "orange",
 "res://main/": "purple",
-"res://resources/": "pink",
 "res://scripts/": "purple",
 "res://scripts/audio/": "pink",
 "res://scripts/font_autosizer/": "red",

@@ -17,6 +17,7 @@ func _ready() -> void:
 	option_button.selected = 0
 	for i in range(1, 13):
 		option_button.add_item(str(i * 5), i * 5)
+
 	timer_length = option_button.get_selected_id() * 60
 	time_remaining_label.text = str(timer_length)
 
@@ -25,7 +26,14 @@ func _process(_delta: float) -> void:
 	if not timer.is_stopped():
 		time_remaining_label.text = get_formatted_time_from_seconds(timer.time_left)
 	elif is_in_overtime:
-		var overtime: String = get_formatted_time_from_seconds(overtime_start_time - Time.get_unix_time_from_system())
+		var overtime: String = get_formatted_time_from_seconds(
+				overtime_start_time - Time.get_unix_time_from_system()
+		)
+
+		var time_passed := overtime_start_time - Time.get_unix_time_from_system()
+		var snapped_time := snappedf(time_passed, 0.01) / 5.0
+		#print(snapped_time)
+		print(is_equal_approx(snapped_time, -1.0))
 		time_remaining_label.text = overtime
 	else:
 		#timer_length = int(timer_length)
@@ -54,7 +62,8 @@ func get_formatted_time_from_seconds(fuck: Variant) -> String:
 
 func _on_timer_start_button_pressed() -> void:
 	timer.stop()
-	timer.start(timer_length)
+	#timer.start(timer_length)
+	timer.start(0.1)
 	is_in_overtime = false
 
 

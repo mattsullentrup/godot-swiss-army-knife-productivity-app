@@ -4,8 +4,8 @@ extends Node
 
 signal game_saved
 
-# Use different saves for editor and exported project to prevent breaking
-# the save I have for everyday use when making changes
+# Use different save files for editor and exported project to prevent breaking
+# my local save for everyday use
 const USER_SAVE_PATH = "user://save.tres"
 const EDITOR_SAVE_PATH = "res://editor_save/save.tres"
 
