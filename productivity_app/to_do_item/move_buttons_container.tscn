@@ -37,3 +37,10 @@ size_flags_vertical = 4
 texture = ExtResource("2_4h4cl")
 expand_mode = 5
 stretch_mode = 3
+
+[connection signal="gui_input" from="UpTextureRect" to="." method="_on_texture_rect_gui_input" binds= [NodePath("./UpTextureRect")]]
+[connection signal="mouse_entered" from="UpTextureRect" to="." method="_on_texture_rect_mouse_entered" binds= [NodePath("./UpTextureRect")]]
+[connection signal="mouse_exited" from="UpTextureRect" to="." method="_on_texture_rect_mouse_exited" binds= [NodePath("./UpTextureRect")]]
+[connection signal="gui_input" from="DownTextureRect" to="." method="_on_texture_rect_gui_input" binds= [NodePath("./DownTextureRect")]]
+[connection signal="mouse_entered" from="DownTextureRect" to="." method="_on_texture_rect_mouse_entered" binds= [NodePath("./DownTextureRect")]]
+[connection signal="mouse_exited" from="DownTextureRect" to="." method="_on_texture_rect_mouse_exited" binds= [NodePath("./DownTextureRect")]]
