@@ -105,7 +105,6 @@ size_flags_vertical = 3
 focus_mode = 2
 theme_override_constants/separation = 5
 script = ExtResource("8_ea4sd")
-_child_type = "Task"
 
 [connection signal="mouse_entered" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_exited"]
