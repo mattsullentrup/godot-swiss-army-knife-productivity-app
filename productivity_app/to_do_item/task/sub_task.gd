@@ -4,7 +4,7 @@ extends ToDoItem
 
 var color_index: int = 0
 var button_types: Array[StringName] = [&"RedButton", &"YellowButton", &"GreenButton"]
-var text: String
+#var text: String
 
 @onready var _task_state_button: Button = %TaskStateButton
 

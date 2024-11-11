@@ -4,7 +4,7 @@ extends ToDoItemParent
 
 var color_index: int = 0
 var button_types: Array[StringName] = [&"RedButton", &"YellowButton", &"GreenButton"]
-var text: String
+#var text: String
 
 @onready var _task_state_button: Button = %TaskStateButton
 
@@ -31,8 +31,8 @@ func _on_task_state_button_pressed() -> void:
 	_task_state_button.theme_type_variation = button_types[color_index % 3]
 
 
-func _on_line_edit_text_changed(new_text: String) -> void:
-	text = new_text
+#func _on_line_edit_text_changed(new_text: String) -> void:
+	#text = new_text
 
 
 #func _on_line_edit_text_submitted(_new_text: String) -> void:
