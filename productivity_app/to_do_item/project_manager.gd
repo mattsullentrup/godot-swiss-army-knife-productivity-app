@@ -4,10 +4,6 @@ extends DragAndDropContainer
 @export var project: PackedScene
 
 
-func _process(delta: float) -> void:
-	print(ToDoItem.item_hovered_over)
-
-
 func _gui_input(event: InputEvent) -> void:
 	var mouse := event as InputEventMouseMotion
 	if mouse == null:

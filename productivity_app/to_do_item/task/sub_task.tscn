@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://qud52qfsuv1o"]
+[gd_scene load_steps=5 format=3 uid="uid://qud52qfsuv1o"]
 
 [ext_resource type="Script" path="res://to_do_item/task/sub_task.gd" id="1_gnbng"]
-[ext_resource type="PackedScene" uid="uid://cmguvp3hu2b3f" path="res://to_do_item/to_do_item_action_texture_rect.tscn" id="2_lmxne"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme/theme.tres" id="4_wtvk2"]
 [ext_resource type="Script" path="res://common/text_focus.gd" id="5_gsm6q"]
 [ext_resource type="Texture2D" uid="uid://dgmvsxmm31bo7" path="res://addons/images/kenney_icons/cross.png" id="6_t20v8"]
@@ -13,10 +12,6 @@ size_flags_horizontal = 3
 focus_mode = 2
 theme_override_constants/separation = 15
 script = ExtResource("1_gnbng")
-
-[node name="ToDoItemActionTextureRect" parent="." instance=ExtResource("2_lmxne")]
-unique_name_in_owner = true
-layout_mode = 2
 
 [node name="TaskStateButton" type="Button" parent="."]
 unique_name_in_owner = true
