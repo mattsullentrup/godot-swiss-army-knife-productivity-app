@@ -9,7 +9,7 @@ extends VBoxContainer
 
 func _on_texture_rect_gui_input(event: InputEvent, texture_path: NodePath) -> void:
 	var click := event as InputEventMouseButton
-	if click and click.pressed:
+	if click and click.pressed and click.button_index == MOUSE_BUTTON_LEFT:
 		var texture: TextureRect = get_node(texture_path)
 		if texture == _up_texture_rect:
 			if not _owner.get_index() == 0:
@@ -21,9 +21,9 @@ func _on_texture_rect_gui_input(event: InputEvent, texture_path: NodePath) -> vo
 
 func _on_texture_rect_mouse_entered(texture_path: NodePath) -> void:
 	var texture: TextureRect = get_node(texture_path)
-	print(texture)
+	texture.modulate.a = 0.5
 
 
 func _on_texture_rect_mouse_exited(texture_path: NodePath) -> void:
 	var texture: TextureRect = get_node(texture_path)
-	pass
+	texture.modulate.a = 1
