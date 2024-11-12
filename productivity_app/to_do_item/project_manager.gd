@@ -1,19 +1,22 @@
-extends ToDoItemContainer
+extends VBoxContainer
 
 
 @export var project: PackedScene
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	# TODO: If nothing is focused or focused node is not a to do item,
+	# TODO: If nothing is focused or focused node is a to do item,
 	# get last task/sub_task and add new item below it
 	#super(event)
 	var focused := get_viewport().gui_get_focus_owner()
-	if focused and not is_ancestor_of(focused):
+	if focused and is_ancestor_of(focused):
 		return
 
 	if event.is_action_pressed("new_task"):
-		pass
+		var last_project: Project = get_child(-1)
+		if last_project:
+			last_project.create_new_task()
+			get_viewport().set_input_as_handled()
 	if event.is_action_pressed("new_sub_task"):
 		pass
 

@@ -11,11 +11,6 @@ var button_types: Array[StringName] = [&"RedButton", &"YellowButton", &"GreenBut
 func _enter_tree() -> void:
 	%LineEdit.text_submitted.connect(_on_line_edit_text_submitted)
 	%TaskStateButton.pressed.connect(_on_task_state_button_pressed)
-#
-#
-#func _unhandled_input(event: InputEvent) -> void:
-	#if event.is_action_pressed("new_task") and is_ancestor_of(get_viewport().gui_get_focus_owner()):
-		#get_parent().create_new_task()
 
 
 func save(tasks_data: Array[ToDoItemData]) -> void:

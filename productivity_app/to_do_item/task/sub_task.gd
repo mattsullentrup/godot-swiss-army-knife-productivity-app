@@ -42,4 +42,4 @@ func _on_delete_button_pressed() -> void:
 
 
 func _on_line_edit_text_submitted(_new_text: String = "") -> void:
-	get_parent().new_item_button.grab_focus()
+	get_parent().get_node("%NewTaskButton").grab_focus()

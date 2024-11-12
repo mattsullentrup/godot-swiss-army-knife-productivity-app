@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://daot25v58e7k6"]
+[gd_scene load_steps=10 format=3 uid="uid://daot25v58e7k6"]
 
 [ext_resource type="Script" path="res://to_do_item/project/project.gd" id="1_hop2a"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme/theme.tres" id="2_odcyh"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://cmm42xkdqt61" path="res://addons/images/kenney_icons/plus.png" id="5_4a57h"]
 [ext_resource type="Texture2D" uid="uid://8v8i84xnoeup" path="res://addons/images/kenney_icons/return.png" id="6_x2rjc"]
 [ext_resource type="Texture2D" uid="uid://dgmvsxmm31bo7" path="res://addons/images/kenney_icons/cross.png" id="7_6vwoh"]
-[ext_resource type="Script" path="res://gui/to_do_item_container.gd" id="8_ea4sd"]
 [ext_resource type="PackedScene" uid="uid://k3kk6cce7y0k" path="res://to_do_item/move_buttons_container.tscn" id="9_7du34"]
 
 [node name="Project" type="VBoxContainer" groups=["Project", "Saveables"]]
@@ -99,14 +98,12 @@ layout_mode = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_right = 35
 
-[node name="TaskContainer" type="VBoxContainer" parent="MarginContainer" node_paths=PackedStringArray("new_item_button")]
+[node name="TaskContainer" type="VBoxContainer" parent="MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 2
 theme_override_constants/separation = 5
-script = ExtResource("8_ea4sd")
-new_item_button = NodePath("../../HBoxContainer/HBoxContainer/NewTaskButton")
 
 [connection signal="mouse_entered" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_exited"]

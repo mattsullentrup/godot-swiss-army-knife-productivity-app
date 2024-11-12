@@ -25,7 +25,11 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed(_shortcut) and is_ancestor_of(get_viewport().gui_get_focus_owner()):
+	if not event.is_action_pressed(_shortcut):
+		return
+
+	var focused := get_viewport().gui_get_focus_owner()
+	if focused and is_ancestor_of(focused):
 		create_new_task()
 		get_viewport().set_input_as_handled()
 
