@@ -1,42 +1,36 @@
 [gd_scene load_steps=4 format=3 uid="uid://k3kk6cce7y0k"]
 
-[ext_resource type="Texture2D" uid="uid://jvo18rxmjkyg" path="res://addons/images/kenney_icons/crosshair022.png" id="1_tc5up"]
 [ext_resource type="Script" path="res://to_do_item/move_buttons_container.gd" id="1_yj0dn"]
-[ext_resource type="Texture2D" uid="uid://cr100p4a18efb" path="res://addons/images/kenney_icons/crosshair_down.png" id="2_4h4cl"]
+[ext_resource type="Texture2D" uid="uid://dta4xsdp1yfb5" path="res://addons/images/kenney_icons/crosshair022_cropped.png" id="2_bvadq"]
+[ext_resource type="Texture2D" uid="uid://cr3q6unktsxfy" path="res://addons/images/kenney_icons/crosshair_down_cropped.png" id="3_45h5w"]
 
 [node name="MoveButtonsContainer" type="VBoxContainer"]
-custom_minimum_size = Vector2(18.9, 40)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -9.45
-offset_top = -1282.0
-offset_right = 9.45
-offset_bottom = 1282.0
-grow_horizontal = 2
-grow_vertical = 2
+custom_minimum_size = Vector2(40, 40)
+offset_right = 40.0
+offset_bottom = 40.0
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 6
+theme_override_constants/separation = 5
 alignment = 1
 script = ExtResource("1_yj0dn")
 
 [node name="UpTextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
-size_flags_horizontal = 5
+size_flags_horizontal = 0
 size_flags_vertical = 4
-texture = ExtResource("1_tc5up")
-expand_mode = 5
-stretch_mode = 3
+texture = ExtResource("2_bvadq")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="DownTextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
-size_flags_horizontal = 5
+size_flags_horizontal = 0
 size_flags_vertical = 4
-texture = ExtResource("2_4h4cl")
-expand_mode = 5
-stretch_mode = 3
+texture = ExtResource("3_45h5w")
+expand_mode = 1
+stretch_mode = 4
 
 [connection signal="gui_input" from="UpTextureRect" to="." method="_on_texture_rect_gui_input" binds= [NodePath("./UpTextureRect")]]
 [connection signal="mouse_entered" from="UpTextureRect" to="." method="_on_texture_rect_mouse_entered" binds= [NodePath("./UpTextureRect")]]
