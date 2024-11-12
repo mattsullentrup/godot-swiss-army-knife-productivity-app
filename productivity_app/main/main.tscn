@@ -1,9 +1,10 @@
-[gd_scene load_steps=25 format=4 uid="uid://doy3uidslkhni"]
+[gd_scene load_steps=26 format=4 uid="uid://doy3uidslkhni"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_kkm8q"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme/theme.tres" id="2_32l1q"]
 [ext_resource type="PackedScene" uid="uid://ckw6bd8a72tum" path="res://timers/pomodoro_state_machine/pomodoro_timer.tscn" id="2_ko8bp"]
 [ext_resource type="PackedScene" uid="uid://x6tvketiluit" path="res://timers/reminder_timer.tscn" id="5_nxu52"]
+[ext_resource type="Texture2D" uid="uid://c1avhvgbpp5di" path="res://addons/images/kenney_icons/right.png" id="6_rvrhw"]
 [ext_resource type="Script" path="res://timers/normal_timer.gd" id="10_tg7iy"]
 [ext_resource type="Script" path="res://common/audio/noise.gd" id="11_xr3k1"]
 [ext_resource type="Texture2D" uid="uid://dmacbvtrmou10" path="res://addons/images/kenney_icons/musicOff.png" id="12_syt3v"]
@@ -117,12 +118,14 @@ layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="TimerToggleButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_32l1q")
 theme_type_variation = &"PurpleButton"
 toggle_mode = true
-text = "Start"
+icon = ExtResource("6_rvrhw")
+icon_alignment = 1
 
 [node name="TimerSpinBox" type="SpinBox" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true

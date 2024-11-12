@@ -107,7 +107,3 @@ func _change_state(new_state: State) -> void:
 
 func _on_button_pressed(button: Button) -> void:
 	current_state._on_button_pressed(button)
-
-
-#func _on_pomodoro_timer_timeout() -> void:
-	#_change_state(states.overtime as OvertimeState)

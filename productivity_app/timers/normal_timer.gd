@@ -1,6 +1,9 @@
 extends PanelContainer
 
 
+const STOP = preload("res://addons/images/kenney_icons/stop.png")
+const START = preload("res://addons/images/kenney_icons/right.png")
+
 var _normal_length: float
 var _overtime_start_time: float
 var _is_in_overtime := false
@@ -10,6 +13,7 @@ var _is_in_overtime := false
 @onready var _time_remaining_label: Label = %TimeRemainingLabel
 @onready var _timer: Timer = $NormalTimer
 @onready var _spin_box: SpinBox = %TimerSpinBox
+@onready var _toggle_button: Button = %TimerToggleButton
 
 
 func _ready() -> void:
@@ -51,3 +55,6 @@ func _on_timer_toggle_button_toggled(toggled_on: bool) -> void:
 	_reminder_timer.stop()
 	if toggled_on == true:
 		_timer.start(_normal_length)
+		_toggle_button.icon = STOP
+	else:
+		_toggle_button.icon = START
