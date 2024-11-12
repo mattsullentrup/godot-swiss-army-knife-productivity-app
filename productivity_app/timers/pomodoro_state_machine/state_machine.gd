@@ -36,8 +36,7 @@ var notification_sound: AudioStreamPlayer = null
 
 var short_break_length: float = 5 * MINUTE_MULTIPLIER
 var long_break_length: float = 15 * MINUTE_MULTIPLIER
-#var work_round_length: float = 25 * MINUTE_MULTIPLIER
-var work_round_length: float = 1
+var work_round_length: float = 25 * MINUTE_MULTIPLIER
 
 var time_to_display: float
 var timer_length: float

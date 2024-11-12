@@ -1,4 +1,4 @@
-extends LineEdit
+extends Control
 
 
 var is_mouse_hovering: bool = false
