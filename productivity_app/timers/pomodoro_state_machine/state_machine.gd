@@ -28,17 +28,6 @@ var initial_state: State
 	"stop": %StopButton
 }
 
-#var states := [
-#]
-
-#var states := {
-	#"idle": "res://timers/pomodoro_state_machine/states/idle.gd",
-	#"work": "res://timers/pomodoro_state_machine/states/work.gd",
-	#"break": "res://timers/pomodoro_state_machine/states/break.gd",
-	#"paused": "res://timers/pomodoro_state_machine/states/paused.gd",
-	#"overtime": "res://timers/pomodoro_state_machine/states/overtime.gd"
-#}
-
 var current_state: State = null
 var previous_state: State = null
 var states := {}
@@ -47,7 +36,8 @@ var notification_sound: AudioStreamPlayer = null
 
 var short_break_length: float = 5 * MINUTE_MULTIPLIER
 var long_break_length: float = 15 * MINUTE_MULTIPLIER
-var work_round_length: float = 25 * MINUTE_MULTIPLIER
+#var work_round_length: float = 25 * MINUTE_MULTIPLIER
+var work_round_length: float = 1
 
 var time_to_display: float
 var timer_length: float
@@ -65,6 +55,10 @@ func _ready() -> void:
 	current_round = 1
 	_connect_buttons()
 	_setup_states()
+	var overtime: Variant = states.overtime
+	assert(overtime is OvertimeState)
+	if overtime is State:
+		pomodoro_timer.timeout.connect(_change_state.bind(overtime))
 
 
 func _process(_delta: float) -> void:
@@ -81,7 +75,7 @@ func _setup_states() -> void:
 	var work_state := Work.new(self, states, buttons)
 	var break_state := Break.new(self, states, buttons)
 	var paused_state := Paused.new(self, states, buttons)
-	var overtime_state := Overtime.new(self, states, buttons)
+	var overtime_state := Overtime.new(self, states, buttons, %ReminderTimer as Timer)
 
 	states["idle"] = idle_state
 	states["work"] = work_state
@@ -114,3 +108,7 @@ func _change_state(new_state: State) -> void:
 
 func _on_button_pressed(button: Button) -> void:
 	current_state._on_button_pressed(button)
+
+
+#func _on_pomodoro_timer_timeout() -> void:
+	#_change_state(states.overtime as OvertimeState)

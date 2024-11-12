@@ -10,7 +10,7 @@ const BREAK_REMINDER = "break_reminder"
 const BREAK_REMINDER_DEFAULT = false
 
 const REMINDER_INTERVAL = "reminder_interval"
-const REMINDER_INTERVAL_DEFAULT = 5 * 60
+const REMINDER_INTERVAL_DEFAULT = 5
 
 
 @onready var _config_file := ConfigFile.new()

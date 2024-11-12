@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ckw6bd8a72tum"]
+[gd_scene load_steps=15 format=3 uid="uid://ckw6bd8a72tum"]
 
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme/theme.tres" id="1_nq85o"]
 [ext_resource type="Script" path="res://gui/pomodoro_timer_container.gd" id="2_6bsd6"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b21tp1ekqqfq1" path="res://addons/images/kenney_icons/pause.png" id="7_4b0t7"]
 [ext_resource type="Texture2D" uid="uid://dgov4kg5io00y" path="res://addons/images/kenney_icons/next.png" id="8_w7v3y"]
 [ext_resource type="Texture2D" uid="uid://ldmdhpth6b1" path="res://addons/images/kenney_icons/stop.png" id="9_fqhqh"]
+[ext_resource type="PackedScene" uid="uid://x6tvketiluit" path="res://timers/reminder_timer.tscn" id="10_vu57a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8awij"]
 content_margin_left = 10.0
@@ -181,6 +182,8 @@ icon_alignment = 1
 unique_name_in_owner = true
 script = ExtResource("2_8h7i8")
 
-[connection signal="timeout" from="PomodoroTimer" to="StateMachine" method="_on_pomodoro_timer_timeout"]
+[node name="ReminderTimer" parent="StateMachine" instance=ExtResource("10_vu57a")]
+unique_name_in_owner = true
+
 [connection signal="round_changed" from="StateMachine" to="." method="_on_state_machine_round_changed"]
 [connection signal="state_changed" from="StateMachine" to="." method="_on_state_machine_state_changed"]

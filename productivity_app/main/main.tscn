@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=4 uid="uid://doy3uidslkhni"]
+[gd_scene load_steps=25 format=4 uid="uid://doy3uidslkhni"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_kkm8q"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme/theme.tres" id="2_32l1q"]
 [ext_resource type="PackedScene" uid="uid://ckw6bd8a72tum" path="res://timers/pomodoro_state_machine/pomodoro_timer.tscn" id="2_ko8bp"]
+[ext_resource type="PackedScene" uid="uid://x6tvketiluit" path="res://timers/reminder_timer.tscn" id="5_nxu52"]
 [ext_resource type="Script" path="res://timers/normal_timer.gd" id="10_tg7iy"]
 [ext_resource type="Script" path="res://common/audio/noise.gd" id="11_xr3k1"]
 [ext_resource type="Texture2D" uid="uid://dmacbvtrmou10" path="res://addons/images/kenney_icons/musicOff.png" id="12_syt3v"]
@@ -67,6 +68,7 @@ split_offset = 395
 
 [node name="LeftVBoxContainer" type="VBoxContainer" parent="VBoxContainer/UpperContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 10
 alignment = 1
 
@@ -93,6 +95,8 @@ time_remaining_label = NodePath("VBoxContainer/NormalTimeRemainingLabel")
 [node name="NormalTimer" type="Timer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer"]
 wait_time = 10.0
 one_shot = true
+
+[node name="ReminderTimer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" instance=ExtResource("5_nxu52")]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer"]
 custom_minimum_size = Vector2(250, 0)
@@ -334,7 +338,7 @@ script = ExtResource("23_upx4x")
 [node name="SettingsWindow" type="Window" parent="."]
 title = "Preferences"
 initial_position = 2
-size = Vector2i(300, 200)
+size = Vector2i(500, 200)
 min_size = Vector2i(250, 0)
 theme = ExtResource("2_32l1q")
 script = ExtResource("19_5gfq3")
@@ -357,6 +361,21 @@ theme_type_variation = &"EmptyButton"
 theme_override_font_sizes/font_size = 22
 text = "Break reminder"
 
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsWindow/PanelContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="SettingsWindow/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 22
+text = "Reminder interval"
+
+[node name="ReminderIntervalSpinBox" type="SpinBox" parent="SettingsWindow/PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+
 [connection signal="timeout" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/NormalTimer" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_timer_timeout"]
 [connection signal="pressed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/VBoxContainer/NormalTimerStartButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_timer_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/VBoxContainer/NormalTimerStopButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_timer_stop_button_pressed"]
@@ -371,5 +390,6 @@ text = "Break reminder"
 [connection signal="pressed" from="VBoxContainer/UpperContainer/RightContainer/OptionsButton" to="SettingsWindow" method="_on_options_button_pressed"]
 [connection signal="close_requested" from="SettingsWindow" to="SettingsWindow" method="_on_close_requested"]
 [connection signal="toggled" from="SettingsWindow/PanelContainer/VBoxContainer/BreakReminderCheckButton" to="SettingsWindow" method="_on_break_reminder_check_button_toggled"]
+[connection signal="value_changed" from="SettingsWindow/PanelContainer/VBoxContainer/HBoxContainer/ReminderIntervalSpinBox" to="SettingsWindow" method="_on_reminder_interval_spin_box_value_changed"]
 
 [editable path="VBoxContainer/UpperContainer/LeftVBoxContainer/PomodoroTimerContainer"]

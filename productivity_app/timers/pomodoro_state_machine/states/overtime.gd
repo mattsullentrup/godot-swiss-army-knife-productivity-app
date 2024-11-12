@@ -2,19 +2,39 @@ class_name OvertimeState
 extends State
 
 
+var reminder_timer: Timer
+
 var _overtime_start_time: float
 var _time_passed: float
 
 
+func _init(
+		state_machine_in: PomodoroStateMachine, states_in: Dictionary,
+		buttons_in: Dictionary, reminder_timer_in: Timer
+) -> void:
+	super(state_machine_in, states_in, buttons_in)
+	reminder_timer = reminder_timer_in
+	reminder_timer.timeout.connect(func() -> void: state_machine.notification_sound.play())
+
+
 func _enter() -> void:
 	_overtime_start_time = Time.get_unix_time_from_system()
-
 	state_machine.notification_sound.play()
 	_time_passed = 0
+	if Settings.get_value(Settings.BREAK_REMINDER, Settings.BREAK_REMINDER_DEFAULT) == true:
+		var length: float = Settings.get_value(
+				Settings.REMINDER_INTERVAL, Settings.REMINDER_INTERVAL_DEFAULT
+		)
+		reminder_timer.start(length * 60)
+
+
+func _exit() -> void:
+	super()
+	reminder_timer.stop()
 
 
 func _update() -> void:
-	_time_passed = _overtime_start_time - Time.get_unix_time_from_system()
+	_time_passed = TimerUtilities.get_overtime(_overtime_start_time)
 	state_machine.time_to_display = _time_passed
 
 
