@@ -2,10 +2,6 @@ class_name NoiseContainer
 extends VBoxContainer
 
 
-const VOLUME = "noise_volume"
-const VOLUME_DEFAULT = 0.25
-
-
 @export var audio_off_icon: CompressedTexture2D
 @export var audio_on_icon: CompressedTexture2D
 
@@ -15,9 +11,6 @@ const VOLUME_DEFAULT = 0.25
 
 
 func _ready() -> void:
-	#_volume_slider.value = Settings.get_value(
-			#Settings.NOISE_VOLUME, Settings.NOISE_VOLUME_DEFAULT
-	#)
 	_volume_slider.value_changed.connect(_on_volume_slider_value_changed)
 
 
@@ -28,15 +21,11 @@ func _notification(what: int) -> void:
 
 
 func save(save_file: SaveFile) -> void:
-	save_file.noise_data[VOLUME] = _volume_slider.value
+	save_file.noise_volume = _volume_slider.value
 
 
 func load(save_file: SaveFile) -> void:
-	if save_file.noise_data.has(VOLUME):
-		_volume_slider.value = save_file.noise_data[VOLUME]
-	else:
-		_volume_slider.value = VOLUME_DEFAULT
-
+	_volume_slider.value = save_file.noise_volume
 	_pink_noise.volume_db = linear_to_db(_volume_slider.value)
 
 
@@ -47,4 +36,3 @@ func _on_noise_button_toggled(toggled_on: bool) -> void:
 
 func _on_volume_slider_value_changed(value: float) -> void:
 	_pink_noise.volume_db = linear_to_db(value)
-	#Settings.set_value(Settings.NOISE_VOLUME, value)

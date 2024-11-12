@@ -4,69 +4,69 @@
 [ext_resource type="Script" path="res://config/save/save_file.gd" id="2"]
 [ext_resource type="Script" path="res://config/save/task_data.gd" id="2_0xm18"]
 
-[sub_resource type="Resource" id="Resource_luomu"]
+[sub_resource type="Resource" id="Resource_tcymq"]
 script = ExtResource("2_0xm18")
 color_index = 0
 tasks_data = Array[ExtResource("2_0xm18")]([])
 scene_file_path = "res://to_do_item/task/sub_task.tscn"
 text = "a"
 
-[sub_resource type="Resource" id="Resource_44fjk"]
+[sub_resource type="Resource" id="Resource_ox6xu"]
 script = ExtResource("2_0xm18")
 color_index = 1
 tasks_data = Array[ExtResource("2_0xm18")]([])
 scene_file_path = "res://to_do_item/task/sub_task.tscn"
 text = "b"
 
-[sub_resource type="Resource" id="Resource_2a2b6"]
+[sub_resource type="Resource" id="Resource_mcg7h"]
 script = ExtResource("2_0xm18")
 color_index = 5
 tasks_data = Array[ExtResource("2_0xm18")]([])
 scene_file_path = "res://to_do_item/task/sub_task.tscn"
 text = "c"
 
-[sub_resource type="Resource" id="Resource_ivpoo"]
+[sub_resource type="Resource" id="Resource_8s7ha"]
 script = ExtResource("2_0xm18")
 color_index = 0
-tasks_data = Array[ExtResource("2_0xm18")]([SubResource("Resource_luomu"), SubResource("Resource_44fjk"), SubResource("Resource_2a2b6")])
+tasks_data = Array[ExtResource("2_0xm18")]([SubResource("Resource_tcymq"), SubResource("Resource_ox6xu"), SubResource("Resource_mcg7h")])
 scene_file_path = "res://to_do_item/task/task.tscn"
 text = "1"
 
-[sub_resource type="Resource" id="Resource_icx2n"]
+[sub_resource type="Resource" id="Resource_baas4"]
 script = ExtResource("2_0xm18")
 color_index = 1
 tasks_data = Array[ExtResource("2_0xm18")]([])
 scene_file_path = "res://to_do_item/task/sub_task.tscn"
 text = "a"
 
-[sub_resource type="Resource" id="Resource_7upcq"]
+[sub_resource type="Resource" id="Resource_utmuf"]
 script = ExtResource("2_0xm18")
 color_index = 5
 tasks_data = Array[ExtResource("2_0xm18")]([])
 scene_file_path = "res://to_do_item/task/sub_task.tscn"
 text = "b"
 
-[sub_resource type="Resource" id="Resource_qnc3v"]
+[sub_resource type="Resource" id="Resource_oj254"]
 script = ExtResource("2_0xm18")
 color_index = 6
 tasks_data = Array[ExtResource("2_0xm18")]([])
 scene_file_path = "res://to_do_item/task/sub_task.tscn"
 text = "c"
 
-[sub_resource type="Resource" id="Resource_sl4ci"]
+[sub_resource type="Resource" id="Resource_tjsfn"]
 script = ExtResource("2_0xm18")
 color_index = 0
-tasks_data = Array[ExtResource("2_0xm18")]([SubResource("Resource_icx2n"), SubResource("Resource_7upcq"), SubResource("Resource_qnc3v")])
+tasks_data = Array[ExtResource("2_0xm18")]([SubResource("Resource_baas4"), SubResource("Resource_utmuf"), SubResource("Resource_oj254")])
 scene_file_path = "res://to_do_item/task/task.tscn"
 text = "2"
 
-[sub_resource type="Resource" id="Resource_nwjj2"]
+[sub_resource type="Resource" id="Resource_3wsni"]
 script = ExtResource("1")
-tasks_data = Array[ExtResource("2_0xm18")]([SubResource("Resource_ivpoo"), SubResource("Resource_sl4ci")])
+tasks_data = Array[ExtResource("2_0xm18")]([SubResource("Resource_8s7ha"), SubResource("Resource_tjsfn")])
 scene_file_path = "res://to_do_item/project/project.tscn"
 text = "project 1"
 
-[sub_resource type="Resource" id="Resource_ugl6q"]
+[sub_resource type="Resource" id="Resource_rvwvu"]
 script = ExtResource("1")
 tasks_data = Array[ExtResource("2_0xm18")]([])
 scene_file_path = "res://to_do_item/project/project.tscn"
@@ -74,8 +74,6 @@ text = "project 2"
 
 [resource]
 script = ExtResource("2")
-projects_data = Array[ExtResource("1")]([SubResource("Resource_nwjj2"), SubResource("Resource_ugl6q")])
-noise_data = {
-"noise_volume": 0.031
-}
+projects_data = Array[ExtResource("1")]([SubResource("Resource_3wsni"), SubResource("Resource_rvwvu")])
+noise_volume = 0.301
 pomodoro_data = {}
