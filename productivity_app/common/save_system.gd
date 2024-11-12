@@ -1,7 +1,7 @@
 class_name SaveSystem
 extends Node
 
-#TODO: add save values for pomodoro timer current state and time remaining
+# TODO: add save values for pomodoro timer current state and time remaining
 
 
 signal game_saved

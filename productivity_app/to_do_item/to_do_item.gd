@@ -17,7 +17,7 @@ var _save_data: ToDoItemData
 
 
 func _ready() -> void:
-	line_edit.text_changed.connect(_on_line_edit_text_changed)
+	line_edit.text_submitted.connect(_on_line_edit_text_submitted)
 	if not _save_data == null:
 		_load()
 	else:
@@ -32,8 +32,5 @@ func _load() -> void:
 	return
 
 
-func _on_line_edit_text_changed(new_text: String = "") -> void:
-	if Input.is_key_pressed(KEY_CTRL):
-		line_edit.text.trim_suffix(new_text)
-		#var f = line_edit.text.erase(-new_text.length(), new_text.length())
-		pass
+func _on_line_edit_text_submitted(_new_text: String = "") -> void:
+	get_parent().grab_focus()

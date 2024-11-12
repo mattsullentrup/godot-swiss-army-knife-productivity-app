@@ -20,7 +20,7 @@ var _are_children_visible := true
 func _ready() -> void:
 	super()
 
-	line_edit.text_submitted.connect(create_new_task)
+	#line_edit.text_submitted.connect(create_new_task)
 	_new_task_button.pressed.connect(create_new_task)
 	_toggle_tasks_button.pressed.connect(_on_toggle_tasks_button_pressed)
 	_reset_button.pressed.connect(_on_reset_button_pressed)
@@ -50,8 +50,8 @@ func _load() -> void:
 		var task: Node = task_scene.instantiate()
 		task.save_data = task_data
 		_task_container.add_child(task)
-		if self is Task:
-			task.line_edit.text_submitted.connect(create_new_task)
+		#if self is Task:
+			#task.line_edit.text_submitted.connect(create_new_task)
 
 
 func create_new_task(_text: String = "") -> void:

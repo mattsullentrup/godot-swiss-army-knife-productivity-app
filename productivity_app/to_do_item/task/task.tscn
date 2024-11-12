@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dgmvsxmm31bo7" path="res://addons/images/kenney_icons/cross.png" id="4_3wct2"]
 [ext_resource type="Texture2D" uid="uid://cmm42xkdqt61" path="res://addons/images/kenney_icons/plus.png" id="5_2mxuq"]
 [ext_resource type="Texture2D" uid="uid://8v8i84xnoeup" path="res://addons/images/kenney_icons/return.png" id="6_8huod"]
-[ext_resource type="Script" path="res://gui/drag_and_drop_container.gd" id="8_j3pgj"]
+[ext_resource type="Script" path="res://gui/to_do_item_container.gd" id="8_j3pgj"]
 [ext_resource type="PackedScene" uid="uid://k3kk6cce7y0k" path="res://to_do_item/move_buttons_container.tscn" id="9_c4f85"]
 
 [node name="Task" type="VBoxContainer" groups=["Saveables"]]

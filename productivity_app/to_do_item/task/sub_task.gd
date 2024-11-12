@@ -4,18 +4,8 @@ extends ToDoItem
 
 var color_index: int = 0
 var button_types: Array[StringName] = [&"RedButton", &"YellowButton", &"GreenButton"]
-#var text: String
 
 @onready var _task_state_button: Button = %TaskStateButton
-
-
-func _gui_input(event: InputEvent) -> void:
-	var mouse_motion := event as InputEventMouseMotion
-	if mouse_motion != null:
-		var is_mouse_in_rect := Rect2(Vector2(), size).has_point(get_local_mouse_position())
-		if is_mouse_in_rect:
-			item_hovered_over = self
-			accept_event()
 
 
 func save(tasks_data: Array[ToDoItemData]) -> void:
