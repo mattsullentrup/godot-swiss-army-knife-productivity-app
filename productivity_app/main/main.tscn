@@ -113,23 +113,29 @@ horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_constants/separation = 22
 
-[node name="TimerToggleButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/VBoxContainer"]
+[node name="AddMinuteButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "+1"
+
+[node name="TimerToggleButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_32l1q")
 theme_type_variation = &"PurpleButton"
-toggle_mode = true
 icon = ExtResource("6_rvrhw")
 icon_alignment = 1
 
-[node name="TimerSpinBox" type="SpinBox" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/VBoxContainer"]
+[node name="TimerSpinBox" type="SpinBox" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 min_value = 1.0
 value = 1.0
@@ -384,8 +390,9 @@ layout_mode = 2
 size_flags_horizontal = 10
 
 [connection signal="timeout" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/NormalTimer" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_timer_timeout"]
-[connection signal="toggled" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/VBoxContainer/TimerToggleButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_timer_toggle_button_toggled"]
-[connection signal="value_changed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/VBoxContainer/TimerSpinBox" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_timer_option_button_value_changed"]
+[connection signal="pressed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/HBoxContainer/AddMinuteButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_add_minute_button_pressed"]
+[connection signal="toggled" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/HBoxContainer/TimerToggleButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_timer_toggle_button_toggled"]
+[connection signal="value_changed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/HBoxContainer/TimerSpinBox" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_timer_option_button_value_changed"]
 [connection signal="toggled" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/Autopan/AutopanCheckBox" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/Autopan" method="_on_autopan_check_button_toggled"]
 [connection signal="value_changed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/Autopan/AutopanSlider" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/Autopan" method="_on_autopan_slider_value_changed"]
 [connection signal="toggled" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/Phaser/PhaserCheckBox" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/Phaser" method="_on_phaser_check_button_toggled"]

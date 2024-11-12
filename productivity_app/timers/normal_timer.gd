@@ -58,3 +58,10 @@ func _on_timer_toggle_button_toggled(toggled_on: bool) -> void:
 		_toggle_button.icon = STOP
 	else:
 		_toggle_button.icon = START
+
+
+func _on_add_minute_button_pressed() -> void:
+	if not _timer.is_stopped():
+		var time_left := _timer.time_left
+		_timer.stop()
+		_timer.start(time_left + 60)
