@@ -119,8 +119,10 @@ size_flags_horizontal = 4
 theme_override_constants/separation = 22
 
 [node name="AddMinuteButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_vertical = 4
+theme_type_variation = &"PurpleButton"
 text = "+1"
 
 [node name="TimerToggleButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/HBoxContainer"]
@@ -236,16 +238,17 @@ stretch_mode = 5
 
 [node name="NoiseButton" type="Button" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 3
+size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_32l1q")
 theme_type_variation = &"PurpleButton"
 theme_override_constants/icon_max_width = 50
 toggle_mode = true
 icon = ExtResource("12_syt3v")
+icon_alignment = 1
 
 [node name="RightContainer" type="PanelContainer" parent="VBoxContainer/UpperContainer"]
 layout_mode = 2
