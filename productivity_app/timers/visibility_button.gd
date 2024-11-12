@@ -9,9 +9,9 @@ const VISIBLE = preload("res://addons/images/GuiVisibilityVisible.svg")
 
 
 func _on_pressed() -> void:
-	if _time_remaining_label.visible == true:
+	if not _time_remaining_label.has_theme_color_override("font_color"):
 		icon = HIDDEN
-		_time_remaining_label.hide()
+		_time_remaining_label.add_theme_color_override("font_color", Color.TRANSPARENT)
 	else:
-		_time_remaining_label.show()
+		_time_remaining_label.remove_theme_color_override("font_color")
 		icon = VISIBLE
