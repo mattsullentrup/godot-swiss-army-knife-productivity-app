@@ -8,6 +8,10 @@ var button_types: Array[StringName] = [&"RedButton", &"YellowButton", &"GreenBut
 @onready var _task_state_button: Button = %TaskStateButton
 
 
+func _enter_tree() -> void:
+	%LineEdit.text_submitted.connect(_on_line_edit_text_submitted)
+
+
 func save(tasks_data: Array[ToDoItemData]) -> void:
 	var data := TaskData.new()
 
@@ -37,9 +41,5 @@ func _on_delete_button_pressed() -> void:
 	queue_free()
 
 
-#func _on_line_edit_text_changed(new_text: String) -> void:
-	#text = new_text
-#
-#
-#func _on_line_edit_text_submitted(_new_text: String) -> void:
-	#release_focus()
+func _on_line_edit_text_submitted(_new_text: String = "") -> void:
+	get_parent().new_item_button.grab_focus()

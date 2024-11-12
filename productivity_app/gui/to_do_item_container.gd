@@ -3,6 +3,9 @@ extends VBoxContainer
 ## Parent to child to do items
 
 
+@export var new_item_button: Button
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	# TODO: Finish ability to add new task or sub task if this is the currently focused container.
 	# Every to do item text submitted signal is hooked up so that it's parent ToDoItemContainer grabs focus

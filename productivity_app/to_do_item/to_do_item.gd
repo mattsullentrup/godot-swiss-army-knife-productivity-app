@@ -17,7 +17,6 @@ var _save_data: ToDoItemData
 
 
 func _ready() -> void:
-	line_edit.text_submitted.connect(_on_line_edit_text_submitted)
 	if not _save_data == null:
 		_load()
 	else:
@@ -30,7 +29,3 @@ func save(_data: Array) -> void:
 
 func _load() -> void:
 	return
-
-
-func _on_line_edit_text_submitted(_new_text: String = "") -> void:
-	get_parent().grab_focus()

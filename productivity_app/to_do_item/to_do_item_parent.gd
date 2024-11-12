@@ -7,24 +7,27 @@ const UNFOLDED_ICON = preload("res://addons/images/kenney_icons/down.png")
 const MAX_CHILD_TASKS = 100
 
 @export var _child_task_scene: PackedScene
+@export_enum("new_task", "new_sub_task") var _shortcut: String
 
 var _are_children_visible := true
 
 @onready var _task_container: VBoxContainer = %TaskContainer
 @onready var _toggle_tasks_button: Button = %ToggleTasksButton
-@onready var _new_task_button: Button = %NewTaskButton
-@onready var _reset_button: Button = %ResetButton
-@onready var _delete_button: Button = %DeleteButton
 
 
 func _ready() -> void:
 	super()
 
-	#line_edit.text_submitted.connect(create_new_task)
-	_new_task_button.pressed.connect(create_new_task)
 	_toggle_tasks_button.pressed.connect(_on_toggle_tasks_button_pressed)
-	_reset_button.pressed.connect(_on_reset_button_pressed)
-	_delete_button.pressed.connect(func() -> void: queue_free())
+	%NewTaskButton.pressed.connect(create_new_task)
+	%ResetButton.pressed.connect(_on_reset_button_pressed)
+	%DeleteButton.pressed.connect(func() -> void: queue_free())
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed(_shortcut) and is_ancestor_of(get_viewport().gui_get_focus_owner()):
+		create_new_task()
+		get_viewport().set_input_as_handled()
 
 
 func save(data: Array[ToDoItemData]) -> void:
@@ -50,15 +53,11 @@ func _load() -> void:
 		var task: Node = task_scene.instantiate()
 		task.save_data = task_data
 		_task_container.add_child(task)
-		#if self is Task:
-			#task.line_edit.text_submitted.connect(create_new_task)
 
 
 func create_new_task(_text: String = "") -> void:
 	var new_task: ToDoItem = _child_task_scene.instantiate()
 	_task_container.add_child(new_task)
-	if self is Task:
-		new_task.line_edit.text_submitted.connect(create_new_task)
 
 
 func _on_toggle_tasks_button_pressed() -> void:
@@ -81,4 +80,4 @@ func _on_reset_button_pressed() -> void:
 	var children: Array = _task_container.get_children()
 	for child: Node in children:
 		child.color_index = 0
-		child.get_node("TaskStateButton").theme_type_variation = child.button_types[0]
+		child.get_node("%TaskStateButton").theme_type_variation = child.button_types[0]

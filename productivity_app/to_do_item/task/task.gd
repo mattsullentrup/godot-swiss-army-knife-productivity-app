@@ -4,14 +4,18 @@ extends ToDoItemParent
 
 var color_index: int = 0
 var button_types: Array[StringName] = [&"RedButton", &"YellowButton", &"GreenButton"]
-#var text: String
 
 @onready var _task_state_button: Button = %TaskStateButton
 
 
-func _ready() -> void:
-	super()
+func _enter_tree() -> void:
+	%LineEdit.text_submitted.connect(_on_line_edit_text_submitted)
 	%TaskStateButton.pressed.connect(_on_task_state_button_pressed)
+#
+#
+#func _unhandled_input(event: InputEvent) -> void:
+	#if event.is_action_pressed("new_task") and is_ancestor_of(get_viewport().gui_get_focus_owner()):
+		#get_parent().create_new_task()
 
 
 func save(tasks_data: Array[ToDoItemData]) -> void:
@@ -31,9 +35,5 @@ func _on_task_state_button_pressed() -> void:
 	_task_state_button.theme_type_variation = button_types[color_index % 3]
 
 
-#func _on_line_edit_text_changed(new_text: String) -> void:
-	#text = new_text
-
-
-#func _on_line_edit_text_submitted(_new_text: String) -> void:
-	#release_focus()
+func _on_line_edit_text_submitted(_new_text: String = "") -> void:
+	%NewTaskButton.grab_focus()

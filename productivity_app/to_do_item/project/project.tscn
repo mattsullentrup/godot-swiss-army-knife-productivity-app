@@ -18,6 +18,7 @@ focus_mode = 2
 theme_override_constants/separation = 20
 script = ExtResource("1_hop2a")
 _child_task_scene = ExtResource("2_s6jf4")
+_shortcut = "new_task"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -98,13 +99,14 @@ layout_mode = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_right = 35
 
-[node name="TaskContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="TaskContainer" type="VBoxContainer" parent="MarginContainer" node_paths=PackedStringArray("new_item_button")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 2
 theme_override_constants/separation = 5
 script = ExtResource("8_ea4sd")
+new_item_button = NodePath("../../HBoxContainer/HBoxContainer/NewTaskButton")
 
 [connection signal="mouse_entered" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_exited"]
