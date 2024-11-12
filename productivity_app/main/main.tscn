@@ -128,7 +128,7 @@ unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_32l1q")
-theme_type_variation = &"PurpleButton"
+theme_type_variation = &"GreenButton"
 icon = ExtResource("6_rvrhw")
 icon_alignment = 1
 
@@ -391,7 +391,7 @@ size_flags_horizontal = 10
 
 [connection signal="timeout" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/NormalTimer" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_timer_timeout"]
 [connection signal="pressed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/HBoxContainer/AddMinuteButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_add_minute_button_pressed"]
-[connection signal="toggled" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/HBoxContainer/TimerToggleButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_timer_toggle_button_toggled"]
+[connection signal="pressed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/HBoxContainer/TimerToggleButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_timer_toggle_button_pressed"]
 [connection signal="value_changed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/HBoxContainer/TimerSpinBox" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_timer_option_button_value_changed"]
 [connection signal="toggled" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/Autopan/AutopanCheckBox" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/Autopan" method="_on_autopan_check_button_toggled"]
 [connection signal="value_changed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/Autopan/AutopanSlider" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer/Autopan" method="_on_autopan_slider_value_changed"]

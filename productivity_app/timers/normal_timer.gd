@@ -49,19 +49,21 @@ func _on_timer_option_button_value_changed(value: float) -> void:
 	_is_in_overtime = false
 
 
-func _on_timer_toggle_button_toggled(toggled_on: bool) -> void:
-	_timer.stop()
-	_is_in_overtime = false
-	_reminder_timer.stop()
-	if toggled_on == true:
-		_timer.start(_normal_length)
-		_toggle_button.icon = STOP
-	else:
-		_toggle_button.icon = START
-
-
 func _on_add_minute_button_pressed() -> void:
 	if not _timer.is_stopped():
 		var time_left := _timer.time_left
 		_timer.stop()
 		_timer.start(time_left + 60)
+
+
+func _on_timer_toggle_button_pressed() -> void:
+	_is_in_overtime = false
+	_reminder_timer.stop()
+	if _timer.is_stopped() == true:
+		_timer.start(_normal_length)
+		_toggle_button.icon = STOP
+		_toggle_button.theme_type_variation = "RedButton"
+	else:
+		_timer.stop()
+		_toggle_button.icon = START
+		_toggle_button.theme_type_variation = "GreenButton"
