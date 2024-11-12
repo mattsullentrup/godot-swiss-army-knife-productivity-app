@@ -2,6 +2,9 @@ class_name PausedState
 extends State
 
 
+@export var _time_remaining_label: Label
+
+
 func _enter() -> void:
 	state_machine.pomodoro_timer.paused = true
 

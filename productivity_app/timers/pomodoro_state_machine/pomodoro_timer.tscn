@@ -1,9 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://ckw6bd8a72tum"]
+[gd_scene load_steps=17 format=3 uid="uid://ckw6bd8a72tum"]
 
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme/theme.tres" id="1_nq85o"]
 [ext_resource type="Script" path="res://gui/pomodoro_timer_container.gd" id="2_6bsd6"]
 [ext_resource type="Script" path="res://timers/pomodoro_state_machine/state_machine.gd" id="2_8h7i8"]
 [ext_resource type="Script" path="res://gui/time_remaining_label.gd" id="3_cod8j"]
+[ext_resource type="Texture2D" uid="uid://b1ur4xh5dow4y" path="res://addons/images/GuiVisibilityVisible.svg" id="4_ntex7"]
+[ext_resource type="Script" path="res://timers/visibility_button.gd" id="5_khap7"]
 [ext_resource type="Texture2D" uid="uid://c1avhvgbpp5di" path="res://addons/images/kenney_icons/right.png" id="5_qrp43"]
 [ext_resource type="Texture2D" uid="uid://cwjn2up7w5c3" path="res://addons/images/kenney_icons/previous.png" id="6_wlngn"]
 [ext_resource type="Texture2D" uid="uid://b21tp1ekqqfq1" path="res://addons/images/kenney_icons/pause.png" id="7_4b0t7"]
@@ -11,20 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://ldmdhpth6b1" path="res://addons/images/kenney_icons/stop.png" id="9_fqhqh"]
 [ext_resource type="PackedScene" uid="uid://x6tvketiluit" path="res://timers/reminder_timer.tscn" id="10_vu57a"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8awij"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-bg_color = Color(0.141176, 0.141176, 0.141176, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_2tvdt"]
+color = Color(1, 1, 1, 0.266667)
+thickness = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8m0aa"]
 bg_color = Color(0.36, 0.36, 0.36, 1)
@@ -56,24 +47,28 @@ one_shot = true
 
 [node name="GUIVBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
+theme_override_constants/separation = 10
 alignment = 1
 script = ExtResource("3_cod8j")
 
-[node name="HBoxContainer" type="PanelContainer" parent="GUIVBoxContainer"]
-custom_minimum_size = Vector2(0, 60)
+[node name="HBoxContainer" type="HBoxContainer" parent="GUIVBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 6
-theme_override_styles/panel = SubResource("StyleBoxFlat_8awij")
+alignment = 1
 
-[node name="PausedLabel" type="Label" parent="GUIVBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
+[node name="VisibilityButton" type="Button" parent="GUIVBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-size_flags_horizontal = 0
-text = "Paused"
+size_flags_horizontal = 2
+icon = ExtResource("4_ntex7")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("5_khap7")
 
 [node name="RoundLabel" type="Label" parent="GUIVBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 6
 theme = ExtResource("1_nq85o")
 theme_override_font_sizes/font_size = 28
 text = "1/4"
@@ -83,18 +78,31 @@ vertical_alignment = 1
 [node name="ProductivityStateLabel" type="Label" parent="GUIVBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 10
 text = "Break
 "
-horizontal_alignment = 2
+
+[node name="HSeparator" type="HSeparator" parent="GUIVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_2tvdt")
+
+[node name="PausedLabel" type="Label" parent="GUIVBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Paused"
+horizontal_alignment = 1
 
 [node name="TimeRemainingLabel" type="Label" parent="GUIVBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 5
-size_flags_vertical = 6
+size_flags_vertical = 2
+size_flags_stretch_ratio = 5.0
 theme = ExtResource("1_nq85o")
-theme_override_font_sizes/font_size = 93
+theme_override_font_sizes/font_size = 140
 text = "00:00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -102,7 +110,7 @@ clip_text = true
 
 [node name="ProgressBar" type="ProgressBar" parent="GUIVBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_styles/background = SubResource("StyleBoxFlat_8m0aa")
@@ -114,7 +122,7 @@ show_percentage = false
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-size_flags_stretch_ratio = 0.7
+size_flags_vertical = 10
 theme_override_constants/separation = 15
 alignment = 1
 
@@ -185,5 +193,6 @@ script = ExtResource("2_8h7i8")
 [node name="ReminderTimer" parent="StateMachine" instance=ExtResource("10_vu57a")]
 unique_name_in_owner = true
 
+[connection signal="pressed" from="GUIVBoxContainer/HBoxContainer/VisibilityButton" to="GUIVBoxContainer/HBoxContainer/VisibilityButton" method="_on_pressed"]
 [connection signal="round_changed" from="StateMachine" to="." method="_on_state_machine_round_changed"]
 [connection signal="state_changed" from="StateMachine" to="." method="_on_state_machine_state_changed"]
