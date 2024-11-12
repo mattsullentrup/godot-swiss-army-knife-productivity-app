@@ -56,7 +56,6 @@ one_shot = true
 layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
-script = ExtResource("3_cod8j")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUIVBoxContainer"]
 layout_mode = 2
@@ -112,6 +111,7 @@ text = "00:00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
+script = ExtResource("3_cod8j")
 
 [node name="ProgressBar" type="ProgressBar" parent="GUIVBoxContainer"]
 unique_name_in_owner = true
