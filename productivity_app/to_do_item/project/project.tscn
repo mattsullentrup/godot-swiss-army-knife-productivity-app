@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dgmvsxmm31bo7" path="res://addons/images/kenney_icons/cross.png" id="7_6vwoh"]
 [ext_resource type="PackedScene" uid="uid://k3kk6cce7y0k" path="res://to_do_item/move_buttons_container.tscn" id="9_7du34"]
 
-[node name="Project" type="VBoxContainer" groups=["Project", "Saveables"]]
+[node name="Project" type="VBoxContainer" groups=["project"]]
 offset_right = 463.0
 offset_bottom = 95.0
 focus_mode = 2

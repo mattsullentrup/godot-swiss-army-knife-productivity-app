@@ -5,7 +5,7 @@ extends VBoxContainer
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	# TODO: If nothing is focused or focused node is a to do item,
+	# If nothing is focused or focused node is a to do item,
 	# get last task/sub_task and add new item below it
 	var focused := get_viewport().gui_get_focus_owner()
 	if (focused and is_ancestor_of(focused)) or get_child_count() == 0:

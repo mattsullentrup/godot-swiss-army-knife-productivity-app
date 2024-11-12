@@ -148,7 +148,7 @@ update_on_text_changed = true
 layout_mode = 2
 theme = ExtResource("2_32l1q")
 
-[node name="NoiseVBoxContainer" type="VBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer"]
+[node name="NoiseVBoxContainer" type="VBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer" groups=["saveables"]]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 15

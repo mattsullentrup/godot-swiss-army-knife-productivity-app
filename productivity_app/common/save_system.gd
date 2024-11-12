@@ -1,7 +1,6 @@
+# TODO: add save values for pomodoro timer current state and time remaining
 class_name SaveSystem
 extends Node
-
-# TODO: add save values for pomodoro timer current state and time remaining
 
 
 signal game_saved
@@ -29,8 +28,10 @@ func _save() -> void:
 	var save_file := SaveFile.new()
 	var projects_data: Array[ToDoItemData]
 
-	get_tree().call_group("Project", "save", projects_data)
+	get_tree().call_group("project", "save", projects_data)
 	save_file.projects_data.assign(projects_data)
+
+	get_tree().call_group("saveables", "save", save_file)
 
 	var save_path := _get_save_path()
 	ResourceSaver.save(save_file, save_path)
@@ -56,6 +57,8 @@ func _load() -> void:
 		var project: Node = project_scene_path.instantiate()
 		project.save_data = project_data
 		_project_manager.add_child(project)
+
+	get_tree().call_group("saveables", "load", save_file)
 
 
 func _get_save_path() -> String:

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://k3kk6cce7y0k" path="res://to_do_item/move_buttons_container.tscn" id="5_mg4ai"]
 [ext_resource type="Texture2D" uid="uid://dgmvsxmm31bo7" path="res://addons/images/kenney_icons/cross.png" id="6_t20v8"]
 
-[node name="SubTask" type="HBoxContainer" groups=["Saveables", "Task"]]
+[node name="SubTask" type="HBoxContainer" groups=["task"]]
 offset_right = 261.0
 offset_bottom = 50.0
 size_flags_horizontal = 3
