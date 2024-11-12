@@ -24,18 +24,21 @@ thickness = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8m0aa"]
 bg_color = Color(0.36, 0.36, 0.36, 1)
+border_color = Color(0.36, 0.36, 0.36, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3bueh"]
-content_margin_left = 4.0
+content_margin_left = 10.0
 bg_color = Color(0.4851, 0.637047, 0.77, 1)
-corner_radius_top_left = 100
+border_color = Color(0.4851, 0.637047, 0.77, 1)
+border_blend = true
+corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
-corner_radius_bottom_left = 100
+corner_radius_bottom_left = 10
 
 [sub_resource type="Theme" id="Theme_4ijq2"]
 
@@ -120,7 +123,6 @@ layout_mode = 2
 size_flags_vertical = 10
 theme_override_styles/background = SubResource("StyleBoxFlat_8m0aa")
 theme_override_styles/fill = SubResource("StyleBoxFlat_3bueh")
-value = 50.0
 show_percentage = false
 
 [node name="Buttons" type="HBoxContainer" parent="GUIVBoxContainer"]
