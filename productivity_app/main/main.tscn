@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://doy3uidslkhni"]
+[gd_scene load_steps=25 format=4 uid="uid://doy3uidslkhni"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_kkm8q"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme/theme.tres" id="2_32l1q"]
@@ -17,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://cmm42xkdqt61" path="res://addons/images/kenney_icons/plus.png" id="18_2xuuj"]
 [ext_resource type="Script" path="res://config/settings/settings_window.gd" id="19_5gfq3"]
 [ext_resource type="Script" path="res://to_do_item/project_manager.gd" id="19_iwwbs"]
-[ext_resource type="PackedScene" uid="uid://daot25v58e7k6" path="res://to_do_item/project/project.tscn" id="20_ln4en"]
 [ext_resource type="Script" path="res://gui/time_and_date.gd" id="21_x82c0"]
 [ext_resource type="AudioStream" uid="uid://q3h7vgwqou6l" path="res://addons/sounds/notification2.wav" id="22_rkn0h"]
 [ext_resource type="Script" path="res://common/save_system.gd" id="23_upx4x"]
@@ -291,7 +290,6 @@ size_flags_vertical = 3
 focus_mode = 2
 theme_override_constants/separation = 15
 script = ExtResource("19_iwwbs")
-project = ExtResource("20_ln4en")
 
 [node name="OptionsButton" type="Button" parent="VBoxContainer/UpperContainer/RightContainer"]
 layout_mode = 2
