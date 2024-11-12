@@ -21,6 +21,7 @@ _shortcut = "new_task"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 4
 focus_mode = 2
 theme_override_constants/separation = 20
@@ -35,7 +36,7 @@ flat = true
 
 [node name="LineEdit" type="LineEdit" parent="HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(500, 50)
+custom_minimum_size = Vector2(350, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/minimum_character_width = 15
@@ -93,14 +94,11 @@ expand_icon = true
 [node name="MoveButtonsContainer" parent="HBoxContainer/HBoxContainer" instance=ExtResource("9_7du34")]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 2
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_right = 35
-
-[node name="TaskContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="TaskContainer" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(850, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 3
 focus_mode = 2
 theme_override_constants/separation = 5

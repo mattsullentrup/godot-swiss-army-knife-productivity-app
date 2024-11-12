@@ -45,6 +45,7 @@ theme_type_variation = &"RedButton"
 
 [node name="LineEdit" type="LineEdit" parent="HBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/minimum_character_width = 15
@@ -101,17 +102,15 @@ expand_icon = true
 [node name="MoveButtonsContainer" parent="HBoxContainer/HBoxContainer" instance=ExtResource("9_c4f85")]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 2
-theme_override_constants/margin_left = 120
-
-[node name="TaskContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="TaskContainer" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
+size_flags_horizontal = 8
 size_flags_vertical = 3
 focus_mode = 2
 theme_override_constants/separation = 5
-metadata/new_item_button = NodePath("../../HBoxContainer/HBoxContainer/NewTaskButton")
+metadata/new_item_button = NodePath("../HBoxContainer/HBoxContainer/NewTaskButton")
 
 [connection signal="mouse_entered" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="HBoxContainer/LineEdit" to="HBoxContainer/LineEdit" method="_on_mouse_exited"]

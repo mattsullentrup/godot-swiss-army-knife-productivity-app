@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SaveFile" load_steps=14 format=3]
+[gd_resource type="Resource" script_class="SaveFile" load_steps=14 format=3 uid="uid://kyjbhyawwlkl"]
 
 [ext_resource type="Script" path="res://config/save/project_data.gd" id="1"]
 [ext_resource type="Script" path="res://config/save/save_file.gd" id="2"]

@@ -17,12 +17,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		_create_lowest_sub_task()
 
 
-func _process(_delta: float) -> void:
-	var focused := get_viewport().gui_get_focus_owner()
-	if focused:
-		print(focused)
-
-
 func _create_lowest_task() -> void:
 	var last_project: Project = get_child(-1)
 	last_project.create_new_task()
