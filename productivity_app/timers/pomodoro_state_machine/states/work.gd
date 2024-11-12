@@ -2,7 +2,11 @@ class_name WorkState
 extends State
 
 
+@export var _productivity_state_label: Label
+
+
 func _enter() -> void:
+	_productivity_state_label.text = "Work"
 	match state_machine.previous_state:
 		states.idle, states.overtime:
 			state_machine.pomodoro_timer.start(state_machine.work_round_length)
@@ -10,7 +14,6 @@ func _enter() -> void:
 			state_machine.pomodoro_timer.paused = false
 		states.work, states.break:
 			state_machine.pomodoro_timer.stop()
-
 
 	is_break_state = false
 

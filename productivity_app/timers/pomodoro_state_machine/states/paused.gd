@@ -2,15 +2,20 @@ class_name PausedState
 extends State
 
 
-@export var _time_remaining_label: Label
+@export var _paused_label: Label
+
+
+func _ready() -> void:
+	_paused_label.text = ""
 
 
 func _enter() -> void:
+	_paused_label.text = "Paused"
 	state_machine.pomodoro_timer.paused = true
 
 
 func _exit() -> void:
-	super()
+	_paused_label.text = ""
 	state_machine.pomodoro_timer.paused = false
 
 

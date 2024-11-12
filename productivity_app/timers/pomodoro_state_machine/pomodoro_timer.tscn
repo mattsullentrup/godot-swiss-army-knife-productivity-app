@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ckw6bd8a72tum"]
+[gd_scene load_steps=22 format=3 uid="uid://ckw6bd8a72tum"]
 
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme/theme.tres" id="1_nq85o"]
 [ext_resource type="Script" path="res://gui/pomodoro_timer_container.gd" id="2_6bsd6"]
@@ -12,6 +12,11 @@
 [ext_resource type="Texture2D" uid="uid://dgov4kg5io00y" path="res://addons/images/kenney_icons/next.png" id="8_w7v3y"]
 [ext_resource type="Texture2D" uid="uid://ldmdhpth6b1" path="res://addons/images/kenney_icons/stop.png" id="9_fqhqh"]
 [ext_resource type="PackedScene" uid="uid://x6tvketiluit" path="res://timers/reminder_timer.tscn" id="10_vu57a"]
+[ext_resource type="Script" path="res://timers/pomodoro_state_machine/states/idle.gd" id="13_em7o2"]
+[ext_resource type="Script" path="res://timers/pomodoro_state_machine/states/work.gd" id="14_bosgx"]
+[ext_resource type="Script" path="res://timers/pomodoro_state_machine/states/break.gd" id="15_tnmsp"]
+[ext_resource type="Script" path="res://timers/pomodoro_state_machine/states/overtime.gd" id="16_n4mww"]
+[ext_resource type="Script" path="res://timers/pomodoro_state_machine/states/paused.gd" id="17_madyc"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_2tvdt"]
 color = Color(1, 1, 1, 0.266667)
@@ -44,6 +49,8 @@ script = ExtResource("2_6bsd6")
 unique_name_in_owner = true
 wait_time = 7.0
 one_shot = true
+
+[node name="ReminderTimer" parent="." instance=ExtResource("10_vu57a")]
 
 [node name="GUIVBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -89,11 +96,9 @@ theme_override_styles/separator = SubResource("StyleBoxLine_2tvdt")
 
 [node name="PausedLabel" type="Label" parent="GUIVBoxContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 0
-text = "Paused"
+size_flags_vertical = 2
 horizontal_alignment = 1
 
 [node name="TimeRemainingLabel" type="Label" parent="GUIVBoxContainer"]
@@ -112,7 +117,7 @@ clip_text = true
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
-size_flags_vertical = 6
+size_flags_vertical = 10
 theme_override_styles/background = SubResource("StyleBoxFlat_8m0aa")
 theme_override_styles/fill = SubResource("StyleBoxFlat_3bueh")
 value = 50.0
@@ -190,8 +195,24 @@ icon_alignment = 1
 unique_name_in_owner = true
 script = ExtResource("2_8h7i8")
 
-[node name="ReminderTimer" parent="StateMachine" instance=ExtResource("10_vu57a")]
-unique_name_in_owner = true
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("13_em7o2")
+
+[node name="Work" type="Node" parent="StateMachine" node_paths=PackedStringArray("_productivity_state_label")]
+script = ExtResource("14_bosgx")
+_productivity_state_label = NodePath("../../GUIVBoxContainer/HBoxContainer/ProductivityStateLabel")
+
+[node name="Break" type="Node" parent="StateMachine" node_paths=PackedStringArray("_productivity_state_label")]
+script = ExtResource("15_tnmsp")
+_productivity_state_label = NodePath("../../GUIVBoxContainer/HBoxContainer/ProductivityStateLabel")
+
+[node name="Overtime" type="Node" parent="StateMachine" node_paths=PackedStringArray("_reminder_timer")]
+script = ExtResource("16_n4mww")
+_reminder_timer = NodePath("../../ReminderTimer")
+
+[node name="Paused" type="Node" parent="StateMachine" node_paths=PackedStringArray("_paused_label")]
+script = ExtResource("17_madyc")
+_paused_label = NodePath("../../GUIVBoxContainer/PausedLabel")
 
 [connection signal="pressed" from="GUIVBoxContainer/HBoxContainer/VisibilityButton" to="GUIVBoxContainer/HBoxContainer/VisibilityButton" method="_on_pressed"]
 [connection signal="round_changed" from="StateMachine" to="." method="_on_state_machine_round_changed"]

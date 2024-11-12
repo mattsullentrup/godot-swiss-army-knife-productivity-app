@@ -3,11 +3,7 @@ extends Node
 
 
 signal round_changed(new_round: int)
-signal state_changed(
-		new_state_name: String,
-		is_break_state: bool,
-		progress_bar_max_value: float
-)
+signal state_changed(progress_bar_max_value: float)
 
 const MINUTE_MULTIPLIER = 60
 const MAX_ROUND = 4
@@ -31,7 +27,6 @@ var initial_state: State
 var current_state: State = null
 var previous_state: State = null
 var states := {}
-var states_array := []
 var notification_sound: AudioStreamPlayer = null
 
 var short_break_length: float = 5 * MINUTE_MULTIPLIER
@@ -49,15 +44,28 @@ var current_round: int:
 
 @onready var pomodoro_timer: Timer = %PomodoroTimer
 
+@onready var idle_state: IdleState = $Idle
+@onready var work_state: WorkState = $Work
+@onready var break_state: BreakState = $Break
+@onready var overtime_state: OvertimeState = $Overtime
+@onready var paused_state: PausedState = $Paused
+
+@onready var states_list: Array[State] = [
+	idle_state,
+	work_state,
+	break_state,
+	overtime_state,
+	paused_state
+]
+
 
 func _ready() -> void:
 	current_round = 1
 	_connect_buttons()
 	_setup_states()
-	var overtime: Variant = states.overtime
-	assert(overtime is OvertimeState)
-	if overtime is State:
-		pomodoro_timer.timeout.connect(_change_state.bind(overtime))
+	#var overtime: Variant = states.overtime
+	#if overtime is State:
+	pomodoro_timer.timeout.connect(_change_state.bind(overtime_state))
 
 
 func _process(_delta: float) -> void:
@@ -70,24 +78,15 @@ func _connect_buttons() -> void:
 
 
 func _setup_states() -> void:
-	var idle_state := Idle.new(self, states, buttons)
-	var work_state := Work.new(self, states, buttons)
-	var break_state := Break.new(self, states, buttons)
-	var paused_state := Paused.new(self, states, buttons)
-	var overtime_state := Overtime.new(self, states, buttons, %ReminderTimer as Timer)
-
-	states["idle"] = idle_state
-	states["work"] = work_state
-	states["break"] = break_state
-	states["paused"] = paused_state
-	states["overtime"] = overtime_state
+	for state: State in states_list:
+		states[state.name.to_lower()] = state
+		state.finished.connect(_change_state)
+		state.state_machine = self
+		state.buttons = buttons
+		state.states = states
 
 	if initial_state == null:
 		initial_state = idle_state
-
-	for state: State in states.values():
-		state.finished.connect(_change_state)
-		states_array.append(state)
 
 	_change_state(initial_state)
 
@@ -96,7 +95,7 @@ func _change_state(new_state: State) -> void:
 	if new_state is not State:
 		return
 
-	state_changed.emit(new_state, new_state.is_break_state, time_to_display)
+	state_changed.emit(time_to_display)
 	if current_state:
 		current_state._exit()
 

@@ -2,7 +2,11 @@ class_name BreakState
 extends State
 
 
+@export var _productivity_state_label: Label
+
+
 func _enter() -> void:
+	_productivity_state_label.text = "Break"
 	match state_machine.previous_state:
 		states.idle, states.overtime:
 			if state_machine.current_round == state_machine.MAX_ROUND:

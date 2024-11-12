@@ -1,5 +1,5 @@
 class_name State
-extends RefCounted
+extends Node
 
 
 @warning_ignore("unused_signal")
@@ -11,14 +11,6 @@ static var is_break_state := false
 var state_machine: PomodoroStateMachine
 var states := {}
 var buttons := {}
-
-
-func _init(
-		state_machine_in: PomodoroStateMachine, states_in: Dictionary, buttons_in: Dictionary
-) -> void:
-	states = states_in
-	buttons = buttons_in
-	state_machine = state_machine_in
 
 
 func _enter() -> void:
