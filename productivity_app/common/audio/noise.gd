@@ -5,30 +5,30 @@ extends VBoxContainer
 @export var audio_off_icon: CompressedTexture2D
 @export var audio_on_icon: CompressedTexture2D
 
-@onready var pink_noise: AudioStreamPlayer = %PinkNoise
-@onready var volume_h_slider: HSlider = %VolumeHSlider
-@onready var noise_button: Button = %NoiseButton
+@onready var _pink_noise: AudioStreamPlayer = %PinkNoise
+@onready var _volume_slider: HSlider = %VolumeHSlider
+@onready var _noise_button: Button = %NoiseButton
 
 
 func _ready() -> void:
-	pink_noise.volume_db = linear_to_db(volume_h_slider.value)
-	#pink_noise.playing = true
-	#AudioServer.set_bus_mute(AudioServer.get_bus_index("Noise"), true)
+	_volume_slider.value = Settings.get_value(
+			Settings.NOISE_VOLUME, Settings.NOISE_VOLUME_DEFAULT
+	)
+	_pink_noise.volume_db = linear_to_db(_volume_slider.value)
+	_volume_slider.value_changed.connect(_on_volume_slider_value_changed)
 
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		pink_noise.stop()
-		pink_noise.queue_free()
+		_pink_noise.stop()
+		_pink_noise.queue_free()
 
 
 func _on_noise_button_toggled(toggled_on: bool) -> void:
-	#toggled_on = not toggled_on
-	pink_noise.playing = toggled_on
-	#AudioServer.set_bus_mute(AudioServer.get_bus_index("Noise"), toggled_on)
-	noise_button.icon = audio_on_icon if toggled_on else audio_off_icon
+	_pink_noise.playing = toggled_on
+	_noise_button.icon = audio_on_icon if toggled_on else audio_off_icon
 
 
-func _on_volume_h_slider_value_changed(value: float) -> void:
-	# Use `linear_to_db()` to get a volume slider that matches perceptual human hearing.
-	pink_noise.volume_db = linear_to_db(value)
+func _on_volume_slider_value_changed(value: float) -> void:
+	_pink_noise.volume_db = linear_to_db(value)
+	Settings.set_value(Settings.NOISE_VOLUME, value)

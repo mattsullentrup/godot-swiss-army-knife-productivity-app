@@ -24,11 +24,3 @@ static func get_formatted_time_from_seconds(seconds: Variant) -> String:
 		return ("-" + "%02d" % hours) + ":" + str("%02d" % minutes) + ":" + ("%02d" % seconds)
 	else:
 		return ("%02d" % hours) + ":" + str("%02d" % minutes) + ":" + ("%02d" % seconds)
-
-
-#static func reminder_interval_passed(overtime: float, delta: float) -> bool:
-	#var snapped_time := snappedf(overtime * delta, SNAPPED_TO) / 5.0
-	#print(Time.get_unix_time_from_system() - overtime)
-	#print(snapped_time)
-	#print(is_equal_approx(snapped_time, -1.0))
-	#return is_equal_approx(snapped_time, -1.0)

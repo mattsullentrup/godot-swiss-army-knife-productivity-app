@@ -12,6 +12,8 @@ const BREAK_REMINDER_DEFAULT = false
 const REMINDER_INTERVAL = "reminder_interval"
 const REMINDER_INTERVAL_DEFAULT = 5
 
+const NOISE_VOLUME = "noise_volume"
+const NOISE_VOLUME_DEFAULT = 0.25
 
 @onready var _config_file := ConfigFile.new()
 
