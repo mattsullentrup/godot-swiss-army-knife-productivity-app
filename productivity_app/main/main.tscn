@@ -157,7 +157,7 @@ script = ExtResource("11_xr3k1")
 audio_off_icon = ExtResource("12_syt3v")
 audio_on_icon = ExtResource("13_nb1g7")
 
-[node name="Autopan" type="HBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer"]
+[node name="Autopan" type="HBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer" groups=["saveables"]]
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("14_3rdur")
@@ -177,11 +177,11 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 min_value = 0.001
-max_value = 0.027
+max_value = 27.0
 step = 0.001
-value = 0.01
+value = 0.001
 
-[node name="Phaser" type="HBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer"]
+[node name="Phaser" type="HBoxContainer" parent="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NoisePanelContainer/NoiseVBoxContainer" groups=["saveables"]]
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("15_l4dqk")
