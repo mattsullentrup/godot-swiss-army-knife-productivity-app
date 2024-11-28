@@ -40,6 +40,7 @@ func get_weekday() -> String:
 
 
 func get_date() -> void:
+	#date_label.text = "1/1/2000"
 	date_label.text = str(
 			datetime.get("month"), "/",
 			datetime.get("day"), "/",
