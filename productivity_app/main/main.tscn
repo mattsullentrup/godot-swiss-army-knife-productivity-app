@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://doy3uidslkhni"]
+[gd_scene load_steps=27 format=4 uid="uid://doy3uidslkhni"]
 
 [ext_resource type="Script" uid="uid://j87cfru73rku" path="res://main/main.gd" id="1_kkm8q"]
 [ext_resource type="Theme" uid="uid://leiuhrufh5o8" path="res://theme/theme.tres" id="2_32l1q"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cmm42xkdqt61" path="res://addons/images/kenney_icons/plus.png" id="18_2xuuj"]
 [ext_resource type="Script" uid="uid://c1adpx6lx8d73" path="res://config/settings/settings_window.gd" id="19_5gfq3"]
 [ext_resource type="Script" uid="uid://dufxw6jy2lt2n" path="res://to_do_item/project_manager.gd" id="19_iwwbs"]
+[ext_resource type="Script" uid="uid://caihdj1efpfvh" path="res://notification_sound.gd" id="20_jofbb"]
 [ext_resource type="PackedScene" uid="uid://daot25v58e7k6" path="res://to_do_item/project/project.tscn" id="20_ln4en"]
 [ext_resource type="Script" uid="uid://3ps7r53c6lje" path="res://gui/time_and_date.gd" id="21_x82c0"]
 [ext_resource type="AudioStream" uid="uid://q3h7vgwqou6l" path="res://addons/sounds/notification2.wav" id="22_rkn0h"]
@@ -340,25 +341,27 @@ text = "12:00:00"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="NotificationSound" type="AudioStreamPlayer" parent="."]
+[node name="SaveSystem" type="Node" parent="."]
+script = ExtResource("23_upx4x")
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="NotificationSound" type="AudioStreamPlayer" parent="Sounds"]
 unique_name_in_owner = true
 stream = ExtResource("22_rkn0h")
 volume_db = -3.0
+script = ExtResource("20_jofbb")
 
-[node name="PinkNoise" type="AudioStreamPlayer" parent="."]
+[node name="PinkNoise" type="AudioStreamPlayer" parent="Sounds"]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamWAV_1mu4e")
 volume_db = -4.0
 bus = &"Noise"
 
-[node name="SaveSystem" type="Node" parent="."]
-script = ExtResource("23_upx4x")
-
 [node name="SettingsWindow" type="Window" parent="."]
 title = "Preferences"
 initial_position = 2
 size = Vector2i(500, 200)
-visible = false
 min_size = Vector2i(250, 0)
 theme = ExtResource("2_32l1q")
 script = ExtResource("19_5gfq3")
@@ -396,6 +399,24 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="SettingsWindow/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="SettingsWindow/PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Alarm volume"
+
+[node name="AlarmVolumeHSlider" type="HSlider" parent="SettingsWindow/PanelContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.001
+value = 0.5
+
 [connection signal="timeout" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/NormalTimer" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_timer_timeout"]
 [connection signal="pressed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/HBoxContainer/AddMinuteButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_add_minute_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer/VBoxContainer/HBoxContainer/TimerToggleButton" to="VBoxContainer/UpperContainer/LeftVBoxContainer/HBoxContainer/NormalTimer" method="_on_timer_toggle_button_pressed"]
@@ -411,3 +432,5 @@ size_flags_horizontal = 10
 [connection signal="close_requested" from="SettingsWindow" to="SettingsWindow" method="_on_close_requested"]
 [connection signal="toggled" from="SettingsWindow/PanelContainer/VBoxContainer/BreakReminderCheckButton" to="SettingsWindow" method="_on_break_reminder_check_button_toggled"]
 [connection signal="value_changed" from="SettingsWindow/PanelContainer/VBoxContainer/HBoxContainer/ReminderIntervalSpinBox" to="SettingsWindow" method="_on_reminder_interval_spin_box_value_changed"]
+[connection signal="value_changed" from="SettingsWindow/PanelContainer/VBoxContainer/HBoxContainer2/AlarmVolumeHSlider" to="Sounds/NotificationSound" method="_on_alarm_volume_h_slider_value_changed"]
+[connection signal="value_changed" from="SettingsWindow/PanelContainer/VBoxContainer/HBoxContainer2/AlarmVolumeHSlider" to="SettingsWindow" method="_on_alarm_volume_h_slider_value_changed"]

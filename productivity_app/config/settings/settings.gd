@@ -12,6 +12,9 @@ const BREAK_REMINDER_DEFAULT = false
 const REMINDER_INTERVAL = "reminder_interval"
 const REMINDER_INTERVAL_DEFAULT = 5
 
+const ALARM_VOLUME = "alarm_volume"
+const ALARM_VOLUME_DEFAULT = -3
+
 @onready var _config_file := ConfigFile.new()
 
 
