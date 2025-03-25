@@ -18,8 +18,7 @@ func _enter() -> void:
 	_time_passed = 0
 	if Settings.get_value(Settings.BREAK_REMINDER, Settings.BREAK_REMINDER_DEFAULT) == true:
 		var length: float = Settings.get_value(
-				Settings.REMINDER_INTERVAL, Settings.REMINDER_INTERVAL_DEFAULT
-		)
+				Settings.REMINDER_INTERVAL, Settings.REMINDER_INTERVAL_DEFAULT)
 		_reminder_timer.start(length * 60)
 
 

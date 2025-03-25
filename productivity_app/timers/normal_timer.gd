@@ -24,11 +24,11 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if not _timer.is_stopped():
-		_time_remaining_label.text = TimerUtilities.get_formatted_time_from_seconds(_timer.time_left)
+		_time_remaining_label.text = \
+				TimerUtilities.get_formatted_time_from_seconds(_timer.time_left)
 	elif _is_in_overtime:
 		_time_remaining_label.text = TimerUtilities.get_formatted_time_from_seconds(
-				TimerUtilities.get_overtime(_overtime_start_time)
-		)
+				TimerUtilities.get_overtime(_overtime_start_time))
 	else:
 		_time_remaining_label.text = TimerUtilities.get_formatted_time_from_seconds(_normal_length)
 
@@ -39,8 +39,7 @@ func _on_timer_timeout() -> void:
 	_is_in_overtime = true
 	if Settings.get_value(Settings.BREAK_REMINDER, Settings.BREAK_REMINDER_DEFAULT) == true:
 		var length: float = Settings.get_value(
-				Settings.REMINDER_INTERVAL, Settings.REMINDER_INTERVAL_DEFAULT
-		)
+				Settings.REMINDER_INTERVAL, Settings.REMINDER_INTERVAL_DEFAULT)
 		_reminder_timer.start(length * 60)
 
 
@@ -57,13 +56,17 @@ func _on_add_minute_button_pressed() -> void:
 
 
 func _on_timer_toggle_button_pressed() -> void:
-	_is_in_overtime = false
-	_reminder_timer.stop()
-	if _timer.is_stopped() == true:
-		_timer.start(_normal_length)
-		_toggle_button.icon = STOP
-		_toggle_button.theme_type_variation = "RedButton"
-	else:
+	var set_toggle_button: Callable = func(icon: Texture2D, color_type: String) -> void:
+		_toggle_button.icon = icon
+		_toggle_button.theme_type_variation = color_type
+
+	if _timer.time_left:
 		_timer.stop()
-		_toggle_button.icon = START
-		_toggle_button.theme_type_variation = "GreenButton"
+		set_toggle_button.call(START, "GreenButton")
+	elif _reminder_timer.time_left:
+		_is_in_overtime = false
+		_reminder_timer.stop()
+		set_toggle_button.call(START, "GreenButton")
+	else:
+		_timer.start(_normal_length)
+		set_toggle_button.call(STOP, "RedButton")
