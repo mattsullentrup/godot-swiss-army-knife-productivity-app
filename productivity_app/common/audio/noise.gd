@@ -21,11 +21,11 @@ func _notification(what: int) -> void:
 
 
 func save(save_file: SaveFile) -> void:
-	save_file.noise_volume = _volume_slider.value
+	save_file.noise_volume = linear_to_db(_volume_slider.value)
 
 
 func load(save_file: SaveFile) -> void:
-	_volume_slider.value = save_file.noise_volume
+	_volume_slider.value = db_to_linear(save_file.noise_volume)
 	_pink_noise.volume_db = linear_to_db(_volume_slider.value)
 
 
