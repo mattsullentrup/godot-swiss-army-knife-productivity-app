@@ -23,6 +23,7 @@ func _on_options_button_pressed() -> void:
 
 func _on_close_requested() -> void:
 	hide()
+	Settings.save_settings()
 
 
 func _on_break_reminder_check_button_toggled(toggled_on: bool) -> void:

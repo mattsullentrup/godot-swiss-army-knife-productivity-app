@@ -28,7 +28,16 @@ func get_value(key: String, default_value: Variant = null) -> Variant:
 
 func set_value(key: String, value: Variant = null) -> void:
 	_config_file.set_value(SETTINGS_SECTION, key, value)
-	_save_settings()
+
+
+func save_settings() -> int:
+	var err := _config_file.save(_get_file_path())
+	if err == ERR_FILE_NOT_FOUND:
+		pass
+	elif err != OK:
+		printerr("Failed to save settings file")
+
+	return err
 
 
 func _load_settings() -> int:
@@ -37,16 +46,6 @@ func _load_settings() -> int:
 		pass
 	elif err != OK:
 		printerr("Failed to load settings file")
-
-	return err
-
-
-func _save_settings() -> int:
-	var err := _config_file.save(_get_file_path())
-	if err == ERR_FILE_NOT_FOUND:
-		pass
-	elif err != OK:
-		printerr("Failed to save settings file")
 
 	return err
 
