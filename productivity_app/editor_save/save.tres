@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="SaveFile" load_steps=19 format=3]
+[gd_resource type="Resource" script_class="SaveFile" load_steps=19 format=3 uid="uid://b1vsgcllapbtv"]
 
-[ext_resource type="Script" path="res://config/save/project_data.gd" id="1"]
-[ext_resource type="Script" path="res://config/save/save_file.gd" id="2"]
-[ext_resource type="Script" path="res://config/save/task_data.gd" id="2_0xm18"]
+[ext_resource type="Script" uid="uid://bu6vakkhv1hkf" path="res://config/save/project_data.gd" id="1"]
+[ext_resource type="Script" uid="uid://nivvpovhnu5u" path="res://config/save/save_file.gd" id="2"]
+[ext_resource type="Script" uid="uid://lvk7rcl6lyon" path="res://config/save/task_data.gd" id="2_0xm18"]
 
 [sub_resource type="Resource" id="Resource_5sppa"]
 script = ExtResource("2_0xm18")
