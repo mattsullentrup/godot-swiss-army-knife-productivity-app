@@ -17,7 +17,7 @@ var _is_in_overtime := false
 
 
 func _ready() -> void:
-	_normal_length = _spin_box.value# * 60
+	_normal_length = _spin_box.value * 60
 	_time_remaining_label.text = str(_normal_length)
 	_reminder_timer.timeout.connect(func() -> void: _notification_sound.play())
 
@@ -42,7 +42,7 @@ func _on_timer_timeout() -> void:
 	if Settings.get_value(Settings.BREAK_REMINDER, Settings.BREAK_REMINDER_DEFAULT) == true:
 		var length: float = Settings.get_value(
 				Settings.REMINDER_INTERVAL, Settings.REMINDER_INTERVAL_DEFAULT)
-		_reminder_timer.start(length)# * 60)
+		_reminder_timer.start(length * 60)
 
 
 func _on_timer_option_button_value_changed(value: float) -> void:
