@@ -23,19 +23,16 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	_time_remaining_label.text = _get_time_to_display()
+	_time_remaining_label.text = TimerUtilities.get_formatted_time_from_seconds(
+			_get_time_to_display())
 
 
-func _get_time_to_display() -> String:
-	var seconds: float
+func _get_time_to_display() -> float:
 	if not _timer.is_stopped():
-		seconds = _timer.time_left
+		return _timer.time_left
 	elif _is_in_overtime:
-		seconds = TimerUtilities.get_overtime(_overtime_start_time)
-	else:
-		seconds = _normal_length
-
-	return TimerUtilities.get_formatted_time_from_seconds(seconds)
+		return TimerUtilities.get_overtime(_overtime_start_time)
+	return _normal_length
 
 
 func _on_timer_timeout() -> void:
@@ -45,7 +42,7 @@ func _on_timer_timeout() -> void:
 	if Settings.get_value(Settings.BREAK_REMINDER, Settings.BREAK_REMINDER_DEFAULT) == true:
 		var length: float = Settings.get_value(
 				Settings.REMINDER_INTERVAL, Settings.REMINDER_INTERVAL_DEFAULT)
-		_reminder_timer.start(length * 60)
+		_reminder_timer.start(length)# * 60)
 
 
 func _on_timer_option_button_value_changed(value: float) -> void:
@@ -65,13 +62,13 @@ func _on_timer_toggle_button_pressed() -> void:
 		_toggle_button.icon = icon
 		_toggle_button.theme_type_variation = color_type
 
-	# TODO: fix bug where unable to stop timer if break reminder is off
 	if _timer.time_left:
 		_timer.stop()
 		set_toggle_button.call(START, "GreenButton")
-	elif _reminder_timer.time_left:
+	elif _is_in_overtime:
 		_is_in_overtime = false
-		_reminder_timer.stop()
+		if _reminder_timer.time_left:
+			_reminder_timer.stop()
 		set_toggle_button.call(START, "GreenButton")
 	else:
 		_timer.start(_normal_length)
