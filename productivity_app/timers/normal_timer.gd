@@ -17,20 +17,25 @@ var _is_in_overtime := false
 
 
 func _ready() -> void:
-	_normal_length = _spin_box.value * 60
+	_normal_length = _spin_box.value# * 60
 	_time_remaining_label.text = str(_normal_length)
 	_reminder_timer.timeout.connect(func() -> void: _notification_sound.play())
 
 
 func _process(_delta: float) -> void:
+	_time_remaining_label.text = _get_time_to_display()
+
+
+func _get_time_to_display() -> String:
+	var seconds: float
 	if not _timer.is_stopped():
-		_time_remaining_label.text = \
-				TimerUtilities.get_formatted_time_from_seconds(_timer.time_left)
+		seconds = _timer.time_left
 	elif _is_in_overtime:
-		_time_remaining_label.text = TimerUtilities.get_formatted_time_from_seconds(
-				TimerUtilities.get_overtime(_overtime_start_time))
+		seconds = TimerUtilities.get_overtime(_overtime_start_time)
 	else:
-		_time_remaining_label.text = TimerUtilities.get_formatted_time_from_seconds(_normal_length)
+		seconds = _normal_length
+
+	return TimerUtilities.get_formatted_time_from_seconds(seconds)
 
 
 func _on_timer_timeout() -> void:
@@ -60,6 +65,7 @@ func _on_timer_toggle_button_pressed() -> void:
 		_toggle_button.icon = icon
 		_toggle_button.theme_type_variation = color_type
 
+	# TODO: fix bug where unable to stop timer if break reminder is off
 	if _timer.time_left:
 		_timer.stop()
 		set_toggle_button.call(START, "GreenButton")
