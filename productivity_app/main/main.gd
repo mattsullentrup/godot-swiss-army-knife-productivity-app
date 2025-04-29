@@ -10,6 +10,7 @@ var _wants_to_quit := false
 
 func _ready() -> void:
 	_pomodoro_timer.get_node("StateMachine").notification_sound = %NotificationSound
+	_setup_all_buttons_focus(self)
 
 
 func _input(event: InputEvent) -> void:
@@ -33,3 +34,13 @@ func _quit() -> void:
 		await _save_system.game_saved
 
 	get_tree().quit.call_deferred()
+
+
+func _setup_all_buttons_focus(node: Node) -> void:
+	for child in node.get_children():
+		var button := child as Button
+		if button:
+			Util.connect_focus_signals(button)
+
+		if child.get_child_count():
+			_setup_all_buttons_focus(child)
