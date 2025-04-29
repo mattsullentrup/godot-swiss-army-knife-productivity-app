@@ -105,6 +105,10 @@ new_sub_task={
 ]
 }
 
+[physics]
+
+2d/physics_engine="Dummy"
+
 [rendering]
 
 renderer/rendering_method="mobile"
