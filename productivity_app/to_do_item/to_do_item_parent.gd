@@ -34,6 +34,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 
+func create_new_task(_text: String = "") -> void:
+	var new_task: ToDoItem = _child_task_scene.instantiate()
+	_task_container.add_child(new_task)
+	Util.setup_child_buttons_focus(new_task)
+
+
 func save(data: Array[ToDoItemData]) -> void:
 	new_save_data.scene_file_path = scene_file_path
 	new_save_data.text = line_edit.text
@@ -57,11 +63,6 @@ func _load() -> void:
 		var task: Node = task_scene.instantiate()
 		task.save_data = task_data
 		_task_container.add_child(task)
-
-
-func create_new_task(_text: String = "") -> void:
-	var new_task: ToDoItem = _child_task_scene.instantiate()
-	_task_container.add_child(new_task)
 
 
 func _on_toggle_tasks_button_pressed() -> void:
